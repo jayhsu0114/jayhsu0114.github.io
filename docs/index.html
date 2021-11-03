@@ -1,9 +1,231 @@
 <html>
 <head>
-<title>Main page</title>
+<title>首頁</title>
 </head>
+<script src="https://www.google.com/recaptcha/api.js"></script>
+<meta charset="utf-8">
+<style type="text/css">
+h1{background-color:#fefdf7;color: #000000;font-size: 75px;}
+h2{font-size: 60px;color: #f7ddbf;}
+body{background-color:#fefdf7}
+fieldset{border-radius:10px;border-width: 2px;background-color:  #b7e5f8;width: 80%;margin-left: auto;margin-right: auto }
+legend{border-radius:5px;background-color:#ebafaf;font-size: 45px;color:#000000;border-width: 1px;border-color:#fefdf7}
+input{font-size: 40px;}
+laBEL{font-size: 40px;}
+#g-recaptcha{display:none;}
+</style>
+
+
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+      $(function show() {
+	$("#visible").click(function show() {
+	    $('#invisible').toggleClass("show");
+	    $('#visible').toggleClass("hide");
+	  });  
+	});
+</script>
+
+
+<style>
+      .hide{display:none;}
+      .show{display:block;}
+</style>
 <body>
-<h1>This is the main page of my website</h1>
-  <a href="webpage1.html">webpage1</a>
+<br><br>
+<center>
+  <h1>靠北/告白中山股份無限公司</h1>
+</center>
+<h2>&nbsp;&nbsp;投稿系統2.0</h2>
+<hr>
+	<br>
+<form action="javascript:GoogleForm();" id="form">
+		
+		<fieldset><legend> &nbsp;&nbsp; 請問你要投稿還是刪除投稿？ &nbsp;&nbsp; </legend>
+		<input type="radio" name="Q1" value="投稿" required><label for="Q1">投稿</label>
+		<br><br>
+		<input type="radio" name="Q1" value="刪除投稿" required><label for="Q1">刪除投稿</label>
+		</fieldset>
+
+		<br><br>
+		
+		<fieldset><legend> &nbsp;&nbsp; 請先閱讀使用者規約 &nbsp;&nbsp; </legend>
+			<br><center>
+		<input type="button" value="使用者規約" onclick="location.href='https://zsjhcoultd.github.io/web/userregulation.html'">
+		 &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="button" value="隱私權政策" onclick="location.href='https://zsjhcoultd.github.io/web/praviatepolicy.html'">
+	</center>
+		<br>
+		<input type="checkbox" name="Q2" value="我已詳細閱讀使用者規約並同意遵守" required><label for="Q2">我已詳細閱讀使用者規約並同意遵守</label>
+		</fieldset>
+
+		<BR><br>
+
+		<center><button id="visible">繼續</button></center>
+
+
+<div  id="invisible" class="hide"> 
+		<fieldset><legend> &nbsp;&nbsp; 請輸入後悔代碼 &nbsp;&nbsp; </legend>
+		<label for="Q3">後悔代碼：&nbsp;&nbsp;</label>
+		<input type="text" name="Q3" value="AAAAAA" required>
+		</fieldset>
+
+		<br><br>
+
+		<fieldset><legend> &nbsp;&nbsp; 請問你要投稿還是刪除投稿？ &nbsp;&nbsp; </legend>
+		<input type="radio" name="Q3" value="是" required><label for="Q3">是</label>
+		<br><br>
+		<input type="radio" name="Q3" value="否ˇ" required><label for="Q3">否</label>
+		</fieldset>
+
+		<br><br>
+
+		<fieldset><legend> &nbsp;&nbsp; 您要回覆ZSJH__ __ __ __？ &nbsp;&nbsp; </legend>
+		<label for="Q5">後悔代碼；&nbsp;&nbsp;</label>
+		<input type="text" name="Q5" value="1234" maxlength="4">
+		</fieldset>
+
+		<br><br>
+
+		<fieldset><legend> &nbsp;&nbsp; 您的投稿內容是？&nbsp;&nbsp; </legend>
+		<label for="Q6">請輸入數字 &nbsp;&nbsp;</label><input type="text" name="Q6">
+		</fieldset>
+
+		<br><br>
+
+		<fieldset><legend> &nbsp;&nbsp; 請輸入後悔代碼 &nbsp;&nbsp; </legend>
+		<label for="Q7">後悔代碼：&nbsp;&nbsp;</label><input type="text" name="Q7" value="AAAAAAAA"  required>
+		</fieldset>
+
+		<br><br>
+
+		<fieldset><legend> &nbsp;&nbsp;是否進入滿意度調查？ &nbsp;&nbsp; </legend>
+		<input type="radio" name="Q8" value="是" required><label for="Q8">是</label>
+		<br><br>
+		<input type="radio" name="Q8" value="否" required><label for="Q8">否</label>
+		</fieldset>
+
+		<br><br>
+
+		<fieldset><legend> &nbsp;&nbsp;請問您的使用體驗如何？&nbsp;&nbsp; </legend>
+		<label for="Q9">0</label>
+		<input type="range" id="Q9" name="Q9" min="0" max="10">
+		<label for="Q9">10</label>
+		</fieldset>
+
+		<br><br>
+
+		<fieldset><legend> &nbsp;&nbsp;您的年齡&nbsp;&nbsp; </legend>
+		<label for="Q11">您的年齡：&nbsp;&nbsp;</label><input type="text" name="Q11" maxlength="2">
+		</fieldset>
+		<br><br>
+
+
+
+			<CENTER><button type="submit" >submit</button></center>
+</div>
+	</form>
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script>
+		function GoogleForm() {　
+		   
+		   var field1 = $("[name='Q1']").val();
+		   var field2 = $("[name='Q2']").val();
+		   var field3 = $("[name='Q3']").val();
+		   var field4 = $("[name='Q4']").val();
+		   var field5 = $("[name='Q5']").val();
+		   var field6 = $("[name='Q6']").val();
+		   var field7 = $("[name='Q7']").val();
+		   var field8 = $("[name='Q8']").val();
+		   var field9 = $("[name='Q9']").val();
+		   var field10 = $("[name='Q10']").val();
+		   var field11 = $("[name='Q11']").val();
+
+
+		   $.ajax({
+		    url: "https://docs.google.com/forms/u/0/d/e/1FAIpQLSdkQmqd7e1LC_uLEJjCER1e9m4ze-Uw8-9NNzZnmKgwecI1Zg/formResponse",
+
+		    data: {
+
+		     "entry.57664328":field1,
+		     "entry.231861993":field2,
+		     "entry.1984128521":field3,
+		     "entry.984840184":field4,
+		     "entry.161243096":field5,
+		     "entry.1420834802":field6,
+		     "entry.644088490":field7,
+		     "entry.207089377":field8,
+		     "entry.185725597":field9,
+		     "entry.787195154":field10,
+		     "entry.1208562366":field11,
+		    },
+		    type: "POST",
+		    dataType: "xml",
+		    statusCode: {
+
+		     0: function() {
+		      alert("0");　
+		      window.location.assign("https://zsjhcoultd.github.io/web/");
+		     },
+
+		     200: function() {
+		      alert("200");　
+		      window.location.assign("https://zsjhcoultd.github.io/web/");
+		     }
+		    }
+		   });
+		  }
+		</script>
+
+
+<script>
+   function onSubmit(token) {
+     document.getElementById("demo-form").submit();
+   }
+</script>
+<button class="g-recaptcha" id="g-recaptcha"
+        data-sitekey="6Lc--wAdAAAAAHt0M-EBHw3edl8apLdY66hrDq1F" 
+        data-callback='onSubmit' 
+        data-action='submit'>Submit</button>
+ <script type="text/javascript">
+        window.onload = function(){
+            
+            document.onkeydown = function (){
+                var e = window.event || arguments[0];
+                
+                if(e.keyCode == 123){
+                    return false;
+                
+            }else if((e.ctrlKey) && (e.shiftKey) && (e.keyCode == 73)){
+                return false;
+               
+            }else if((e.shiftKey) && (e.keyCode == 121)){
+                return false;
+               
+            }else if((e.ctrlKey) && (e.keyCode == 85)){
+                return false;
+            }
+        };
+            document.oncontextmenu = function (){
+                return false;
+            }
+        }
+
+    </script>
 </body>
 </html>
