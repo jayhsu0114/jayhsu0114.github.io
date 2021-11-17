@@ -182,10 +182,15 @@
 	<div class="footer">
 	  <h2>Footer</h2>
 	</div>
-	<button class="g-recaptcha" id="g-recaptcha"
-	        data-sitekey="6LdM9jwdAAAAAAkpcTeuyRgb8_CK8uJkVqNxpcWB" 
-	        data-callback='onSubmit' 
-	        data-action='submit'>Submit</button>
+	<script>
+   function onSubmit(token) {
+     document.getElementById("demo-form").submit();
+   }
+</script>
+<button class="g-recaptcha" id="g-recaptcha"
+        data-sitekey="6LdM9jwdAAAAAAkpcTeuyRgb8_CK8uJkVqNxpcWB" 
+        data-callback='onSubmit' 
+        data-action='submit'>Submit</button>
 	</body>
 	</html>
 
