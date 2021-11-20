@@ -149,8 +149,8 @@ padding: 30px;
 		<div class="fieldset">
 		<fieldset>
 			<legend> &nbsp;&nbsp; 請先閱讀使用者規約 &nbsp;&nbsp; </legend>
-			<input style="height: 15px;width: 15px;" type="checkbox" name="Q2" value="我已詳細閱讀使用者規約並同意遵守" required>
-			<label for="Q2">我已詳細閱讀使用者規約並同意遵守</label>
+			<input style="height: 15px;width: 15px;" type="checkbox" name="Q" value="我已詳細閱讀使用者規約並同意遵守" required>
+			<label for="Q">我已詳細閱讀使用者規約並同意遵守</label>
 		</fieldset>
 		</div>
 
@@ -158,8 +158,8 @@ padding: 30px;
 
 		<div class="fieldset">
 		<fieldset><legend> &nbsp;&nbsp; 您要回覆ZSJH________？ &nbsp;&nbsp; </legend>
-		<label for="Q5">請輸入數字：&nbsp;</label>
-		<input type="text" name="Q5" value="1234" maxlength="4">
+		<label for="QQ">請輸入數字：&nbsp;</label>
+		<input type="text" name="QQ" value="1234" maxlength="4">
 		</fieldset>
 		</div>
 
@@ -167,9 +167,9 @@ padding: 30px;
 
 		<div class="fieldset">
 		<fieldset><legend> &nbsp;&nbsp; 您的投稿內容是？&nbsp;&nbsp; </legend>
-		<label for="Q6">請輸入您的回覆內容：&nbsp;&nbsp;</label>
+		<label for="QQQ">請輸入您的回覆內容：&nbsp;&nbsp;</label>
 		<br><br>
-		<input style="width:100%;height: 200px;" type="text" name="Q6">
+		<input style="width:100%;height: 200px;" type="text" name="QQQ">
 		</fieldset>
 		</div>
 		
@@ -177,7 +177,7 @@ padding: 30px;
 
 		<div class="fieldset">
 		<fieldset><legend> &nbsp;&nbsp; 請記住後悔代碼 &nbsp;&nbsp; </legend>
-		<label for="Q7">後悔代碼：&nbsp;&nbsp;</label><input type="text" name="Q7" value="function makeid"  required readonly>
+		<label for="QQQQ">後悔代碼：&nbsp;&nbsp;</label><input type="text" name="QQQQ" value="function makeid"  required readonly>
 		<p style="font-size: 5px;">後悔代碼可以在我們將貼文發布前於系統內刪除</p>
 		</fieldset>
 		</div>
@@ -226,39 +226,25 @@ function makeid(length) {
  
 console.log(makeid(5));
 </script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script>
 		function GoogleForm() {　
 		   
-		   var field1 = $("[name='Q1']").val();
-		   var field2 = $("[name='Q2']").val();
-		   var field3 = $("[name='Q3']").val();
-		   var field4 = $("[name='Q4']").val();
-		   var field5 = $("[name='Q5']").val();
-		   var field6 = $("[name='Q6']").val();
-		   var field7 = $("[name='Q7']").val();
-		   var field8 = $("[name='Q8']").val();
-		   var field9 = $("[name='Q9']").val();
-		   var field10 = $("[name='Q10']").val();
-		   var field11 = $("[name='Q11']").val();
-
+		   var field1 = $("[name='Q']").val();
+		   var field2 = $("[name='QQ']").val();
+		   var field3 = $("[name='QQQ']").val();
+		   var field4 = $("[name='QQQQ']").val();
 
 		   $.ajax({
-		    url: "https://docs.google.com/forms/u/0/d/e/1FAIpQLSdkQmqd7e1LC_uLEJjCER1e9m4ze-Uw8-9NNzZnmKgwecI1Zg/formResponse",
+		    url: "https://docs.google.com/forms/u/0/d/e/1FAIpQLSfA_75WHDZouggEiASDj016bPdlGYoAhjduwUk3T8azEFN84w/formResponse",
 
 		    data: {
 
-		     "entry.57664328":field1,
-		     "entry.231861993":field2,
-		     "entry.1984128521":field3,
-		     "entry.984840184":field4,
-		     "entry.161243096":field5,
-		     "entry.1420834802":field6,
-		     "entry.644088490":field7,
-		     "entry.207089377":field8,
-		     "entry.185725597":field9,
-		     "entry.787195154":field10,
-		     "entry.1208562366":field11,
+		     "entry.726741578":field1,
+		     "entry.1419849810":field2,
+		     "entry.1899191775":field3,
+		     "entry.595474089":field4,
 		    },
 		    type: "POST",
 		    dataType: "xml",
@@ -266,18 +252,18 @@ console.log(makeid(5));
 
 		     0: function() {
 		      alert("0");　
-		      window.location.assign("https://zsjhcoultd.github.io/web/");
+		      window.location.assign("https://jayhsu0114.github.io/");
 		     },
 
 		     200: function() {
 		      alert("200");　
-		      window.location.assign("https://zsjhcoultd.github.io/web/");
+		      window.location.assign("https://jayhsu0114.github.io/");
 		     }
 		    }
 		   });
 		  }
 		</script>
-
+?usp=pp_url&entry.726741578=1&entry.1419849810=2&entry.1899191775=3&entry.595474089=4
 
 <script>
    function onSubmit(token) {
