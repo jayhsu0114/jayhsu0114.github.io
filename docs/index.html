@@ -1,146 +1,236 @@
+
+<!DOCTYPE html>
 <html>
 <head>
-<title>首頁</title>
-</head>
 <script src="https://www.google.com/recaptcha/api.js"></script>
 <meta charset="utf-8">
-<style type="text/css">
-h1{background-color:#fefdf7;color: #000000;font-size: 75px;}
-h2{font-size: 60px;color: #f7ddbf;}
-body{background-color:#fefdf7}
-fieldset{border-radius:10px;border-width: 2px;background-color:  #b7e5f8;width: 80%;margin-left: auto;margin-right: auto }
-legend{border-radius:5px;background-color:#ebafaf;font-size: 45px;color:#000000;border-width: 1px;border-color:#fefdf7}
-input{font-size: 40px;}
-laBEL{font-size: 40px;}
-#g-recaptcha{display:none;}
-</style>
-
-
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script>
-      $(function show() {
-	$("#visible").click(function show() {
-	    $('#invisible').toggleClass("show");
-	    $('#visible').toggleClass("hide");
-	  });  
-	});
-</script>
-
 
 <style>
-      .hide{display:none;}
-      .show{display:block;}
+#g-recaptcha{display:none;}
+* {
+	box-sizing: border-box;
+}
+
+body {
+  font-family: Arial;
+  padding: 10px;
+  background: #FFFFFF;
+}
+
+/* Header/Blog Title */
+.header {
+  padding: 5px;
+  text-align: center;
+  background:#fefdf7;
+}
+
+.header h1 {
+  font-size: 50px;
+}
+
+/* Style the top navigation bar */
+.topnav {
+  overflow: hidden;
+  background-color:#fefdf7;
+}
+
+/* Style the topnav links */
+.topnav a {
+  float: left;
+  display: block;
+  color: #000000;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change color on hover */
+.topnav a:hover {
+  background-color:#f7ddbf;
+  color: black;
+}
+
+/* Create two unequal columns that floats next to each other */
+/* Left column */
+.leftcolumn {   
+  float: left;
+  width: 75%;
+}
+
+/* Right column */
+.rightcolumn {
+  float: left;
+  width: 25%;
+  background-color: #FFFFFF;
+  padding-left: 20px;
+}
+
+/* Fake image */
+.fakeimg {
+  background-color: #aaa;
+  width: 100%;
+  padding: 20px;
+}
+
+/* Add a card effect for articles */
+.cardleft {
+  background-color:#b7e5f8;
+  padding: 20px;
+  margin-top: 20px;
+}
+.cardright {
+  background-color:#ebafaf;
+  padding: 20px;
+  margin-top: 20px;
+}
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Footer */
+.footer {
+  padding: 20px;
+  text-align: center;
+  background:#fefdf7;
+  margin-top: 20px;
+}
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 800px) {
+  .leftcolumn, .rightcolumn {   
+    width: 100%;
+    padding: 0;
+  }
+}
+
+/* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
+@media screen and (max-width: 400px) {
+  .topnav a {
+    float: none;
+    width: 100%;
+  }
+}
+
+legend{
+	  font-weight:bold;
+	  background-color:#70a7dd ;
+	  border-radius:10px;
+	  padding:10px;
+	  border-style:solid;
+	  border-width:2px;
+}
+fieldset{
+background-color:#fefdf7;
+border-radius:10px;
+border:none;
+padding: 30px;
+}
+
 </style>
+</head>
 <body>
-<br><br>
-<center>
+
+<div class="header">
   <h1>靠北/告白中山股份無限公司</h1>
-</center>
-<h2>&nbsp;&nbsp;投稿系統2.0</h2>
-<hr>
-	<br>
-<form action="javascript:GoogleForm();" id="form">
-		
-		<fieldset><legend> &nbsp;&nbsp; 請問你要投稿還是刪除投稿？ &nbsp;&nbsp; </legend>
-		<input type="radio" name="Q1" value="投稿" required><label for="Q1">投稿</label>
-		<br><br>
-		<input type="radio" name="Q1" value="刪除投稿" required><label for="Q1">刪除投稿</label>
+  <p>Hate/Love ZSJH Co.ultd</p>
+</div>
+<br>
+<div class="topnav">
+  <a href="#" style="float:right">聯絡我們</a>
+  <a href="#" style="float:right">網站介紹</a>
+  <a href="#" style="float:right">解憂信箱</a>
+  <a href="#" style="float:right">校花校草</a>
+  <a href="#" >最新貼文</a>
+</div>
+
+<div class="row">
+  <div class="leftcolumn">
+   
+    <div class="cardleft">
+      <form action="javascript:GoogleForm();" id="form">
+
+		<div class="fieldset">
+		<fieldset>
+			<legend> &nbsp;&nbsp; 請先閱讀使用者規約 &nbsp;&nbsp; </legend>
+			<input style="height: 15px;width: 15px;" type="checkbox" name="Q2" value="我已詳細閱讀使用者規約並同意遵守" required>
+			<label for="Q2">我已詳細閱讀使用者規約並同意遵守</label>
 		</fieldset>
-
-		<br><br>
-		
-		<fieldset><legend> &nbsp;&nbsp; 請先閱讀使用者規約 &nbsp;&nbsp; </legend>
-			<br><center>
-		<input type="button" value="使用者規約" onclick="location.href='https://zsjhcoultd.github.io/web/userregulation.html'">
-		 &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<input type="button" value="隱私權政策" onclick="location.href='https://zsjhcoultd.github.io/web/praviatepolicy.html'">
-	</center>
-		<br>
-		<input type="checkbox" name="Q2" value="我已詳細閱讀使用者規約並同意遵守" required><label for="Q2">我已詳細閱讀使用者規約並同意遵守</label>
-		</fieldset>
-
-		<BR><br>
-
-		<center><button id="visible">繼續</button></center>
-
-
-<div  id="invisible" class="hide"> 
-		<fieldset><legend> &nbsp;&nbsp; 請輸入後悔代碼 &nbsp;&nbsp; </legend>
-		<label for="Q3">後悔代碼：&nbsp;&nbsp;</label>
-		<input type="text" name="Q3" value="AAAAAA" required>
-		</fieldset>
+		</div>
 
 		<br><br>
 
-		<fieldset><legend> &nbsp;&nbsp; 請問你要投稿還是刪除投稿？ &nbsp;&nbsp; </legend>
-		<input type="radio" name="Q3" value="是" required><label for="Q3">是</label>
-		<br><br>
-		<input type="radio" name="Q3" value="否ˇ" required><label for="Q3">否</label>
-		</fieldset>
-
-		<br><br>
-
-		<fieldset><legend> &nbsp;&nbsp; 您要回覆ZSJH__ __ __ __？ &nbsp;&nbsp; </legend>
-		<label for="Q5">後悔代碼；&nbsp;&nbsp;</label>
+		<div class="fieldset">
+		<fieldset><legend> &nbsp;&nbsp; 您要回覆ZSJH________？ &nbsp;&nbsp; </legend>
+		<label for="Q5">請輸入數字：&nbsp;</label>
 		<input type="text" name="Q5" value="1234" maxlength="4">
 		</fieldset>
+		</div>
 
 		<br><br>
 
+		<div class="fieldset">
 		<fieldset><legend> &nbsp;&nbsp; 您的投稿內容是？&nbsp;&nbsp; </legend>
-		<label for="Q6">請輸入數字 &nbsp;&nbsp;</label><input type="text" name="Q6">
+		<label for="Q6">請輸入您的回覆內容：&nbsp;&nbsp;</label>
+		<br><br>
+		<input style="width:100%;height: 200px;" type="text" name="Q6">
 		</fieldset>
-
+		</div>
+		
 		<br><br>
 
-		<fieldset><legend> &nbsp;&nbsp; 請輸入後悔代碼 &nbsp;&nbsp; </legend>
-		<label for="Q7">後悔代碼：&nbsp;&nbsp;</label><input type="text" name="Q7" value="AAAAAAAA"  required>
+		<div class="fieldset">
+		<fieldset><legend> &nbsp;&nbsp; 請記住後悔代碼 &nbsp;&nbsp; </legend>
+		<label for="Q7">後悔代碼：&nbsp;&nbsp;</label><input type="text" name="Q7" value="function makeid"  required readonly>
+		<p style="font-size: 5px;">後悔代碼可以在我們將貼文發布前於系統內刪除</p>
 		</fieldset>
+		</div>
 
 		<br><br>
 
-		<fieldset><legend> &nbsp;&nbsp;是否進入滿意度調查？ &nbsp;&nbsp; </legend>
-		<input type="radio" name="Q8" value="是" required><label for="Q8">是</label>
-		<br><br>
-		<input type="radio" name="Q8" value="否" required><label for="Q8">否</label>
-		</fieldset>
-
-		<br><br>
-
-		<fieldset><legend> &nbsp;&nbsp;請問您的使用體驗如何？&nbsp;&nbsp; </legend>
-		<label for="Q9">0</label>
-		<input type="range" id="Q9" name="Q9" min="0" max="10">
-		<label for="Q9">10</label>
-		</fieldset>
-
-		<br><br>
-
-		<fieldset><legend> &nbsp;&nbsp;您的年齡&nbsp;&nbsp; </legend>
-		<label for="Q11">您的年齡：&nbsp;&nbsp;</label><input type="text" name="Q11" maxlength="2">
-		</fieldset>
-		<br><br>
-
-
-
-			<CENTER><button type="submit" >submit</button></center>
+<CENTER><button style="width:40%;height: 30px;background-color: #fefdf7;color: black;" type="submit" >提交</button></center>
 </div>
 	</form>
+    </div>
 
-		
+  <div class="rightcolumn">
+    <div class="cardright">
+      <h2>About Me</h2>
+      <div class="fakeimg" style="height:100px;">Image</div>
+      <p>Some text about me in culpa qui officia deserunt mollit anim..</p>
+    </div>
+    <div class="cardright">
+      <h3>Popular Post</h3>
+      <div class="fakeimg"><p>Image</p></div>
+      <div class="fakeimg"><p>Image</p></div>
+      <div class="fakeimg"><p>Image</p></div>
+    </div>
+    <div class="cardright">
+      <h3>Follow Me</h3>
+      <p>Some text..</p>
+    </div>
+  </div>
+</div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<div class="footer">
+  <h2>Footer</h2>
+</div>
+<script type="text/javascript">
+function makeid(length) {
+   var result           = '';
+   var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+   var charactersLength = characters.length;
+   for ( var i = 0; i < length; i++ ) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+   }
+   return result;
+}
+ 
+console.log(makeid(5));
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script>
 		function GoogleForm() {　
 		   
