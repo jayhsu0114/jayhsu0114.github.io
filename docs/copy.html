@@ -2,6 +2,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://www.google.com/recaptcha/api.js"></script>
+<meta charset="utf-8">
 <style>
 * {
 	box-sizing: border-box;
@@ -10,14 +12,14 @@
 body {
   font-family: Arial;
   padding: 10px;
-  background: #f1f1f1;
+  background: #FFFFFF;
 }
 
 /* Header/Blog Title */
 .header {
-  padding: 30px;
+  padding: 5px;
   text-align: center;
-  background: white;
+  background:#f7ddbf;
 }
 
 .header h1 {
@@ -27,14 +29,14 @@ body {
 /* Style the top navigation bar */
 .topnav {
   overflow: hidden;
-  background-color: #333;
+  background-color:#fefdf7;
 }
 
 /* Style the topnav links */
 .topnav a {
   float: left;
   display: block;
-  color: #f2f2f2;
+  color: #000000;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
@@ -42,7 +44,7 @@ body {
 
 /* Change color on hover */
 .topnav a:hover {
-  background-color: #ddd;
+  background-color:#f7ddbf;
   color: black;
 }
 
@@ -57,7 +59,7 @@ body {
 .rightcolumn {
   float: left;
   width: 25%;
-  background-color: #f1f1f1;
+  background-color: #FFFFFF;
   padding-left: 20px;
 }
 
@@ -69,12 +71,16 @@ body {
 }
 
 /* Add a card effect for articles */
-.card {
-  background-color: white;
+.cardleft {
+  background-color:#b7e5f8;
   padding: 20px;
   margin-top: 20px;
 }
-
+.cardright {
+  background-color:#ebafaf;
+  padding: 20px;
+  margin-top: 20px;
+}
 /* Clear floats after the columns */
 .row:after {
   content: "";
@@ -86,7 +92,7 @@ body {
 .footer {
   padding: 20px;
   text-align: center;
-  background: #ddd;
+  background:#fefdf7;
   margin-top: 20px;
 }
 
@@ -105,52 +111,92 @@ body {
     width: 100%;
   }
 }
+
+legend{
+	  font-weight:bold;background-color: #fefdf7;border-radius:10px;padding: 20px;
+}
+fieldset{
+background-color:#FFFFFF ;border-radius:10px;border:none;padding: 30px;
+}
+
 </style>
 </head>
 <body>
 
 <div class="header">
   <h1>靠北/告白中山股份無限公司</h1>
-  <p>建立於2019</p>
+  <p>Hate/Love ZSJH Co.ultd</p>
 </div>
-
+<br>
 <div class="topnav">
-  <a href="#">Link</a>
-  <a href="#">Link</a>
-  <a href="#">Link</a>
-  <a href="#" style="float:right">Link</a>
+  <a href="#" style="float:right">聯絡我們</a>
+  <a href="#" style="float:right">網站介紹</a>
+  <a href="#" style="float:right">解憂信箱</a>
+  <a href="#" style="float:right">校花校草</a>
+  <a href="#" >最新貼文</a>
 </div>
 
 <div class="row">
   <div class="leftcolumn">
-    <div class="card">
-      <h2>TITLE HEADING</h2>
-      <h5>Title description, Dec 7, 2017</h5>
-      <div class="fakeimg" style="height:200px;">Image</div>
-      <p>Some text..</p>
-      <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+   
+    <div class="cardleft">
+      <form action="javascript:GoogleForm();" id="form">
+
+		<div class="fieldset">
+		<fieldset>
+			<legend> &nbsp;&nbsp; 請先閱讀使用者規約 &nbsp;&nbsp; </legend>
+			<input style="height: 15px;width: 15px;" type="checkbox" name="Q2" value="我已詳細閱讀使用者規約並同意遵守" required>
+			<label for="Q2">我已詳細閱讀使用者規約並同意遵守</label>
+		</fieldset>
+		</div>
+
+		<br><br>
+
+		<div class="fieldset">
+		<fieldset><legend> &nbsp;&nbsp; 您要回覆ZSJH________？ &nbsp;&nbsp; </legend>
+		<label for="Q5">請輸入數字：&nbsp;</label>
+		<input type="text" name="Q5" value="1234" maxlength="4">
+		</fieldset>
+		</div>
+
+		<br><br>
+
+		<div class="fieldset">
+		<fieldset><legend> &nbsp;&nbsp; 您的投稿內容是？&nbsp;&nbsp; </legend>
+		<label for="Q6">請輸入您的回覆內容：&nbsp;&nbsp;</label>
+		<br><br>
+		<input style="width:100%;height: 200px;" type="text" name="Q6">
+		</fieldset>
+		</div>
+		
+		<br><br>
+
+		<div class="fieldset">
+		<fieldset><legend> &nbsp;&nbsp; 請記住後悔代碼 &nbsp;&nbsp; </legend>
+		<label for="Q7">後悔代碼：&nbsp;&nbsp;</label><input type="text" name="Q7" value="function makeid"  required readonly>
+		</fieldset>
+		</div>
+
+		<br><br>
+
+<CENTER><button type="submit" >submit</button></center>
+</div>
+	</form>
     </div>
-    <div class="card">
-      <h2>TITLE HEADING</h2>
-      <h5>Title description, Sep 2, 2017</h5>
-      <div class="fakeimg" style="height:200px;">Image</div>
-      <p>Some text..</p>
-      <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
-    </div>
-  </div>
+
   <div class="rightcolumn">
-    <div class="card">
+    <div class="cardright">
       <h2>About Me</h2>
       <div class="fakeimg" style="height:100px;">Image</div>
       <p>Some text about me in culpa qui officia deserunt mollit anim..</p>
     </div>
-    <div class="card">
+    <div class="cardright">
       <h3>Popular Post</h3>
       <div class="fakeimg"><p>Image</p></div>
       <div class="fakeimg"><p>Image</p></div>
       <div class="fakeimg"><p>Image</p></div>
     </div>
-    <div class="card">
+    <div class="cardright">
       <h3>Follow Me</h3>
       <p>Some text..</p>
     </div>
@@ -160,6 +206,18 @@ body {
 <div class="footer">
   <h2>Footer</h2>
 </div>
-
+<script type="text/javascript">
+function makeid(length) {
+   var result           = '';
+   var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+   var charactersLength = characters.length;
+   for ( var i = 0; i < length; i++ ) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+   }
+   return result;
+}
+ 
+console.log(makeid(5));
+</script>
 </body>
 </html>
