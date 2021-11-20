@@ -7,25 +7,6 @@
 <meta charset="utf-8">
 
 <style>
-	#loading{
-    background:#ffffff;
-    bottom:0;
-    left:0;
-    position: fixed;
-    right:0;
-    top:0;
-    z-index:500;
-}
- 
-#begin{
-    background: url(./images/3D 檢視器 2021-11-21 02-25-47.gif)center center no-repeat; //圖片
-    height:200px;  //控制大小
-    width:200px;   //控制大小
-    left:50%;          //控制位置
-    top:50%;            //控制位置
-    margin: -100px 0 0 -100px;
-    position: absolute;
-}
 #g-recaptcha{display:none;}
 * {
 	box-sizing: border-box;
@@ -145,10 +126,7 @@ padding: 30px;
 </style>
 </head>
 <body>
-	 <!--載入動畫層-->
-  <div id="loading">
-    <div id="begin"></div>
-  </div>
+
 <div class="header">
   <h1>靠北/告白中山股份無限公司</h1>
   <p>Hate/Love ZSJH Co.ultd</p>
@@ -335,18 +313,5 @@ console.log(makeid(5));
         }
 
     </script>
-<script>
-	(function($){
-    $(window).load(function(){
-        $('#begin').fadeOut();
-        $('#loading').delay(200).fadeOut('slow');
-    });
- 
-	$(document).ready(function(){
-	//code
-	}）
- 
-})(jQuery);
-</script>
 </body>
 </html>
