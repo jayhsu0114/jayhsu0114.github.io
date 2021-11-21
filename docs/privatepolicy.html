@@ -1,1 +1,293 @@
 
+<!DOCTYPE html>
+<html>
+<head>
+
+<script src="https://www.google.com/recaptcha/api.js"></script>
+<meta charset="utf-8">
+
+<style>
+#g-recaptcha{display:none;}
+* {
+	box-sizing: border-box;
+}
+
+body {
+  font-family: Arial;
+  padding: 10px;
+  background: #FFFFFF;
+}
+
+/* Header/Blog Title */
+.header {
+  padding: 5px;
+  text-align: center;
+  background:#f7ddbf;
+}
+
+.header h1 {
+  font-size: 50px;
+}
+
+/* Style the top navigation bar */
+.topnav {
+  overflow: hidden;
+  background-color:#fefdf7;
+}
+
+/* Style the topnav links */
+.topnav a {
+  float: left;
+  display: block;
+  color: #000000;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change color on hover */
+.topnav a:hover {
+  background-color:#f7ddbf;
+  color: black;
+}
+
+/* Create two unequal columns that floats next to each other */
+/* Left column */
+.column {   
+  float: center;
+  width: 100%;
+}
+
+/* Add a card effect for articles */
+.card {
+  background-color:#b7e5f8;
+  padding: 20px;
+  margin-top: 20px;
+}
+.card1 {
+  background-color:#70a7dd;
+  padding: 20px;
+  margin-top: 20px;
+}
+.card2 {
+  background-color:#b7e5f8;
+  padding: 5px;
+  margin-top: 5px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Footer */
+.footer {
+  padding: 20px;
+  text-align: center;
+  background:#fefdf7;
+  margin-top: 20px;
+}
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 800px) {
+  .leftcolumn, {   
+    width: 100%;
+    padding: 0;
+  }
+}
+
+/* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
+@media screen and (max-width: 400px) {
+  .topnav a {
+    float: none;
+    width: 100%;
+  }
+}
+
+legend{
+	  font-weight:bold;
+	  background-color:#70a7dd ;
+	  border-radius:10px;
+	  padding:10px;
+	  border-style:solid;
+	  border-width:2px;
+}
+fieldset{
+background-color:#fefdf7;
+border-radius:10px;
+border:none;
+padding: 30px;
+}
+
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>靠北/告白中山股份無限公司</h1>
+  <p>Hate/Love ZSJH Co.ultd</p>
+</div>
+<br>
+<div class="topnav">
+<a href="#" style="float:right">聯絡我們</a>
+<a href="#" style="float:right">網站介紹</a>
+<a href="#" style="float:right">解憂信箱</a>
+<a href="#" style="float:right">校花校草</a>
+<a href="https://instagram.com/hate_love_zsjh_co.ultd"style="float:right" >最新貼文</a>
+<a href="https://jayhsu0114.github.io/index.html" >投稿系統</a>
+<a href="https://jayhsu0114.github.io/delete.html" >刪文系統</a>
+<a href="https://jayhsu0114.github.io/userregulation.html" >使用者規約</a>
+</div>
+
+<div class="row">
+  <div class="column">
+
+    <div class="card1">
+      <h2>使用者規約</h2>
+    </div>
+
+ 	  <div class="card">
+      <h2>〈第一條 - 投稿方法〉</h2>
+      <div class="card2">
+      <h3>{第一款}</h3>
+      <p>匿名投稿應以投稿系統進行，並禁止透過私訊進行。</p>
+      </div>
+      <div class="card2">
+      <h3>{第二款}</h3>
+      <p>投稿前應詳閱使用者規約，投稿即代表同意使用者規約。</p>
+      </div>
+      <div class="card2">
+      <h3>{第三款}</h3>
+      <p>當您在本版投稿時，即同意自行負責該貼文之一切法律責任。</p>
+      </div>
+      <div class="card2">
+      <h3>{第四款}</h3>
+      <p>匿名發言並不代表本版立場，本版亦不為追蹤者之行為負任何法律責任。</p>
+      </div>
+ </div>
+ <div class="card">
+      <h2>〈第二條 - 內容規範〉</h2>
+      <div class="card2">
+      <h3>{第五款}</h3>
+      <p>本條規定僅適用於系統內匿名投稿之內容。</p>
+  </div>
+  <div class="card2">
+      <h3>{第六款}</h3>
+      <p>投稿內容文長不限，惟若文長超過單張圖片能負荷時，本版將使其分割為不同貼文並以(1)...編號表示。</p>
+  </div>
+  <div class="card2">
+      <h3>{第七款}</h3>
+      <p>投稿內容應遵守法律、FB社群守則、新北市立中山國中校規、並尊重各族群之差異性。</p>
+  </div>
+  <div class="card2">
+      <h3>{第八款}</h3>
+      <p>若文中出現「婊、賤、除班級及性/姓別外之個人資料」，或與師長相關之過於負面文章...等，本版將視情況予以修正或於受刪文請求時移除。</p>
+  </div>
+  <div class="card2">
+      <h3>{第九款}</h3>
+      <p>不得重複使用類似內容洗版。</p>
+  </div>
+  <div class="card2">
+      <h3>{第十款}</h3>
+      <p>廣告宣傳文需私訊本版，使用匿名進行廣告宣傳將不予通過。</p>
+  </div>
+  <div class="card2">
+      <h3>{第十一款}</h3>
+      <p>匿名編號由本版系統統一編撰，回覆其他已發出之匿名請使用回覆欄。</p>
+  </div>
+  <div class="card2">
+      <h3>{第十二款}</h3>
+      <p>本版不提供修改錯別字之服務。</p>
+  </div>
+  <div class="card2">
+      <h3>{第十三款}</h3>
+      <p>本版得視情況刪除毫無意義之文章。</p>
+  </div>
+  <div class="card2">
+      <h3>{第十四款}</h3>
+      <p>為避免系統或人為疏失導致資料遺失，提交前請自行備份。</p>
+  </div>
+    <div class="card2">
+      <h3>{第十五款}</h3>
+      <p>本匿名系統之運作方式不紀錄匿名者身份。</p>
+  </div>
+</div>
+
+<div class="card">
+      <h2>〈第三條 - 留言規範〉</h2>
+      <div class="card2">
+      <h3>{第十六款}</h3>
+      <p>所有規範同第二條之所有款項。</p>
+      </div>
+      <div class="card2">
+      <h3>{第十七款}</h3>
+      <p>若違反以上規定將被刪除留言。</p>
+      </div>
+ </div>
+<div class="card">
+      <h2>〈第四條 - 刪文流程〉</h2>
+      <div class="card2">
+      <h3>{第十八款}</h3>
+      <p>請於私訊留言「刪文系統」並告依據機器人指示操作刪除已發布之貼文。</p>
+      </div>
+      <div class="card2">
+      <h3>{第十九款}</h3>
+      <p>若無違反〈第二條〉之相關規定，機器人將作出不刪文之判決。</p>
+      </div>
+      <div class="card2">
+      <h3>{第二十款}</h3>
+      <p>如對判決有任何疑慮可提出複審，請依機器人指示如實作答。</p>
+      </div>
+      <div class="card2">
+      <h3>{第二十一款}</h3>
+      <p>私訊刪文系統僅可刪除已知編號的貼文，未發出的匿名並無編號，請使用本網頁刪文系統。</p>
+      </div>
+ </div>
+ </div>
+  </div>
+</div>
+
+<div class="footer">
+  <h2>本網頁系統由靠北/告白中山股份無限公司提供</h2>
+</div>
+
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+<script>
+   function onSubmit(token) {
+     document.getElementById("demo-form").submit();
+   }
+</script>
+<button class="g-recaptcha" id="g-recaptcha"
+        data-sitekey="6LdM9jwdAAAAAAkpcTeuyRgb8_CK8uJkVqNxpcWB" 
+        data-callback='onSubmit' 
+        data-action='submit'>Submit</button>
+ <script type="text/javascript">
+        window.onload = function(){
+            
+            document.onkeydown = function (){
+                var e = window.event || arguments[0];
+                
+                if(e.keyCode == 123){
+                    return false;
+                
+            }else if((e.ctrlKey) && (e.shiftKey) && (e.keyCode == 73)){
+                return false;
+               
+            }else if((e.shiftKey) && (e.keyCode == 121)){
+                return false;
+               
+            }else if((e.ctrlKey) && (e.keyCode == 85)){
+                return false;
+            }
+        };
+            document.oncontextmenu = function (){
+                return false;
+            }
+        }
+
+    </script>
+</body>
+</html>
