@@ -54,16 +54,8 @@ body {
 /* Create two unequal columns that floats next to each other */
 /* Left column */
 .leftcolumn {   
-  float: left;
-  width: 75%;
-}
-
-/* Right column */
-.rightcolumn {
-  float: left;
-  width: 25%;
-  background-color: #FFFFFF;
-  padding-left: 20px;
+  float: center;
+  width: 100%;
 }
 
 /* Add a card effect for articles */
@@ -149,7 +141,7 @@ padding: 30px;
 		<div class="fieldset">
 		<fieldset>
 			<legend> &nbsp;&nbsp; 請先閱讀使用者規約 &nbsp;&nbsp; </legend>
-			<input style="height: 15px;width: 15px;" type="checkbox" name="Q" value="我已詳細閱讀使用者規約並同意遵守" required>
+			<input style="height: 15px;width: 15px;" type="checkbox" name="Q" value="我已詳細閱讀使用者規約並同意遵守" required autofocus>
 			<label for="Q">我已詳細閱讀使用者規約並同意遵守</label>
 		</fieldset>
 		</div>
@@ -159,7 +151,7 @@ padding: 30px;
 		<div class="fieldset">
 		<fieldset><legend> &nbsp;&nbsp; 您要回覆ZSJH________？ &nbsp;&nbsp; </legend>
 		<label for="QQ">請輸入數字：&nbsp;</label>
-		<input type="text" name="QQ" value="1234" maxlength="4">
+		<input type="text" name="QQ" value="" maxlength="5" placeholder="本欄位僅限輸入數字">
 		</fieldset>
 		</div>
 
@@ -169,7 +161,7 @@ padding: 30px;
 		<fieldset><legend> &nbsp;&nbsp; 您的投稿內容是？&nbsp;&nbsp; </legend>
 		<label for="QQQ">請輸入您的回覆內容：&nbsp;&nbsp;</label>
 		<br><br>
-		<input style="width:100%;height: 200px;" type="text" name="QQQ">
+		<input style="width:100%;height: 200px;" type="text" name="QQQ" required>
 		</fieldset>
 		</div>
 		
@@ -177,7 +169,7 @@ padding: 30px;
 
 		<div class="fieldset">
 		<fieldset><legend> &nbsp;&nbsp; 請記住後悔代碼 &nbsp;&nbsp; </legend>
-		<label for="QQQQ">後悔代碼：&nbsp;&nbsp;</label><input type="text" name="QQQQ" value="function makeid"  required readonly>
+		<label for="QQQQ">後悔代碼：&nbsp;&nbsp;</label><input type="text" name="QQQQ" value=function makeid  required readonly>
 		<p style="font-size: 5px;">後悔代碼可以在我們將貼文發布前於系統內刪除</p>
 		</fieldset>
 		</div>
@@ -187,31 +179,12 @@ padding: 30px;
 <CENTER><button style="width:40%;height: 30px;background-color: #fefdf7;color: black;" type="submit" >提交</button></center>
 </div>
 	</form>
-	    <div class="cardleft">
-      <h3>Follow Me</h3>
-      <p>Some text..</p>
-    </div>
-    </div>
-
-  <div class="rightcolumn">
-    <div class="cardright">
-      <h2>關於我們</h2>
-      <img style="width:100%;" title="靠北中山主視覺" alt="靠北中山主視覺" src="./foldername/ZSJH ''''']]]]]]]]]]]]]]]4122222222222222222222222222222222222222222222222222222222[';__ inc..jpg">
-      <br>
-      <h4>主視覺介紹</h4>
-      <p>以深藍及深紅色表冷暖概念（即靠北與告白）並以圓點表示，期待本版能將所有匿名做圓融處理後發布。而為了讓使用者知道所有匿名從各個立場看出去都有不同見解、沒有絕對的是非，故使紅藍兩點重疊出紫色交集，採色後降低彩度作為入口網站主視覺。紅藍兩色降低彩度後作為貼文版面主視覺，並輔以淺橘色、黑色、近白色作為文字顏色。</p>
-    </div>
-    <div class="cardright">
-      <h2>近期公告</h2>
-	<img style="width:100%;" title="近期公告" alt="近期公告" src="./foldername/S__22904858.jpg">
-      <p>點擊圖片查看公告內容</p>
-    </div>
 
   </div>
 </div>
 
 <div class="footer">
-  <h2>Footer</h2>
+  <h2>本網頁系統由靠北/告白中山股份無限公司提供</h2>
 </div>
 <script type="text/javascript">
 function makeid(length) {
@@ -263,7 +236,6 @@ console.log(makeid(5));
 		   });
 		  }
 		</script>
-?usp=pp_url&entry.726741578=1&entry.1419849810=2&entry.1899191775=3&entry.595474089=4
 
 <script>
    function onSubmit(token) {
