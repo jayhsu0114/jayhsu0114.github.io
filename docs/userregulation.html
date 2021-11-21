@@ -2,7 +2,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<script src="https://www.google.com/recaptcha/api.js"></script>
+<meta charset="utf-8">
+
 <style>
+#g-recaptcha{display:none;}
 * {
 	box-sizing: border-box;
 }
@@ -10,14 +15,14 @@
 body {
   font-family: Arial;
   padding: 10px;
-  background: #f1f1f1;
+  background: #FFFFFF;
 }
 
 /* Header/Blog Title */
 .header {
-  padding: 30px;
+  padding: 5px;
   text-align: center;
-  background: white;
+  background:#f7ddbf;
 }
 
 .header h1 {
@@ -27,14 +32,14 @@ body {
 /* Style the top navigation bar */
 .topnav {
   overflow: hidden;
-  background-color: #333;
+  background-color:#fefdf7;
 }
 
 /* Style the topnav links */
 .topnav a {
   float: left;
   display: block;
-  color: #f2f2f2;
+  color: #000000;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
@@ -42,35 +47,25 @@ body {
 
 /* Change color on hover */
 .topnav a:hover {
-  background-color: #ddd;
+  background-color:#f7ddbf;
   color: black;
 }
 
 /* Create two unequal columns that floats next to each other */
 /* Left column */
-.leftcolumn {   
-  float: left;
-  width: 75%;
-}
-
-/* Right column */
-.rightcolumn {
-  float: left;
-  width: 25%;
-  background-color: #f1f1f1;
-  padding-left: 20px;
-}
-
-/* Fake image */
-.fakeimg {
-  background-color: #aaa;
+.column {   
+  float: center;
   width: 100%;
-  padding: 20px;
 }
 
 /* Add a card effect for articles */
 .card {
-  background-color: white;
+  background-color:#b7e5f8;
+  padding: 20px;
+  margin-top: 20px;
+}
+.card1 {
+  background-color:#EBAFAF;
   padding: 20px;
   margin-top: 20px;
 }
@@ -86,13 +81,13 @@ body {
 .footer {
   padding: 20px;
   text-align: center;
-  background: #ddd;
+  background:#fefdf7;
   margin-top: 20px;
 }
 
 /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 800px) {
-  .leftcolumn, .rightcolumn {   
+  .leftcolumn, {   
     width: 100%;
     padding: 0;
   }
@@ -105,62 +100,91 @@ body {
     width: 100%;
   }
 }
+
+legend{
+	  font-weight:bold;
+	  background-color:#70a7dd ;
+	  border-radius:10px;
+	  padding:10px;
+	  border-style:solid;
+	  border-width:2px;
+}
+fieldset{
+background-color:#fefdf7;
+border-radius:10px;
+border:none;
+padding: 30px;
+}
+
 </style>
 </head>
 <body>
 
 <div class="header">
-  <h1>My Website</h1>
-  <p>Resize the browser window to see the effect.</p>
+  <h1>靠北/告白中山股份無限公司</h1>
+  <p>Hate/Love ZSJH Co.ultd</p>
 </div>
-
+<br>
 <div class="topnav">
-  <a href="#">Link</a>
-  <a href="#">Link</a>
-  <a href="#">Link</a>
-  <a href="#" style="float:right">Link</a>
+<a href="#" style="float:right">聯絡我們</a>
+<a href="#" style="float:right">網站介紹</a>
+<a href="#" style="float:right">解憂信箱</a>
+<a href="#" style="float:right">校花校草</a>
+<a href="https://instagram.com/hate_love_zsjh_co.ultd"style="float:right" >最新貼文</a>
+<a href="https://jayhsu0114.github.io/index.html" >投稿系統</a>
+<a href="https://jayhsu0114.github.io/delete.html" >刪文系統</a>
+<a href="#" >隱私權政策</a>
 </div>
 
 <div class="row">
-  <div class="leftcolumn">
-    <div class="card">
-      <h2>TITLE HEADING</h2>
-      <h5>Title description, Dec 7, 2017</h5>
-      <div class="fakeimg" style="height:200px;">Image</div>
-      <p>Some text..</p>
-      <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+  <div class="column">
+
+    <div class="card1">
+      <h2>使用者規約</h2>
     </div>
-    <div class="card">
-      <h2>TITLE HEADING</h2>
-      <h5>Title description, Sep 2, 2017</h5>
-      <div class="fakeimg" style="height:200px;">Image</div>
-      <p>Some text..</p>
-      <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
-    </div>
-  </div>
-  <div class="rightcolumn">
-    <div class="card">
-      <h2>About Me</h2>
-      <div class="fakeimg" style="height:100px;">Image</div>
-      <p>Some text about me in culpa qui officia deserunt mollit anim..</p>
-    </div>
-    <div class="card">
-      <h3>Popular Post</h3>
-      <div class="fakeimg"><p>Image</p></div>
-      <div class="fakeimg"><p>Image</p></div>
-      <div class="fakeimg"><p>Image</p></div>
-    </div>
-    <div class="card">
-      <h3>Follow Me</h3>
-      <p>Some text..</p>
-    </div>
+
   </div>
 </div>
 
 <div class="footer">
-  <h2>Footer</h2>
+  <h2>本網頁系統由靠北/告白中山股份無限公司提供</h2>
 </div>
 
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+<script>
+   function onSubmit(token) {
+     document.getElementById("demo-form").submit();
+   }
+</script>
+<button class="g-recaptcha" id="g-recaptcha"
+        data-sitekey="6LdM9jwdAAAAAAkpcTeuyRgb8_CK8uJkVqNxpcWB" 
+        data-callback='onSubmit' 
+        data-action='submit'>Submit</button>
+ <script type="text/javascript">
+        window.onload = function(){
+            
+            document.onkeydown = function (){
+                var e = window.event || arguments[0];
+                
+                if(e.keyCode == 123){
+                    return false;
+                
+            }else if((e.ctrlKey) && (e.shiftKey) && (e.keyCode == 73)){
+                return false;
+               
+            }else if((e.shiftKey) && (e.keyCode == 121)){
+                return false;
+               
+            }else if((e.ctrlKey) && (e.keyCode == 85)){
+                return false;
+            }
+        };
+            document.oncontextmenu = function (){
+                return false;
+            }
+        }
+
+    </script>
 </body>
 </html>
-
