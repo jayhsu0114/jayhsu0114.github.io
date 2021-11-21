@@ -2,10 +2,105 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script>
+// JS 產生亂數
+// 亂數產生
+function randomusefloor(min,max) {
+	return Math.floor(Math.random()*(max-min+1)+min);
+}
+// 亂數英文字
+function makerandomletter(max) {
+  var text = "";
+  var possible = "abcdefghijklmnopqrstuvwxyz";
+  for (var i = 0; i < max; i++)
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+  return text;
+}
+// 前兩碼英文小寫,後6碼數字
+function setvalue(){
+document.getElementById('QQQQ').value="ZSJH"+makerandomletter(2)+randomusefloor(1,999999);
+}
+
+</script>
 
 <script src="https://www.google.com/recaptcha/api.js"></script>
 <meta charset="utf-8">
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script>
+		function GoogleForm() {　
+		   
+		   var field1 = $("[name='Q']").val();
+		   var field2 = $("[name='QQ']").val();
+		   var field3 = $("[name='QQQ']").val();
+		   var field4 = $("[name='QQQQ']").val();
 
+		   $.ajax({
+		    url: "https://docs.google.com/forms/u/0/d/e/1FAIpQLSfA_75WHDZouggEiASDj016bPdlGYoAhjduwUk3T8azEFN84w/formResponse",
+
+		    data: {
+
+		     "entry.726741578":field1,
+		     "entry.1419849810":field2,
+		     "entry.1899191775":field3,
+		     "entry.595474089":field4,
+		    },
+		    type: "POST",
+		    dataType: "xml",
+		    statusCode: {
+
+		     0: function() {
+		      alert("您的匿名投稿已送出，過程維持完全匿名狀態。如果在我們發布前需要刪除請使用刪文系統。");　
+		      window.location.assign("https://jayhsu0114.github.io/");
+		     },
+
+		     200: function() {
+		      alert("您的匿名投稿已送出，過程維持完全匿名狀態。如果在我們發布前需要刪除請使用刪文系統。");　
+		      window.location.assign("https://jayhsu0114.github.io/");
+		     }
+		    }
+		   });
+		  }
+		</script>
+
+<script>
+   function onSubmit(token) {
+     document.getElementById("demo-form").submit();
+   }
+</script>
+
+
+<button class="g-recaptcha" id="g-recaptcha"
+        data-sitekey="6LdM9jwdAAAAAAkpcTeuyRgb8_CK8uJkVqNxpcWB" 
+        data-callback='onSubmit' 
+        data-action='submit'>Submit</button>
+
+
+ <script type="text/javascript">
+        window.onload = function(){
+            
+            document.onkeydown = function (){
+                var e = window.event || arguments[0];
+                
+                if(e.keyCode == 123){
+                    return false;
+                
+            }else if((e.ctrlKey) && (e.shiftKey) && (e.keyCode == 73)){
+                return false;
+               
+            }else if((e.shiftKey) && (e.keyCode == 121)){
+                return false;
+               
+            }else if((e.ctrlKey) && (e.keyCode == 85)){
+                return false;
+            }
+        };
+            document.oncontextmenu = function (){
+                return false;
+            }
+        }
+
+    </script>
 <style>
 #g-recaptcha{display:none;}
 * {
@@ -177,7 +272,8 @@ padding: 30px;
 
 		<div class="fieldset">
 		<fieldset><legend> &nbsp;&nbsp; 請記住後悔代碼 &nbsp;&nbsp; </legend>
-		<label for="QQQQ">後悔代碼：&nbsp;&nbsp;</label><input type="text" name="QQQQ" id="QQQQ"  required readonly>
+		<label for="QQQQ">後悔代碼：&nbsp;&nbsp;</label>
+		<input id="QQQQ" type="text" name="QQQQ" required readonly>
 		<p style="font-size: 5px;">後悔代碼可以在我們將貼文發布前於系統內刪除</p>
 		</fieldset>
 		</div>
@@ -196,93 +292,5 @@ padding: 30px;
 </div>
 
 
-<p id="demo" onclick="myrandomstring()">Click me get random string.(前2碼英文小寫,後6碼數字)</p>
-
-<script>
-// JS 產生亂數
-// 亂數產生
-function randomusefloor(min,max) {
-	return Math.floor(Math.random()*(max-min+1)+min);
-}
-// 亂數英文字
-function makerandomletter(max) {
-  var text = "";
-  var possible = "abcdefghijklmnopqrstuvwxyz";
-
-  for (var i = 0; i < max; i++)
-    text += possible.charAt(Math.floor(Math.random() * possible.length));
-  return text;
-}
-
-// 前兩碼英文小寫,後6碼數字
-function myrandomstring() {
-    document.getElementById("demo").innerHTML = "ZSJH"+makerandomletter(2)+randomusefloor(1,999999);
-}
-
-function setvalue(){
-
-	document.getElementById('QQQQ').value=myrandomstring()
-}
-
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-		<script>
-		function GoogleForm() {　
-		   
-		   var field1 = $("[name='Q']").val();
-		   var field2 = $("[name='QQ']").val();
-		   var field3 = $("[name='QQQ']").val();
-		   var field4 = $("[name='QQQQ']").val();
-
-		   $.ajax({
-		    url: "https://docs.google.com/forms/u/0/d/e/1FAIpQLSfA_75WHDZouggEiASDj016bPdlGYoAhjduwUk3T8azEFN84w/formResponse",
-
-		    data: {
-
-		     "entry.726741578":field1,
-		     "entry.1419849810":field2,
-		     "entry.1899191775":field3,
-		     "entry.595474089":field4,
-		    },
-		    type: "POST",
-		    dataType: "xml",
-		    statusCode: {
-
-		     0: function() {
-		      alert("您的匿名投稿已送出，過程維持完全匿名狀態。如果在我們發布前需要刪除請使用刪文系統。");　
-		      window.location.assign("https://jayhsu0114.github.io/");
-		     },
-
-		     200: function() {
-		      alert("您的匿名投稿已送出，過程維持完全匿名狀態。如果在我們發布前需要刪除請使用刪文系統。");　
-		      window.location.assign("https://jayhsu0114.github.io/");
-		     }
-		    }
-		   });
-		  }
-		</script>
-
-<script>
-   function onSubmit(token) {
-     document.getElementById("demo-form").submit();
-   }
-</script>
-<button class="g-recaptcha" id="g-recaptcha"
-        data-sitekey="6LdM9jwdAAAAAAkpcTeuyRgb8_CK8uJkVqNxpcWB" 
-        data-callback='onSubmit' 
-        data-action='submit'>Submit</button>
- 
+</body>
 </html>
