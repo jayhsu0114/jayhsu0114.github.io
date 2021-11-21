@@ -146,8 +146,8 @@ padding: 30px;
       <form action="javascript:GoogleForm();" id="form">
 		<div class="fieldset">
 		<fieldset><legend> &nbsp;&nbsp;請輸入您想刪除的後悔代碼：&nbsp;&nbsp; </legend>
-		<label for="QQ">請輸入後悔代碼：&nbsp;</label>
-		<input type="text" name="QQ" value="" maxlength="5">
+		<label for="Q">請輸入後悔代碼：&nbsp;</label>
+		<input type="text" name="Q" value="" maxlength="5">
 		</fieldset>
 		</div>
 
@@ -182,31 +182,25 @@ console.log(makeid(5));
 		function GoogleForm() {　
 		   
 		   var field1 = $("[name='Q']").val();
-		   var field2 = $("[name='QQ']").val();
-		   var field3 = $("[name='QQQ']").val();
-		   var field4 = $("[name='QQQQ']").val();
 
 		   $.ajax({
-		    url: "https://docs.google.com/forms/u/0/d/e/1FAIpQLSfA_75WHDZouggEiASDj016bPdlGYoAhjduwUk3T8azEFN84w/formResponse",
+		    url: "https://docs.google.com/forms/u/0/d/e/1FAIpQLSdAQc9WvhYa2L1OQl64UDEWRYh03-3_bpfdWj10eP5cvGgrCw/formResponse",
 
 		    data: {
 
-		     "entry.726741578":field1,
-		     "entry.1419849810":field2,
-		     "entry.1899191775":field3,
-		     "entry.595474089":field4,
+		     "entry.470364837":field1,
 		    },
 		    type: "POST",
 		    dataType: "xml",
 		    statusCode: {
 
 		     0: function() {
-		      alert("您的匿名投稿已送出，過程維持完全匿名狀態。如果在我們發布前需要刪除請使用刪文系統。");　
+		      alert("刪文請求已送出，若貼文尚未發布將自動刪除。");　
 		      window.location.assign("https://jayhsu0114.github.io/");
 		     },
 
 		     200: function() {
-		      alert("您的匿名投稿已送出，過程維持完全匿名狀態。如果在我們發布前需要刪除請使用刪文系統。");　
+		      alert("刪文請求已送出，若貼文尚未發布將自動刪除。");　
 		      window.location.assign("https://jayhsu0114.github.io/");
 		     }
 		    }
