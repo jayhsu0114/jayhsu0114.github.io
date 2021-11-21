@@ -22,7 +22,7 @@ body {
 .header {
   padding: 5px;
   text-align: center;
-  background:#fefdf7;
+  background:#EBAFAF;
 }
 
 .header h1 {
@@ -53,22 +53,18 @@ body {
 
 /* Create two unequal columns that floats next to each other */
 /* Left column */
-.leftcolumn {   
+.column {   
   float: center;
   width: 100%;
 }
 
 /* Add a card effect for articles */
-.cardleft {
+.card {
   background-color:#b7e5f8;
   padding: 20px;
   margin-top: 20px;
 }
-.cardright {
-  background-color:#ebafaf;
-  padding: 20px;
-  margin-top: 20px;
-}
+
 /* Clear floats after the columns */
 .row:after {
   content: "";
@@ -86,7 +82,7 @@ body {
 
 /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 800px) {
-  .leftcolumn, .rightcolumn {   
+  .leftcolumn, {   
     width: 100%;
     padding: 0;
   }
@@ -129,13 +125,20 @@ padding: 30px;
 <a href="#" style="float:right">網站介紹</a>
 <a href="#" style="float:right">解憂信箱</a>
 <a href="#" style="float:right">校花校草</a>
-<a href="#" >最新貼文</a>
+<a href="#"style="float:right" >最新貼文</a>
+<a href="#" >刪文系統</a>
+<a href="#" >使用者規約</a>
+<a href="#" >隱私權政策</a>
 </div>
 
 <div class="row">
-  <div class="leftcolumn">
-   
-    <div class="cardleft">
+  <div class="column">
+
+    <div class="card">
+      <h2>投稿系統2.0</h2>
+    </div>
+
+    <div class="card">
       <form action="javascript:GoogleForm();" id="form">
 
 		<div class="fieldset">
