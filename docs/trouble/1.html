@@ -1,1 +1,224 @@
 
+<!DOCTYPE html>
+<html>
+<head>
+
+<script src="https://www.google.com/recaptcha/api.js"></script>
+<meta charset="utf-8">
+
+<style>
+#g-recaptcha{display:none;}
+* {
+	box-sizing: border-box;
+}
+
+body {
+  font-family: Arial;
+  padding: 10px;
+  background: #FFFFFF;
+}
+
+/* Header/Blog Title */
+.header {
+  padding: 5px;
+  text-align: center;
+  background:#f7ddbf;
+}
+
+.header h1 {
+  font-size: 50px;
+}
+
+/* Style the top navigation bar */
+.topnav {
+  overflow: hidden;
+  background-color:#fefdf7;
+}
+
+/* Style the topnav links */
+.topnav a {
+  float: left;
+  display: block;
+  color: #000000;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change color on hover */
+.topnav a:hover {
+  background-color:#f7ddbf;
+  color: black;
+}
+
+/* Create two unequal columns that floats next to each other */
+/* Left column */
+.column {   
+  float: center;
+  width: 100%;
+}
+
+/* Add a card effect for articles */
+.card {
+  background-color:#ebafaf;
+  padding: 20px;
+  margin-top: 20px;
+}
+.card1 {
+  background-color:#de6768;
+  padding: 20px;
+  margin-top: 20px;
+  justify-content: center;}
+}
+.card2 {
+  background-color:#ebafaf;
+  padding: 5px;
+  margin-top: 5px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Footer */
+.footer {
+  padding: 20px;
+  text-align: center;
+  background:#fefdf7;
+  margin-top: 20px;
+}
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 800px) {
+  .leftcolumn, {   
+    width: 100%;
+    padding: 0;
+  }
+}
+
+/* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
+@media screen and (max-width: 400px) {
+  .topnav a {
+    float: none;
+    width: 100%;
+  }
+}
+
+legend{
+	  font-weight:bold;
+	  background-color:#70a7dd ;
+	  border-radius:10px;
+	  padding:10px;
+	  border-style:solid;
+	  border-width:2px;
+}
+fieldset{
+background-color:#fefdf7;
+border-radius:10px;
+border:none;
+padding: 30px;
+}
+
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>靠北/告白中山股份無限公司</h1>
+  <p>Hate/Love ZSJH Co.ultd</p>
+</div>
+<br>
+<div class="topnav">
+<a href="#" style="float:right">聯絡我們</a>
+<a href="#" style="float:right">網站介紹</a>
+<a href="#" style="float:right">解憂信箱</a>
+<a href="https://jayhsu0114.github.io/schoolbeauty.html" style="float:right">校花校草</a>
+<a href="https://instagram.com/hate_love_zsjh_co.ultd"style="float:right" >最新貼文</a>
+<a href="https://jayhsu0114.github.io/index.html" >投稿系統</a>
+<a href="https://jayhsu0114.github.io/delete.html" >刪文系統</a>
+<a href="https://jayhsu0114.github.io/userregulation.html" >使用者規約</a>
+</div>
+
+<div class="row">
+  <div class="column">
+
+    <div class="card1">
+      <h2>隱私權政策</h2>
+    </div>
+
+ 	  <div class="card">
+      <h2>［一、隱私權保護政策的適用範圍］</h2>
+      <p>本網站之隱私權保護政策僅適用於使用本網站進行匿名投稿行為者。</p>
+      </div>
+      <div class="card">
+      <h2>［二、個人資料的蒐集 處理及利用］</h2>
+      <p>本版不會進行任何非使用者同意之資料蒐集，意即本網站管理者不會知道匿名貼文之來源及發布者。若涉及司法案件，本版將配合警方單位及檢調單位之調查，提供本版已知資訊。</p>
+      </div>
+      <div class="card">
+      <h2>［三、資料之保護］</h2>
+      <p>本網站收受之匿名問題將被視為本版之智慧財產，本版保有修改、刪除、增減、修飾等等權力。</p>
+      </div>
+      <div class="card">
+      <h2>［四、網站對外的相關連結］</h2>
+      <p>本版使用之對外相關連結如Google產品不在本政策之保護範圍內，請參考該產品之隱私權政策。</p>
+      </div>
+      <div class="card">
+      <h2>［五、與第三人共用個人資料之政策］</h2>
+      <p>若告知本版使用者之言論發表編號為何，本版有替其保密的義務與責任。檢調單位之調查則不在此限。</p>
+      </div>
+      <div class="card">
+      <h2>［六、Cookie之使用］</h2>
+      <p>本網站並未使用Cookie技術追蹤任何使用者行為。</p>
+      </div>
+      <div class="card">
+      <h2>［七、隱私權保護政策之修正］</h2>
+      <p>本版保有修正本政策之一切權力。</p>
+      </div>
+ </div>
+</div>
+
+<div class="footer">
+  <h2>本網頁系統由靠北/告白中山股份無限公司提供</h2>
+</div>
+
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+<script>
+   function onSubmit(token) {
+     document.getElementById("demo-form").submit();
+   }
+</script>
+<button class="g-recaptcha" id="g-recaptcha"
+        data-sitekey="6LdM9jwdAAAAAAkpcTeuyRgb8_CK8uJkVqNxpcWB" 
+        data-callback='onSubmit' 
+        data-action='submit'>Submit</button>
+ <script type="text/javascript">
+        window.onload = function(){
+            
+            document.onkeydown = function (){
+                var e = window.event || arguments[0];
+                
+                if(e.keyCode == 123){
+                    return false;
+                
+            }else if((e.ctrlKey) && (e.shiftKey) && (e.keyCode == 73)){
+                return false;
+               
+            }else if((e.shiftKey) && (e.keyCode == 121)){
+                return false;
+               
+            }else if((e.ctrlKey) && (e.keyCode == 85)){
+                return false;
+            }
+        };
+            document.oncontextmenu = function (){
+                return false;
+            }
+        }
+
+    </script>
+</body>
+</html>
