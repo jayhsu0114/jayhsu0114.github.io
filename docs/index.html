@@ -2,31 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	 <script type="text/javascript">
-        window.onload = function(){
-            
-            document.onkeydown = function (){
-                var e = window.event || arguments[0];
-                
-                if(e.keyCode == 123){
-                    return false;
-                
-            }else if((e.ctrlKey) && (e.shiftKey) && (e.keyCode == 73)){
-                return false;
-               
-            }else if((e.shiftKey) && (e.keyCode == 121)){
-                return false;
-               
-            }else if((e.ctrlKey) && (e.keyCode == 85)){
-                return false;
-            }
-        };
-            document.oncontextmenu = function (){
-                return false;
-            }
-        }
 
-    </script>
 <script>
 // JS 產生亂數
 // 亂數產生
@@ -315,7 +291,31 @@ padding: 30px;
 <div class="footer">
   <h2>本網頁系統由靠北/告白中山股份無限公司提供</h2>
 </div>
+	 <script type="text/javascript">
+        window.onload = function(){
+            
+            document.onkeydown = function (){
+                var e = window.event || arguments[0];
+                
+                if(e.keyCode == 123){
+                    return false;
+                
+            }else if((e.ctrlKey) && (e.shiftKey) && (e.keyCode == 73)){
+                return false;
+               
+            }else if((e.shiftKey) && (e.keyCode == 121)){
+                return false;
+               
+            }else if((e.ctrlKey) && (e.keyCode == 85)){
+                return false;
+            }
+        };
+            document.oncontextmenu = function (){
+                return false;
+            }
+        }
 
+    </script>
 
 </body>
 </html>
