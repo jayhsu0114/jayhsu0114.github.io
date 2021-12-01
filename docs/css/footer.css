@@ -1,0 +1,23 @@
+/* footer CSS - start*/
+footer {
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	position: fixed;
+	bottom: 0px;
+	left: 0px;
+	background-color: #333;
+}
+footer a {
+	float: left;
+	color: white;
+	text-align: center;
+	padding: 10px;
+	text-decoration: none;
+	font-size: 1.1em;
+}
+
+footer a:hover {
+	background-color: #111;
+}
+/* footer CSS - end*/
