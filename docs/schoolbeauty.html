@@ -42,6 +42,42 @@
         }
 
     </script>
+	
+<meta charset="utf-8">
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script>
+		function GoogleForm() {　
+		   
+		   var field1 = $("[name='Q']").val();
+		   var field2 = $("[name='QQ']").val();
+
+
+		   $.ajax({
+		    url: "https://docs.google.com/forms/u/0/d/e/1FAIpQLSfA_75WHDZouggEiASDj016bPdlGYoAhjduwUk3T8azEFN84w/formResponse",
+
+		    data: {
+
+		     "entry.1152357157":field1,
+		     "entry.820912057":field2,
+		    },
+		    type: "POST",
+		    dataType: "xml",
+		    statusCode: {
+
+		     0: function() {
+		      alert("提名成功");　
+		      window.location.assign("https://jayhsu0114.github.io/delete.html");
+		     },
+
+		     200: function() {
+		      alert("提名成功");　
+		      window.location.assign("https://jayhsu0114.github.io/delete.html");
+		     }
+		    }
+		   });
+		  }
+		</script>
 <style>
 #g-recaptcha{display:none;}
 * {
@@ -144,7 +180,7 @@ body {
 
 legend{
 	  font-weight:bold;
-	  background-color:#70a7dd ;
+	  background-color:#de6768 ;
 	  border-radius:10px;
 	  padding:10px;
 	  border-style:solid;
@@ -191,14 +227,14 @@ padding: 30px;
     <div class="card">
       <form action="javascript:GoogleForm();" id="form">
     <div class="fieldset">
-    <fieldset><legend> &nbsp;&nbsp;請輸入您的電子郵件：&nbsp;&nbsp; </legend>
-    <label for="Q">請輸入您的電子郵件：&nbsp;</label>
+    <fieldset><legend> &nbsp;&nbsp;請輸入自己的IG帳號：&nbsp;&nbsp; </legend>
+    <label for="Q">請輸入自己的IG帳號：&nbsp;</label>
     <input type="text" name="Q" value=""   autofocus required>
     </fieldset>
 	<br><br>    
     <fieldset><legend> &nbsp;&nbsp;請輸入TA的IG帳號：&nbsp;&nbsp; </legend>
-    <label for="Q">請輸入TA的IG帳號：&nbsp;</label>
-    <input type="text" name="Q" value=""   autofocus required>
+    <label for="QQ">請輸入TA的IG帳號：&nbsp;</label>
+    <input type="text" name="QQ" value=""   autofocus required>
     </fieldset>
     </div>
 
