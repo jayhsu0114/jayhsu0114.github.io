@@ -5,7 +5,42 @@
 
 <script src="https://www.google.com/recaptcha/api.js"></script>
 <meta charset="utf-8">
+<meta charset="utf-8">
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script>
+		function GoogleForm() {　
+		   
+		   var field1 = $("[name='Q']").val();
+		   var field2 = $("[name='QQ']").val();
+		   var field3 = $("[name='QQQ']").val();
 
+		   $.ajax({
+		    url: "https://docs.google.com/forms/u/0/d/e/1FAIpQLScbwzb8_yLr2uPaBj-RGI3eKDDpoN-c6RXUo-Mhy67DCV42tg/formResponse",
+
+		    data: {
+
+		     "entry.1201305028":field1,
+		     "entry.1883963134":field2,
+		     "entry.548649473":field3,
+		    },
+		    type: "POST",
+		    dataType: "xml",
+		    statusCode: {
+
+		     0: function() {
+		      alert("您的信件已寄出");　
+		      window.location.assign("https://jayhsu0114.github.io/trouble/1.html");
+		     },
+
+		     200: function() {
+		      alert("您的信件已寄出");　
+		      window.location.assign("https://jayhsu0114.github.io/trouble/1.html");
+		     }
+		    }
+		   });
+		  }
+		</script>
 <style>
 #g-recaptcha{display:none;}
 * {
@@ -120,6 +155,7 @@ background-color:#fefdf7;
 border-radius:10px;
 border:none;
 padding: 30px;
+	width:60%;
 }
 
 br {
@@ -150,7 +186,7 @@ br {
 <a href="https://jayhsu0114.github.io/index.html" >投稿系統</a>
 <a href="https://jayhsu0114.github.io/delete.html" >刪文系統</a>
 <a href="https://jayhsu0114.github.io/userregulation.html" >使用者規約</a>
-<a href="https://jayhsu0114.github.io/privatepolicy.html" >隱私權政策</a>
+	<a href="https://jayhsu0114.github.io/privatepolicy.html" >隱私權政策</a>
 </div>
 
 <div class="row">
@@ -162,13 +198,20 @@ br {
     <div class="card">
     <center>
 	<img src="./voov_robot.png">
-<p>你想要得到我的回答嗎？</p>
-<p>還是只是想找地方說話？</p>
-<button class="choice" onclick="location.href='https://jayhsu0114.github.io/trouble/1111.html'">我想在解憂信箱上得到回答</button>
-<br><br>
-<button class="choice" onclick="location.href='https://jayhsu0114.github.io/1112.html'">我想私下得到回答</button>
-<br><br>
-<button class="choice" onclick="location.href='https://jayhsu0114.github.io/1113.html'">我只是想講話，不用回答</button>
+<p>你現在可以下滑告訴我你想說什麼了，</p>
+<p>但記得要按提交！</p>
+	    <br>
+ <form action="javascript:GoogleForm();" id="form">
+<div class="fieldset">
+<fieldset><legend> &nbsp;&nbsp;請輸入你的煩惱&nbsp;&nbsp; </legend>
+<textarea name="QQ" style="width:100%;height: 200px;word-break:break-all" required></texTarea>
+</fieldset>
+<input type="hidden" name="QQQ" value="1133">
+			<br><br>
+
+<CENTER><button style="width:40%;height: 30px;background-color: #fefdf7;color: black;" type="submit" >提交</button></center>
+	</form>
+</div>
 </div>
 
 
