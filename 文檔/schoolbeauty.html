@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,7 +41,7 @@
         }
 
     </script>
-  
+
 <meta charset="utf-8">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -51,6 +50,7 @@
        
        var field1 = $("[name='Q']").val();
        var field2 = $("[name='QQ']").val();
+       var field3 = $("[name='ip']").val();
 
 
        $.ajax({
@@ -60,6 +60,7 @@
 
          "entry.1152357157":field1,
          "entry.820912057":field2,
+         "entry.519434622":field3,
         },
         type: "POST",
         dataType: "xml",
@@ -81,43 +82,20 @@
  <script src=
 "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
     </script>
-     
-      <script>
-     
-    /* Add "https://api.ipify.org?format=json" statement
-               this will communicate with the ipify servers in
-               order to retrieve the IP address $.getJSON will
-               load JSON-encoded data from the server using a
-               GET HTTP request */
-                
-    $.getJSON("https://api.ipify.org?format=json", function(data) {
-         
-        // Setting text of element P with id gfg
-        $("#gfg").html(data.ip);
-    })
+  <meta charset="utf-8">
+ <script type="text/javascript" src="https://l2.io/ip.js?var=userip"></script>
+...
+<script type="text/javascript">
+  function getIPvalue()
+  {
+      document.getElementById("txtIp").value = userip;
+  }
+  
+  window.onload = function() {
+  getIPvalue();
+  };
+</script>
 
-
-function ipLookUp () {
-  $.ajax('http://ip-api.com/json')
-  .then(
-      function success(response) {
-          console.log('User\'s Location Data is ', response);
-          console.log('User\'s Country', response.country);
-      },
-
-      function fail(data, status) {
-          console.log('Request failed.  Returned status of',
-                      status);
-      }
-  );
-}
-ipLookUp()
-
-function setvalue(){
-document.getElementById('ip').value=ipLookUp();
-}
-
-    </script>
 <style>
 #g-recaptcha{display:none;}
 * {
@@ -237,9 +215,8 @@ padding: 30px;
   .day,.hour,.minute,.second{font-size: 3rem;}
 </style>
 </head>
-<body onload="setvalue()">
-
-<div class="header">
+<body>
+	<div class="header">
   <h1>靠北/告白中山股份無限公司</h1>
   <p>Hate/Love ZSJH Co.ultd</p>
    <p id="gfg"></p>
@@ -255,8 +232,7 @@ padding: 30px;
 <a href="https://jayhsu0114.github.io/userregulation.html" >使用者規約</a>
   <a href="https://jayhsu0114.github.io/privatepolicy.html">隱私權政策</a>
 </div>
-<br>
-<div data-type="countdown" data-id="2903814" class="tickcounter" style="width: 100%; position: relative; padding-bottom: 25%"><a href="//www.tickcounter.com/countdown/2903814/" title="第四屆校花選舉"><br>第四屆校花選舉<br></a><a href="//www.tickcounter.com/" title="Countdown">Countdown</a></div><script>(function(d, s, id) { var js, pjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "//www.tickcounter.com/static/js/loader.js"; pjs.parentNode.insertBefore(js, pjs); }(document, "script", "tickcounter-sdk"));</script>
+
 <br>
 <div class="row">
   <div class="column">
@@ -270,15 +246,15 @@ padding: 30px;
     <div class="fieldset">
     <fieldset><legend> &nbsp;&nbsp;請輸入自己的IG帳號：&nbsp;&nbsp; </legend>
     <label for="Q">請輸入自己的IG帳號：&nbsp;</label>
-    <input type="text" name="Q" id="ip" value=""   autofocus required>
+    <input type="text" name="Q"  value=""   autofocus required>
     </fieldset>
   <br><br>    
     <fieldset><legend> &nbsp;&nbsp;請輸入TA的IG帳號：&nbsp;&nbsp; </legend>
     <label for="QQ">請輸入TA的IG帳號：&nbsp;</label>
     <input type="text" name="QQ" value=""    required>
+    <input type="hidden" name="ip" id="txtIp">
     </fieldset>
     </div>
-
     <br><br>
 
 <CENTER><button style="width:40%;height: 30px;background-color: #fefdf7;color: black;" type="submit" >進入驗證程序</button></center>
@@ -291,6 +267,9 @@ padding: 30px;
 <div class="footer">
   <h2>本網頁系統由靠北/告白中山股份無限公司提供</h2>
 </div>
+
+</body>
+</html>
 
 </body>
 </html>
