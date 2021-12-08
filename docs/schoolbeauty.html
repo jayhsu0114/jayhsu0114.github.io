@@ -42,42 +42,42 @@
         }
 
     </script>
-	
+  
 <meta charset="utf-8">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-		<script>
-		function GoogleForm() {　
-		   
-		   var field1 = $("[name='Q']").val();
-		   var field2 = $("[name='QQ']").val();
+    <script>
+    function GoogleForm() {　
+       
+       var field1 = $("[name='Q']").val();
+       var field2 = $("[name='QQ']").val();
 
 
-		   $.ajax({
-		    url: "https://docs.google.com/forms/u/0/d/e/1FAIpQLSexcR8fvrygfiDj6DK8oR1pw1v4hCGS_F9ZC3ax8RSZVwugEw/formResponse",
+       $.ajax({
+        url: "https://docs.google.com/forms/u/0/d/e/1FAIpQLSexcR8fvrygfiDj6DK8oR1pw1v4hCGS_F9ZC3ax8RSZVwugEw/formResponse",
 
-		    data: {
+        data: {
 
-		     "entry.1152357157":field1,
-		     "entry.820912057":field2,
-		    },
-		    type: "POST",
-		    dataType: "xml",
-		    statusCode: {
+         "entry.1152357157":field1,
+         "entry.820912057":field2,
+        },
+        type: "POST",
+        dataType: "xml",
+        statusCode: {
 
-		     0: function() {
-		      alert("提名成功");　
-		      window.location.assign("https://jayhsu0114.github.io/schoolbeauty.html");
-		     },
+         0: function() {
+          alert("提名成功");　
+          window.location.assign("https://jayhsu0114.github.io/schoolbeauty.html");
+         },
 
-		     200: function() {
-		      alert("提名成功");　
-		      window.location.assign("https://jayhsu0114.github.io/schoolbeauty.html");
-		     }
-		    }
-		   });
-		  }
-		</script>
+         200: function() {
+          alert("提名成功");　
+          window.location.assign("https://jayhsu0114.github.io/schoolbeauty.html");
+         }
+        }
+       });
+      }
+    </script>
  <script src=
 "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
     </script>
@@ -95,11 +95,33 @@
         // Setting text of element P with id gfg
         $("#gfg").html(data.ip);
     })
+
+
+function ipLookUp () {
+  $.ajax('http://ip-api.com/json')
+  .then(
+      function success(response) {
+          console.log('User\'s Location Data is ', response);
+          console.log('User\'s Country', response.country);
+      },
+
+      function fail(data, status) {
+          console.log('Request failed.  Returned status of',
+                      status);
+      }
+  );
+}
+ipLookUp()
+
+function setvalue(){
+document.getElementById('ip').value=ipLookUp();
+}
+
     </script>
 <style>
 #g-recaptcha{display:none;}
 * {
-	box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
@@ -197,12 +219,12 @@ body {
 }
 
 legend{
-	  font-weight:bold;
-	  background-color:#de6768 ;
-	  border-radius:10px;
-	  padding:10px;
-	  border-style:solid;
-	  border-width:2px;
+    font-weight:bold;
+    background-color:#de6768 ;
+    border-radius:10px;
+    padding:10px;
+    border-style:solid;
+    border-width:2px;
 }
 fieldset{
 background-color:#fefdf7;
@@ -210,17 +232,17 @@ border-radius:10px;
 border:none;
 padding: 30px;
 }
-	.coming-soon{min-height: 100vh;display: flex;align-items: center;flex-direction: column;justify-content: center;}
-	.countdown{display: flex;justify-content: space-around;text-align: center;}
-	.day,.hour,.minute,.second{font-size: 3rem;}
+  .coming-soon{min-height: 100vh;display: flex;align-items: center;flex-direction: column;justify-content: center;}
+  .countdown{display: flex;justify-content: space-around;text-align: center;}
+  .day,.hour,.minute,.second{font-size: 3rem;}
 </style>
 </head>
-<body>
+<body onload="setvalue()">
 
 <div class="header">
   <h1>靠北/告白中山股份無限公司</h1>
   <p>Hate/Love ZSJH Co.ultd</p>
-	 <p id="gfg"></p>
+   <p id="gfg"></p>
 </div>
 <br>
 <div class="topnav">
@@ -248,9 +270,9 @@ padding: 30px;
     <div class="fieldset">
     <fieldset><legend> &nbsp;&nbsp;請輸入自己的IG帳號：&nbsp;&nbsp; </legend>
     <label for="Q">請輸入自己的IG帳號：&nbsp;</label>
-    <input type="text" name="Q" value=""   autofocus required>
+    <input type="text" name="Q" id="ip" value=""   autofocus required>
     </fieldset>
-	<br><br>    
+  <br><br>    
     <fieldset><legend> &nbsp;&nbsp;請輸入TA的IG帳號：&nbsp;&nbsp; </legend>
     <label for="QQ">請輸入TA的IG帳號：&nbsp;</label>
     <input type="text" name="QQ" value=""    required>
