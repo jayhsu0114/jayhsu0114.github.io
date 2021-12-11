@@ -101,7 +101,31 @@ document.getElementById('QQQQ').value="ZSJH"+makerandomletter(2)+randomusefloor(
         data-action='submit'>Submit</button>
 
 
+ <script type="text/javascript">
+        window.onload = function(){
+            
+            document.onkeydown = function (){
+                var e = window.event || arguments[0];
+                
+                if(e.keyCode == 123){
+                    return false;
+                
+            }else if((e.ctrlKey) && (e.shiftKey) && (e.keyCode == 73)){
+                return false;
+               
+            }else if((e.shiftKey) && (e.keyCode == 121)){
+                return false;
+               
+            }else if((e.ctrlKey) && (e.keyCode == 85)){
+                return false;
+            }
+        };
+            document.oncontextmenu = function (){
+                return false;
+            }
+        }
 
+    </script>
 <style>
 #g-recaptcha{display:none;}
 * {
@@ -204,7 +228,7 @@ legend{
 	  padding:10px;
 	  border-style:solid;
 	  border-width:2px;
-	font-size:35px;
+	font-size:20px;
 }
 fieldset{
 background-color:#fefdf7;
@@ -220,7 +244,6 @@ padding: 30px;
 	background-color: #fefdf7;
 	color: black;
 	}
-	label{font-size:30px;}
 </style>
 </head>
 <body onload="setvalue()" background="https://i.imgur.com/AgSepfZ.jpeg">
@@ -264,7 +287,7 @@ padding: 30px;
 		<div class="fieldset">
 		<fieldset><legend> &nbsp;&nbsp; 您要回覆ZSJH________？ &nbsp;&nbsp; </legend>
 		<label for="QQ">請輸入數字：&nbsp;</label>
-		<input type="text" style="width:30%;height:30px;word-break:break-all;font-size:initial;" name="QQ" value="" maxlength="5" placeholder="本欄位僅限輸入數字" patttern="[0-9]+">
+		<input type="text" style="width:30%;height:30px;word-break:break-all;font-size:initial; name="QQ" value="" maxlength="5" placeholder="本欄位僅限輸入數字" patttern="[0-9]+">
 		</fieldset>
 		</div>
 
@@ -301,31 +324,7 @@ padding: 30px;
 <div class="footer">
   <h2>本網頁系統由靠北/告白中山股份無限公司提供</h2>
 </div>
- <script type="text/javascript">
-        window.onload = function(){
-            
-            document.onkeydown = function (){
-                var e = window.event || arguments[0];
-                
-                if(e.keyCode == 123){
-                    return false;
-                
-            }else if((e.ctrlKey) && (e.shiftKey) && (e.keyCode == 73)){
-                return false;
-               
-            }else if((e.shiftKey) && (e.keyCode == 121)){
-                return false;
-               
-            }else if((e.ctrlKey) && (e.keyCode == 85)){
-                return false;
-            }
-        };
-            document.oncontextmenu = function (){
-                return false;
-            }
-        }
 
-    </script>
 
 </body>
 </html>
