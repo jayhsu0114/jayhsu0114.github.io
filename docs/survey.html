@@ -162,7 +162,7 @@ body {
 
 /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 800px) {
-  .leftcolumn, {   
+  .leftcolumn {   
     width: 100%;
     padding: 0 px;
  }
@@ -235,10 +235,27 @@ resize:none;
       <form action="javascript:GoogleForm();" id="form">
 
 		<div class="fieldset">
-		<fieldset>
-			<legend> &nbsp;&nbsp; 您的年齡 &nbsp;&nbsp; </legend>
-			<p>您的年齡：18</p><input style="height: 15px;width: 15px;" type="range" name="Q" min="12" max="20" required autofocus><p>20</p>
-		</fieldset>
+      <fieldset><legend> &nbsp;&nbsp; 您的年齡 &nbsp;&nbsp; </legend>
+        <p>請拖動拉條以輸入您的年齡&nbsp;</p>
+            <br>
+            <p align="left" style="display: inline;float: left;">12</p>
+            <p style="display: inline;float: right;" align="rihgt">22</p> 
+            <br>
+        <input type="range" list="tickmarks" style="width:100%;">
+    <datalist id="tickmarks">
+    <option value="0">00</option>
+    <option value="10">10</option>
+    <option value="20">20</option>
+    <option value="30">30</option>
+    <option value="40">40</option>
+    <option value="50">50</option>
+    <option value="60">60</option>
+    <option value="70">70</option>
+    <option value="80">80</option>
+    <option value="90">90</option>
+    <option value="100">100</option>
+    </datalist>
+        </fieldset>
 		</div>
 
 		<br><br>
@@ -265,22 +282,24 @@ resize:none;
     
 		<br><br>
 	      <div class="fieldset">
-		<fieldset><legend> &nbsp;&nbsp; 您的性別 &nbsp;&nbsp; </legend>
-		<p>請選擇您的性別：&nbsp;</p>
+		<fieldset><legend> &nbsp;&nbsp; 滿意度評分 &nbsp;&nbsp; </legend>
+		<p>請拖動拉條以評分&nbsp;</p>
+        <br>
+        <p align="left" style="display: inline;float: left;">0</p><p style="display: inline;float: right;" align="rihgt">100</p> 
         <br>
 		<input type="range" list="tickmarks" style="width:100%;">
 <datalist id="tickmarks">
-<option value="0"></option>
-<option value="10"></option>
-<option value="20"></option>
-<option value="30"></option>
-<option value="40"></option>
-<option value="50"></option>
-<option value="60"></option>
-<option value="70"></option>
-<option value="80"></option>
-<option value="90"></option>
-<option value="100"></option>
+<option value="0">00</option>
+<option value="10">10</option>
+<option value="20">20</option>
+<option value="30">30</option>
+<option value="40">40</option>
+<option value="50">50</option>
+<option value="60">60</option>
+<option value="70">70</option>
+<option value="80">80</option>
+<option value="90">90</option>
+<option value="100">100</option>
 </datalist>
 		</fieldset>
 		</div>
