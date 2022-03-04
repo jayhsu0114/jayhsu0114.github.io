@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3628702039140235"
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3628702039140235"
      crossorigin="anonymous"></script>
-	
-	 <script type="text/javascript">
+  
+   <script type="text/javascript">
         window.onload = function(){
             
             document.onkeydown = function (){
@@ -30,11 +30,45 @@
         }
 
     </script>
+        <script type="text/javascript">
+      
+
+  function getIdvalue()
+  {
+var navigator_info = window.navigator;
+var screen_info = window.screen;
+var uid = navigator_info.mimeTypes.length;
+uid += navigator_info.userAgent.replace(/\D+/g, '');
+uid += navigator_info.plugins.length;
+uid += screen_info.height || '';
+uid += screen_info.width || '';
+uid += screen_info.pixelDepth || '';
+document.getElementById("QQQQQ").value = uid;
+  }
+  
+  window.onload = function() {
+  getIdvalue();
+  };
+
+    </script>
+ <meta charset="utf-8">
+ <script type="text/javascript" src="https://l2.io/ip.js?var=userip"></script>
+
+<script type="text/javascript">
+  function getIPvalue()
+  {
+      document.getElementById("QQQQQQ").value = userip;
+  }
+  
+  window.onload = function() {
+  getIPvalue();
+  };
+</script>
 <script>
 // JS 產生亂數
 // 亂數產生
 function randomusefloor(min,max) {
-	return Math.floor(Math.random()*(max-min+1)+min);
+  return Math.floor(Math.random()*(max-min+1)+min);
 }
 // 亂數英文字
 function makerandomletter(max) {
@@ -55,41 +89,45 @@ document.getElementById('QQQQ').value="ZSJH"+makerandomletter(2)+randomusefloor(
 <meta charset="utf-8">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-		<script>
-		function GoogleForm() {　
-		   
-		   var field1 = $("[name='Q']").val();
-		   var field2 = $("[name='QQ']").val();
-		   var field3 = $("[name='QQQ']").val();
-		   var field4 = $("[name='QQQQ']").val();
+    <script>
+    function GoogleForm() {　
+       
+       var field1 = $("[name='Q']").val();
+       var field2 = $("[name='QQ']").val();
+       var field3 = $("[name='QQQ']").val();
+       var field4 = $("[name='QQQQ']").val();
+       var field5 = $("[name='QQQQQ']").val();
+       var field6 = $("[name='QQQQQQ']").val();
 
-		   $.ajax({
-		    url: "https://docs.google.com/forms/u/0/d/e/1FAIpQLSfA_75WHDZouggEiASDj016bPdlGYoAhjduwUk3T8azEFN84w/formResponse",
+       $.ajax({
+        url: "https://docs.google.com/forms/u/0/d/e/1FAIpQLSfA_75WHDZouggEiASDj016bPdlGYoAhjduwUk3T8azEFN84w/formResponse",
 
-		    data: {
+        data: {
 
-		     "entry.726741578":field1,
-		     "entry.1419849810":field2,
-		     "entry.1899191775":field3,
-		     "entry.595474089":field4,
-		    },
-		    type: "POST",
-		    dataType: "xml",
-		    statusCode: {
+         "entry.726741578":field1,
+         "entry.1419849810":field2,
+         "entry.1899191775":field3,
+         "entry.595474089":field4,
+         "entry.423345690":field5,
+         "entry.916053787":field6,
+        },
+        type: "POST",
+        dataType: "xml",
+        statusCode: {
 
-		     0: function() {
-		      alert("您的匿名投稿已送出，過程維持完全匿名狀態。如果在我們發布前需要刪除請使用刪文系統。");　
-		      window.location.assign("https://jayhsu0114.github.io/");
-		     },
+         0: function() {
+          alert("您的匿名投稿已送出，過程維持完全匿名狀態。如果在我們發布前需要刪除請使用刪文系統。");　
+          window.location.assign("https://jayhsu0114.github.io/");
+         },
 
-		     200: function() {
-		      alert("您的匿名投稿已送出，過程維持完全匿名狀態。如果在我們發布前需要刪除請使用刪文系統。");　
-		      window.location.assign("https://jayhsu0114.github.io/");
-		     }
-		    }
-		   });
-		  }
-		</script>
+         200: function() {
+          alert("您的匿名投稿已送出，過程維持完全匿名狀態。如果在我們發布前需要刪除請使用刪文系統。");　
+          window.location.assign("https://jayhsu0114.github.io/");
+         }
+        }
+       });
+      }
+    </script>
 
 <script>
    function onSubmit(token) {
@@ -129,10 +167,11 @@ document.getElementById('QQQQ').value="ZSJH"+makerandomletter(2)+randomusefloor(
         }
 
     </script>
+
 <style>
 #g-recaptcha{display:none;}
 * {
-	box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
@@ -225,13 +264,13 @@ body {
 }
 
 legend{
-	  font-weight:bold;
-	  background-color:#70a7dd ;
-	  border-radius:10px;
-	  padding:10px;
-	  border-style:solid;
-	  border-width:2px;
-	font-size:20px;
+    font-weight:bold;
+    background-color:#70a7dd ;
+    border-radius:10px;
+    padding:10px;
+    border-style:solid;
+    border-width:2px;
+  font-size:20px;
 }
 fieldset{
 background-color:#fefdf7;
@@ -245,16 +284,16 @@ input, textarea {
 font-size: initial;
 resize:none;
 }
-	.bottons{
-	 width:50%;
-	height: 60px;
-	font-size:30px;
-	background-color: #fefdf7;
-	color: black;
-	}
+  .bottons{
+   width:50%;
+  height: 60px;
+  font-size:30px;
+  background-color: #fefdf7;
+  color: black;
+  }
 </style>
 </head>
-<body onload="setvalue()" background="https://i.imgur.com/AgSepfZ.jpeg">
+<body onload="setvalue();getIdvalue();getIPvalue()" background="https://i.imgur.com/AgSepfZ.jpeg">
 
 <div class="header">
   <h1>靠北/告白中山股份無限公司</h1>
@@ -282,49 +321,50 @@ resize:none;
     <div class="card">
       <form action="javascript:GoogleForm();" id="form">
 
-		<div class="fieldset">
-		<fieldset>
-			<legend> &nbsp;&nbsp; 請先閱讀使用者規約 &nbsp;&nbsp; </legend>
-			<input style="height: 15px;width: 15px;" type="checkbox" name="Q" value="我已詳細閱讀使用者規約並同意遵守" required autofocus>
-			<label for="Q">我已詳細閱讀使用者規約並同意遵守</label>
-		</fieldset>
-		</div>
+    <div class="fieldset">
+    <fieldset>
+      <legend> &nbsp;&nbsp; 請先閱讀使用者規約 &nbsp;&nbsp; </legend>
+      <input style="height: 15px;width: 15px;" type="checkbox" name="Q" value="我已詳細閱讀使用者規約並同意遵守" required autofocus>
+      <label for="Q">我已詳細閱讀使用者規約並同意遵守</label>
+    </fieldset>
+    </div>
 
-		<br><br>
+    <br><br>
 
-		<div class="fieldset">
-		<fieldset><legend> &nbsp;&nbsp; 您要回覆ZSJH________？ &nbsp;&nbsp; </legend>
-		<label for="QQ">請輸入數字：&nbsp;</label>
-		<input type="text" name="QQ" value="" maxlength="5" placeholder="本欄位僅限輸入數字" patttern="[0-9]+">
-		</fieldset>
-		</div>
+    <div class="fieldset">
+    <fieldset><legend> &nbsp;&nbsp; 您要回覆ZSJH________？ &nbsp;&nbsp; </legend>
+    <label for="QQ">請輸入數字：&nbsp;</label>
+    <input type="text" name="QQ" value="" maxlength="5" placeholder="本欄位僅限輸入數字" patttern="[0-9]+">
+    </fieldset>
+    </div>
 
-		<br><br>
+    <br><br>
 
-		<div class="fieldset">
-		<fieldset><legend> &nbsp;&nbsp; 您的投稿內容是？&nbsp;&nbsp; </legend>
-		<label for="QQQ">請輸入您的回覆內容：&nbsp;&nbsp;</label>
-		<br><br>
+    <div class="fieldset">
+    <fieldset><legend> &nbsp;&nbsp; 您的投稿內容是？&nbsp;&nbsp; </legend>
+    <label for="QQQ">請輸入您的回覆內容：&nbsp;&nbsp;</label>
+    <br><br>
 
-		<textarea name="QQQ" style="width:100%;height: 200px;word-break:break-all" required></texTarea>
-		</fieldset>
-		</div>
-		
-		<br><br>
+    <textarea name="QQQ" style="width:100%;height: 200px;word-break:break-all" required></texTarea>
+    </fieldset>
+    </div>
+    
+    <br><br>
 
-		<div class="fieldset">
-		<fieldset><legend> &nbsp;&nbsp; 請記住後悔代碼 &nbsp;&nbsp; </legend>
-		<label for="QQQQ">後悔代碼：&nbsp;&nbsp;</label>
-		<input id="QQQQ" type="text" name="QQQQ" required readonly>
-		<p style="font-size: 20px;">後悔代碼可以在我們將貼文發布前於系統內刪除</p>
-		</fieldset>
-		</div>
+    <div class="fieldset">
+    <fieldset><legend> &nbsp;&nbsp; 請記住後悔代碼 &nbsp;&nbsp; </legend>
+    <label for="QQQQ">後悔代碼：&nbsp;&nbsp;</label>
+    <input id="QQQQ" type="text" name="QQQQ" required readonly>
+    <input id="QQQQQ" type="hidden" name="QQQQQ"><input id="QQQQQQ" type="hidden" name="QQQQQQ">
+    <p style="font-size: 20px;">後悔代碼可以在我們將貼文發布前於系統內刪除</p>
+    </fieldset>
+    </div>
 
-		<br><br>
+    <br><br>
 
 <CENTER><button class="bottons" type="submit" >提交</button></center>
 </div>
-	</form>
+  </form>
 
   </div>
 </div>
