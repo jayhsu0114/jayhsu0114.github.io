@@ -79,22 +79,29 @@
        });
       }
     </script>
- <script src=
-"https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
-    </script>
-  <meta charset="utf-8">
- <script type="text/javascript" src="https://l2.io/ip.js?var=userip"></script>
+
 
 <script type="text/javascript">
-  function getIPvalue()
+  
+  function getIdvalue()
   {
-      document.getElementById("txtIp").value = userip;
+var navigator_info = window.navigator;
+var screen_info = window.screen;
+var uid = navigator_info.mimeTypes.length;
+uid += navigator_info.userAgent.replace(/\D+/g, '');
+uid += navigator_info.plugins.length;
+uid += screen_info.height || '';
+uid += screen_info.width || '';
+uid += screen_info.pixelDepth || '';
+document.getElementById("txtIp").value = uid;
   }
   
   window.onload = function() {
-  getIPvalue();
+  getIdvalue();
   };
+
 </script>
+
 
 <style>
 #g-recaptcha{display:none;}
@@ -215,8 +222,9 @@ padding: 30px;
   .day,.hour,.minute,.second{font-size: 3rem;}
 </style>
 </head>
+
 <body>
-	<div class="header">
+  <div class="header">
   <h1>靠北/告白中山股份無限公司</h1>
   <p>Hate/Love ZSJH Co.ultd</p>
    <p id="gfg"></p>
