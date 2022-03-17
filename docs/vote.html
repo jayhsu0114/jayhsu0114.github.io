@@ -176,19 +176,19 @@ document.getElementById('QQQQ').value="ZSJH"+makerandomletter(2)+randomusefloor(
 
 body {
   font-family: Arial;
-  padding: 10px;
+  padding: 0.625em;
   background: #FFFFFF;
 }
 
 /* Header/Blog Title */
 .header {
-  padding: 5px;
+  padding: 0.3125em;
   text-align: center;
   background:#fefdf7;
 }
 
 .header h1 {
-  font-size: 50px;
+  font-size: 3.125em;
 }
 
 /* Style the top navigation bar */
@@ -203,7 +203,7 @@ body {
   display: block;
   color: #000000;
   text-align: center;
-  padding: 14px 16px;
+  padding: 0.875em 1em;
   text-decoration: none;
 }
 
@@ -223,13 +223,13 @@ body {
 /* Add a card effect for articles */
 .card {
   background-color:#b7e5f8;
-  padding: 20px;
-  margin-top: 20px;
+  padding: 1.25em;
+  margin-top: 1.25em;
 }
 .card1 {
   background-color:#EBAFAF;
-  padding: 20px;
-  margin-top: 20px;
+  padding: 1.25em;
+  margin-top: 1.25em;
 }
 
 /* Clear floats after the columns */
@@ -241,22 +241,22 @@ body {
 
 /* Footer */
 .footer {
-  padding: 20px;
+  padding: 1.25em;
   text-align: center;
   background:#fefdf7;
-  margin-top: 20px;
+  margin-top: 1.25em;
 }
 
-/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 800px) {
+/* Responsive layout - when the screen is less than 50em wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 50em) {
   .leftcolumn, {   
     width: 100%;
     padding: 0;
   }
 }
 
-/* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
-@media screen and (max-width: 400px) {
+/* Responsive layout - when the screen is less than 25em wide, make the navigation links stack on top of each other instead of next to each other */
+@media screen and (max-width: 25em) {
   .topnav a {
     float: none;
     width: 100%;
@@ -266,17 +266,17 @@ body {
 legend{
     font-weight:bold;
     background-color:#70a7dd ;
-    border-radius:10px;
-    padding:10px;
+    border-radius:0.625em;
+    padding:0.625em;
     border-style:solid;
     border-width:2px;
-  font-size:20px;
+  font-size:1.25em;
 }
 fieldset{
 background-color:#fefdf7;
-border-radius:10px;
+border-radius:0.625em;
 border:none;
-padding: 30px;
+padding: 1.875em;
 }
 
 input, textarea {
@@ -286,8 +286,8 @@ resize:none;
 }
   .bottons{
    width:50%;
-  height: 60px;
-  font-size:30px;
+  height: 3.75em;
+  font-size:1.875em;
   background-color: #fefdf7;
   color: black;
   }
@@ -302,34 +302,34 @@ resize:none;
 }
 
 .wrapper{
-  width: 350px;
+  width: 80%;
   background: #fff;
-  border-radius: 10px;
-  box-shadow: 5px 5px 30px rgba(0,0,0,0.2);
+  border-radius: 0.625em;
+  box-shadow: 0.3125em 0.3125em 1.875em rgba(0,0,0,0.2);
 }
 .wrapper .title{
   color: #fff;
-  line-height: 65px;
+  line-height: 4.0625em;
   text-align: center;
   background: #333;
-  font-size: 25px;
+  font-size: 1.5625em;
   font-weight: 500;
-  border-radius: 10px 10px 0 0;
+  border-radius: 0.625em 0.625em 0 0;
 }
 .wrapper .box{
-  padding: 20px 30px;
+  padding: 1.25em 1.875em;
   background: #fff;
-  border-radius: 10px;
+  border-radius: 0.625em;
 }
 .wrapper .box label{
   display: flex;
-  height: 53px;
+  height: 3.3125em;
   width: 100%;
   align-items: center;
-  border: 1px solid lightgrey;
-  border-radius: 50px;
-  margin: 10px 0;
-  padding-left: 20px;
+  border: 0.0625em solid lightgrey;
+  border-radius: 3.125em;
+  margin: 0.625em 0;
+  padding-left: 1.25em;
   cursor: default;
   transition: all 0.3s ease;
 }
@@ -341,8 +341,8 @@ resize:none;
   border-color: #333;
 }
 .wrapper .box label .dot{
-  height: 20px;
-  width: 20px;
+  height: 1.25em;
+  width: 1.25em;
   background: #d9d9d9;
   border-radius: 50%;
   position: relative;
@@ -360,8 +360,8 @@ resize:none;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) scale(2);
-  width: 9px;
-  height: 9px;
+  width: 0.5625em;
+  height: 0.5625em;
   border-radius: 50%;
   transition: all 0.3s ease;
 }
@@ -374,9 +374,9 @@ resize:none;
 }
 .wrapper .box label .text{
   color: #333;
-  font-size: 18px;
+  font-size: 1.125em;
   font-weight: 400;
-  padding-left: 10px;
+  padding-left: 0.625em;
   transition: color 0.3s ease;
 }
 #option-1:checked ~ .option-1 .text,
