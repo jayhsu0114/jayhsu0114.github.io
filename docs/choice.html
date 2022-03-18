@@ -52,38 +52,9 @@ document.getElementById("QQQQQ").value = uid;
 
     </script>
  <meta charset="utf-8">
- <script type="text/javascript" src="https://l2.io/ip.js?var=userip"></script>
 
-<script type="text/javascript">
-  function getIPvalue()
-  {
-      document.getElementById("QQQQQQ").value = userip;
-  }
-  
-  window.onload = function() {
-  getIPvalue();
-  };
-</script>
-<script>
-// JS 產生亂數
-// 亂數產生
-function randomusefloor(min,max) {
-  return Math.floor(Math.random()*(max-min+1)+min);
-}
-// 亂數英文字
-function makerandomletter(max) {
-  var text = "";
-  var possible = "abcdefghijklmnopqrstuvwxyz";
-  for (var i = 0; i < max; i++)
-    text += possible.charAt(Math.floor(Math.random() * possible.length));
-  return text;
-}
-// 前兩碼英文小寫,後6碼數字
-function setvalue(){
-document.getElementById('QQQQ').value="ZSJH"+makerandomletter(2)+randomusefloor(1,999999);
-}
 
-</script>
+
 
 <script src="https://www.google.com/recaptcha/api.js"></script>
 <meta charset="utf-8">
@@ -303,6 +274,7 @@ resize:none;
 
 .wrapper{
   width: 80%;
+  height: 50px;
   background: #fff;
   border-radius: 0.625em;
   box-shadow: 0.3125em 0.3125em 1.875em rgba(0,0,0,0.2);
