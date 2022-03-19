@@ -362,6 +362,16 @@ body {
   color: #fff;
 box-shadow: 0.3125em 0.3125em 1.875em rgba(0,0,0,0.2);
 }
+.tablebox1{
+  width: 90%;
+  height: 5em;
+  background: #fefdf7;
+  display: table;
+  margin: 0 auto;
+  border-radius: 3.125em;
+  color: #fff;
+
+}
 
 #imgbox{
   display: table-cell;
@@ -376,7 +386,18 @@ box-shadow: 0.3125em 0.3125em 1.875em rgba(0,0,0,0.2);
   font-size:2.5em;
   text-align: center;
 }
-
+#imgbox1 {
+  display: table-cell;
+  vertical-align: middle;
+text-align: center;
+}
+#imgbox1 input{
+  width: 95%;
+  text-align: center;
+  border: none;
+  background-color: #fefdf7;
+  font-size: 1.5em;
+}
 #imgbox img{width:7.6em}
 
 </style>
@@ -446,7 +467,18 @@ box-shadow: 0.3125em 0.3125em 1.875em rgba(0,0,0,0.2);
     </div>
 <br><br>
 
-
+<div class="tablebox0">
+<div id="imgbox0">
+        <p>裝置識別碼</p>
+      </div>
+</div>
+<br>
+    <div class="tablebox1">
+      <div id="imgbox1">
+        <input type="text" name="QQQQQ" id="QQQQQ">
+      </div>
+    </div>
+<br><br>
 
 
 
@@ -478,21 +510,12 @@ box-shadow: 0.3125em 0.3125em 1.875em rgba(0,0,0,0.2);
     </div>
   </div>
 <br>
-
-<div class="device" style="background-color: #333; border: none; border-radius: 0.625em;width:90%;box-shadow: 0.3125em 0.3125em 1.875em rgba(0,0,0,0.2);">
-<br>
-<div class="deviceone" style="padding-bottom:1em;">
-<p style="font-size:2.2em;color: #fefdf7;">裝置識別碼</p>
-</div>
-<hr style="width: 85%;">
-<input style="background-color: #333; border: none;text-align: center; width:90%;height:3em;font-size:1.6em;color: #fefdf7;" type="text" name="QQQQQ" id="QQQQQ" disabled="disabled">
-
-</div>
 <br>
 
 
 
-<button class="bottons" type="submit" >確定</button>
+
+<button class="bottons" type="submit" ><h3>確定</h3></button>
 
 
 </center>
