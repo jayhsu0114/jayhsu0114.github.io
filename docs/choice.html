@@ -71,7 +71,7 @@ document.getElementById("QQQQQ").value = uid;
        var field6 = $("[name='QQQQQQ']").val();
 
        $.ajax({
-        url: "https://docs.google.com/forms/u/0/d/e/1FAIpQLSfA_75WHDZouggEiASDj016bPdlGYoAhjduwUk3T8azEFN84w/formResponse",
+        url: "",
 
         data: {
 
@@ -87,12 +87,12 @@ document.getElementById("QQQQQ").value = uid;
         statusCode: {
 
          0: function() {
-          alert("您的匿名投稿已送出，過程維持完全匿名狀態。如果在我們發布前需要刪除請使用刪文系統。");　
+          alert("送出後無法更改，並同時記錄您的裝置識別碼以確保投票的公正性。裝置識別碼經特殊設計，無法追蹤獲得您的個人資料。");　
           window.location.assign("https://jayhsu0114.github.io/");
          },
 
          200: function() {
-          alert("您的匿名投稿已送出，過程維持完全匿名狀態。如果在我們發布前需要刪除請使用刪文系統。");　
+          alert("送出後無法更改，並同時記錄您的裝置識別碼以確保投票的公正性。裝置識別碼經特殊設計，無法追蹤獲得您的個人資料。。");　
           window.location.assign("https://jayhsu0114.github.io/");
          }
         }
