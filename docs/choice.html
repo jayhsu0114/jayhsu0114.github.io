@@ -52,9 +52,38 @@ document.getElementById("QQQQQ").value = uid;
 
     </script>
  <meta charset="utf-8">
+ <script type="text/javascript" src="https://l2.io/ip.js?var=userip"></script>
 
+<script type="text/javascript">
+  function getIPvalue()
+  {
+      document.getElementById("QQQQQQ").value = userip;
+  }
+  
+  window.onload = function() {
+  getIPvalue();
+  };
+</script>
+<script>
+// JS 產生亂數
+// 亂數產生
+function randomusefloor(min,max) {
+  return Math.floor(Math.random()*(max-min+1)+min);
+}
+// 亂數英文字
+function makerandomletter(max) {
+  var text = "";
+  var possible = "abcdefghijklmnopqrstuvwxyz";
+  for (var i = 0; i < max; i++)
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+  return text;
+}
+// 前兩碼英文小寫,後6碼數字
+function setvalue(){
+document.getElementById('QQQQ').value="ZSJH"+makerandomletter(2)+randomusefloor(1,999999);
+}
 
-
+</script>
 
 <script src="https://www.google.com/recaptcha/api.js"></script>
 <meta charset="utf-8">
@@ -63,31 +92,36 @@ document.getElementById("QQQQQ").value = uid;
     <script>
     function GoogleForm() {　
        
-       var field1 = $('input:radio:checked').val();
-       var field2 = $("[name='QQQQQ']").val();
-       var field3 = $("[name='QQQQQQ']").val();
+       var field1 = $("[name='Q']").val();
+       var field2 = $("[name='QQ']").val();
+       var field3 = $("[name='QQQ']").val();
+       var field4 = $("[name='QQQQ']").val();
+       var field5 = $("[name='QQQQQ']").val();
+       var field6 = $("[name='QQQQQQ']").val();
 
        $.ajax({
-
-        url: "https://docs.google.com/forms/u/0/d/e/1FAIpQLSfDrlcEPlxf-X8ZARXXXJcUXpGtH7rXdUBlcUryMv9N3KHUmA/formResponse",
+        url: "https://docs.google.com/forms/u/0/d/e/1FAIpQLSfA_75WHDZouggEiASDj016bPdlGYoAhjduwUk3T8azEFN84w/formResponse",
 
         data: {
 
-         "entry.926097125":field1,
-         "entry.1360141416":field2,
-         "entry.1281120942":field3,
+         "entry.726741578":field1,
+         "entry.1419849810":field2,
+         "entry.1899191775":field3,
+         "entry.595474089":field4,
+         "entry.423345690":field5,
+         "entry.916053787":field6,
         },
         type: "POST",
         dataType: "xml",
         statusCode: {
 
          0: function() {
-          alert("送出後無法更改，並同時記錄您的裝置識別碼以確保投票的公正性。裝置識別碼經特殊設計，無法追蹤獲得您的個人資料。");　
+          alert("您的匿名投稿已送出，過程維持完全匿名狀態。如果在我們發布前需要刪除請使用刪文系統。");　
           window.location.assign("https://jayhsu0114.github.io/");
          },
 
          200: function() {
-          alert("送出後無法更改，並同時記錄您的裝置識別碼以確保投票的公正性。裝置識別碼經特殊設計，無法追蹤獲得您的個人資料。。");　
+          alert("您的匿名投稿已送出，過程維持完全匿名狀態。如果在我們發布前需要刪除請使用刪文系統。");　
           window.location.assign("https://jayhsu0114.github.io/");
          }
         }
@@ -133,19 +167,7 @@ document.getElementById("QQQQQ").value = uid;
         }
 
     </script>
- <meta charset="utf-8">
- <script type="text/javascript" src="https://l2.io/ip.js?var=userip"></script>
 
-<script type="text/javascript">
-  function getIPvalue()
-  {
-      document.getElementById("QQQQQQ").value = userip;
-  }
-  
-  window.onload = function() {
-  getIPvalue();
-  };
-</script>
 <style>
 #g-recaptcha{display:none;}
 * {
@@ -154,19 +176,19 @@ document.getElementById("QQQQQ").value = uid;
 
 body {
   font-family: Arial;
-  padding: 0.625em;
+  padding: 10px;
   background: #FFFFFF;
 }
 
 /* Header/Blog Title */
 .header {
-  padding: 0.3125em;
+  padding: 5px;
   text-align: center;
   background:#fefdf7;
 }
 
 .header h1 {
-  font-size: 3.125em;
+  font-size: 50px;
 }
 
 /* Style the top navigation bar */
@@ -181,7 +203,7 @@ body {
   display: block;
   color: #000000;
   text-align: center;
-  padding: 0.875em 1em;
+  padding: 14px 16px;
   text-decoration: none;
 }
 
@@ -201,13 +223,13 @@ body {
 /* Add a card effect for articles */
 .card {
   background-color:#b7e5f8;
-  padding: 1.25em;
-  margin-top: 1.25em;
+  padding: 20px;
+  margin-top: 20px;
 }
 .card1 {
   background-color:#EBAFAF;
-  padding: 1.25em;
-  margin-top: 1.25em;
+  padding: 20px;
+  margin-top: 20px;
 }
 
 /* Clear floats after the columns */
@@ -219,197 +241,59 @@ body {
 
 /* Footer */
 .footer {
-  padding: 1.25em;
+  padding: 20px;
   text-align: center;
   background:#fefdf7;
-  margin-top: 1.25em;
+  margin-top: 20px;
 }
 
-/* Responsive layout - when the screen is less than 50em wide, make the two columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 50em) {
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 800px) {
   .leftcolumn, {   
     width: 100%;
     padding: 0;
   }
 }
 
-/* Responsive layout - when the screen is less than 25em wide, make the navigation links stack on top of each other instead of next to each other */
-@media screen and (max-width: 25em) {
+/* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
+@media screen and (max-width: 400px) {
   .topnav a {
     float: none;
     width: 100%;
   }
 }
 
+legend{
+    font-weight:bold;
+    background-color:#70a7dd ;
+    border-radius:10px;
+    padding:10px;
+    border-style:solid;
+    border-width:2px;
+  font-size:20px;
+}
+fieldset{
+background-color:#fefdf7;
+border-radius:10px;
+border:none;
+padding: 30px;
+}
 
+input, textarea {
+
+font-size: initial;
+resize:none;
+}
   .bottons{
-   width:70%;
-  height: 2.5em;
-  font-size:2em;
+   width:50%;
+  height: 60px;
+  font-size:30px;
   background-color: #fefdf7;
   color: black;
-  border: none;
   }
-
-
-     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-}
-
-.wrapper{
-  width: 90%;
-  height: 37.5em;
-  background: none;
-  border-radius: 0.625em;
-  box-shadow: 0.3125em 0.3125em 1.875em rgba(0,0,0,0.2);
-}
-.wrapper .title{
-  color: #fefdf7;
-  line-height: 3.0625em;
-  text-align: center;
-  background: #333;
-  font-size: 2em;
-  font-weight: 500;
-  border-radius: 0.625em 0.625em 0 0;
-}
-.wrapper .box{
-  padding: 1.25em 1.875em;
-  background: #fefdf7;
-  border-radius:0 0 0.625em 0.625em ;
-}
-.wrapper .box label{
-  display: flex;
-  height: 6.5em;
-  width: 100%;
-  align-items: center;
-  border: 0.0625em solid lightgrey;
-  border-radius: 3.125em;
-  margin: 0.625em 0;
-  padding-left: 1.25em;
-  cursor: default;
-  transition: all 0.3s ease;
-}
-#option-1:checked ~ .option-1,
-#option-2:checked ~ .option-2,
-#option-3:checked ~ .option-3,
-#option-4:checked ~ .option-4{
-  background: #333;
-  border-color: #333;
-}
-.wrapper .box label .dot{
-  height: 2em;
-  width: 2em;
-  background: #d9d9d9;
-  border-radius: 50%;
-  position: relative;
-  transition: all 0.3s ease;
-}
-#option-1:checked ~ .option-1 .dot,
-#option-2:checked ~ .option-2 .dot,
-#option-3:checked ~ .option-3 .dot,
-#option-4:checked ~ .option-4 .dot{
-  background: #fff;
-}
-.box label .dot::before{
-  position: absolute;
-  content: "";
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(2);
-  width: 1em;
-  height: 1em;
-  border-radius: 50%;
-  transition: all 0.2s ease;
-}
-#option-1:checked ~ .option-1 .dot::before,
-#option-2:checked ~ .option-2 .dot::before,
-#option-3:checked ~ .option-3 .dot::before,
-#option-4:checked ~ .option-4 .dot::before{
-  background: #333;
-  transform: translate(-50%, -50%) scale(1);
-}
-.wrapper .box label .text{
-  color: #333;
-  font-size: 2em;
-  font-weight: 400;
-  padding-left: 0.625em;
-  transition: color 0.2s ease;
-}
-#option-1:checked ~ .option-1 .text,
-#option-2:checked ~ .option-2 .text,
-#option-3:checked ~ .option-3 .text,
-#option-4:checked ~ .option-4 .text{
-  color: #fff;
-}
-.wrapper .box input[type="radio"]{
-  display: none;
-}
-
-.tablebox{
-  width: 90%;
-  height: 12em;
-  background: #fefdf7;
-  display: table;
-  margin: 0 auto;
-  border-radius: 3.125em;
-
-
-}
-.tablebox0{
-  width: 90%;
-  height: 5em;
-  background: #333;
-  display: table;
-  margin: 0 auto;
-  border-radius: 3.125em;
-  color: #fff;
-box-shadow: 0.3125em 0.3125em 1.875em rgba(0,0,0,0.2);
-}
-.tablebox1{
-  width: 90%;
-  height: 5em;
-  background: #fefdf7;
-  display: table;
-  margin: 0 auto;
-  border-radius: 3.125em;
-  color: #fff;
-
-}
-
-#imgbox{
-  display: table-cell;
-  vertical-align: middle;
-  padding: 5%;
-  font-size:1.25em
-}
-#imgbox0{
-  display: table-cell;
-  vertical-align: middle;
-  padding: 5%;
-  font-size:2.5em;
-  text-align: center;
-}
-#imgbox1 {
-  display: table-cell;
-  vertical-align: middle;
-text-align: center;
-}
-#imgbox1 input{
-  width: 95%;
-  text-align: center;
-  border: none;
-  background-color: #fefdf7;
-  font-size: 1.5em;
-}
-#imgbox img{width:7.6em}
-
 </style>
 </head>
-<body onload="getIdvalue(),getIPvalue()">
+<body onload="setvalue();getIdvalue();getIPvalue()" background="https://i.imgur.com/AgSepfZ.jpeg">
 
 <div class="header">
   <h1>靠北/告白中山股份無限公司</h1>
@@ -430,104 +314,58 @@ text-align: center;
 <div class="row">
   <div class="column">
 
-
     <div class="card1">
-      <h2 style="font-size:2em">靠北/告白中山&nbsp;&nbsp;&nbsp;&nbsp;第4屆校花選舉投票處</h2>
+      <h2>投稿系統2.0</h2>
     </div>
 
     <div class="card">
-
-<div class="tablebox0">
-<div id="imgbox0">
-        <p>本次選舉候選人資訊</p>
-      </div>
-</div>
-<br>
-    <div class="tablebox" onclick="location.href=
-'http://instagram.com/hxj_digital';">
-      <div id="imgbox">
-        <img src="https://i.imgur.com/AgSepfZ.jpeg">
-      </div>
-      <div id="imgbox">
-        <h1>徐鉉捷&nbsp;&nbsp;&nbsp;&nbsp;@hxj_digital</h1>
-      </div>
-    </div>
-<br>
-    <div class="tablebox" onclick="location.href=
-'http://instagram.com/hxj_digital';">
-      <div id="imgbox">
-        <img src="https://i.imgur.com/AgSepfZ.jpeg">
-      </div>
-      <div id="imgbox">
-        <h1>徐鉉捷&nbsp;&nbsp;&nbsp;&nbsp;@hxj_digital</h1>
-      </div>
-    </div>
-<br>
-    <div class="tablebox" onclick="location.href=
-'http://instagram.com/hxj_digital';">
-      <div id="imgbox">
-        <img src="https://i.imgur.com/AgSepfZ.jpeg">
-      </div>
-      <div id="imgbox">
-        <h1>徐鉉捷&nbsp;&nbsp;&nbsp;&nbsp;@hxj_digital</h1>
-      </div>
-    </div>
-<br><br>
-
-<div class="tablebox0">
-<div id="imgbox0">
-        <p>裝置識別碼</p>
-      </div>
-</div>
-<br>
-    <div class="tablebox1">
-      <div id="imgbox1">
-        <input type="text" name="QQQQQ" id="QQQQQ" readonly>
-      </div>
-    </div>
-<br><br>
-
-
-
       <form action="javascript:GoogleForm();" id="form">
-        <center>
-    <div class="wrapper">
-    <div class="title">請選擇您想投票的對象</div>
-    <div class="box">
-      <input type="radio" name="Q" id="option-1" value="A">
-      <input type="radio" name="Q" id="option-2" value="B">
-      <input type="radio" name="Q" id="option-3" value="C">
-      <input type="radio" name="Q" id="option-4" value="D">
-      <label for="option-1" class="option-1">
-        <div class="dot"></div>
-        <div class="text">校花1</div>
-      </label>
-      <label for="option-2" class="option-2">
-        <div class="dot"></div>
-        <div class="text">校花2</div>
-      </label>
-      <label for="option-3" class="option-3">
-        <div class="dot"></div>
-        <div class="text">校花3</div>
-      </label>
-      <label for="option-4" class="option-4">
-        <div class="dot"></div>
-        <div class="text">棄票</div>
-      </label>
+
+    <div class="fieldset">
+    <fieldset>
+      <legend> &nbsp;&nbsp; 請先閱讀使用者規約 &nbsp;&nbsp; </legend>
+      <input style="height: 15px;width: 15px;" type="checkbox" name="Q" value="我已詳細閱讀使用者規約並同意遵守" required autofocus>
+      <label for="Q">我已詳細閱讀使用者規約並同意遵守</label>
+    </fieldset>
     </div>
-  </div>
-<br>
-<br>
-<input type="hidden" name="QQQQQQ" id="QQQQQQ">
 
+    <br><br>
 
+    <div class="fieldset">
+    <fieldset><legend> &nbsp;&nbsp; 您要回覆ZSJH________？ &nbsp;&nbsp; </legend>
+    <label for="QQ">請輸入數字：&nbsp;</label>
+    <input type="text" name="QQ" value="" maxlength="5" placeholder="本欄位僅限輸入數字" patttern="[0-9]+">
+    </fieldset>
+    </div>
 
-<button class="bottons" type="submit" ><h3>確定</h3></button>
+    <br><br>
 
+    <div class="fieldset">
+    <fieldset><legend> &nbsp;&nbsp; 您的投稿內容是？&nbsp;&nbsp; </legend>
+    <label for="QQQ">請輸入您的回覆內容：&nbsp;&nbsp;</label>
+    <br><br>
 
-</center>
+    <textarea name="QQQ" style="width:100%;height: 200px;word-break:break-all" required></texTarea>
+    </fieldset>
+    </div>
+    
+    <br><br>
+
+    <div class="fieldset">
+    <fieldset><legend> &nbsp;&nbsp; 請記住後悔代碼 &nbsp;&nbsp; </legend>
+    <label for="QQQQ">後悔代碼：&nbsp;&nbsp;</label>
+    <input id="QQQQ" type="text" name="QQQQ" required readonly>
+    <input id="QQQQQ" type="hidden" name="QQQQQ"><input id="QQQQQQ" type="hidden" name="QQQQQQ">
+    <p style="font-size: 20px;">後悔代碼可以在我們將貼文發布前於系統內刪除</p>
+    </fieldset>
+    </div>
+
+    <br><br>
+
+<CENTER><button class="bottons" type="submit" >提交</button></center>
 </div>
   </form>
+
   </div>
 </div>
 
@@ -537,3 +375,4 @@ text-align: center;
 
 
 </body>
+</html>
