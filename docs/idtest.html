@@ -249,109 +249,13 @@ body {
   background-color: #fefdf7;
   color: black;
   border: none;
+
   }
 
 
-     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-}
-
-.wrapper{
-  width: 90%;
-  height: 37.5em;
-  background: none;
-  border-radius: 0.625em;
-  box-shadow: 0.3125em 0.3125em 1.875em rgba(0,0,0,0.2);
-}
-.wrapper .title{
-  color: #fefdf7;
-  line-height: 3.0625em;
-  text-align: center;
-  background: #333;
-  font-size: 2em;
-  font-weight: 500;
-  border-radius: 0.625em 0.625em 0 0;
-}
-.wrapper .box{
-  padding: 1.25em 1.875em;
-  background: #fefdf7;
-  border-radius:0 0 0.625em 0.625em ;
-}
-.wrapper .box label{
-  display: flex;
-  height: 6.5em;
-  width: 100%;
-  align-items: center;
-  border: 0.0625em solid lightgrey;
-  border-radius: 3.125em;
-  margin: 0.625em 0;
-  padding-left: 1.25em;
-  cursor: default;
-  transition: all 0.3s ease;
-}
-#option-1:checked ~ .option-1,
-#option-2:checked ~ .option-2,
-#option-3:checked ~ .option-3,
-#option-4:checked ~ .option-4{
-  background: #333;
-  border-color: #333;
-}
-.wrapper .box label .dot{
-  height: 2em;
-  width: 2em;
-  background: #d9d9d9;
-  border-radius: 50%;
-  position: relative;
-  transition: all 0.3s ease;
-}
-#option-1:checked ~ .option-1 .dot,
-#option-2:checked ~ .option-2 .dot,
-#option-3:checked ~ .option-3 .dot,
-#option-4:checked ~ .option-4 .dot{
-  background: #fff;
-}
-.box label .dot::before{
-  position: absolute;
-  content: "";
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(2);
-  width: 1em;
-  height: 1em;
-  border-radius: 50%;
-  transition: all 0.2s ease;
-}
-#option-1:checked ~ .option-1 .dot::before,
-#option-2:checked ~ .option-2 .dot::before,
-#option-3:checked ~ .option-3 .dot::before,
-#option-4:checked ~ .option-4 .dot::before{
-  background: #333;
-  transform: translate(-50%, -50%) scale(1);
-}
-.wrapper .box label .text{
-  color: #333;
-  font-size: 2em;
-  font-weight: 400;
-  padding-left: 0.625em;
-  transition: color 0.2s ease;
-}
-#option-1:checked ~ .option-1 .text,
-#option-2:checked ~ .option-2 .text,
-#option-3:checked ~ .option-3 .text,
-#option-4:checked ~ .option-4 .text{
-  color: #fff;
-}
-.wrapper .box input[type="radio"]{
-  display: none;
-}
-
 .tablebox{
   width: 90%;
-  height: 12em;
+  height:3em;
   background: #fefdf7;
   display: table;
   margin: 0 auto;
@@ -361,7 +265,7 @@ body {
 }
 .tablebox0{
   width: 90%;
-  height: 5em;
+  height: 3em;
   background: #333;
   display: table;
   margin: 0 auto;
@@ -371,7 +275,7 @@ box-shadow: 0.3125em 0.3125em 1.875em rgba(0,0,0,0.2);
 }
 .tablebox1{
   width: 90%;
-  height: 5em;
+  height: 3em;
   background: #fefdf7;
   display: table;
   margin: 0 auto;
@@ -384,8 +288,15 @@ box-shadow: 0.3125em 0.3125em 1.875em rgba(0,0,0,0.2);
   display: table-cell;
   vertical-align: middle;
   padding: 5%;
-  font-size:1.25em
+  font-size:1.25em;
+  margin: 0 auto;
 }
+#imgbox input{
+  width: 95%;
+  border: none;
+  height: 3em;
+}
+
 #imgbox0{
   display: table-cell;
   vertical-align: middle;
@@ -405,7 +316,10 @@ text-align: center;
   background-color: #fefdf7;
   font-size: 1.5em;
 }
-#imgbox img{width:7.6em}
+h3{
+
+
+}
 
 </style>
 </head>
@@ -432,57 +346,26 @@ text-align: center;
 
 
     <div class="card1">
-      <h2 style="font-size:2em">靠北/告白中山&nbsp;&nbsp;&nbsp;&nbsp;第4屆校花選舉投票處</h2>
+      <h2 style="font-size:2em">靠北/告白中山&nbsp;&nbsp;&nbsp;&nbsp;第4屆校花選舉提名處</h2>
     </div>
 
     <div class="card">
- <div class="fieldset">
-    <fieldset><legend> &nbsp;&nbsp;請輸入自己的IG帳號：&nbsp;&nbsp; </legend>
-    <label for="Q">請輸入自己的IG帳號：&nbsp;</label>
-    <input type="text" name="Q"  value=""   autofocus required>
-    </fieldset>
-  <br><br>    
-    <fieldset><legend> &nbsp;&nbsp;請輸入它的IG帳號：&nbsp;&nbsp; </legend>
-    <label for="QQ">請輸入它的IG帳號：&nbsp;</label>
-    <input type="text" name="QQ" value=""    required>
-    <input type="hidden" name="ip" id="txtIp">
-    </fieldset>
+
 <div class="tablebox0">
 <div id="imgbox0">
-        <p>本次選舉候選人資訊</p>
+        <p>請輸入您想提名的IG帳號</p>
       </div>
 </div>
 <br>
-    <div class="tablebox" onclick="location.href=
-'http://instagram.com/hxj_digital';">
+    <div class="tablebox">
       <div id="imgbox">
-        <img src="https://i.imgur.com/AgSepfZ.jpeg">
-      </div>
-      <div id="imgbox">
-        <h1>徐鉉捷&nbsp;&nbsp;&nbsp;&nbsp;@hxj_digital</h1>
+        <center>
+        <input type="text" name="Q">
+      </center>
       </div>
 
     </div>
-<br>
-    <div class="tablebox" onclick="location.href=
-'http://instagram.com/hxj_digital';">
-      <div id="imgbox">
-        <img src="https://i.imgur.com/AgSepfZ.jpeg">
-      </div>
-      <div id="imgbox">
-        <h1>徐鉉捷&nbsp;&nbsp;&nbsp;&nbsp;@hxj_digital</h1>
-      </div>
-    </div>
-<br>
-    <div class="tablebox" onclick="location.href=
-'http://instagram.com/hxj_digital';">
-      <div id="imgbox">
-        <img src="https://i.imgur.com/AgSepfZ.jpeg">
-      </div>
-      <div id="imgbox">
-        <h1>徐鉉捷&nbsp;&nbsp;&nbsp;&nbsp;@hxj_digital</h1>
-      </div>
-    </div>
+
 <br><br>
 
 <div class="tablebox0">
@@ -502,33 +385,8 @@ text-align: center;
 
       <form action="javascript:GoogleForm();" id="form">
         <center>
-    <div class="wrapper">
-    <div class="title">請選擇您想投票的對象</div>
-    <div class="box">
-      <input type="radio" name="Q" id="option-1" value="A">
-      <input type="radio" name="Q" id="option-2" value="B">
-      <input type="radio" name="Q" id="option-3" value="C">
-      <input type="radio" name="Q" id="option-4" value="D">
-      <label for="option-1" class="option-1">
-        <div class="dot"></div>
-        <div class="text">校花1</div>
-      </label>
-      <label for="option-2" class="option-2">
-        <div class="dot"></div>
-        <div class="text">校花2</div>
-      </label>
-      <label for="option-3" class="option-3">
-        <div class="dot"></div>
-        <div class="text">校花3</div>
-      </label>
-      <label for="option-4" class="option-4">
-        <div class="dot"></div>
-        <div class="text">棄票</div>
-      </label>
-    </div>
-  </div>
-<br>
-<br>
+   
+
 <input type="hidden" name="QQQQQQ" id="QQQQQQ">
 
 
