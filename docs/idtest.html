@@ -63,19 +63,19 @@ document.getElementById("QQQQQ").value = uid;
     <script>
     function GoogleForm() {　
        
-       var field1 = $('input:radio:checked').val();
-       var field2 = $("[name='QQQQQ']").val();
+       var field1 = $("[name='QQQQQ']").val();
+       var field2 = $("[name='Q']").val();
        var field3 = $("[name='QQQQQQ']").val();
 
        $.ajax({
 
-        url: "https://docs.google.com/forms/u/0/d/e/1FAIpQLSfDrlcEPlxf-X8ZARXXXJcUXpGtH7rXdUBlcUryMv9N3KHUmA/formResponse",
+        url: "https://docs.google.com/forms/u/0/d/e/1FAIpQLSexcR8fvrygfiDj6DK8oR1pw1v4hCGS_F9ZC3ax8RSZVwugEw/formResponse",
 
         data: {
 
-         "entry.926097125":field1,
-         "entry.1360141416":field2,
-         "entry.1281120942":field3,
+         "entry.1152357157":field1,
+         "entry.820912057":field2,
+         "entry.519434622":field3,
         },
         type: "POST",
         dataType: "xml",
@@ -358,7 +358,7 @@ text-align: center;
     <div class="tablebox">
       <div id="imgbox">
         <center>
-        <input type="text" name="Q">
+        <input type="text" name="Q" required>
       </center>
       </div>
 
