@@ -29,102 +29,15 @@ window.onload = function () {
   }, false);
 };
     </script>
-       
  <meta charset="utf-8">
 
 
 
 
 <script src="https://www.google.com/recaptcha/api.js"></script>
-<meta charset="utf-8">
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script>
-    function GoogleForm() {　
-       
-       var field1 = $("[name='QQQQQ']").val();
-       var field2 = $("[name='Q']").val();
-       var field3 = $("[name='QQQQQQ']").val();
-
-       $.ajax({
-
-        url: "https://docs.google.com/forms/u/0/d/e/1FAIpQLSexcR8fvrygfiDj6DK8oR1pw1v4hCGS_F9ZC3ax8RSZVwugEw/formResponse",
-
-        data: {
-
-         "entry.1152357157":field1,
-         "entry.820912057":field2,
-         "entry.519434622":field3,
-        },
-        type: "POST",
-        dataType: "xml",
-        statusCode: {
-
-         0: function() {
-          alert("送出後無法更改，並同時記錄您的裝置識別碼以確保投票的公正性。裝置識別碼經特殊設計，無法追蹤獲得您的個人資料。");　
-          window.location.assign("https://jayhsu0114.github.io/");
-         },
-
-         200: function() {
-          alert("送出後無法更改，並同時記錄您的裝置識別碼以確保投票的公正性。裝置識別碼經特殊設計，無法追蹤獲得您的個人資料。。");　
-          window.location.assign("https://jayhsu0114.github.io/");
-         }
-        }
-       });
-      }
-    </script>
-
-<script>
-   function onSubmit(token) {
-     document.getElementById("demo-form").submit();
-   }
-</script>
 
 
-<button class="g-recaptcha" id="g-recaptcha"
-        data-sitekey="6LdM9jwdAAAAAAkpcTeuyRgb8_CK8uJkVqNxpcWB" 
-        data-callback='onSubmit' 
-        data-action='submit'>Submit</button>
 
-
- <script type="text/javascript">
-        window.onload = function(){
-            
-            document.onkeydown = function (){
-                var e = window.event || arguments[0];
-                
-                if(e.keyCode == 123){
-                    return false;
-                
-            }else if((e.ctrlKey) && (e.shiftKey) && (e.keyCode == 73)){
-                return false;
-               
-            }else if((e.shiftKey) && (e.keyCode == 121)){
-                return false;
-               
-            }else if((e.ctrlKey) && (e.keyCode == 85)){
-                return false;
-            }
-        };
-            document.oncontextmenu = function (){
-                return false;
-            }
-        }
-
-    </script>
- <meta charset="utf-8">
- <script type="text/javascript" src="https://l2.io/ip.js?var=userip"></script>
-
-<script type="text/javascript">
-  function getIPvalue()
-  {
-      document.getElementById("QQQQQQ").value = userip;
-  }
-  
-  window.onload = function() {
-  getIPvalue();
-  };
-</script>
 <style>
 #g-recaptcha{display:none;}
 * {
@@ -244,72 +157,77 @@ font-size: 1em;
 
 .tablebox{
   width: 90%;
-  height:3em;
+
   background: #fefdf7;
   display: table;
   margin: 0 auto;
-  border-radius: 3.125em;
+
 
 
 }
 .tablebox0{
   width: 90%;
-  height: 3em;
+
   background: #333;
   display: table;
   margin: 0 auto;
-  border-radius: 3.125em;
+
   color: #fff;
 box-shadow: 0.3125em 0.3125em 1.875em rgba(0,0,0,0.2);
 }
 .tablebox1{
   width: 90%;
-  height: 3em;
+
   background: #fefdf7;
   display: table;
   margin: 0 auto;
-  border-radius: 3.125em;
-  color: #fff;
 
+  color: #333;
+
+}
+.tablebox2{
+  width: 90%;
+
+  background: #333;
+  display: table;
+  margin: 0 auto;
+
+  color: #fff;
+box-shadow: 0.3125em 0.3125em 1.875em rgba(0,0,0,0.2);
 }
 
 #imgbox{
   display: table-cell;
   vertical-align: middle;
   padding: 5%;
-  font-size:1.25em;
-  margin: 0 auto;
+  font-size:1em;
+  display:display : inline;
+
 }
-#imgbox input{
-  width: 95%;
-font-size:0.75em;
-  height: 2em;
-}
+
 
 #imgbox0{
   display: table-cell;
   vertical-align: middle;
   padding: 5%;
   font-size:1em;
-  text-align: center;
+
 }
 #imgbox1 {
   display: table-cell;
   vertical-align: middle;
-text-align: center;
+  padding: 5%;
 }
-#imgbox1 input{
-  width: 95%;
-  text-align: center;
-  border: none;
-  background-color: #fefdf7;
-  font-size: 0.65em;
+#imgbox1 img{
+  display: table-cell;
+  vertical-align: middle;
+  padding: 3%;
+  width: 100%;
 }
-
 
 </style>
 </head>
-<body onload="getIdvalue(),getIPvalue()">
+<body>
 
 <div class="header">
   <h1>靠北/告白中山股份無限公司</h1>
@@ -323,53 +241,97 @@ text-align: center;
 
 
     <div class="card1">
-      <h2 style="font-size:1.25em">校花選舉提名處</h2>
+      <h2 style="font-size:1.25em">選舉說明</h2>
     </div>
 
     <div class="card">
 
 <div class="tablebox0">
 <div id="imgbox0">
-        <p>請輸入您想提名的IG帳號</p>
+        <p>選舉規則</p>
       </div>
 </div>
 <br>
     <div class="tablebox">
       <div id="imgbox">
-        <center>
-        <input type="text" name="Q"  placeholder="hate_love_zsjh_co.ultd" 
-        pattern="[a-zA-Z0-9\.\_]+">
-      </center>
+       <p>(一)本規則依校花校草選舉辦法訂定之。</p>
+       <p>(二)提名時請輸入IG帳號，例如：hate_love_zsjh_co.ultd，輸入使用者名稱將視同放棄提名權利。</p>
+       <p>(三)你可以提名無限多個人，但不能重複提同一個人。</p>
+       <p>(四)一個提名需要送出一次，需提名其他人請送出後再行提名。</p>
+       <p>(五)提名者、投票者的身分判別會用裝置碼進行，我們沒有辦法從裝置碼知道您的身分，只能判斷是否與其他裝置不一樣。</p>
+       <p>(六)投票時請直接選擇選項後按確定，送出後不可修改，重複投票視同棄權。</p>
       </div>
 
     </div>
+    <div class="tablebox2" onclick="location.href=
+'https://sites.google.com/view/zsjh/%E6%A0%A1%E8%8A%B1%E8%8D%89%E6%8F%90%E5%90%8D/%E6%A0%A1%E8%8A%B1%E6%A0%A1%E8%8D%89%E9%81%B8%E8%88%89%E8%BE%A6%E6%B3%95';">
+<div id="imgbox0">
+  <center>
+        <p>點此進入校花校草選舉辦法</p>
+      </center>
+      </div>
+</div>
 
 <br><br>
 
 <div class="tablebox0">
 <div id="imgbox0">
-        <p>裝置識別碼</p>
+        <p>提名教學</p>
       </div>
 </div>
 <br>
     <div class="tablebox1">
       <div id="imgbox1">
-        <input type="text" name="QQQQQ" id="QQQQQ" readonly value="0-000000000000000000000000000-0-000-000-00">
+          <p>進入提名頁面後，你會看到這個畫面：</p>
+
+
+          <img src="https://i.imgur.com/8tmgxQK.jpeg">
+          <p>請在框內輸入一個你想提名的人的IG帳號</p>
+          <p>然後檢查你的裝置碼有出現，例如這樣：</p>
+          <img src="https://i.imgur.com/uWDOjPq.jpeg">
+          <p>確認沒有問題，請按下確定送出，</p>
+          <p>如果要提名第二個人請重複上述動作。</p>
+
+      </div>
+    </div>
+<br>
+    <div class="tablebox0">
+<div id="imgbox0">
+        <p>投票教學</p>
+      </div>
+</div>
+<br>
+    <div class="tablebox1">
+      <div id="imgbox1">
+         <p>進入投票頁面後，你會看到這個畫面：</p>
+
+
+          <img src="https://i.imgur.com/jzTvHon.jpeg">
+          <p>直接點擊你想看的候選人按鈕</p>
+          <p>就能看見候選人資訊</p>
+          <br>
+          <p>然後檢查你的裝置碼有出現，例如這樣：</p>
+          <img src="https://i.imgur.com/uWDOjPq.jpeg">
+          <p>接著看到投票版面</p>
+          <img src="https://i.imgur.com/vHMbSJA.jpeg">
+          <p>選擇一個你喜歡的選項</p>
+          <img src="https://i.imgur.com/fFKvJPv.jpeg">
+          <p>確認你的選項顏色跟其他的不一樣</p>
+          <p>如果沒有問題請按下確定送出</p>
+
       </div>
     </div>
 <br><br>
 
-
-
-      <form action="javascript:GoogleForm();" id="form">
         <center>
    
 
-<input type="hidden" name="QQQQQQ" id="QQQQQQ">
 
 
 
-<button class="bottons" type="submit" ><h3>確定</h3></button>
+
+<button class="bottons" type="submit" onclick="location.href=
+'https://jayhsu0114.github.io/raise.html';"><h3>開始提名</h3></button>
 
 
 </center>
@@ -378,6 +340,8 @@ text-align: center;
   </div>
 </div>
 <br>
+
+
 <div class="topnav">
 <a href="https://jayhsu0114.github.io/delete.html" >刪文系統</a>
 <a href="https://jayhsu0114.github.io/userregulation.html" >使用者規約</a>
