@@ -99,6 +99,9 @@ body {
     justify-content: center; 
     align-items: center;
   }
+.question-footer p{
+    font-size: 0.85em;
+}
 
   topnav {
     overflow: hidden;
