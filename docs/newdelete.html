@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="new index.css">
+
+</head>
+<body>
+    <!-- Messenger 洽談外掛程式 Code -->
+    <div id="fb-root"></div>
+
+    <!-- Your 洽談外掛程式 code -->
+    <div id="fb-customer-chat" class="fb-customerchat">
+    </div>
+
+    <script>
+      var chatbox = document.getElementById('fb-customer-chat');
+      chatbox.setAttribute("page_id", "103242624673646");
+      chatbox.setAttribute("attribution", "biz_inbox");
+
+      window.fbAsyncInit = function() {
+        FB.init({
+          xfbml            : true,
+          version          : 'v12.0'
+        });
+      };
+
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/zh_TW/sdk/xfbml.customerchat.js';
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+    <div class="header">
+        <h1>靠北/告白中山股份無限公司</h1>
+        <p>Hate/Love ZSJH Co.ultd</p>
+    </div>
+
+    <div class="content">
+        <div class="page-name">
+            <h2>刪文系統1.1</h2>
+        </div>
+
+        <div class="Features">
+            <form action="javascript:GoogleForm();" id="form">
+                <div class="question">
+                    <div class="question-title">
+                        <h3>請輸入您想刪除的後悔代碼</h3>
+                    </div>
+                    <div class="question-body">  
+                        <input type="text" name="Q" value=""  placeholder="請輸入ZSJH開頭的編碼">
+                    </div>
+                    <div class="question-footer">
+                        <h5>已經發布的貼文請私訊我們提出刪除申請</h5>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
