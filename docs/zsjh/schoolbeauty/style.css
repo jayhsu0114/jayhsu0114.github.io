@@ -84,6 +84,20 @@ body {
   border-radius: 5px;
 
 }
+
+.year-body-electe{
+  width: 30%;
+  height: 2em;
+  background: #EBAFAF;
+  display: table;
+  margin: 0 auto;
+  color: #333;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  border-radius: 5px;
+
+}
 .year-body-elected-date{
   width: 45%;
   height: 2em;
