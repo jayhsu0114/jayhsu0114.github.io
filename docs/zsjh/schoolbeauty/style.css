@@ -162,13 +162,13 @@ topnav {
   padding: 5px;
 }
 
-.imgbox {
+#imgbox {
   display: table-cell;
   vertical-align: middle;
   padding: 5%;
   font-size:0.9em;
 }
-.imgbox img{
+#imgbox img{
   display: table-cell;
   vertical-align: middle;
   padding: 3%;
