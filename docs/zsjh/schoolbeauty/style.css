@@ -72,17 +72,7 @@ body {
   align-items: center;
 }
 
-.year-body-data{
-  width: 90%;
-  height: 10em;
-  background: #fefdf7;
-  display: table;
-  margin: 0 auto;
-  color: #000;
-  display: flex;
-  justify-content: center; 
-  align-items: center;
-}
+
 
 .year-body-elected{
   width: 45%;
