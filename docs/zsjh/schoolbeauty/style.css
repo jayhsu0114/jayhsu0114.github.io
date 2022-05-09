@@ -165,15 +165,8 @@ topnav {
   padding: 5px;
 }
 
-#imgbox {
-  display: table-cell;
-  vertical-align: middle;
-  padding: 5%;
-  font-size:0.9em;
-}
-#imgbox img{
-  display: table-cell;
-  vertical-align: middle;
-  padding: 3%;
-  width: 100%;
+
+img{
+  margin: 0 auto;
+  width: 90%;
 }
