@@ -1,0 +1,266 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+
+<script src="https://www.google.com/recaptcha/api.js"></script>
+<meta charset="utf-8">
+<meta charset="utf-8">
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script>
+		function GoogleForm() {　
+		   
+		   var field1 = $("[name='Q']").val();
+		   var field2 = $("[name='QQ']").val();
+		   var field3 = $("[name='QQQ']").val();
+
+		   $.ajax({
+		    url: "https://docs.google.com/forms/u/0/d/e/1FAIpQLScbwzb8_yLr2uPaBj-RGI3eKDDpoN-c6RXUo-Mhy67DCV42tg/formResponse",
+
+		    data: {
+
+		     "entry.1201305028":field1,
+		     "entry.1883963134":field2,
+		     "entry.548649473":field3,
+		    },
+		    type: "POST",
+		    dataType: "xml",
+		    statusCode: {
+
+		     0: function() {
+		      alert("您的信件已寄出");　
+		      window.location.assign("https://jayhsu0114.github.io/trouble/1.html");
+		     },
+
+		     200: function() {
+		      alert("您的信件已寄出");　
+		      window.location.assign("https://jayhsu0114.github.io/trouble/1.html");
+		     }
+		    }
+		   });
+		  }
+		</script>
+<style>
+#g-recaptcha{display:none;}
+* {
+	box-sizing: border-box;
+}
+
+body {
+  font-family: Arial;
+  padding: 10px;
+  background: #FFFFFF;
+}
+
+/* Header/Blog Title */
+.header {
+  padding: 5px;
+  text-align: center;
+  background:#f7ddbf;
+}
+
+.header h1 {
+  font-size: 50px;
+}
+
+/* Style the top navigation bar */
+.topnav {
+  overflow: hidden;
+  background-color:#fefdf7;
+}
+
+/* Style the topnav links */
+.topnav a {
+  float: left;
+  display: block;
+  color: #000000;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change color on hover */
+.topnav a:hover {
+  background-color:#f7ddbf;
+  color: black;
+}
+
+/* Create two unequal columns that floats next to each other */
+/* Left column */
+.column {   
+  float: center;
+  width: 100%;
+}
+
+/* Add a card effect for articles */
+.card {
+  background-color:#b7e5f8;
+  padding: 20px;
+  margin-top: 20px;
+}
+.card1 {
+  background-color:#70a7dd;
+  padding: 20px;
+  margin-top: 20px;
+  justify-content: center;}
+}
+.card2 {
+  background-color:#b7e5f8;
+  padding: 5px;
+  margin-top: 5px;
+}
+
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Footer */
+.footer {
+  padding: 20px;
+  text-align: center;
+  background:#fefdf7;
+  margin-top: 20px;
+}
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 800px) {
+  .leftcolumn, {   
+    width: 100%;
+    padding: 0;
+  }
+}
+
+/* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
+@media screen and (max-width: 400px) {
+  .topnav a {
+    float: none;
+    width: 100%;
+  }
+}
+
+legend{
+	  font-weight:bold;
+	  background-color:#70a7dd ;
+	  border-radius:10px;
+	  padding:10px;
+	  border-style:solid;
+	  border-width:2px;
+}
+fieldset{
+background-color:#fefdf7;
+border-radius:10px;
+border:none;
+padding: 30px;
+	width:80%;
+}
+
+br {
+     line-height: 80%;
+     }
+	
+.choice{
+	 width:40%;
+	height: 30px;
+	background-color: #fefdf7;
+	color: black;
+	float: center;
+	}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>靠北/告白中山股份無限公司</h1>
+  <p>Hate/Love ZSJH Co.ultd</p>
+</div>
+<br>
+<div class="topnav">
+<a href="https://jayhsu0114.github.io/aboutus.html" style="float:right">聯絡我們</a>
+<a href="https://jayhsu0114.github.io/introduction.html" style="float:right">網站介紹</a>
+<a href="https://jayhsu0114.github.io/schoolbeauty.html" style="float:right">校花校草</a>
+<a href="https://jayhsu0114.github.io/survey.html" style="float:right" >意見反映</a>
+<a href="https://jayhsu0114.github.io/index.html" >投稿系統</a>
+<a href="https://jayhsu0114.github.io/delete.html" >刪文系統</a>
+<a href="https://jayhsu0114.github.io/userregulation.html" >使用者規約</a>
+	<a href="https://jayhsu0114.github.io/privatepolicy.html" >隱私權政策</a>
+</div>
+
+<div class="row">
+  <div class="column">
+
+    <div class="card1">
+      <h2>解憂信箱</h2>
+    </div>
+    <div class="card">
+    <center>
+	<img src="./voov_robot.png" style="width:80%;">
+<p>你現在可以下滑告訴我你想說什麼了，但記得要按提交！</p>
+	    <br>
+ <form action="javascript:GoogleForm();" id="form">
+<div class="fieldset">
+<fieldset><legend> &nbsp;&nbsp;請輸入你的電子郵件&nbsp;&nbsp; </legend>
+<input type="email" name="Q" style="width:100%;height: 50px;word-break:break-all" required></input>
+</fieldset>
+	<br><br>
+	<fieldset><legend> &nbsp;&nbsp;請輸入你的煩惱&nbsp;&nbsp; </legend>
+<textarea name="QQ" style="width:100%;height: 200px;word-break:break-all" required></texTarea>
+</fieldset>
+<input type="hidden" name="QQQ" value="1132">
+			<br><br>
+
+<CENTER><button style="font-size:30px;width:80%;height: 60px;background-color: #fefdf7;color: black;" type="submit" >提交</button></center>
+	</form>
+</div>
+</div>
+
+
+ </div>
+</div>
+
+<div class="footer">
+  <h2>本網頁系統由靠北/告白中山股份無限公司提供</h2>
+</div>
+
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+<script>
+   function onSubmit(token) {
+     document.getElementById("demo-form").submit();
+   }
+</script>
+<button class="g-recaptcha" id="g-recaptcha"
+        data-sitekey="6LdM9jwdAAAAAAkpcTeuyRgb8_CK8uJkVqNxpcWB" 
+        data-callback='onSubmit' 
+        data-action='submit'>Submit</button>
+ <script type="text/javascript">
+        window.onload = function(){
+            
+            document.onkeydown = function (){
+                var e = window.event || arguments[0];
+                
+                if(e.keyCode == 123){
+                    return false;
+                
+            }else if((e.ctrlKey) && (e.shiftKey) && (e.keyCode == 73)){
+                return false;
+               
+            }else if((e.shiftKey) && (e.keyCode == 121)){
+                return false;
+               
+            }else if((e.ctrlKey) && (e.keyCode == 85)){
+                return false;
+            }
+        };
+            document.oncontextmenu = function (){
+                return false;
+            }
+        }
+
+    </script>
+</body>
+</html>

@@ -24,9 +24,9 @@
                           if (xmlhttp.readyState==4 && xmlhttp.status==200)      
                           {
                                 var result=xmlhttp.responseText;
-                                var obj = JSON.parse(result);//解析json字串為json物件形式
+                                var obj = JSON.parse(result);
                                                         
-                                var html = '<table border=1 width=100%>';//
+                                var html = '<table border=1  width=100%>';//
                                 
                                 for (var i = 0; i < obj.length; i ++ ) {//
                                         html  += '<tr>';//
@@ -39,7 +39,7 @@
                                 html+="</table>";
                                 
                                 document.getElementById("order_status").innerHTML=html;
-                                if(obj.length==1) //只有一筆代表查不到資料
+                                if(obj.length==1) 
                                         alert('查無資料');
                           }
         
@@ -51,10 +51,12 @@
         </script>
 </head>
 <body>
-    輸入購買者身分證號：<input type="text" id="uid" />
+    輸入查詢編號：<input type="text" id="uid" />
     <input type="button" name="inq" value="查詢" onclick="showHint(uid.value);"></br>
     
     <span id="order_status"></span>
+
+
 </body>
 </html>
     
