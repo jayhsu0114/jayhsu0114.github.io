@@ -138,3 +138,7 @@ topnav {
 * {
   box-sizing: border-box;
 }
+.law{
+  background-color: #f7ddbf;
+  border-radius:5em;
+}
