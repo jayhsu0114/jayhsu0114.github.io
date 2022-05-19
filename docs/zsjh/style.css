@@ -62,7 +62,7 @@ body {
   display: flex;
   justify-content: center; 
   align-items: center;
-  
+  border-radius:2em 2em 0 0 ;
 }
 .question-title h3{
   font-size: 1em;
@@ -106,6 +106,7 @@ body {
   display: flex;
   justify-content: center; 
   align-items: center;
+  border-radius:0 0 2em 2em  ;
 }
 .question-footer p{
   font-size: 0.75em;
@@ -139,6 +140,13 @@ topnav {
   box-sizing: border-box;
 }
 .law{
-  background-color: #f7ddbf;
+  background-color: #333;
   border-radius:5em;
+  width:90%;
+  margin: 0 auto;
+  height: 3em;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  color: #fefdf7;
 }
