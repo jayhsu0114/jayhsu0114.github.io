@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" >
-    <title>CTJH index</title>
+    <title>ctjh index</title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3628702039140235" crossorigin="anonymous"></script>
     <script>
@@ -21,7 +21,7 @@
             return text;
         }
         function setvalue(){
-        document.getElementById('QQQQ').value="CTJH"+makerandomletter(2)+randomusefloor(1,999999);
+        document.getElementById('QQQQ').value="ctjh"+makerandomletter(2)+randomusefloor(1,999999);
         }
     </script>
     
@@ -39,16 +39,16 @@
        var field6 = $("[name='QQQQQQ']").val();
 
        $.ajax({
-        url: "https://docs.google.com/forms/u/0/d/e/1FAIpQLSfA_75WHDZouggEiASDj016bPdlGYoAhjduwUk3T8azEFN84w/formResponse",
+        url: "https://docs.google.com/forms/u/0/d/e/1FAIpQLSfPrYBjGruxTEO4yqOAIt2ybhhafrcwX6iI6S5Za6IIzndPzQ/formResponse",
 
         data: {
 
-         "entry.726741578":field1,
-         "entry.1419849810":field2,
-         "entry.1899191775":field3,
-         "entry.595474089":field4,
-         "entry.423345690":field5,
-         "entry.916053787":field6,
+         "entry.995075400":field1,
+         "entry.1216566813":field2,
+         "entry.1335941235":field3,
+         "entry.512031765":field4,
+         "entry.547156408":field5,
+         "entry.884722495":field6,
         },
         type: "POST",
         dataType: "xml",
@@ -56,12 +56,12 @@
 
          0: function() {
           alert("您的匿名投稿已送出，過程維持完全匿名狀態。如果在我們發布前需要刪除請使用刪文系統。");　
-          window.location.assign("https://jayhsu0114.github.io/");
+          window.location.assign("https://jayhsu0114.github.io/ctjh");
          },
 
          200: function() {
           alert("您的匿名投稿已送出，過程維持完全匿名狀態。如果在我們發布前需要刪除請使用刪文系統。");　
-          window.location.assign("https://jayhsu0114.github.io/");
+          window.location.assign("https://jayhsu0114.github.io/ctjh");
          }
         }
        });
@@ -145,16 +145,17 @@
 
     <div class="header">
         <h1>靠北/告白中山股份無限公司</h1>
-        <p>Hate/Love ZSJH Co.ultd</p>
+        <p>Hate/Love ctjh Co.ultd</p>
     </div>
     
     <div class="content">
         <div class="page-name">
             <h2>投稿系統2.1</h2>
         </div>
+        
         <div class="Features">
             <form action="javascript:GoogleForm();" id="form">
-      
+            <br>
             <div class="question">
                 <div class="question-title">
                     <h3>請先閱讀使用者規約</h3>
@@ -164,26 +165,33 @@
                     <label for="Q">我已詳細閱讀使用者規約並同意遵守</label>
                 </div>
                 <div class="question-footer" onclick="location.href=
-                'https://jayhsu0114.github.io/userregulation.html'">
+                'https://jayhsu0114.github.io/ctjh/userregulation'">
                     <h5>點此進入使用者規約</h5>
                 </div>
             </div>
       
+            
             <br>
-
             <div class="question">
                 <div class="question-title">
-                    <h3>您要回覆ZSJH________？</h3>
+                    <h3>您要回覆ctjh________？</h3>
                 </div>
                 <div class="question-body">
                     <label for="QQ">請輸入數字：</label>    
                     <input type="text" name="QQ" value="" maxlength="5" placeholder="本欄位僅限輸入數字" patttern="[0-9]+">
                 </div>
                 <div class="question-footer">
-                    <h5>您回覆的貼文會在您的匿名發布時被標註在貼文下方</h5>
+                    <center>
+                    <h5>您回覆的貼文會在您的匿名發布時<br>被標註在貼文下方</h5>
+                    </center>
                 </div>
             </div>
-
+            <br>
+            <div class="law">
+                <marquee>
+                    <h4>根據《通訊保障及監察法》第11-1條第三款規定，網路警察不能只因為您有觸犯公然侮辱、誹謗等妨害名譽罪的嫌疑查詢您的IP位址。</h4>
+                </marquee>
+            </div>
             <br>
 
             <div class="question">
@@ -191,11 +199,12 @@
                     <h3>您的投稿內容是？</h3>
                 </div>
                 <div class="question-body-textarea">
-                    <textarea name="QQQ"  required></texTarea>
+                    <textarea name="QQQ" placeholder="每行21字、11行為最大版面容量" required></texTarea>
                 </div>
                 <div class="question-footer">
-                    <h5>若須將姓名打馬賽克，請使用「#」符號，</h5>
-                    <h5>如「王#明」</h5>
+                    <center>
+                    <h5>姓名打馬賽克請統一格式使用「#」符號，<br>如「王#明」</h5>
+                    </center>
                 </div>
             </div>
           
@@ -210,7 +219,7 @@
                     <input id="QQQQ" type="text" name="QQQQ" required readonly>
                 </div>
                 <div class="question-footer">
-                    <h5>後悔代碼可以在我們將貼文發布前於系統內刪除</h5>
+                    <h6>後悔代碼可以在我們將貼文發布前於系統內刪除</h6>
                 </div>
             </div>
             <div class="question">
@@ -234,15 +243,15 @@
     <br>
 
     <div class="topnav">
-        <a href="https://jayhsu0114.github.io" >投稿系統</a><br>
-        <a href="https://jayhsu0114.github.io/delete.html" >刪文系統</a><br>
-        <a href="https://jayhsu0114.github.io/userregulation.html" >使用者規約</a><br>
-        <a href="https://jayhsu0114.github.io/privatepolicy.html" >隱私權政策</a><br>
-        <a href="https://jayhsu0114.github.io/survey.html" >意見反映</a><br>
-        <a href="https://jayhsu0114.github.io/schoolbeauty.html" >校花校草</a><br>
-        <a href="https://jayhsu0114.github.io/trouble/1.html" >解憂信箱</a><br>
-        <a href="https://jayhsu0114.github.io/introduction.html" >網站介紹</a><br>
-        <a href="https://jayhsu0114.github.io/aboutus.html" >聯絡我們</a>
+        <a href="https://jayhsu0114.github.io/ctjh" >投稿系統</a><br>
+        <a href="https://jayhsu0114.github.io/ctjh/delete" >刪文系統</a><br>
+        <a href="https://jayhsu0114.github.io/ctjh/userregulation" >使用者規約</a><br>
+        <a href="https://jayhsu0114.github.io/ctjh/privatepolicy" >隱私權政策</a><br>
+        <a href="https://jayhsu0114.github.io/ctjh/survey" >意見反映</a><br>
+        <a href="https://jayhsu0114.github.io/ctjh/schoolbeauty" >校花校草</a><br>
+        <a href="https://jayhsu0114.github.io/ctjh/trouble/1" >解憂信箱</a><br>
+        <a href="https://jayhsu0114.github.io/ctjh/introduction" >網站介紹</a><br>
+        <a href="https://jayhsu0114.github.io/ctjh/aboutus" >聯絡我們</a>
     </div>
 
     <div class="footer">
