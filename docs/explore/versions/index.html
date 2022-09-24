@@ -153,7 +153,7 @@
       }
     </script>
 </head>
-<body  onload="setvalue();getIdvalue();getIPvalue();show_1()">
+<body  onload="setvalue();getIdvalue();getIPvalue()">
 
 
     <div class="header">
@@ -183,7 +183,7 @@
                 </div>
             </div>
 
-            <div id="step-2" class="question">
+            <div id="step-2" class="question" style="display:none;">
                 <div class="question-title">
                     <h3>您要回覆ZSJH________？</h3>
                 </div>
@@ -201,7 +201,7 @@
                 </div>
             </div>
 
-            <div id="step-3" class="law">
+            <div id="step-3" class="law" style="display:none;">
                 <marquee>
                     <h4>根據《通訊保障及監察法》第11-1條第三款規定，網路警察不能只因為您有觸犯公然侮辱、誹謗等妨害名譽罪的嫌疑查詢您的IP位址。</h4>
                 </marquee>
@@ -209,7 +209,7 @@
 
             <br>
 
-            <div id="step-4" class="question">
+            <div id="step-4" class="question" style="display:none;">
                 <div class="question-title">
                     <h3>您的投稿內容是？</h3>
                 </div>
@@ -232,7 +232,7 @@
 
             </div>
 
-            <div id="step-5" class="question">
+            <div id="step-5" class="question" style="display:none;">
                 <div class="question-title">
                     <h3>請記住後悔代碼</h3>
                 </div>
@@ -246,13 +246,13 @@
                     <h6>後悔代碼可以在我們將貼文發布前於系統內刪除</h6>
                 </div>
             </div>
-            <div id="step-6" class="question">
+            <div id="step-6" class="question" style="display:none;">
                 <input id="QQQQQ" type="hidden" name="QQQQQ"><input id="QQQQQQ" type="hidden" name="QQQQQQ">
             </div>
 
             <br>
 
-            <div id="step-7" class="button">
+            <div id="step-7" class="button" style="display:none;">
                 <CENTER>
                     <button class="bottons" type="submit" >提交</button>
                 </CENTER>
@@ -283,7 +283,7 @@
     </div>
     <script>
         //網頁內跳轉
-        function show_1()
+        /*function show_1()
         {
           document.getElementById("step-1").style.display="";
           document.getElementById("step-2").style.display="none";
@@ -293,7 +293,7 @@
           document.getElementById("step-6").style.display="none";
           document.getElementById("step-7").style.display="none";
 
-        }
+        }*/
         checkbox = document.getElementById('Q');
         if(checkbox)
         {
