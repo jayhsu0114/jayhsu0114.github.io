@@ -36,7 +36,8 @@
        var field1 = $("[name='Q']").val();
        var field2 = $("[name='QQ']").val();
        var field3 = $("[name='QQQ']").val();
-       var field4 = $("[name='QQQQ']").val();
+       //var field4 = $("[name='QQQQ']").val();
+       var field4 = document.getElementById("QQQQ").innerText;
        var field5 = $("[name='QQQQQ']").val();
        var field6 = $("[name='QQQQQQ']").val();
 
@@ -177,6 +178,11 @@
                     <input type="checkbox" id="Q" name="Q" value="我已詳細閱讀使用者規約並同意遵守" required autofocus>
                     <label for="Q">我已詳細閱讀使用者規約並同意遵守</label>
                 </div>
+                <div class="question-body-2">
+                  <center>
+                    <h5>勾選核取方塊已進入下一步</h5>
+                  </center>
+                </div>
                 <div class="question-footer" onclick="location.href=
                 'https://jayhsu0114.github.io/zsjh/userregulation'">
                     <h5>點此進入使用者規約</h5>
@@ -191,7 +197,7 @@
                     <label for="QQ">請輸入數字：</label>
                     <input type="text" name="QQ" value="" maxlength="5" placeholder="本欄位僅限輸入數字" patttern="[0-9]+">
                 </div>
-                <div class="question-body">
+                <div class="question-body-2">
                   <center>
                   <h5>您回覆的貼文會在您的匿名發布時<br>被標註在貼文下方</h5>
                   </center>
@@ -213,15 +219,20 @@
                 <div class="question-title">
                     <h3>您的投稿內容是？</h3>
                 </div>
+                <div class="question-body-2">
+                  <center>
+                    <h5><strong>請注意:請勿重複洗版、發表無關言論、與嚴重仇視性言論</strong><br><strong>系統將會予以刪除</strong></h5>
+                  </center>
+                </div>
                 <div>
                   <center>
-                    <h5 style="color:red;" id="alarm"></h5>
+                    <h5 class="question-body" style="display:none ;color:red;" id="alarm"></h5>
                   </center>
                 </div>
                 <div class="question-body-textarea">
                     <textarea id="QQQ" name="QQQ" placeholder="每行21字、11行為最大版面容量" required></texTarea>
                 </div>
-                <div class="question-body">
+                <div class="question-body-2">
                   <center>
                     <h5>打馬賽克請統一格式使用「#」符號，<br>如「王#明」，違者將直接刪除</h5>
                   </center>
@@ -254,7 +265,7 @@
 
             <div id="step-7" class="button" style="display:none;">
                 <CENTER>
-                    <button class="bottons" type="submit" onclick="show()_5;">提交</button>
+                    <button class="bottons" type="submit" >提交</button>
                 </CENTER>
             </div>
 
@@ -330,11 +341,9 @@
           }
           else {
             document.getElementById("alarm").innerHTML="請輸入文字再提交";
+            document.getElementById("alarm").style.display="";
+
           }
-        }
-        function show_5()
-        {
-            document.getElementById("step-7").style.display="none";
         }
         //document.getElementById("Q").addEventListener('change',show_2())
     </script>
