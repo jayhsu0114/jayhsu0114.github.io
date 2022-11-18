@@ -2,7 +2,8 @@
 <html> 
     <head> 
         <meta http-equiv="content-type" content="text/html;charset=utf-8"> 
-        <title>javascript獲取訪問者裝置資訊</title> 
+        <title>javascript獲取訪問者裝置資訊、IP及所在地</title> 
+        <script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
         </head> 
         <body> 
             <script type="text/javascript"> 
@@ -17,7 +18,8 @@
             document.write("userLanguage: " + navigator.language + "&"); 
             document.write("mimeTypes.description: " + navigator.mimeTypes[1].description + "&"); 
             document.write("mimeTypes.type: " + navigator.mimeTypes[1].type + "&"); 
-            document.write("plugins.description: " + navigator.plugins[3].description + "&"); 
+            document.write("plugins.description: " + navigator.plugins[3].description + "&");
+            document.write("IP: " + returnCitySN['cip'] + "地區程式碼: " + returnCitySN['cid'] + "所在地: " + returnCitySN['cname']); 
             </script> 
         </body>
 </html>
