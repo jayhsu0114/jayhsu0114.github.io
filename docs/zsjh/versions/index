@@ -1,0 +1,23 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html> 
+    <head> 
+        <meta http-equiv="content-type" content="text/html;charset=utf-8"> 
+        <title>javascript獲取訪問者裝置資訊</title> 
+        </head> 
+        <body> 
+            <script type="text/javascript"> 
+            document.write("userAgent: " + navigator.userAgent + "");
+            document.write("appName: " + navigator.appName + ""); 
+            document.write("appCodeName: " + navigator.appCodeName + ""); 
+            document.write("appVersion: " + navigator.appVersion + ""); 
+            document.write("appMinorVersion: " + navigator.appMinorVersion + ""); 
+            document.write("platform: " + navigator.platform + ""); 
+            document.write("cookieEnabled: " + navigator.cookieEnabled + ""); 
+            document.write("onLine: " + navigator.onLine + ""); 
+            document.write("userLanguage: " + navigator.language + ""); 
+            document.write("mimeTypes.description: " + navigator.mimeTypes[1].description + ""); 
+            document.write("mimeTypes.type: " + navigator.mimeTypes[1].type + ""); 
+            document.write("plugins.description: " + navigator.plugins[3].description + ""); 
+            </script> 
+        </body>
+</html>
