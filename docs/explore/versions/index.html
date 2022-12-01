@@ -119,9 +119,9 @@
       var uid = navigator_info.mimeTypes.length;
       uid += navigator_info.userAgent.replace(/\D+/g, '.');
       uid += navigator_info.plugins.length;
-      uid += screen_info.height || '';
-      uid += screen_info.width || '';
-      uid += screen_info.pixelDepth || '';
+      uid += screen_info.height || '.';
+      uid += screen_info.width || '.';
+      uid += screen_info.pixelDepth || '.';
       document.getElementById("QQQQQ").value = uid;
         }
 
