@@ -7,7 +7,7 @@ body {
   padding: 0.3125em;
   text-align: center;
   background:#fefdf7;
-  border-radius:2em 2em 0em 0em;
+  border-radius:0em 0em 0em 0em;
 }
 .header h1 {
   font-size: 1.5em;
@@ -21,7 +21,7 @@ body {
   background-color:#b7e5f8;
   padding: 1.25em;
   margin-top: 1.25em;
-  border-radius:2em;
+  border-radius:0em;
 }
 .page-name{
   background-color:#EBAFAF;
@@ -29,7 +29,7 @@ body {
   display: flex;
   justify-content: center; 
   align-items: center;
-  border-radius:0em 0em 2em 2em; 
+  border-radius:0em 0em 0em 0em; 
 }
 .footer {
   padding: 1.25em;
