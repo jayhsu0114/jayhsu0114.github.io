@@ -2,34 +2,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3628702039140235"
      crossorigin="anonymous"></script>
-  
+ 
    <script type="text/javascript">
-        window.onload = function(){
-            
-            document.onkeydown = function (){
-                var e = window.event || arguments[0];
-                
-                if(e.keyCode == 123){
-                    return false;
-                
-            }else if((e.ctrlKey) && (e.shiftKey) && (e.keyCode == 73)){
-                return false;
-               
-            }else if((e.shiftKey) && (e.keyCode == 121)){
-                return false;
-               
-            }else if((e.ctrlKey) && (e.keyCode == 85)){
-                return false;
-            }
-        };
-            document.oncontextmenu = function (){
-                return false;
-            }
-        }
-
+window.onload = function () {
+  document.addEventListener('gesturestart', function (e) {
+    e.preventDefault();
+  });
+  document.addEventListener('dblclick', function (e) {
+    e.preventDefault();
+  });
+  document.addEventListener('touchstart', function (event) {
+    if (event.touches.length > 1) {
+      event.preventDefault();
+    }
+  });
+  var lastTouchEnd = 0;
+  document.addEventListener('touchend', function (event) {
+    var now = (new Date()).getTime();
+    if (now - lastTouchEnd <= 300) {
+      event.preventDefault();
+    }
+    lastTouchEnd = now;
+  }, false);
+};
     </script>
         <script type="text/javascript">
       
@@ -65,19 +63,19 @@ document.getElementById("QQQQQ").value = uid;
     <script>
     function GoogleForm() {　
        
-       var field1 = $('input:radio:checked').val();
-       var field2 = $("[name='QQQQQ']").val();
+       var field1 = $("[name='QQQQQ']").val();
+       var field2 = $("[name='Q']").val();
        var field3 = $("[name='QQQQQQ']").val();
 
        $.ajax({
 
-        url: "https://docs.google.com/forms/u/0/d/e/1FAIpQLSfDrlcEPlxf-X8ZARXXXJcUXpGtH7rXdUBlcUryMv9N3KHUmA/formResponse",
+        url: "https://docs.google.com/forms/u/0/d/e/1FAIpQLSexcR8fvrygfiDj6DK8oR1pw1v4hCGS_F9ZC3ax8RSZVwugEw/formResponse",
 
         data: {
 
-         "entry.926097125":field1,
-         "entry.1360141416":field2,
-         "entry.1281120942":field3,
+         "entry.1152357157":field1,
+         "entry.820912057":field2,
+         "entry.519434622":field3,
         },
         type: "POST",
         dataType: "xml",
@@ -85,12 +83,12 @@ document.getElementById("QQQQQ").value = uid;
 
          0: function() {
           alert("送出後無法更改，並同時記錄您的裝置識別碼以確保投票的公正性。裝置識別碼經特殊設計，無法追蹤獲得您的個人資料。");　
-          window.location.assign("https://jayhsu0114.github.io/");
+          window.location.assign("https://jayhsu0114.github.io/raise.html");
          },
 
          200: function() {
           alert("送出後無法更改，並同時記錄您的裝置識別碼以確保投票的公正性。裝置識別碼經特殊設計，無法追蹤獲得您的個人資料。。");　
-          window.location.assign("https://jayhsu0114.github.io/");
+          window.location.assign("https://jayhsu0114.github.io/raise.html");
          }
         }
        });
@@ -171,7 +169,6 @@ body {
   font-size: 1.5em;
 }
 
-
 /* Style the top navigation bar */
 .topnav {
   overflow: hidden;
@@ -231,21 +228,7 @@ body {
 font-size: 1em;
 }
 
-/* Responsive layout - when the screen is less than 50em wide, make the two columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 50em) {
-  .leftcolumn, {   
-    width: 100%;
-    padding: 0;
-  }
-}
 
-/* Responsive layout - when the screen is less than 25em wide, make the navigation links stack on top of each other instead of next to each other */
-@media screen and (max-width: 25em) {
-  .topnav a {
-    float: none;
-    width: 100%;
-  }
-}
 
 
   .bottons{
@@ -257,7 +240,6 @@ font-size: 1em;
   border: none;
   }
 
-
      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
 *{
     margin: 0;
@@ -266,99 +248,10 @@ font-size: 1em;
     font-family: 'Poppins', sans-serif;
 }
 
-.wrapper{
-  width: 90%;
-  height: 24em;
-  background: none;
-  border-radius: 0.625em;
-
-}
-.wrapper .title{
-  color: #fefdf7;
-  line-height: 3.0625em;
-  text-align: center;
-  background: #333;
-  font-size: 1em;
-  font-weight: 500;
-  border-radius: 1.5em 1.5em 0 0;
-}
-.wrapper .box{
-  padding: 1.25em 1.875em;
-  background: #fefdf7;
-  border-radius:0 0 1.5em 1.5em ;
-    box-shadow: 0.3125em 0.3125em 1.875em rgba(0,0,0,0.2);
-}
-.wrapper .box label{
-  display: flex;
-  height: 4em;
-  width: 100%;
-  align-items: center;
-  border: 0.0625em solid lightgrey;
-  border-radius: 3.125em;
-  margin: 0.625em 0;
-  padding-left: 1.25em;
-  cursor: default;
-  transition: all 0.3s ease;
-}
-#option-1:checked ~ .option-1,
-#option-2:checked ~ .option-2,
-#option-3:checked ~ .option-3,
-#option-4:checked ~ .option-4{
-  background: #333;
-  border-color: #333;
-}
-.wrapper .box label .dot{
-  height: 1em;
-  width: 1em;
-  background: #d9d9d9;
-  border-radius: 50%;
-  position: relative;
-  transition: all 0.3s ease;
-}
-#option-1:checked ~ .option-1 .dot,
-#option-2:checked ~ .option-2 .dot,
-#option-3:checked ~ .option-3 .dot,
-#option-4:checked ~ .option-4 .dot{
-  background: #fff;
-}
-.box label .dot::before{
-  position: absolute;
-  content: "";
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(2);
-  width: 0.5em;
-  height: 0.5em;
-  border-radius: 50%;
-  transition: all 0.2s ease;
-}
-#option-1:checked ~ .option-1 .dot::before,
-#option-2:checked ~ .option-2 .dot::before,
-#option-3:checked ~ .option-3 .dot::before,
-#option-4:checked ~ .option-4 .dot::before{
-  background: #333;
-  transform: translate(-50%, -50%) scale(1);
-}
-.wrapper .box label .text{
-  color: #333;
-  font-size: 1.25em;
-  font-weight: 600;
-  padding-left: 0.625em;
-  transition: color 0.2s ease;
-}
-#option-1:checked ~ .option-1 .text,
-#option-2:checked ~ .option-2 .text,
-#option-3:checked ~ .option-3 .text,
-#option-4:checked ~ .option-4 .text{
-  color: #fff;
-}
-.wrapper .box input[type="radio"]{
-  display: none;
-}
 
 .tablebox{
   width: 90%;
-  height: 3em;
+  height:3em;
   background: #fefdf7;
   display: table;
   margin: 0 auto;
@@ -391,9 +284,15 @@ box-shadow: 0.3125em 0.3125em 1.875em rgba(0,0,0,0.2);
   display: table-cell;
   vertical-align: middle;
   padding: 5%;
-  font-size:0.5em;
+  font-size:1.25em;
   margin: 0 auto;
 }
+#imgbox input{
+  width: 95%;
+font-size:0.75em;
+  height: 2em;
+}
+
 #imgbox0{
   display: table-cell;
   vertical-align: middle;
@@ -413,7 +312,7 @@ text-align: center;
   background-color: #fefdf7;
   font-size: 0.65em;
 }
-#imgbox img{width:7.6em}
+
 
 </style>
 </head>
@@ -423,6 +322,7 @@ text-align: center;
   <h1>靠北/告白中山股份無限公司</h1>
   <p>Hate/Love ZSJH Co.ultd</p>
 </div>
+<br>
 
 
 <div class="row">
@@ -430,46 +330,27 @@ text-align: center;
 
 
     <div class="card1">
-      <h2 style="font-size:1.25em">校花選舉投票處</h2>
+      <h2 style="font-size:1.25em">校花/校草選舉提名處</h2>
     </div>
 
     <div class="card">
 
 <div class="tablebox0">
 <div id="imgbox0">
-        <p>本次選舉候選人資訊</p>
+        <p>請輸入您想提名的IG帳號</p>
       </div>
 </div>
 <br>
-    <div class="tablebox" onclick="location.href=
-'http://instagram.com/lxinty__';">
+    <div class="tablebox">
       <div id="imgbox">
-        <img src="https://i.imgur.com/AgSepfZ.jpeg">
+        <center>
+        <input type="text" name="Q"  placeholder="hate_love_zsjh_co.ultd" 
+        pattern="[a-zA-Z0-9\.\_]+">
+      </center>
       </div>
-      <div id="imgbox">
-        <h1>@lxinty__</h1>
-      </div>
+
     </div>
-<br>
-    <div class="tablebox" onclick="location.href=
-'http://instagram.com/zcy_.220';">
-      <div id="imgbox">
-        <img src="https://i.imgur.com/AgSepfZ.jpeg">
-      </div>
-      <div id="imgbox">
-        <h1>@zcy_.220</h1>
-      </div>
-    </div>
-<br>
-    <div class="tablebox" onclick="location.href=
-'http://instagram.com/rodrickliu';">
-      <div id="imgbox">
-        <img src="https://i.imgur.com/AgSepfZ.jpeg">
-      </div>
-      <div id="imgbox">
-        <h1>@rodrickliu</h1>
-      </div>
-    </div>
+
 <br><br>
 
 <div class="tablebox0">
@@ -489,38 +370,13 @@ text-align: center;
 
       <form action="javascript:GoogleForm();" id="form">
         <center>
-    <div class="wrapper">
-    <div class="title">請選擇您想投票的對象</div>
-    <div class="box">
-      <input type="radio" name="Q" id="option-1" value="A"required>
-      <input type="radio" name="Q" id="option-2" value="B">
-      <input type="radio" name="Q" id="option-3" value="C">
-      <input type="radio" name="Q" id="option-4" value="D">
-      <label for="option-1" class="option-1">
-        <div class="dot"></div>
-        <div class="text">lxinty__</div>
-      </label>
-      <label for="option-2" class="option-2">
-        <div class="dot"></div>
-        <div class="text">zcy_.220</div>
-      </label>
-      <label for="option-3" class="option-3">
-        <div class="dot"></div>
-        <div class="text">rodrickliu</div>
-      </label>
-      <label for="option-4" class="option-4">
-        <div class="dot"></div>
-        <div class="text">棄票</div>
-      </label>
-    </div>
-  </div>
-<br>
-<br>
+   
+
 <input type="hidden" name="QQQQQQ" id="QQQQQQ">
 
 
 
-<button id="btn"  class="bottons" type="submit" ><h3>確定</h3></button>
+<button class="bottons" type="submit" ><h3>確定</h3></button>
 
 
 </center>
@@ -528,21 +384,19 @@ text-align: center;
   </form>
   </div>
 </div>
-  <br><br>
-<div class="topnav">
-<a href="https://jayhsu0114.github.io/delete.html" >刪文系統</a>
-<a href="https://jayhsu0114.github.io/userregulation.html" >使用者規約</a>
-<a href="https://jayhsu0114.github.io/privatepolicy.html" >隱私權政策</a>
-<a href="https://jayhsu0114.github.io/survey.html" >意見反映</a>
-<a href="https://jayhsu0114.github.io/schoolbeauty.html" >校花校草</a>
-<a href="https://jayhsu0114.github.io/trouble/1.html" >解憂信箱</a>
-<a href="https://jayhsu0114.github.io/introduction.html" >網站介紹</a>
-<a href="https://jayhsu0114.github.io/aboutus.html" >聯絡我們</a>
+<br>
 
-
-
-
-</div>
+    <div class="topnav">
+        <a href="https://jayhsu0114.github.io/zsjh" >投稿系統</a><br>
+        <a href="https://jayhsu0114.github.io/zsjh/delete" >刪文系統</a><br>
+        <a href="https://jayhsu0114.github.io/zsjh/userregulation" >使用者規約</a><br>
+        <a href="https://jayhsu0114.github.io/zsjh/privatepolicy" >隱私權政策</a><br>
+        <a href="https://jayhsu0114.github.io/zsjh/survey" >意見反映</a><br>
+        <a href="https://jayhsu0114.github.io/zsjh/schoolbeauty" >校花校草</a><br>
+        <a href="https://jayhsu0114.github.io/zsjh/trouble/1" >解憂信箱</a><br>
+        <a href="https://jayhsu0114.github.io/zsjh/introduction" >網站介紹</a><br>
+        <a href="https://jayhsu0114.github.io/zsjh/aboutus" >聯絡我們</a>
+    </div>
 <div class="footer">
   <h2>本網頁系統由靠北/告白中山股份無限公司提供</h2>
 </div>
