@@ -19,7 +19,8 @@
             function GoogleForm() {　
                
                var field1 = $("[name='Q']").val();
-
+      
+               $.ajax({
                 url: "https://docs.google.com/forms/u/0/d/e/1FAIpQLSeEMTkTmeAo3vXmzis0WVz3Zupj8p8d7yN0AdsQdZWPCFx-zw/formResponse",
     
                 data: {
@@ -99,7 +100,7 @@
                 <br>
                 <div class="button">
                     <CENTER>
-                        <button class="bottons" type="submit" >提交</button>
+                        <button class="bottons" type="submit" >交</button>
                     </CENTER>
                 </div>
             </form>
