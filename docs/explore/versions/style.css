@@ -51,6 +51,19 @@ body {
      border-radius:5em;
 
 }
+
+.bottons{
+  width:1em;
+ height: 0.5em;
+ font-size:0.4em;
+ background-color: #b7e5f8;
+ color: black;
+ border: none;
+ border-radius:1em;
+}
+
+
+
 .question-title{
   width: 90%;
   height: 3em;
