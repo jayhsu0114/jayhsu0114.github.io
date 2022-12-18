@@ -110,10 +110,10 @@ body {
 .question-footer{
   width: 90%;
   height: 3em;
-  background: #fefdf780;
+  background: #333;
   display: table;
   margin: 0 auto;
-  color: #000;
+  color: #FFF;
   display: flex;
   justify-content: center;
   align-items: center;
