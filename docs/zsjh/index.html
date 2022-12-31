@@ -7,12 +7,13 @@
     <title>ZSJH index</title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3628702039140235" crossorigin="anonymous"></script>
+
     <script>
-        function randomusefloor(min,max) 
+        function randomusefloor(min,max)
         {
             return Math.floor(Math.random()*(max-min+1)+min);
         }
-        function makerandomletter(max) 
+        function makerandomletter(max)
         {
             var text = "";
             var possible = "abcdefghijklmnopqrstuvwxyz";
@@ -21,20 +22,22 @@
             return text;
         }
         function setvalue(){
-        document.getElementById('QQQQ').value="ZSJH"+makerandomletter(2)+randomusefloor(1,999999);
+          document.getElementById('QQQQ').innerHTML="ZSJH"+makerandomletter(2)+randomusefloor(1,999999);
         }
     </script>
-    
+
     <script src="https://www.google.com/recaptcha/api.js"></script>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
     <script>
     function GoogleForm() {　
-       
+
        var field1 = $("[name='Q']").val();
        var field2 = $("[name='QQ']").val();
        var field3 = $("[name='QQQ']").val();
-       var field4 = $("[name='QQQQ']").val();
+       //var field4 = $("[name='QQQQ']").val();
+       var field4 = document.getElementById("QQQQ").innerText;
        var field5 = $("[name='QQQQQ']").val();
        var field6 = $("[name='QQQQQQ']").val();
 
@@ -76,26 +79,26 @@
 
 
 <button class="g-recaptcha" id="g-recaptcha"
-        data-sitekey="6LdM9jwdAAAAAAkpcTeuyRgb8_CK8uJkVqNxpcWB" 
-        data-callback='onSubmit' 
+        data-sitekey="6LdM9jwdAAAAAAkpcTeuyRgb8_CK8uJkVqNxpcWB"
+        data-callback='onSubmit'
         data-action='submit'>Submit</button>
 
 
  <script type="text/javascript">
         window.onload = function(){
-            
+
             document.onkeydown = function (){
                 var e = window.event || arguments[0];
-                
+
                 if(e.keyCode == 123){
                     return false;
-                
+
             }else if((e.ctrlKey) && (e.shiftKey) && (e.keyCode == 73)){
                 return false;
-               
+
             }else if((e.shiftKey) && (e.keyCode == 121)){
                 return false;
-               
+
             }else if((e.ctrlKey) && (e.keyCode == 85)){
                 return false;
             }
@@ -107,25 +110,25 @@
 
     </script>
     <script type="text/javascript">
-      
+
 
         function getIdvalue()
         {
       var navigator_info = window.navigator;
       var screen_info = window.screen;
       var uid = navigator_info.mimeTypes.length;
-      uid += navigator_info.userAgent.replace(/\D+/g, '');
+      uid += navigator_info.userAgent.replace(/\D+/g, '.');
       uid += navigator_info.plugins.length;
-      uid += screen_info.height || '';
-      uid += screen_info.width || '';
-      uid += screen_info.pixelDepth || '';
+      uid += screen_info.height || '.';
+      uid += screen_info.width || '.';
+      uid += screen_info.pixelDepth || '.';
       document.getElementById("QQQQQ").value = uid;
         }
-        
+
         window.onload = function() {
         getIdvalue();
         };
-      
+
     </script>
     <script type="text/javascript" src="https://l2.io/ip.js?var=userip"></script>
 
@@ -134,101 +137,133 @@
       {
           document.getElementById("QQQQQQ").value = userip;
       }
-      
+
       window.onload = function() {
       getIPvalue();
       };
+      function copy_text()
+      {
+        var el = document.getElementById("QQQQ");
+        copyText = (el.innerText || el.textContent);
+
+        //copyText.select();
+        //copyText.setSelectionRange(0, 99999);
+        navigator.clipboard.writeText(copyText);
+
+        alert("已成功複製");
+      }
     </script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3628702039140235"
-    crossorigin="anonymous"></script>
 </head>
 <body  onload="setvalue();getIdvalue();getIPvalue()">
-  
+
 
     <div class="header">
         <h1>靠北/告白中山股份無限公司</h1>
         <p>Hate/Love ZSJH Co.ultd</p>
     </div>
-    
+
     <div class="content">
         <div class="page-name">
-            <h2>投稿系統2.1</h2>
+            <h2>投稿系統2.2</h2>
         </div>
-        
-        <div class="Features">
+
+        <div class="Features" id="Features">
             <form action="javascript:GoogleForm();" id="form">
             <br>
-            <div class="question">
+            <div id="step-1" class="question">
                 <div class="question-title">
                     <h3>請先閱讀使用者規約</h3>
                 </div>
                 <div class="question-body">
                     <input type="checkbox" id="Q" name="Q" value="我已詳細閱讀使用者規約並同意遵守" required autofocus>
-                    <label for="Q">我已詳細閱讀使用者規約並同意遵守</label>
+                    <label for="Q">我已閱讀使用者規約並同意遵守</label>
                 </div>
-                <div class="question-footer" onclick="location.href=
+                <div class="question-body-2" onclick="location.href=
                 'https://jayhsu0114.github.io/zsjh/userregulation'">
+                  <center>
                     <h5>點此進入使用者規約</h5>
+                  </center>
+                </div>
+                <div class="question-footer" >
+                    <h5>勾選核取方塊以進入下一步</h5>
                 </div>
             </div>
-            <br>
-            <div class="question">
+
+            <div id="step-2" class="question" style="display:none;">
                 <div class="question-title">
                     <h3>您要回覆ZSJH________？</h3>
                 </div>
                 <div class="question-body">
-                    <label for="QQ">請輸入數字：</label>    
+                    <label for="QQ">請輸入數字：</label>
                     <input type="text" name="QQ" value="" maxlength="5" placeholder="本欄位僅限輸入數字" patttern="[0-9]+">
                 </div>
-                <div class="question-footer">
-                    <center>
-                    <h5>您回覆的貼文會在您的匿名發布時<br>被標註在貼文下方</h5>
-                    </center>
+                <div class="question-body-2">
+                  <center>
+                  <h5>您回覆的貼文會在您的匿名發布時<br>被標註在貼文下方</h5>
+                  </center>
+                </div>
+                <div class="question-footer" onclick="show_3();">
+                    <h5>點此繼續</h5>
                 </div>
             </div>
-            <br>
-            <div class="law">
+
+            <div id="step-3" class="law" style="display:none;">
                 <marquee>
                     <h4>根據《通訊保障及監察法》第11-1條第三款規定，網路警察不能只因為您有觸犯公然侮辱、誹謗等妨害名譽罪的嫌疑查詢您的IP位址。</h4>
                 </marquee>
             </div>
+
             <br>
 
-            <div class="question">
+            <div id="step-4" class="question" style="display:none;">
                 <div class="question-title">
                     <h3>您的投稿內容是？</h3>
                 </div>
+                <div class="question-body-2">
+                  <center>
+                    <h5><strong>請注意遵守版規</strong><br><strong>違者系統將予以刪除</strong></h5>
+                  </center>
+                </div>
+                <div>
+                  <center>
+                    <h5 class="question-body" style="display:none ;color:red;" id="alarm"></h5>
+                  </center>
+                </div>
                 <div class="question-body-textarea">
-                    <textarea name="QQQ" placeholder="每行21字、11行為最大版面容量" required></texTarea>
+                    <textarea id="QQQ" name="QQQ" placeholder="每行21字、11行為最大版面容量" required></texTarea>
                 </div>
-                <div class="question-footer">
-                    <center>
+                <div class="question-body-2">
+                  <center>
                     <h5>打馬賽克請統一格式使用「#」符號，<br>如「王#明」，違者將直接刪除</h5>
-                    </center>
+                  </center>
                 </div>
-            </div>
-          
-            <br>
+                <div class="question-footer" onclick="show_4();">
+                    <h5>點此繼續</h5>
+                </div>
 
-            <div class="question">
+            </div>
+
+            <div id="step-5" class="question" style="display:none;">
                 <div class="question-title">
                     <h3>請記住後悔代碼</h3>
                 </div>
                 <div class="question-body">
-                    <label for="QQQQ">後悔代碼：</label>  
-                    <input id="QQQQ" type="text" name="QQQQ" required readonly>
+                  <label for="QQQQ"></label>
+                  <label id="QQQQ" name="QQQQ"></label>
+                  <input class="button-copy" type="button" onclick="copy_text()" value="一鍵複製">
+                  <input id="QQQQQ" type="hidden" name="QQQQQ"><input id="QQQQQQ" type="hidden" name="QQQQQQ">
                 </div>
                 <div class="question-footer">
                     <h6>後悔代碼可以在我們將貼文發布前於系統內刪除</h6>
                 </div>
             </div>
-            <div class="question">
+            <div id="step-6" class="question" style="display:none;">
                 <input id="QQQQQ" type="hidden" name="QQQQQ"><input id="QQQQQQ" type="hidden" name="QQQQQQ">
             </div>
-      
+
             <br>
 
-            <div class="button">
+            <div id="step-7" class="button" style="display:none;">
                 <CENTER>
                     <button class="bottons" type="submit" >提交</button>
                 </CENTER>
@@ -236,8 +271,8 @@
 
             </form>
         </div>
-        
-      
+
+
     </div>
 
     <br>
@@ -257,5 +292,61 @@
     <div class="footer">
         <h4>本網頁系統由靠北/告白中山股份無限公司提供</h4>
     </div>
+    <script>
+        //網頁內跳轉
+        /*function show_1()
+        {
+          document.getElementById("step-1").style.display="";
+          document.getElementById("step-2").style.display="none";
+          document.getElementById("step-3").style.display="none";
+          document.getElementById("step-4").style.display="none";
+          document.getElementById("step-5").style.display="none";
+          document.getElementById("step-6").style.display="none";
+          document.getElementById("step-7").style.display="none";
+
+        }*/
+        checkbox = document.getElementById('Q');
+        if(checkbox)
+        {
+          checkbox.addEventListener('change', e => {
+
+              if(e.target.checked){
+                  show_2();
+              }
+
+          });
+        }
+        function show_2()
+        {
+          document.getElementById("step-1").style.display="none";
+          document.getElementById("step-2").style.display="";
+        }
+        function show_3()
+        {
+
+          document.getElementById("step-2").style.display="none";
+          document.getElementById("step-3").style.display="";
+          document.getElementById("step-4").style.display="";
+        }
+        function show_4()
+        {
+          if(document.getElementById("QQQ").value)
+          {
+            //document.getElementById("step-3").style.display="none";
+            document.getElementById("step-5").style.display="";
+            document.getElementById("step-6").style.display="";
+            document.getElementById("step-7").style.display="";
+            document.getElementById("step-4").style.display="none";
+
+          }
+          else {
+            document.getElementById("alarm").innerHTML="輸入文字以繼續";
+            document.getElementById("alarm").style.display="";
+
+          }
+        }
+        //document.getElementById("Q").addEventListener('change',show_2())
+    </script>
 </body>
+
 </html>
