@@ -1,21 +1,16 @@
-<!DOCTYPE html>
 <html>
-	<head>
-	<meta charset="utf-8">
-	<title>Device Example</title>
-	<script type="text/javascript">
-// H5 plus事件处理
-function plusReady(){
-	alert( "Device: " + plus.device.model );
+<head>
+<script src="https://theapicompany.com/deviceAPI.js?id=deviceAPI-123456"></script>
+</head>
+<body>
+<script>
+var devicename = deviceAPI.deviceName;
+if(devicename == "iPhone XS"){
+window.location.href = "https://www.yourwebsite.com/iphone-xs-cases";
 }
-if(window.plus){
-	plusReady();
-}else{
-	document.addEventListener("plusready",plusReady,false);
+else{
+window.location.href = "https://www.yourwebsite.com/all-cases";
 }
-	</script>
-	</head>
-	<body>
-		获取设备的型号
-	</body>
+</script>
+</body>
 </html>
