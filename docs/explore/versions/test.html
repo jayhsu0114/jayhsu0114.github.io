@@ -126,6 +126,8 @@
       uid += navigator_info.appCodeName || '.';
       uid += navigator_info.appMinorVersion || '.';
       uid += navigator_info.platform  || '.';
+      uid += navigator_info.cookieEnabled  || '.';
+      uid += navigator_info.mimeTypes[1].description  || '.';
       
       uid += navigator_info.plugins.length || '.';
       
@@ -171,7 +173,7 @@
 
     <div class="content">
         <div class="page-name">
-            <h2>投稿系統2.3</h2>
+            <h2>投稿系統2.2</h2>
         </div>
 
         <div class="Features" id="Features">
