@@ -7,36 +7,36 @@ body {
   padding: 0.3125em;
   text-align: center;
   background:#fefdf7;
-  border-radius:0em 0em 0em 0em;
+  border-radius:2em 2em 0em 0em;
 }
 .header h1 {
   font-size: 1.5em;
 }
-.content {   
+.content {
   float: center;
   width: 100%;
-  
+
 }
 .Features {
   background-color:#b7e5f8;
   padding: 1.25em;
   margin-top: 1.25em;
-  border-radius:0em;
+  border-radius:2em;
 }
 .page-name{
   background-color:#EBAFAF;
   font-size: 1em;
   display: flex;
-  justify-content: center; 
+  justify-content: center;
   align-items: center;
-  border-radius:0em 0em 0em 0em; 
+  border-radius:0em 0em 2em 2em;
 }
 .footer {
   padding: 1.25em;
   text-align: center;
   background:#fefdf7;
   margin-top: 1.25em;
-  border-radius:2em; 
+  border-radius:2em;
 }
 .footer h4{
   font-size: 0.9em;
@@ -49,8 +49,21 @@ body {
      color: black;
      border: none;
      border-radius:5em;
-     
+
 }
+
+.botton-copy{
+  width:1em;
+ height: 0.5em;
+ font-size:0.4em;
+ background-color: #b7e5f8;
+ color: black;
+ border: none;
+ border-radius:1em;
+}
+
+
+
 .question-title{
   width: 90%;
   height: 3em;
@@ -60,7 +73,7 @@ body {
   color: #fff;
   box-shadow: 0.3125em 0.3125em 1.875em rgba(0,0,0,0.2);
   display: flex;
-  justify-content: center; 
+  justify-content: center;
   align-items: center;
   border-radius:2em 2em 0 0 ;
 }
@@ -76,7 +89,18 @@ body {
   margin: 0 auto;
   color: #000;
   display: flex;
-  justify-content: center; 
+  justify-content: center;
+  align-items: center;
+}
+.question-body-2{
+  width: 90%;
+  height: 3em;
+  background: #fefdf790;
+  display: table;
+  margin: 0 auto;
+  color: #000;
+  display: flex;
+  justify-content: center;
   align-items: center;
 }
 .question-body-textarea{
@@ -87,7 +111,7 @@ body {
   margin: 0 auto;
   color: #000;
   display: flex;
-  justify-content: center; 
+  justify-content: center;
   align-items: center;
 
 }
@@ -99,12 +123,12 @@ body {
 .question-footer{
   width: 90%;
   height: 3em;
-  background: #fefdf790;
+  background: #333;
   display: table;
   margin: 0 auto;
-  color: #000;
+  color: #FFF;
   display: flex;
-  justify-content: center; 
+  justify-content: center;
   align-items: center;
   border-radius:0 0 2em 2em  ;
 }
@@ -125,10 +149,10 @@ topnav {
   margin: 0 auto;
   color: #000;
   display: flex;
-  justify-content: center; 
+  justify-content: center;
   align-items: center;
   text-decoration:none
-  
+
 }
 
 .topnav a:hover {
@@ -146,7 +170,7 @@ topnav {
   margin: 0 auto;
   height: 3em;
   display: flex;
-  justify-content: center; 
+  justify-content: center;
   align-items: center;
   color: #fefdf7;
 }
