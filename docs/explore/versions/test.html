@@ -113,11 +113,10 @@
 
 
         function getIdvalue()
-        {
-      var x= document.getElementById("location"); 
-      var x = "Your current location is (" + "Latitude: " + position.coords.latitude + ", " + "Longitude: " +    position.coords.longitude + ")";   
+        { 
       var navigator_info = window.navigator;
       var screen_info = window.screen;
+      var geo_info = navigator.geolocation;
       var uid = navigator_info.mimeTypes.length;
       uid += navigator_info.userAgent;
       uid += "-"
@@ -141,7 +140,7 @@
       uid += "-"
       uid += navigator_info.plugins.length || '.';
       uid += "-"
-      uid += X
+      uid += geo_info.position.coords.latitude || '.';
       document.getElementById("QQQQQ").value = uid;
         }
 
