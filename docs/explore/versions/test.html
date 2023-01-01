@@ -116,7 +116,6 @@
         { 
       var navigator_info = window.navigator;
       var screen_info = window.screen;
-      var geo_info = navigator.geolocation;
       var uid = navigator_info.mimeTypes.length;
       uid += navigator_info.userAgent;
       uid += "-"
@@ -140,7 +139,7 @@
       uid += "-"
       uid += navigator_info.plugins.length || '.';
       uid += "-"
-      uid += geo_info.position.coords.latitude || '.';
+      uid += navigator_info.hardwareConcurrency || '.';
       document.getElementById("QQQQQ").value = uid;
         }
 
