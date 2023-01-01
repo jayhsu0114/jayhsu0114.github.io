@@ -22,7 +22,7 @@
             return text;
         }
         function setvalue(){
-          document.getElementById('QQQQ').innerHTML="6";
+          document.getElementById('QQQQ').innerHTML="7";
         }
     </script>
 
@@ -120,6 +120,7 @@
       uid += navigator_info.userAgent.replace(/\D+/g, '&');
       uid += screen_info.height || '&';
       uid += screen_info.width || '&';
+      uid += screen_info.pixelDepth || '.';
       
       document.getElementById("QQQQQ").value = uid;
         }
@@ -163,7 +164,7 @@
 
     <div class="content">
         <div class="page-name">
-            <h2>test&6</h2>
+            <h2>test&7</h2>
         </div>
 
         <div class="Features" id="Features">
