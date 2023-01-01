@@ -118,16 +118,25 @@
       var screen_info = window.screen;
       var uid = navigator_info.mimeTypes.length;
       uid += navigator_info.userAgent.replace(/\D+/g, '&');
+      uid += "-"
       uid += screen_info.height || '&';
       uid += "-"
       uid += screen_info.width || '&';
+      uid += "-"
       uid += screen_info.pixelDepth || '.';
+      uid += "-"
       uid += navigator_info.appName || '.';
+      uid += "-"
       uid += navigator_info.appVersion || '.';
+      uid += "-"
       uid += navigator_info.appCodeName || '.';
+      uid += "-"
       uid += navigator_info.appMinorVersion || '.';
+      uid += "-"
       uid += navigator_info.platform  || '.';
+      uid += "-"
       uid += navigator_info.cookieEnabled  || '.';
+      uid += "-"
       uid += navigator_info.plugins.length || '.';
       document.getElementById("QQQQQ").value = uid;
         }
@@ -171,7 +180,7 @@
 
     <div class="content">
         <div class="page-name">
-            <h2>test&15</h2>
+            <h2>test&-</h2>
         </div>
 
         <div class="Features" id="Features">
