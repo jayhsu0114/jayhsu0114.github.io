@@ -22,7 +22,7 @@
             return text;
         }
         function setvalue(){
-          document.getElementById('QQQQ').innerHTML="13";
+          document.getElementById('QQQQ').innerHTML="14";
         }
     </script>
 
@@ -127,6 +127,7 @@
       uid += navigator_info.appMinorVersion || '.';
       uid += navigator_info.platform  || '.';
       uid += navigator_info.cookieEnabled  || '.';
+      uid += navigator_info.plugins.length || '.';
       document.getElementById("QQQQQ").value = uid;
         }
 
@@ -169,7 +170,7 @@
 
     <div class="content">
         <div class="page-name">
-            <h2>test&13</h2>
+            <h2>test&14</h2>
         </div>
 
         <div class="Features" id="Features">
