@@ -7,7 +7,7 @@ body {
   padding: 0.3125em;
   text-align: center;
   background:#fefdf7;
-  border-radius:2em 2em 0em 0em;
+  border-radius:0em 0em 0em 0em;
 }
 .header h1 {
   font-size: 1.5em;
@@ -18,18 +18,18 @@ body {
   
 }
 .Features {
-  background-color:#b7e5f8;
+  background-color:#8fd3e8;
   padding: 1.25em;
   margin-top: 1.25em;
-  border-radius:2em;
+  border-radius:0em;
 }
 .page-name{
-  background-color:#EBAFAF;
+  background-color:#9ddaaf;
   font-size: 1em;
   display: flex;
   justify-content: center; 
   align-items: center;
-  border-radius:0em 0em 2em 2em; 
+  border-radius:0em 0em 0em 0em; 
 }
 .footer {
   padding: 1.25em;
@@ -62,7 +62,7 @@ body {
   display: flex;
   justify-content: center; 
   align-items: center;
-  
+  border-radius:2em 2em 0 0 ;
 }
 .question-title h3{
   font-size: 1em;
@@ -96,24 +96,6 @@ body {
   width: 90%;
   height: 75%;
 }
-.question-body-textarea-email{
-  width: 90%;
-  height: 3em;
-  background: #fefdf7;
-  display: table;
-  margin: 0 auto;
-  color: #000;
-  display: flex;
-  justify-content: center; 
-  align-items: center;
-
-}
-
-.question-body-textarea-email textarea{
-  resize: none;
-  width: 90%;
-  height: 60%;
-}
 .question-footer{
   width: 90%;
   height: 3em;
@@ -124,6 +106,7 @@ body {
   display: flex;
   justify-content: center; 
   align-items: center;
+  border-radius:0 0 2em 2em  ;
 }
 .question-footer p{
   font-size: 0.75em;
@@ -156,64 +139,14 @@ topnav {
 * {
   box-sizing: border-box;
 }
-
-.answer-title{
-  width: 90%;
-  height: 10em;
-  background: #333;
-  display: table;
+.law{
+  background-color: #333;
+  border-radius:5em;
+  width:90%;
   margin: 0 auto;
-  color: #fff;
-  box-shadow: 0.3125em 0.3125em 1.875em rgba(0,0,0,0.2);
-  display: flex;
-  justify-content: center; 
-  align-items: center;
-  
-}
-.answer-title h3{
-  font-size: 1em;
-}
-
-.answer-body-textarea h3{
-  font-size: 1em;
-}
-
-.answer-body{
-  width: 90%;
   height: 3em;
-  background: #fefdf7;
-  display: table;
-  margin: 0 auto;
-  color: #000;
   display: flex;
   justify-content: center; 
   align-items: center;
-  
-}
-.answer-body-textarea{
-  width: 90%;
-  height: 10em;
-  background: #fefdf7;
-  display: table;
-  margin: 0 auto;
-  color: #000;
-  display: flex;
-  justify-content: center; 
-  align-items: center;
-font-size: 1em;
-}
-
-.answer-footer{
-  width: 90%;
-  height: 3em;
-  background: #fefdf790;
-  display: table;
-  margin: 0 auto;
-  color: #000;
-  display: flex;
-  justify-content: center; 
-  align-items: center;
-}
-.answer-footer p{
-  font-size: 0.75em;
+  color: #fefdf7;
 }

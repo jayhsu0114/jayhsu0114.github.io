@@ -7,6 +7,7 @@ body {
   padding: 0.3125em;
   text-align: center;
   background:#fefdf7;
+  border-radius:0em 0em 0em 0em;
 }
 .header h1 {
   font-size: 1.5em;
@@ -14,24 +15,28 @@ body {
 .content {   
   float: center;
   width: 100%;
+  
 }
 .Features {
-  background-color:#b7e5f8;
+  background-color:#8fd3e8;
   padding: 1.25em;
   margin-top: 1.25em;
+  border-radius:0em;
 }
 .page-name{
-  background-color:#EBAFAF;
+  background-color:#9ddaaf;
   font-size: 1em;
   display: flex;
   justify-content: center; 
-  align-items: center; 
+  align-items: center;
+  border-radius:0em 0em 0em 0em; 
 }
 .footer {
   padding: 1.25em;
   text-align: center;
   background:#fefdf7;
   margin-top: 1.25em;
+  border-radius:2em; 
 }
 .footer h4{
   font-size: 0.9em;
@@ -43,8 +48,10 @@ body {
      background-color: #fefdf7;
      color: black;
      border: none;
+     border-radius:5em;
+     
 }
-.year-title{
+.question-title{
   width: 90%;
   height: 3em;
   background: #333;
@@ -54,15 +61,16 @@ body {
   box-shadow: 0.3125em 0.3125em 1.875em rgba(0,0,0,0.2);
   display: flex;
   justify-content: center; 
-  align-items: center; 
+  align-items: center;
+  border-radius:2em 2em 0 0 ;
 }
-.year-title h3{
+.question-title h3{
   font-size: 1em;
 }
 
-.year-body{
+.question-body{
   width: 90%;
-  height: 3.5em;
+  height: 3em;
   background: #fefdf7;
   display: table;
   margin: 0 auto;
@@ -71,69 +79,24 @@ body {
   justify-content: center; 
   align-items: center;
 }
-
-
-
-.year-body-elected{
-  width: 45%;
-  height: 2em;
-  background: #EBAFAF;
+.question-body-textarea{
+  width: 90%;
+  height: 10em;
+  background: #fefdf7;
   display: table;
   margin: 0 auto;
-  color: #333;
+  color: #000;
   display: flex;
   justify-content: center; 
   align-items: center;
-  border-radius: 5px;
 
 }
-
-.year-body-electea{
-  width: 30%;
-  height: 2em;
-  background: #de6768;
-  display: table;
-  margin: 0 auto;
-  color: #333;
-  display: flex;
-  justify-content: center; 
-  align-items: center;
-  border-radius: 5px;
-
-}
-
-.year-body-electe{
-  width: 30%;
-  height: 2em;
-  background: #EBAFAF;
-  display: table;
-  margin: 0 auto;
-  color: #333;
-  display: flex;
-  justify-content: center; 
-  align-items: center;
-  border-radius: 5px;
-
-}
-.year-body-elected-date{
-  width: 45%;
-  height: 2em;
-  background: #b7e5f8;
-  display: table;
-  margin: 0 auto;
-  color: #333;
-  display: flex;
-  justify-content: center; 
-  align-items: center;
-  border-radius: 5px;
-
-}
-.year-body-textarea textarea{
+.question-body-textarea textarea{
   resize: none;
   width: 90%;
   height: 75%;
 }
-.year-footer{
+.question-footer{
   width: 90%;
   height: 3em;
   background: #fefdf790;
@@ -143,8 +106,9 @@ body {
   display: flex;
   justify-content: center; 
   align-items: center;
+  border-radius:0 0 2em 2em  ;
 }
-.year-footer p{
+.question-footer p{
   font-size: 0.75em;
 }
 
@@ -164,6 +128,7 @@ topnav {
   justify-content: center; 
   align-items: center;
   text-decoration:none
+  
 }
 
 .topnav a:hover {
@@ -174,16 +139,14 @@ topnav {
 * {
   box-sizing: border-box;
 }
-
-.year{
-  padding: 5px;
-}
-
-
-img{
+.law{
+  background-color: #333;
+  border-radius:5em;
+  width:90%;
   margin: 0 auto;
+  height: 3em;
   display: flex;
   justify-content: center; 
   align-items: center;
-  width: 90%;
+  color: #fefdf7;
 }
