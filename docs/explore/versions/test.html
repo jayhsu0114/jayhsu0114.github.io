@@ -8,23 +8,7 @@
     <link rel="stylesheet" type="text/css" href="style.css">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3628702039140235" crossorigin="anonymous"></script>
     <script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
-    <script>
-        function randomusefloor(min,max)
-        {
-            return Math.floor(Math.random()*(max-min+1)+min);
-        }
-        function makerandomletter(max)
-        {
-            var text = "";
-            var possible = "abcdefghijklmnopqrstuvwxyz";
-            for (var i = 0; i < max; i++)
-            text += possible.charAt(Math.floor(Math.random() * possible.length));
-            return text;
-        }
-        function setvalue(){
-          document.getElementById('QQQQ').innerHTML="ZSJH"+makerandomletter(2)+randomusefloor(1,999999);
-        }
-    </script>
+
 
     <script src="https://www.google.com/recaptcha/api.js"></script>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -64,7 +48,7 @@
 
          200: function() {
           alert("您的匿名投稿已送出，過程維持完全匿名狀態。如果在我們發布前需要刪除請使用刪文系統。");　
-          window.location.assign("https://jayhsu0114.github.io/zsjh");
+          window.location.assign("https://jayhsu0114.github.io/explore/versions/test");
          }
         }
        });
@@ -117,18 +101,7 @@
       var navigator_info = window.navigator;
       var screen_info = window.screen;
       var uid = navigator_info.mimeTypes.length;
-      uid += navigator_info.userAgent.replace(/\D+/g, '.');
-      uid += screen_info.height || '.';
-      uid += screen_info.width || '.';
-      uid += screen_info.pixelDepth || '.';
-      uid += navigator_info.appName || '.';
-      uid += navigator_info.appVersion || '.';
-      uid += navigator_info.appCodeName || '.';
-      uid += navigator_info.appMinorVersion || '.';
-      uid += navigator_info.platform  || '.';
-      uid += navigator_info.cookieEnabled  || '.';
-
-      uid += navigator_info.plugins.length || '.';
+     
       
       document.getElementById("QQQQQ").value = uid;
         }
@@ -172,7 +145,7 @@
 
     <div class="content">
         <div class="page-name">
-            <h2>投稿系統2.00</h2>
+            <h2>投稿系統2.3</h2>
         </div>
 
         <div class="Features" id="Features">
@@ -257,7 +230,7 @@
                 </div>
                 <div class="question-body">
                   <label for="QQQQ"></label>
-                  <label id="QQQQ" name="QQQQ"></label>
+                  <input type="text" name="QQQQ" value="test3" >
                   <input class="button-copy" type="button" onclick="copy_text()" value="一鍵複製">
                   <input id="QQQQQ" type="hidden" name="QQQQQ"><input id="QQQQQQ" type="hidden" name="QQQQQQ">
                 </div>
