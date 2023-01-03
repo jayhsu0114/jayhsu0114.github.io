@@ -17,8 +17,12 @@
   </script>
   <script>
     function setvalue(){
-        document.getElementById('Q').value=result.visitorId;
+      var fps = result.visitorId;
+        document.getElementById('Q').value=fps;
         }
+      window.onload = function() {
+        setvalue();
+      };
   </script>
 </head>
 <body onload="setvalue()">
