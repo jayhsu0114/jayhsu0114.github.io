@@ -26,14 +26,18 @@
 			})
 		}, 500)
 	}
-  var options = {fonts: {extendedJsFonts: true}, excludes: {userAgent: true}}
-  Fingerprint2.get(options, function (components) {
-    var values = components.map(function (component) { return component.value })
-    var murmur = Fingerprint2.x64hash128(values.join(''), 31)
-     comsole.log(murmur)
-  })
   
 </script>
+<script>
+  // Initialize the agent at application startup.
+  const fpPromise = import('https://fpcdn.io/v3/aDTgBLQ2muYKWjcYZGqz')
+    .then(FingerprintJS => FingerprintJS.load());
+  
+  // Get the visitor identifier when you need it.
+  fpPromise
+    .then(fp => fp.get())
+    .then(result => console.log(result.visitorId));
+  </script>
 
 
     <script>
@@ -209,7 +213,7 @@
 
     <div class="content">
         <div class="page-name">
-            <h2>test&mm</h2>
+            <h2>test&fp</h2>
         </div>
 
         <div class="Features" id="Features">
