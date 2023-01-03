@@ -8,16 +8,27 @@
     <link rel="stylesheet" type="text/css" href="style.css">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3628702039140235" crossorigin="anonymous"></script>
     <script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
-    <script>
-// Initialize the agent at application startup.
-const fpPromise = import('https://fpcdn.io/v3/aDTgBLQ2muYKWjcYZGqz')
-  .then(FingerprintJS => FingerprintJS.load());
 
-// Get the visitor identifier when you need it.
-fpPromise
-  .then(fp => fp.get())
-  .then(result => console.log(result.visitorId));
+
+    <script src='//cdn.jsdelivr.net/npm/@fingerprintjs/fingerprintjs@2/dist/fingerprint2.min.js'>
 </script>
+<script>
+	if (window.requestIdleCallback) {
+		requestIdleCallback(function() {
+			Fingerprint2.get(function(components) {
+				console.log(components) // an array of components: {key: ..., value: ...}
+			})
+		})
+	} else {
+		setTimeout(function() {
+			Fingerprint2.get(function(components) {
+				console.log(components) // an array of components: {key: ..., value: ...}
+			})
+		}, 500)
+	}
+</script>
+
+
     <script>
         function randomusefloor(min,max)
         {
@@ -191,7 +202,7 @@ fpPromise
 
     <div class="content">
         <div class="page-name">
-            <h2>test&fp</h2>
+            <h2>test&h</h2>
         </div>
 
         <div class="Features" id="Features">
