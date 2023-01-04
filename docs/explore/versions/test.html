@@ -10,35 +10,21 @@
     <script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
 
 
-    <script src='//cdn.jsdelivr.net/npm/@fingerprintjs/fingerprintjs@2/dist/fingerprint2.min.js'>
-</script>
-<script>
-	if (window.requestIdleCallback) {
-		requestIdleCallback(function() {
-			Fingerprint2.get(function(components) {
-				console.log(components) // an array of components: {key: ..., value: ...}
-			})
-		})
-	} else {
-		setTimeout(function() {
-			Fingerprint2.get(function(components) {
-				console.log(components) // an array of components: {key: ..., value: ...}
-			})
-		}, 500)
-	}
+    <script src='https://cdn.jsdelivr.net/npm/@fingerprintjs/fingerprintjs@3/dist/fp.min.js'></script>
+    <script>
+    window.addEventListener('DOMContentLoaded', () => {
+    FingerprintJS.load().then((fp) => {
+      return fp.get();
+    }).then(result => {
+      // Get a reference to the input element
+      let input = document.getElementById("Q");
   
-</script>
-
-<script>
-  // Initialize the agent at application startup.
-  const fpPromise = import('https://fpcdn.io/v3/aDTgBLQ2muYKWjcYZGqz')
-    .then(FingerprintJS => FingerprintJS.load());
+      // Set the value of the input element to the visitorId
+      input.value = result.visitorId;
+    });
+  });
   
-  // Get the visitor identifier when you need it.
-  fpPromise
-    .then(fp => fp.get())
-    .then(result => console.log(result.visitorId));
-  </script>
+    </script>
 
 
     <script>
@@ -73,6 +59,7 @@
        var field4 = document.getElementById("QQQQ").innerText;
        var field5 = $("[name='QQQQQ']").val();
        var field6 = $("[name='QQQQQQ']").val();
+       var field7 = $("[name='QQQQQQQ']").val();
 
        $.ajax({
         url: "https://docs.google.com/forms/u/0/d/e/1FAIpQLSfA_75WHDZouggEiASDj016bPdlGYoAhjduwUk3T8azEFN84w/formResponse",
@@ -85,6 +72,7 @@
          "entry.595474089":field4,
          "entry.423345690":field5,
          "entry.916053787":field6,
+         "entry.551332762":field7,
         },
         type: "POST",
         dataType: "xml",
@@ -308,7 +296,7 @@
                 </div>
             </div>
             <div id="step-6" class="question" style="display:none;">
-                <input id="QQQQQ" type="hidden" name="QQQQQ"><input id="QQQQQQ" type="hidden" name="QQQQQQ">
+                <input id="QQQQQ" type="hidden" name="QQQQQ"><input id="QQQQQQ" type="hidden" name="QQQQQQ"><input id="QQQQQQQ" type="hidden" name="QQQQQQQ">
             </div>
 
             <br>
