@@ -7,21 +7,17 @@
   <title>Document</title>
   <script src='https://cdn.jsdelivr.net/npm/@fingerprintjs/fingerprintjs@3/dist/fp.min.js'></script>
   <script>
-    window.addEventListener('DOMContentLoaded',()=> {
-      FingerprintJS.load().then((fp)=>{
-        return fp.get();
-      }).then(result=>{
-        console.log(result.visitorId);
-      });
-    });
-   // Get the value of the console.log()
-let logValue = console.log(result.visitorId);
+  window.addEventListener('DOMContentLoaded', () => {
+  FingerprintJS.load().then((fp) => {
+    return fp.get();
+  }).then(result => {
+    // Get a reference to the input element
+    let input = document.getElementById("Q");
 
-// Get a reference to the input element
-let input = document.getElementById("Q");
-
-// Set the value of the input element to the log value
-input.value = logValue;
+    // Set the value of the input element to the visitorId
+    input.value = result.visitorId;
+  });
+});
 
   </script>
 </head>
