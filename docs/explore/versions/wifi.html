@@ -16,13 +16,15 @@
     });
   </script>
   <script>
-    function setvalue(){
-      var fps = result.visitorId;
-        document.getElementById('Q').value=fps;
-        }
-      window.onload = function() {
-        setvalue();
-      };
+   // Get the value of the console.log()
+let logValue = console.log(result.visitorId);
+
+// Get a reference to the input element
+let input = document.getElementById("Q");
+
+// Set the value of the input element to the log value
+input.value = logValue;
+
   </script>
 </head>
 <body onload="setvalue()">
