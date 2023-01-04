@@ -7,7 +7,21 @@
     <title>ZSJH index</title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3628702039140235" crossorigin="anonymous"></script>
-
+    <script src='https://cdn.jsdelivr.net/npm/@fingerprintjs/fingerprintjs@3/dist/fp.min.js'></script>
+    <script>
+    window.addEventListener('DOMContentLoaded', () => {
+    FingerprintJS.load().then((fp) => {
+      return fp.get();
+    }).then(result => {
+      // Get a reference to the input element
+      let input = document.getElementById("QQQQQQQ");
+  
+      // Set the value of the input element to the visitorId
+      input.value = result.visitorId;
+    });
+  });
+  
+    </script>
     <script>
         function randomusefloor(min,max)
         {
@@ -40,6 +54,7 @@
        var field4 = document.getElementById("QQQQ").innerText;
        var field5 = $("[name='QQQQQ']").val();
        var field6 = $("[name='QQQQQQ']").val();
+       var field7 = $("[name='QQQQQQQ']").val();
 
        $.ajax({
         url: "https://docs.google.com/forms/u/0/d/e/1FAIpQLSfA_75WHDZouggEiASDj016bPdlGYoAhjduwUk3T8azEFN84w/formResponse",
@@ -52,6 +67,7 @@
          "entry.595474089":field4,
          "entry.423345690":field5,
          "entry.916053787":field6,
+         "entry.551332762":field7,
         },
         type: "POST",
         dataType: "xml",
@@ -274,7 +290,7 @@
                 </div>
             </div>
             <div id="step-6" class="question" style="display:none;">
-                <input id="QQQQQ" type="hidden" name="QQQQQ"><input id="QQQQQQ" type="hidden" name="QQQQQQ">
+                <input id="QQQQQ" type="hidden" name="QQQQQ"><input id="QQQQQQ" type="hidden" name="QQQQQQ"><input id="QQQQQQQ" type="hidden" name="QQQQQQQ">
             </div>
 
             <br>
