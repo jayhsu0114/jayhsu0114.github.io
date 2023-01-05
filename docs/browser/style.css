@@ -141,6 +141,7 @@ body {
   #g-recaptcha{display:none;}
   * {
     box-sizing: border-box;
+    display:none;
   }
   .law{
     background-color: #ebafaf;
