@@ -1,263 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" >
-    <title>CTJH index</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <script>
-        if (!/Instagram/.test(navigator.userAgent)) {
-          window.location.href = 'https://jayhsu0114.github.io/browser';
-        }
-      </script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3628702039140235" crossorigin="anonymous"></script>
-    <script>
-        function randomusefloor(min,max) 
-        {
-            return Math.floor(Math.random()*(max-min+1)+min);
-        }
-        function makerandomletter(max) 
-        {
-            var text = "";
-            var possible = "abcdefghijklmnopqrstuvwxyz";
-            for (var i = 0; i < max; i++)
-            text += possible.charAt(Math.floor(Math.random() * possible.length));
-            return text;
-        }
-        function setvalue(){
-        document.getElementById('QQQQ').value="CTJH"+makerandomletter(2)+randomusefloor(1,999999);
-        }
-    </script>
-    
-    <script src="https://www.google.com/recaptcha/api.js"></script>
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script>
-    function GoogleForm() {　
-       
-       var field1 = $("[name='Q']").val();
-       var field2 = $("[name='QQ']").val();
-       var field3 = $("[name='QQQ']").val();
-       var field4 = $("[name='QQQQ']").val();
-       var field5 = $("[name='QQQQQ']").val();
-       var field6 = $("[name='QQQQQQ']").val();
-
-       $.ajax({
-        url: "https://docs.google.com/forms/u/0/d/e/1FAIpQLSfPrYBjGruxTEO4yqOAIt2ybhhafrcwX6iI6S5Za6IIzndPzQ/formResponse",
-
-        data: {
-
-         "entry.995075400":field1,
-         "entry.1216566813":field2,
-         "entry.1335941235":field3,
-         "entry.512031765":field4,
-         "entry.547156408":field5,
-         "entry.884722495":field6,
-        },
-        type: "POST",
-        dataType: "xml",
-        statusCode: {
-
-         0: function() {
-          alert("您的匿名投稿已送出，過程維持完全匿名狀態。如果在我們發布前需要刪除請使用刪文系統。");　
-          window.location.assign("https://jayhsu0114.github.io/ctjh");
-         },
-
-         200: function() {
-          alert("您的匿名投稿已送出，過程維持完全匿名狀態。如果在我們發布前需要刪除請使用刪文系統。");　
-          window.location.assign("https://jayhsu0114.github.io/ctjh");
-         }
-        }
-       });
-      }
-    </script>
-
-<script>
-   function onSubmit(token) {
-     document.getElementById("demo-form").submit();
-   }
-</script>
-
-
-<button class="g-recaptcha" id="g-recaptcha"
-        data-sitekey="6LdM9jwdAAAAAAkpcTeuyRgb8_CK8uJkVqNxpcWB" 
-        data-callback='onSubmit' 
-        data-action='submit'>Submit</button>
-
-
- <script type="text/javascript">
-        window.onload = function(){
-            
-            document.onkeydown = function (){
-                var e = window.event || arguments[0];
-                
-                if(e.keyCode == 123){
-                    return false;
-                
-            }else if((e.ctrlKey) && (e.shiftKey) && (e.keyCode == 73)){
-                return false;
-               
-            }else if((e.shiftKey) && (e.keyCode == 121)){
-                return false;
-               
-            }else if((e.ctrlKey) && (e.keyCode == 85)){
-                return false;
-            }
-        };
-            document.oncontextmenu = function (){
-                return false;
-            }
-        }
-
-    </script>
-    <script type="text/javascript">
-      
-
-        function getIdvalue()
-        {
-      var navigator_info = window.navigator;
-      var screen_info = window.screen;
-      var uid = navigator_info.mimeTypes.length;
-      uid += navigator_info.userAgent.replace(/\D+/g, '');
-      uid += navigator_info.plugins.length;
-      uid += screen_info.height || '';
-      uid += screen_info.width || '';
-      uid += screen_info.pixelDepth || '';
-      document.getElementById("QQQQQ").value = uid;
-        }
-        
-        window.onload = function() {
-        getIdvalue();
-        };
-      
-    </script>
-    <script type="text/javascript" src="https://l2.io/ip.js?var=userip"></script>
-
-    <script type="text/javascript">
-      function getIPvalue()
-      {
-          document.getElementById("QQQQQQ").value = userip;
-      }
-      
-      window.onload = function() {
-      getIPvalue();
-      };
-    </script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3628702039140235"
-    crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
 </head>
-<body  onload="setvalue();getIdvalue();getIPvalue()">
+<body>
+  https://docs.google.com/spreadsheets/d//edit
+
+  <script>
+    function writeToSheet() {
+      // Replace with your API key
+      var apiKey = 'fdbd3359e3191b61dad307859b1a88238e7fd6c7';
+      
+      // Replace with the ID of the spreadsheet you want to write to
+      var spreadsheetId = '1-m9YwtDYtiGqd1Vv6pbEUFkHdnX6q2N8fLlKjyhmOgY';
+      
+      // Replace with the range of cells you want to write to
+      var range = 'Sheet1!A1:A1';
+      
+      // Replace with the data you want to write to the spreadsheet
+      var values = [[Math.random()]];
+      
+      // Replace with the URL of your web app
+      var origin = 'http://jayhsu0114.github.io';
+      
+      var fetchOptions = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + apiKey
+        },
+        body: JSON.stringify({
+          range: range,
+          values: values
+        }),
+        mode: 'cors',
+        credentials: 'include'
+      };
+      
+      fetch(`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${range}:append?insertDataOption=INSERT_ROWS&valueInputOption=RAW`, fetchOptions)
+        .then(function(response) {
+          return response.json();
+        }).then(function(json) {
+          console.log(json);
+        });
+    }
+  </script>
+  <button onclick="writeToSheet()">Write to sheet</button>
   
-
-    <div class="header">
-        <h1>靠北/告白江翠股份無限公司</h1>
-        <p>Hate/Love CTJH Co.ultd</p>
-    </div>
-    
-    <div class="content">
-        <div class="page-name">
-            <h2>投稿系統2.0</h2>
-        </div>
-        
-        <div class="Features">
-            <form action="javascript:GoogleForm();" id="form">
-            <br>
-            <div class="question">
-                <div class="question-title">
-                    <h3>請先閱讀使用者規約</h3>
-                </div>
-                <div class="question-body">
-                    <input type="checkbox" id="Q" name="Q" value="我已詳細閱讀使用者規約並同意遵守" required autofocus>
-                    <label for="Q">我已詳細閱讀使用者規約並同意遵守</label>
-                </div>
-                <div class="question-footer" onclick="location.href=
-                'https://jayhsu0114.github.io/ctjh/userregulation'">
-                    <h5>點此進入使用者規約</h5>
-                </div>
-            </div>
-      
-            
-            <br>
-            <div class="question">
-                <div class="question-title">
-                    <h3>您要回覆CTJH________？</h3>
-                </div>
-                <div class="question-body">
-                    <label for="QQ">請輸入數字：</label>    
-                    <input type="text" name="QQ" value="" maxlength="5" placeholder="本欄位僅限輸入數字" patttern="[0-9]+">
-                </div>
-                <div class="question-footer">
-                    <center>
-                    <h5>您回覆的貼文會在您的匿名發布時<br>被標註在貼文下方</h5>
-                    </center>
-                </div>
-            </div>
-            <br>
-            <div class="law">
-                <marquee>
-                    <h4>根據《通訊保障及監察法》第11-1條第三款規定，網路警察不能只因為您有觸犯公然侮辱、誹謗等妨害名譽罪的嫌疑查詢您的IP位址。</h4>
-                </marquee>
-            </div>
-            <br>
-
-            <div class="question">
-                <div class="question-title">
-                    <h3>您的投稿內容是？</h3>
-                </div>
-                <div class="question-body-textarea">
-                    <textarea name="QQQ" placeholder="每行21字、11行為最大版面容量" required></texTarea>
-                </div>
-                <div class="question-footer">
-                    <center>
-                    <h5>姓名打馬賽克請統一格式使用「#」符號，<br>如「王#明」</h5>
-                    </center>
-                </div>
-            </div>
-          
-            <br>
-
-            <div class="question">
-                <div class="question-title">
-                    <h3>請記住後悔代碼</h3>
-                </div>
-                <div class="question-body">
-                    <label for="QQQQ">後悔代碼：</label>  
-                    <input id="QQQQ" type="text" name="QQQQ" required readonly>
-                </div>
-                <div class="question-footer">
-                    <h6>後悔代碼可以在我們將貼文發布前於系統內刪除</h6>
-                </div>
-            </div>
-            <div class="question">
-                <input id="QQQQQ" type="hidden" name="QQQQQ"><input id="QQQQQQ" type="hidden" name="QQQQQQ">
-            </div>
-      
-            <br>
-
-            <div class="button">
-                <CENTER>
-                    <button class="bottons" type="submit" >提交</button>
-                </CENTER>
-            </div>
-
-            </form>
-        </div>
-        
-      
-    </div>
-
-    <br>
-
-    <div class="topnav">
-        <a href="https://jayhsu0114.github.io/ctjh" >投稿系統</a><br>
-        <a href="https://jayhsu0114.github.io/ctjh/delete" >刪文系統</a><br>
-        <a href="https://jayhsu0114.github.io/ctjh/userregulation" >使用者規約</a><br>
-        <a href="https://jayhsu0114.github.io/ctjh/privatepolicy" >隱私權政策</a><br>
-    </div>
-
-    <div class="footer">
-        <h4>本網頁系統由靠北/告白江翠股份無限公司提供</h4>
-    </div>
 </body>
 </html>
