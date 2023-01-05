@@ -83,7 +83,7 @@ body {
     align-items: center;
   }
   .question-body h3{
-    font-size: 1em;
+    font-size: 0.8em;
   }
   .question-body-textarea{
     width: 90%;
