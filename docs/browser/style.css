@@ -68,7 +68,7 @@ body {
     border-radius:2em 2em 0 0 ;
   }
   .question-title h3{
-    font-size: 1em;
+    font-size: 1.5em;
   }
   
   .question-body{
@@ -81,6 +81,9 @@ body {
     display: flex;
     justify-content: center; 
     align-items: center;
+  }
+  .question-body h3{
+    font-size: 1em;
   }
   .question-body-textarea{
     width: 90%;
