@@ -150,3 +150,14 @@ topnav {
   align-items: center;
   color: #fefdf7;
 }
+.question-body-2{
+  width: 90%;
+  height: 3em;
+  background: #fefdf790;
+  display: table;
+  margin: 0 auto;
+  color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
