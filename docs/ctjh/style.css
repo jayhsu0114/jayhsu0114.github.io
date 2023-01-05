@@ -12,6 +12,17 @@ body {
 .header h1 {
     font-size: 1.5em;
   }
+  .question-body-2{
+    width: 90%;
+    height: 3em;
+    background: #fefdf790;
+    display: table;
+    margin: 0 auto;
+    color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 .content {   
     float: center;
     width: 100%;
