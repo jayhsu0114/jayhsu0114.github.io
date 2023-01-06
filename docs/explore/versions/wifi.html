@@ -7,47 +7,33 @@
   <title>Document</title>
 </head>
 <body>
-
   <script>
-    function writeToSheet() {
-      // Replace with your API key
-      var apiKey = 'AIzaSyBDzFm4-BVk67Y1vDC15ulWwya7nN3FTYA';
-      
-      // Replace with the ID of the spreadsheet you want to write to
-      var spreadsheetId = '1-m9YwtDYtiGqd1Vv6pbEUFkHdnX6q2N8fLlKjyhmOgY';
-      
-      // Replace with the range of cells you want to write to
-      var range = '工作表1!A1:A1';
-      
-      // Replace with the data you want to write to the spreadsheet
-      var values = [[Math.random()]];
-      
-      // Replace with the URL of your web app
-      var origin = 'http://jayhsu0114.github.io';
-      
-      var fetchOptions = {
+    async function readSheet() {
+      const response = await fetch('https://sheets.googleapis.com/v4/spreadsheets/spreadsheetId/values/Sheet1!A1:D5', {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+      const data = await response.json();
+      console.log(data.values);
+    }
+    
+    async function writeSheet() {
+      const response = await fetch('https://sheets.googleapis.com/v4/spreadsheets/spreadsheetId/values/Sheet1!A1:D5:append', {
         method: 'POST',
         headers: {
+          Authorization: `Bearer ${accessToken}`,
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + apiKey
         },
         body: JSON.stringify({
-          range: range,
-          values: values
+          values: [[Math.random(), Math.random(), Math.random(), Math.random()]],
         }),
-        mode: 'cors',
-        credentials: 'include'
-      };
-      
-      fetch(`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${range}:append?insertDataOption=INSERT_ROWS&valueInputOption=RAW`, fetchOptions)
-        .then(function(response) {
-          return response.json();
-        }).then(function(json) {
-          console.log(json);
-        });
+      });
+      console.log(await response.json());
     }
-  </script>
-  <button onclick="writeToSheet()">Write to sheet</button>
-  
+    </script>
 </body>
 </html>
+
+
+
