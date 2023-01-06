@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+
+<script src="https://www.google.com/recaptcha/api.js"></script>
+<meta charset="utf-8">
+
+</head>
+<body>
+
+<div class="header">
+  <h1>黑特/告白匿名股份無限公司</h1>
+  <p>Hate/Love JH/SH Co.ultd</p>
+</div>
+
+
+<div class="row">
+  <div class="column">
+
+    <div class="card1">
+      <h2>網站介紹</h2>
+    </div>
+
+    <div class="card">
+      <h2>組織理念</h2>
+      <p>黑特/告白匿名股份無限公司<br>
+是的非官方匿名版<br>
+除了提供匿名服務<br>
+同時也協助推動學權、反霸凌、地方資訊、選舉校花/校草、提供解憂信箱... 等<br>
+希望成為功能多元化的資訊媒體平台</p>
+      </div>
+     
+ </div>
+</div>
+
+<div class="footer">
+  <h2>本網頁系統由黑特/告白匿名股份無限公司提供</h2>
+</div>
+
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+<script>
+   function onSubmit(token) {
+     document.getElementById("demo-form").submit();
+   }
+</script>
+<br>
+<div class="topnav">
+  <a href="https://jayhsu0114.github.io/zsjh" >投稿系統</a><br>
+  <a href="https://jayhsu0114.github.io/zsjh/delete" >刪文系統</a><br>
+  <a href="https://jayhsu0114.github.io/zsjh/userregulation" >使用者規約</a><br>
+  <a href="https://jayhsu0114.github.io/zsjh/privatepolicy" >隱私權政策</a><br>
+  <a href="https://jayhsu0114.github.io/zsjh/survey" >意見反映</a><br>
+  <a href="https://jayhsu0114.github.io/zsjh/schoolbeauty" >校花校草</a><br>
+  <a href="https://jayhsu0114.github.io/zsjh/trouble/1" >解憂信箱</a><br>
+  <a href="https://jayhsu0114.github.io/zsjh/introduction" >網站介紹</a><br>
+  <a href="https://jayhsu0114.github.io/zsjh/aboutus" >聯絡我們</a>
+</div>
+<button class="g-recaptcha" id="g-recaptcha"
+        data-sitekey="6LdM9jwdAAAAAAkpcTeuyRgb8_CK8uJkVqNxpcWB" 
+        data-callback='onSubmit' 
+        data-action='submit'>Submit</button>
+
+ <script type="text/javascript">
+        window.onload = function(){
+            
+            document.onkeydown = function (){
+                var e = window.event || arguments[0];
+                
+                if(e.keyCode == 123){
+                    return false;
+                
+            }else if((e.ctrlKey) && (e.shiftKey) && (e.keyCode == 73)){
+                return false;
+               
+            }else if((e.shiftKey) && (e.keyCode == 121)){
+                return false;
+               
+            }else if((e.ctrlKey) && (e.keyCode == 85)){
+                return false;
+            }
+        };
+            document.oncontextmenu = function (){
+                return false;
+            }
+        }
+
+    </script>
+
+</body>
+</html>
