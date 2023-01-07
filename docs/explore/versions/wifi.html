@@ -2,36 +2,60 @@
 <html>
   <head>
     <style>
-      .container {
-        background-color: blue;
-        width: 500px;
-        height: 500px;
-      }
-      .textarea {
-        width: 300px;
-        height: 300px;
-      }
+      .slider {
+  width: 500px;
+  height: 300px;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+}
+
+.slides {
+  display: flex;
+}
+
+.slides img {
+  width: 500px;
+  height: 300px;
+}
+
     </style>
+    <script>
+      const slider = document.querySelector('.slider');
+let isDown = false;
+let startX;
+let scrollLeft;
+
+slider.addEventListener('mousedown', (e) => {
+  isDown = true;
+  startX = e.pageX - slider.offsetLeft;
+  scrollLeft = slider.scrollLeft;
+});
+slider.addEventListener('mouseleave', () => {
+  isDown = false;
+});
+slider.addEventListener('mouseup', () => {
+  isDown = false;
+});
+slider.addEventListener('mousemove', (e) => {
+  if (!isDown) return;
+  e.preventDefault();
+  const x = e.pageX - slider.offsetLeft;
+  const walk = (x - startX) * 3; //scroll-fast
+  slider.scrollLeft = scrollLeft - walk;
+});
+
+
+    </script>
   </head>
   <body>
-    <div class="container">
-      <textarea class="textarea"></textarea>
-      <br>
-      <button id="download-button">Download Image</button>
+    <div class="slider">
+      <div class="slides">
+        <img src="image1.jpg" alt="Image 1" />
+        <img src="image2.jpg" alt="Image 2" />
+        <img src="image3.jpg" alt="Image 3" />
+      </div>
     </div>
-    <script>
-      const downloadButton = document.getElementById('download-button');
-
-      downloadButton.addEventListener('click', () => {
-        const container = document.querySelector('.container');
-        html2canvas(container).then(canvas => {
-          const link = document.createElement('a');
-          link.href = canvas.toDataURL();
-          link.download = 'image.png';
-          link.click();
-});
-});
-</script>
+    
 
   </body>
 </html>
