@@ -7,7 +7,31 @@
   <title>Document</title>
 </head>
 <body>
-  <script src="./js/app.js"></script>
+  <script>
+    async function readSheet() {
+  const response = await fetch('https://sheets.googleapis.com/v4/spreadsheets/spreadsheetId/values/Sheet1!A1:D5', {
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
+  const data = await response.json();
+  console.log(data.values);
+}
+
+async function writeSheet() {
+  const response = await fetch('https://sheets.googleapis.com/v4/spreadsheets/spreadsheetId/values/Sheet1!A1:D5:append', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      values: [[Math.random(), Math.random(), Math.random(), Math.random()]],
+    }),
+  });
+  console.log(await response.json());
+}
+  </script>
   <p>2</p>
 </body>
 </html>
