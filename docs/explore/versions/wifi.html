@@ -5,34 +5,43 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <style>
+    canvas {
+      width: 500px;
+      height: 500px;
+      background-color: blue;
+    }
+
+    textarea {
+      width: 300px;
+      height: 300px;
+      display: block;
+      margin: auto;
+    }
+  </style>
 </head>
 <body>
   <script>
-    async function readSheet() {
-  const response = await fetch('https://sheets.googleapis.com/v4/spreadsheets/1-m9YwtDYtiGqd1Vv6pbEUFkHdnX6q2N8fLlKjyhmOgY//values/%E5%B7%A5%E4%BD%9C%E8%A1%A8%E5%B7%A5%E4%BD%9C%E8%A1%A81!A1:D5', {
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-    },
-  });
-  const data = await response.json();
-  console.log(data.values);
-}
+    const canvas = document.getElementById('canvas');
+    const textarea = document.getElementById('textarea');
+    const downloadButton = document.getElementById('downloadButton');
 
-async function writeSheet() {
-  const response = await fetch('https://sheets.googleapis.com/v4/spreadsheets/1-m9YwtDYtiGqd1Vv6pbEUFkHdnX6q2N8fLlKjyhmOgY//values/%E5%B7%A5%E4%BD%9C%E8%A1%A81!A1:D5:append', {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      values: [[Math.random(), Math.random(), Math.random(), Math.random()]],
-    }),
-  });
-  console.log(await response.json());
-}
+    const ctx = canvas.getContext('2d');
+
+    downloadButton.addEventListener('click', () => {
+    const dataURL = canvas.toDataURL();
+    download(dataURL, 'image.png');
+    });
+
+    function download(dataURL, fileName) {
+    const link = document.createElement('a');
+    link.download = fileName;
+    link.href = dataURL;
+    link.click();
+    }
   </script>
-  <p>2</p>
+  <canvas id="canvas"></canvas>
+  <textarea id="textarea"></textarea>
+  <button id="downloadButton">Download</button>
 </body>
 </html>
-
