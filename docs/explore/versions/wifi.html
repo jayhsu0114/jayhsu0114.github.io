@@ -1,47 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <style>
-    canvas {
-      width: 500px;
-      height: 500px;
-      background-color: blue;
-    }
+<html>
+  <head>
+    <style>
+      .container {
+        background-color: blue;
+        width: 500px;
+        height: 500px;
+      }
+      .textarea {
+        width: 300px;
+        height: 300px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <textarea class="textarea"></textarea>
+      <br>
+      <button id="download-button">Download Image</button>
+    </div>
+    <script>
+      const downloadButton = document.getElementById('download-button');
 
-    textarea {
-      width: 300px;
-      height: 300px;
-      display: block;
-      margin: auto;
-    }
-  </style>
-</head>
-<body>
-  <script>
-    const canvas = document.getElementById('canvas');
-    const textarea = document.getElementById('textarea');
-    const downloadButton = document.getElementById('downloadButton');
+      downloadButton.addEventListener('click', () => {
+        const container = document.querySelector('.container');
+        html2canvas(container).then(canvas => {
+          const link = document.createElement('a');
+          link.href = canvas.toDataURL();
+          link.download = 'image.png';
+          link.click();
+});
+});
+</script>
 
-    const ctx = canvas.getContext('2d');
-
-    downloadButton.addEventListener('click', () => {
-    const dataURL = canvas.toDataURL();
-    download(dataURL, 'image.png');
-    });
-
-    function download(dataURL, fileName) {
-    const link = document.createElement('a');
-    link.download = fileName;
-    link.href = dataURL;
-    link.click();
-    }
-  </script>
-  <canvas id="canvas"></canvas>
-  <textarea id="textarea"></textarea>
-  <button id="downloadButton">Download</button>
-</body>
+  </body>
 </html>
