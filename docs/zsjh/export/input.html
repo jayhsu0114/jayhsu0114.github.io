@@ -8,9 +8,10 @@
     <script>
     // 取得網址
     const url = window.location;
-
-    // 解析查詢字串
     const params = new URLSearchParams(url.search);
+    onsole.log(params.get('name'));
+    console.log(params.get('email'));
+
 
     // 取得參數值
     const name = params.get('name');
