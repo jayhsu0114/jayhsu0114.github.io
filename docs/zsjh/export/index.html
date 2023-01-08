@@ -11,14 +11,16 @@
   height: 200px;
   background-color: #EBAFAF;
   margin: auto;
-  position: fixed;
+  position: absolute;
+  z-index: -1;
 }
 .postdown{
   width: 400px;
   height: 200px;
   background-color: #b7e5f8;
   margin: auto;
-  position: fixed;
+  position: absolute;
+  z-index: -1;
 }
 .textarea{
   resize: none;
@@ -27,40 +29,15 @@
   border: none;
   background-color: #fefdf7;
   margin: auto;
-  position: fixed;
-  z-index: 2;
+  position: absolute;
+  
 }
-.postmiddle{
-    width:400px;
-  height: 300px;
-  margin: auto;
-  position: fixed;
-  z-index: 2;
-  background-color: #fefdf7;
-}
-.up{
-width:400px;
-  height: 100px;
-  margin: auto;
-  position: fixed;
-  z-index: 2;
-}
-.down{
-width:400px;
-  height: 100px;
-  margin: auto;
-  position: fixed;
-  z-index: 2;
-}
+
     </style>
 </head>
 <body>
     <div class="postup"></div>
-    <div class="up"></div>
-    <div class="postmiddle">
-        <textarea class="textarea"></textarea>
-    </div>
-    <div class="down"></div>
+    <textarea class="textarea"></textarea>
     <div class="postdown"></div>
     <p>1</p>
 </body>
