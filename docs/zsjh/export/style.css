@@ -82,14 +82,14 @@ topnav {
 }
 
 .postup{
-  width: 300px;
-  height: 150px;
-  background-color: #b7e5f8;
+  width: 400px;
+  height: 200px;
+  background-color: #EBAFAF;
   margin: auto;
 }
 .postdown{
-  width: 300px;
-  height: 150px;
-  background-color: #EBAFAF;
+  width: 400px;
+  height: 200px;
+  background-color: #b7e5f8;
   margin: auto;
 }
