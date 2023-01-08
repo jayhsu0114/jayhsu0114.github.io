@@ -5,13 +5,54 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+        .postup{
+  width: 400px;
+  height: 200px;
+  background-color: #EBAFAF;
+  margin: auto;
+  position: fixed;
+}
+.postdown{
+  width: 400px;
+  height: 200px;
+  background-color: #b7e5f8;
+  margin: auto;
+  position: fixed;
+}
+.textarea{
+  resize: none;
+  width: 300px;
+  height: 300px;
+  border: none;
+  background-color: #fefdf7;
+  margin: auto;
+  position: fixed;
+  z-index: 2;
+}
+.up{
+width:400px;
+  height: 100px;
+  margin: auto;
+  position: fixed;
+  z-index: 2;
+}
+.down{
+width:400px;
+  height: 100px;
+  margin: auto;
+  position: fixed;
+  z-index: 2;
+}
+    </style>
 </head>
 <body>
     <div class="postup"></div>
+    <div class="up"></div>
     <div class="postmiddle">
         <textarea class="textarea"></textarea>
     </div>
+    <div class="down"></div>
     <div class="postdown"></div>
 </body>
 </html>
