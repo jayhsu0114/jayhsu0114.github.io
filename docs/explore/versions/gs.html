@@ -5,31 +5,26 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
- 
-  <script>
-    const spreadsheetId = 'YOUR_SPREADSHEET_ID';
-  const range = 'A1:B10';
-
-  const response = await gapi.client.sheets.spreadsheets.values.get({
-    spreadsheetId,
-    range,
-  });
-  const values = response.result.values;
-  console.log(values);
-  const spreadsheetId = 'YOUR_SPREADSHEET_ID';
-  const range = 'A1:B10';
-
-  const response = await gapi.client.sheets.spreadsheets.values.get({
-    spreadsheetId,
-    range,
-  });
-  const values = response.result.values;
-  console.log(values);
-
-  </script>
 </head>
 <body>
   <input id="Q" type="text" name="Q">
   <p></p>
+  
+  <script src="https://apis.google.com/js/api.js"></script>
+  <script>
+    const spreadsheetId = '1-m9YwtDYtiGqd1Vv6pbEUFkHdnX6q2N8fLlKjyhmOgY';
+    const range = 'A1:B10';
+
+    async function getValues() {
+      const response = await gapi.client.sheets.spreadsheets.values.get({
+        spreadsheetId,
+        range,
+      });
+      const values = response.result.values;
+      console.log(values);
+    }
+
+    getValues();
+  </script>
 </body>
 </html>
