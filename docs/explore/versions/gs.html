@@ -7,9 +7,28 @@
   <title>Document</title>
 </head>
 <body>
-  <input id="Q" type="text" name="Q">
-  <p></p>
-  
+  <script>
+    gapi.load('client', () => {
+    gapi.client.init({
+      apiKey: 'AIzaSyCn1eJjWQZN3N890c8scmihdPht0vzdVm8',
+      discoveryDocs: ['https://sheets.googleapis.com/$discovery/rest?version=v4'],
+    }).then(() => {
+      gapi.auth2.getAuthInstance().isSignedIn.listen(updateSignInStatus);
+      updateSignInStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+    });
+    });
+
+    function updateSignInStatus(isSignedIn) {
+      if (isSignedIn) {
+    // 当前已登录，可以调用 API
+      getValues();
+    } else {
+    // 当前未登录，需要授权
+      gapi.auth2.getAuthInstance().signIn();
+    } 
+    }
+
+  </script>
   <script src="https://apis.google.com/js/api.js"></script>
   <script>
     const spreadsheetId = '1-m9YwtDYtiGqd1Vv6pbEUFkHdnX6q2N8fLlKjyhmOgY';
