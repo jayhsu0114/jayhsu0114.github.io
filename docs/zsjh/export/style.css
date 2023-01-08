@@ -93,3 +93,10 @@ topnav {
   background-color: #b7e5f8;
   margin: auto;
 }
+.textarea{
+  resize: none;
+  width: 300px;
+  height: 300px;
+  border: none;
+  background-color: #fefdf7;
+}
