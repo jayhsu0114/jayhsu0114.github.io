@@ -6,11 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style style="display: block;" contenteditable>
-        .postup{
+.postup{
   width: 400px;
   height: 200px;
   background-color: #EBAFAF;
   margin: auto;
+  position: relative;
+  z-index: -1;
 
 }
 .postdown{
@@ -18,21 +20,26 @@
   height: 200px;
   background-color: #b7e5f8;
   margin: auto;
+  position: relative;
+  z-index: -1;
 }
 .blank{
   width: 400px;
   height: 30px;
+  position: relative;
+  z-index: -1;
 }
 .content{
   width: 400px;
   height: 50px;
   background-color: #fefdf7;
   margin: auto;
+  position: relative;
   z-index: 1;
 }
 .content input{
-  width: 100%;
-  height: 100%;
+  width: 400px;
+  height: 50px;
   margin: auto;
   border: 0px;
   background-color: #fefdf7;
