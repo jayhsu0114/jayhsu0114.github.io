@@ -1,61 +1,16 @@
-<!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      .slider {
-  width: 500px;
-  height: 300px;
-  overflow-x: scroll;
-  scroll-behavior: smooth;
-}
-
-.slides {
-  display: flex;
-}
-
-.slides img {
-  width: 500px;
-  height: 300px;
-}
-
-    </style>
-    <script>
-      const slider = document.querySelector('.slider');
-let isDown = false;
-let startX;
-let scrollLeft;
-
-slider.addEventListener('mousedown', (e) => {
-  isDown = true;
-  startX = e.pageX - slider.offsetLeft;
-  scrollLeft = slider.scrollLeft;
-});
-slider.addEventListener('mouseleave', () => {
-  isDown = false;
-});
-slider.addEventListener('mouseup', () => {
-  isDown = false;
-});
-slider.addEventListener('mousemove', (e) => {
-  if (!isDown) return;
-  e.preventDefault();
-  const x = e.pageX - slider.offsetLeft;
-  const walk = (x - startX) * 3; //scroll-fast
-  slider.scrollLeft = scrollLeft - walk;
-});
-
-
-    </script>
-  </head>
   <body>
-    <div class="slider">
-      <div class="slides">
-        <img src="image1.jpg" alt="Image 1" />
-        <img src="image2.jpg" alt="Image 2" />
-        <img src="image3.jpg" alt="Image 3" />
-      </div>
-    </div>
-    
-
+    <form>
+      <label for="param">Parameter: </label>
+      <input id="param"/>
+    </form>
+    <script>
+      (function(){
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const ref = urlParams.get('ref')
+        document.getElementById('param').value = ref;
+      })();
+    </script>
   </body>
 </html>
