@@ -8,6 +8,7 @@ function GoogleForm() {　
     var field5 = $("[name='QQQQQ']").val();
     var field6 = $("[name='QQQQQQ']").val();
     var field7 = $("[name='QQQQQQQ']").val();
+    var field8 = $("[name='QQQQQQQQ']").val();
 
     $.ajax({
      url: "https://docs.google.com/forms/u/0/d/e/1FAIpQLSfA_75WHDZouggEiASDj016bPdlGYoAhjduwUk3T8azEFN84w/formResponse",
@@ -21,6 +22,7 @@ function GoogleForm() {　
       "entry.423345690":field5,
       "entry.916053787":field6,
       "entry.551332762":field7,
+      "entry.156862022":field8,
      },
      type: "POST",
      dataType: "xml",
