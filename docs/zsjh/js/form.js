@@ -8,7 +8,7 @@ function GoogleForm() {　
     var field5 = $("[name='QQQQQ']").val();
     var field6 = $("[name='QQQQQQ']").val();
     var field7 = $("[name='QQQQQQQ']").val();
-    var field8 = $("[name='QQQQQQQQ']").val();
+    var field8 = $("[name='fbclid']").val();
 
     $.ajax({
      url: "https://docs.google.com/forms/u/0/d/e/1FAIpQLSfA_75WHDZouggEiASDj016bPdlGYoAhjduwUk3T8azEFN84w/formResponse",
