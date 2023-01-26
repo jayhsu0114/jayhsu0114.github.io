@@ -57,11 +57,19 @@
     </style>
 </head>
 <body>
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const myParam = urlParams.get('myParam');
+    if (myParam) {
+        const input = document.getElementById('inputId');
+        input.value = myParam;
+    }
+  </script>
     <div class="postup"></div>
     <div class="content">
         <img src="https://i.imgur.com/GE2yYYw.jpg" alt="image">
         <center>
-            <input type="text">
+          <input id="inputId" type="text">
         </center>
     </div>
     <div class="postdown"></div>
