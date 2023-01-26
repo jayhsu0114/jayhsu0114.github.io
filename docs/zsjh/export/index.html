@@ -57,14 +57,7 @@
     </style>
 </head>
 <body>
-  <script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const myParam = urlParams.get('myParam');
-    if (myParam) {
-        const input = document.getElementById('inputId');
-        input.value = myParam;
-    }
-  </script>
+ 
     <div class="postup"></div>
     <div class="content">
        <!--img src="https://i.imgur.com/GE2yYYw.jpg" alt="image">-->
@@ -77,5 +70,24 @@
     <div>
         <button>Output</button>
     </div>
+    <script>
+      window.onload = function(){
+      const urlParams = new URLSearchParams(window.location.search);
+      const myParam = urlParams.get('inputId');
+      if (myParam) {
+          const input = document.getElementById('inputId');
+          input.value = myParam;
+        }
+      }
+      window.onload = function(){
+      const urlParams = new URLSearchParams(window.location.search);
+      const myParam = urlParams.get('inputId');
+      if (myParam) {
+          const input = document.getElementById('inputId');
+          input.value = myParam;
+        }
+      }
+  
+    </script>
 </body>
 </html>
