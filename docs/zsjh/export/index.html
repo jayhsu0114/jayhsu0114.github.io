@@ -73,19 +73,17 @@
     <script>
       window.onload = function(){
       const urlParams = new URLSearchParams(window.location.search);
-      const myParam = urlParams.get('one');
-      if (myParam) {
+      //1
+      const myParam1 = urlParams.get('one');
+      if (myParam1) {
           const input = document.getElementById('one');
-          input.value = myParam;
-        }
+          input.value = myParam1;
       }
-      window.onload = function(){
-      const urlParams = new URLSearchParams(window.location.search);
-      const myParam = urlParams.get('two');
-      if (myParam) {
+      //2
+      const myParam2 = urlParams.get('two');
+      if (myParam2) {
           const input = document.getElementById('two');
-          input.value = myParam;
-        }
+          input.value = myParam2;
       }
   
     </script>
