@@ -6,67 +6,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        .postup {
-            width: 400px;
-            height: 62.5px;
-            background-color: #EBAFAF;
-            margin: auto;
+        .post{
+          width: 95%;
+          margin: auto;
         }
-        
-        .postdown {
-            width: 400px;
-            height: 200px;
-            background-color: #b7e5f8;
-            margin: auto;
+        .post img{
+          position: relative;
+          z-index: 0;
         }
-        
-        .blank {
-            width: 400px;
-            height: 30px;
-        }
-        
-        .content {
-            width: 400px;
-            height: 137.5px;
-            background-color: #ebafaf;
-            margin: auto;
-            display: flex;
-            align-items: center;
-            position: relative;
-            z-index: 0;
-        }
-        
-        content input {
-            width: 250px;
-            height: 250px;
-            margin: auto;
-            border: 0px;
-            background-color: #fefdf7;
-            border-radius: 0px;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .content img {
-            width: 30%;
-            max-width: 120px;
-            max-height: 120px;
-            position: absolute;
-            z-index: 2;
+        .post input{
+          position: absolute;
+          z-index: 1;
+          margin: auto;
+          width: 80%;
         }
     </style>
 </head>
 <body>
- 
-    <div class="postup"></div>
-    <div class="content">
-       <!--img src="https://i.imgur.com/GE2yYYw.jpg" alt="image">-->
-        <center>
-          <input id="one" type="text"><input id="two" type="text">
-        </center>
+    <div class="post">
+       <img src="https://i.imgur.com/2qXrsnS.jpg" alt="background">
+          <input id="one" type="text">
     </div>
     <div class="postdown"></div>
+
     <div class="blank"></div>
+
+    <input id="two" type="text">
     <div>
         <button>Output</button>
     </div>
