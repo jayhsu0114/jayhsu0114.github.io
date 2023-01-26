@@ -6,27 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-
-      img{
-          width: 380px;
+      .post{
+          width: 95%;
+          margin: auto;
+          text-align: center;
+        }
+      .post img{
           position: relative;
           z-index: 0;
-          display: flex;
-          justify-content: center; 
-          align-items: center;
         }
-      input{
+      .post input{
           position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
           z-index: 1;
-          width: 250px;
+          width: 80%;
         }
     </style>
 </head>
 <body>
-
+    <div class="post">
        <img src="https://i.imgur.com/2qXrsnS.jpg" alt="background">
           <input id="one" type="text">
-
+    </div>
 
     <div class="blank"></div>
 
