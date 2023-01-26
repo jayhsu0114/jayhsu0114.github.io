@@ -62,7 +62,7 @@
     <div class="content">
        <!--img src="https://i.imgur.com/GE2yYYw.jpg" alt="image">-->
         <center>
-          <input id="inputId" type="text">
+          <input id="one" type="text"><input id="two" type="text">
         </center>
     </div>
     <div class="postdown"></div>
@@ -73,17 +73,17 @@
     <script>
       window.onload = function(){
       const urlParams = new URLSearchParams(window.location.search);
-      const myParam = urlParams.get('inputId');
+      const myParam = urlParams.get('one');
       if (myParam) {
-          const input = document.getElementById('inputId');
+          const input = document.getElementById('one');
           input.value = myParam;
         }
       }
       window.onload = function(){
       const urlParams = new URLSearchParams(window.location.search);
-      const myParam = urlParams.get('inputId');
+      const myParam = urlParams.get('two');
       if (myParam) {
-          const input = document.getElementById('inputId');
+          const input = document.getElementById('two');
           input.value = myParam;
         }
       }
