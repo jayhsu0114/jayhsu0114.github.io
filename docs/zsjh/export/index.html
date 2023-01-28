@@ -5,14 +5,90 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ZSJH Export</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+        body{
+  background-color: #fefdf7;
+}
+.post{
+  height: 400px;
+  background-color: #fefdf7;
+}
+.post img{
+  width: 400px;
+  position: relative;
+  z-index: 0;
+}
+.post .date{
+  top: 350px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  z-index: 1;
+  background-color: #fefdf7;
+  width: 260px;
+  height: 20px;
+  border: 0px;
+  text-align: center;
+  color:#e69137;
+}
+.post .number{
+  top: 330px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  z-index: 1;
+  background-color: #fefdf7;
+  width: 260px;
+  height: 20px;
+  border: 0px;
+  text-align: center;
+  color:#e69137;
+}
+.post .data{
+  top: 310px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  z-index: 1;
+  background-color: #fefdf7;
+  width: 260px;
+  height: 20px;
+  border: 1px;
+  text-align: center;
+  color:#ea9999;
+}
+.post .content{
+  top: 230px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  z-index: 1;
+  background-color: #999;
+  width: 260px;
+  height: 180px;
+  border: 1px;
+  text-align: center;
+  white-space: pre-wrap;
+}
+.blank{
+  height: 50px;
+}
+button{
+  border: 0px;
+  background-color: #fefdf7;
+  box-shadow: 2px 2px 5px #888888;
+  height: 30px;
+  width: 200px;
+  border-radius: 20px;
+}
+    </style>
 </head>
 <body>
 <center>
     <div class="post">
         <img src="https://i.imgur.com/2qXrsnS.jpg" alt="background">
         <input class="content" id="one" type="text" value="content">
-        <input class="data" id="one" type="hidden" value="data">
+        <input class="data" id="one" type="text" value="data">
         <input class="number" id="one" type="text" value="number">
         <input class="date" id="one" type="text" value="date">
     </div>
