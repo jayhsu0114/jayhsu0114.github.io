@@ -46,7 +46,18 @@
             background-color: #fefdf7;
             width: 265px;
             height: 20px;
-            border: 0px;
+            border: 1px;
+        }
+        .post .data{
+            top: 290px;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            position: absolute;
+            z-index: 1;
+            background-color: #fefdf7;
+            width: 265px;
+            height: 200px;
+            border: 1px;
         }
         .blank{
             height: 50px;
@@ -57,6 +68,7 @@
 <center>
     <div class="post">
         <img src="https://i.imgur.com/2qXrsnS.jpg" alt="background">
+        <input class="content" id="one" type="text" value="content">
         <input class="data" id="one" type="text" value="data">
         <input class="number" id="one" type="text" value="number">
         <input class="date" id="one" type="text" value="date">
