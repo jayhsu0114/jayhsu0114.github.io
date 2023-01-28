@@ -69,7 +69,6 @@
   border: 1px;
   text-align: center;
   resize: none;
-  line-height: 75px;
 }
 .blank{
   height: 50px;
@@ -88,7 +87,7 @@ button{
 <center>
     <div class="post">
         <img src="https://i.imgur.com/2qXrsnS.jpg" alt="background">
-        <textarea class="content" id="one" type="text" value="textarea"></textarea>
+        <textarea class="content" id="content" type="text" value="textarea"></textarea>
         <input class="data" id="one" type="text" value="data">
         <input class="number" id="one" type="text" value="number">
         <input class="date" id="one" type="text" value="date">
@@ -100,5 +99,10 @@ button{
         <button>Output</button>
     </div>
 </center>
+<script>
+    let textarea = document.getElementById("content");
+    textarea.style.textAlign = "center";
+
+</script>
 </body>
 </html>
