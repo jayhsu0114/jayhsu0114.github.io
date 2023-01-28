@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ZSJH Export</title>
     <style>
-        img{
+        .post img{
             width: 400px;
             position: relative;
             z-index: 0;
         }
-        input{
+        .post input{
             position: absolute;
             z-index: 1;
         }
@@ -31,24 +31,5 @@
         <button>Output</button>
     </div>
 </center>
-    <script>
-      window.onload = function(){
-    const urlParams = new URLSearchParams(window.location.search);
-    //1
-    const myParam1 = urlParams.get('one');
-    if (myParam1) {
-        const input = document.getElementById('one');
-        input.value = myParam1;
-    }
-    //2
-    const myParam2 = urlParams.get('two');
-    if (myParam2) {
-        const input = document.getElementById('two');
-        input.value = myParam2;
-    }
-}
-
-  
-    </script>
 </body>
 </html>
