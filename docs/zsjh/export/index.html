@@ -15,13 +15,31 @@
             position: relative;
             z-index: 0;
         }
-        .post input{
+        .post .date{
             top: 50%;
             left: 50%;
             transform: translate(-50%, -80%);
             position: absolute;
             z-index: 1;
-            background-color: #fefdf7;
+            background-color: #000;
+            width: 260px;
+        }
+        .post .number{
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -70%);
+            position: absolute;
+            z-index: 1;
+            background-color: #555;
+            width: 260px;
+        }
+        .post .data{
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -60%);
+            position: absolute;
+            z-index: 1;
+            background-color: #999;
             width: 260px;
         }
         .blank{
@@ -33,9 +51,9 @@
 <center>
     <div class="post">
         <img src="https://i.imgur.com/2qXrsnS.jpg" alt="background">
-        <input id="one" type="text">
-        <input id="one" type="text">
-        <input id="one" type="text">
+        <input class="data" id="one" type="text">
+        <input class="number" id="one" type="text">
+        <input class="date" id="one" type="text">
     </div>
 
     <div class="blank"></div>
