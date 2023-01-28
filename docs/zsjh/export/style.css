@@ -50,7 +50,7 @@ body{
   color:#ea9999;
 }
 .post .content{
-  top: 240px;
+  top: 230px;
   left: 50%;
   transform: translate(-50%, -50%);
   position: absolute;
