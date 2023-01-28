@@ -6,31 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ZSJH Export</title>
     <style>
-      .post{
-          width: 80%;
-          margin: auto;
-          text-align: center;
-        }
-        .post img{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    z-index: 0;
-    width : 400px;
-}
-
-      .post input{
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          z-index: 1;
-          width: 80%;
-        }
+        
     </style>
 </head>
 <body>
+<center>
     <div class="post">
        <img src="https://i.imgur.com/2qXrsnS.jpg" alt="background">
           <input id="one" type="text">
@@ -42,6 +22,7 @@
     <div>
         <button>Output</button>
     </div>
+</center>
     <script>
       window.onload = function(){
     const urlParams = new URLSearchParams(window.location.search);
