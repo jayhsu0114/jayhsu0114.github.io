@@ -88,7 +88,7 @@ button{
 <body>
 <center>
     <div class="post" id="post">
-        <img src="https://i.imgur.com/2qXrsnS.jpg" alt="background">
+        <img src="zsjh.png" alt="background">
         <textarea class="content" id="content" type="text" value="textarea"></textarea>
         <input class="data" id="one" type="text" value="data">
         <input class="number" id="one" type="text" value="number">
@@ -101,17 +101,6 @@ button{
         <button onclick="screenshot()">Output</button>
     </div>
 </center>
-<script  src="http://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-<script type="text/javascript">    
-    function screenshot(){
-        html2canvas(document.getElementById('post')).then(function(canvas) {
-            document.body.appendChild(canvas);
-            var a = document.createElement('a');
-            a.href = canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
-            a.download = 'image.jpg';
-            a.click();
-        });
-    }
-</script>
+
 </body>
 </html>
