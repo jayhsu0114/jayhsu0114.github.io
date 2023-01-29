@@ -59,8 +59,10 @@ p a {
     </style>
 </head>
 <body>
-    <script>
-document.querySelector('button').addEventListener('click', function() {
+<script src="https://superal.github.io/canvas2image/canvas2image.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+<script>
+    document.querySelector('button').addEventListener('click', function() {
   html2canvas(document.querySelector('.specific'), {
     onrendered: function(canvas) {
       // document.body.appendChild(canvas);
@@ -68,8 +70,7 @@ document.querySelector('button').addEventListener('click', function() {
     }
   });
 });
-    </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+</script>
 <div class="specific">
   <h1>Click to Take a Screenshot & Download it! <small>using html2canvas.js + canvas2image.js</small></h1> 
   <p>This is a simple demo.</p>
