@@ -7,85 +7,7 @@
     <title>ZSJH Export</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Canvas2Image/0.1.5/Canvas2Image.min.js"></script>
-    <style>
-        body{
-  background-color: #fefdf7;
-}
-.post{
-  height: 95vw;
-  width: 95vw;
-  background-color: #00b;
-}
-.post img{
-  width: 95vw;
-  position: relative;
-  z-index: 0;
-}
-.post .content{
-  top: 51.0625vw;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  position: absolute;
-  z-index: 1;
-  background-color: #fefdf7;
-  width: 61vw;
-  height: 35.625vw;
-  border: 0px;
-  text-align: center;
-  resize: none;
-}
-.post .data{
-  top: 72vw;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  position: absolute;
-  z-index: 1;
-  background-color: #fefdf7;
-  width: 61vw;
-  height: 4vw;
-  border: 0px;
-  text-align: center;
-  color:#ea9999;
-}
-.post .number{
-  top: 76.5vw;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  position: absolute;
-  z-index: 1;
-  background-color: #fefdf7;
-  width: 61vw;
-  height: 4vw;
-  border: 0px;
-  text-align: center;
-  color:#e69137;
-}
-.post .date{
-  top: 81.5vw;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  position: absolute;
-  z-index: 1;
-  background-color: #fefdf7;
-  width: 61vw;
-  height: 4vw;
-  border: 0px;
-  text-align: center;
-  color:#e69137;
-}
-.blank{
-  height: 50px;
-  background-color: #fefdf7;
-}
-button{
-  border: 0px;
-  background-color: #fefdf7;
-  box-shadow: 2px 2px 5px #888888;
-  height: 30px;
-  width: 200px;
-  border-radius: 20px;
-}
-    </style>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
     <center>
@@ -129,6 +51,14 @@ button{
         canvasContainer.appendChild(canvas);
         canvasToImage(canvas);
     });
+}
+function canvasToImage(canvas) {
+  const filename = 'xxxxx';
+  Canvas2Image.saveAsPNG(
+    canvas,
+    canvas.width, canvas.height,
+    filename
+  );
 }
     </script>
     
