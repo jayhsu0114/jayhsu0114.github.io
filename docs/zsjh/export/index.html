@@ -6,23 +6,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ZSJH Export</title>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
 </head>
 <body>
-<center>
-    <div class="post" id="post">
-        <img src="zsjh.png" alt="background">
-        <textarea class="content" id="content" type="text" value="textarea"></textarea>
-        <input class="data" id="one" type="text" value="data">
-        <input class="number" id="one" type="text" value="number">
-        <input class="date" id="one" type="text" value="date">
+    <center>
+        <div class="post" id="post">
+            <img src="zsjh.png" alt="background">
+            <textarea class="content" id="content-1" type="text" value="textarea"></textarea>
+            <input class="data" id="data-1" type="text" value="data">
+            <input class="number" id="number-1" type="text" value="number">
+            <input class="date" id="date-1" type="text" value="date">
+        </div>
+    
+    <div class="blank"></div>
+    
+        <div>
+            <button onclick="saveImage()">Output</button>
+        </div>
+    </center>
+    <div id="canvasContainer">
+    
     </div>
-
-<div class="blank"></div>
-
-    <div>
-        <button onclick="screenshot()">Output</button>
-    </div>
-</center>
-
+    <script>
+        function saveImage() {
+            const el = document.querySelector("#post");
+            const options = {};
+            html2canvas(el, options)
+            .then(canvas => {
+              const canvasContainer = document.querySelector("#canvasContainer");
+              canvasContainer.appendChild(canvas);
+              canvas.toDataURL();  // 保存 canvas 為圖像
+            });
+        }
+    </script>
+    
 </body>
 </html>
