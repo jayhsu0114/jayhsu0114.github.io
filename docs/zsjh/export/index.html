@@ -24,19 +24,23 @@
             <button onclick="saveImage()">Output</button>
         </div>
     </center>
+    <div class="blank"></div>
     <div id="canvasContainer">
     
     </div>
     <script>
         function saveImage() {
+            const canvasContainer = document.querySelector("#canvasContainer");
+            while (canvasContainer.firstChild) {
+                canvasContainer.removeChild(canvasContainer.firstChild);
+            }
             const el = document.querySelector("#post");
             const options = {};
             html2canvas(el, options)
             .then(canvas => {
-              const canvasContainer = document.querySelector("#canvasContainer");
-              canvasContainer.appendChild(canvas);
-              canvas.toDataURL();  // 保存 canvas 為圖像
+                canvasContainer.appendChild(canvas);    
             });
+
         }
     </script>
     
