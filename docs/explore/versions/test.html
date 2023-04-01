@@ -1,69 +1,71 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html>
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="utf-8">
 	<title>黑特告白中山股份無限匿名版</title>
-	<style>
+	<style type="text/css">
 		body {
 			background-color: #FEFDF7;
 			font-family: Arial, sans-serif;
-			color: #333333;
+			font-size: 16px;
+			line-height: 1.5;
+			margin: 0;
+			padding: 0;
 		}
-    h1 {
-		font-size: 2.5rem;
-		text-align: center;
-		margin-top: 50px;
-		margin-bottom: 30px;
-		color: #DE3637;
-	}
-	
-	form {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		margin-top: 50px;
-	}
-	
-	label {
-		font-size: 1.2rem;
-		margin-bottom: 10px;
-		color: #333333;
-	}
-	
-	input[type="text"] {
-		padding: 10px;
-		border-radius: 5px;
-		border: none;
-		background-color: #FFFFFF;
-		box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
-		width: 80%;
-		margin-bottom: 20px;
-	}
-	
-	button[type="submit"] {
-		padding: 10px 30px;
-		background-color: #70a7dd;
-		color: #FFFFFF;
-		border-radius: 5px;
-		border: none;
-		font-size: 1.2rem;
-		cursor: pointer;
-		transition: background-color 0.3s ease;
-	}
-	
-	button[type="submit"]:hover {
-		background-color: #428BCA;
-	}
-</style>
-
+		.container {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			height: 100vh;
+		}
+		.title {
+			font-size: 36px;
+			font-weight: bold;
+			text-align: center;
+			color: #DE3637;
+			text-shadow: 1px 1px 0px #FFFFFF;
+			margin-bottom: 20px;
+		}
+		.input-group {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			background-color: #FFFFFF;
+			box-shadow: 1px 1px 10px #BBBBBB;
+			border-radius: 10px;
+			padding: 20px;
+		}
+		.input {
+			flex: 1;
+			padding: 10px;
+			border: none;
+			border-radius: 5px;
+			margin-right: 10px;
+			font-size: 18px;
+		}
+		.button {
+			background-color: #70a7dd;
+			color: #FFFFFF;
+			font-size: 18px;
+			font-weight: bold;
+			border: none;
+			border-radius: 5px;
+			padding: 10px 20px;
+			cursor: pointer;
+		}
+		.button:hover {
+			background-color: #5E94C5;
+		}
+	</style>
 </head>
 <body>
-	<h1>黑特告白中山股份無限匿名版</h1>
-	<form>
-		<label for="input-text">輸入你的告白：</label>
-		<input type="text" id="input-text" name="input-text">
-		<button type="submit">送出</button>
-	</form>
+	<div class="container">
+		<div class="title">黑特告白中山股份無限匿名版</div>
+		<div class="input-group">
+			<input type="text" class="input" placeholder="輸入你的告白">
+			<button class="button">送出</button>
+		</div>
+	</div>
 </body>
 </html>
