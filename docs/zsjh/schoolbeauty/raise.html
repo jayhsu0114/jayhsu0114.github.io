@@ -35,26 +35,17 @@ window.onload = function () {
 };
     </script>
         <script type="text/javascript">
-      
-
-  function getIdvalue()
-  {
-var navigator_info = window.navigator ;
-var screen_info = window.screen;
-var uid = navigator_info.mimeTypes.length+ "-";
-uid += navigator_info.userAgent.replace(/\D+/g, '') + "-";
-uid += navigator_info.plugins.length + "-";
-uid += screen_info.height+ "-" || '' + "-";
-uid += screen_info.width+ "-" || '' + "-";
-uid += screen_info.pixelDepth || '' + "-";
-console.log(uid);
-document.getElementById("QQQQQ").value = uid;
-  }
+window.addEventListener('DOMContentLoaded', () => {
+    FingerprintJS.load().then((fp) => {
+      return fp.get();
+    }).then(result => {
+      // Get a reference to the input element
+      let input = document.getElementById("QQQQQ");
   
-  window.onload = function() {
-  getIdvalue();
-  };
-
+      // Set the value of the input element to the visitorId
+      input.value = result.visitorId;
+    });
+  });
     </script>
  <meta charset="utf-8">
 
