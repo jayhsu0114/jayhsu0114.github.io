@@ -1,78 +1,110 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Gradient Background Animation</title>
-    <style>
-      body {
-        background-color: #fefdf7;
-        background-image: linear-gradient(
-          to bottom,
-          #fefdf7,
-          #70a7dd,
-          #de3637
-        );
-        background-size: 400% 400%;
-        animation: gradient 15s ease-in-out infinite;
-      }
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>黑特告白中山股份無限匿名版</title>
+	<style type="text/css">
+		body {
+			margin: 0;
+			padding: 0;
+			font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+			background-color: #FEFDF7;
+			background-image: linear-gradient(315deg, #FEFDF7 0%, #DE3637 74%);
+		}
 
-      @keyframes gradient {
-        0% {
-          background-position: 0% 50%;
-        }
-        50% {
-          background-position: 100% 50%;
-        }
-        100% {
-          background-position: 0% 50%;
-        }
-      }
+		.container {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			height: 100vh;
+			padding: 0 20px;
+			box-sizing: border-box;
+		}
 
-      .container {
-        width: 100%;
-        max-width: 600px;
-        margin: 0 auto;
-        padding: 50px;
-        text-align: center;
-      }
+		h1 {
+			color: #DE3637;
+			font-size: 36px;
+			font-weight: bold;
+			text-align: center;
+			margin-top: 0;
+		}
 
-      h1 {
-        font-size: 3rem;
-        color: #fff;
-        text-shadow: 2px 2px #000;
-      }
+		form {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			background-color: #fff;
+			border-radius: 10px;
+			padding: 20px;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+			width: 100%;
+			max-width: 400px;
+		}
 
-      input[type="text"] {
-        width: 100%;
-        padding: 10px;
-        margin: 20px 0;
-        border: none;
-        border-radius: 5px;
-        box-shadow: 2px 2px #70a7dd;
-        font-size: 1.5rem;
-        color: #de3637;
-      }
+		input[type="text"] {
+			border: none;
+			border-bottom: 2px solid #70a7dd;
+			padding: 10px;
+			margin: 10px 0;
+			width: 100%;
+			box-sizing: border-box;
+			font-size: 16px;
+			color: #555;
+			outline: none;
+		}
 
-      button {
-        padding: 10px 20px;
-        border: none;
-        border-radius: 5px;
-        background-color: #de3637;
-        color: #fff;
-        font-size: 1.5rem;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-      }
+		input[type="submit"] {
+			background-color: #DE3637;
+			color: #fff;
+			border: none;
+			padding: 10px 20px;
+			margin-top: 10px;
+			border-radius: 5px;
+			font-size: 16px;
+			cursor: pointer;
+			transition: background-color 0.3s ease-in-out;
+		}
 
-      button:hover {
-        background-color: #70a7dd;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <h1>Gradient Background Animation</h1>
-      <input type="text" placeholder="Enter text...">
-      <button>Submit</button>
-    </div>
-  </body>
+		input[type="submit"]:hover {
+			background-color: #70a7dd;
+		}
+		
+		.message {
+			display: none;
+			color: #DE3637;
+			font-size: 16px;
+			font-weight: bold;
+			text-align: center;
+			margin-top: 10px;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h1>黑特告白中山股份無限匿名版</h1>
+		<form id="myForm">
+			<input type="text" id="myInput" placeholder="在此輸入您的告白">
+			<input type="submit" value="送出">
+			<div class="message" id="myMessage"></div>
+		</form>
+	</div>
+
+	<script type="text/javascript">
+		document.getElementById("myForm").addEventListener("submit", function(event) {
+			event.preventDefault();
+			var inputValue = document.getElementById("myInput").value;
+			if (inputValue === "") {
+				document.getElementById("myMessage").textContent = "請輸入您的告白內容！";
+document.getElementById("myMessage").style.display = "block";
+} else {
+document.getElementById("myMessage").style.display = "none";
+alert("您的告白已送出！");
+document.getElementById("myForm").reset();
+}
+});
+</script>
+</body>
 </html>
