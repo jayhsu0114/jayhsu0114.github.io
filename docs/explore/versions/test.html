@@ -1,94 +1,78 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="UTF-8">
-	<title>黑特告白中山股份無限匿名版</title>
-	<style>
-		body {
-			background-color: #FEFDF7;
-			font-family: Arial, sans-serif;
-			margin: 0;
-			padding: 0;
-		}
+  <head>
+    <title>Gradient Background Animation</title>
+    <style>
+      body {
+        background-color: #fefdf7;
+        background-image: linear-gradient(
+          to bottom,
+          #fefdf7,
+          #70a7dd,
+          #de3637
+        );
+        background-size: 400% 400%;
+        animation: gradient 15s ease-in-out infinite;
+      }
 
-		.container {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			justify-content: center;
-			height: 100vh;
-		}
+      @keyframes gradient {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
 
-		h1 {
-			font-size: 2rem;
-			font-weight: bold;
-			color: #DE3637;
-			margin-bottom: 1.5rem;
-			text-align: center;
-		}
+      .container {
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 50px;
+        text-align: center;
+      }
 
-		form {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			justify-content: center;
-			padding: 1.5rem;
-			background-color: #70a7dd;
-			border-radius: 10px;
-			box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
-			max-width: 80%;
-			margin: 0 auto;
-		}
+      h1 {
+        font-size: 3rem;
+        color: #fff;
+        text-shadow: 2px 2px #000;
+      }
 
-		input[type="text"] {
-			padding: 0.5rem;
-			border: none;
-			border-radius: 5px;
-			margin-bottom: 1rem;
-			max-width: 100%;
-			box-sizing: border-box;
-			font-size: 1.2rem;
-			color: #333;
-			background-color: #fff;
-		}
+      input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        margin: 20px 0;
+        border: none;
+        border-radius: 5px;
+        box-shadow: 2px 2px #70a7dd;
+        font-size: 1.5rem;
+        color: #de3637;
+      }
 
-		button {
-			padding: 0.5rem 1rem;
-			border: none;
-			border-radius: 5px;
-			background-color: #DE3637;
-			color: #FEFDF7;
-			font-size: 1.2rem;
-			font-weight: bold;
-			cursor: pointer;
-			transition: all 0.3s ease;
-		}
+      button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        background-color: #de3637;
+        color: #fff;
+        font-size: 1.5rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
 
-		button:hover {
-			background-color: #FEFDF7;
-			color: #DE3637;
-			box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
-		}
-
-		@media only screen and (min-width: 768px) {
-			h1 {
-				font-size: 3rem;
-				margin-bottom: 2rem;
-			}
-
-			form {
-				max-width: 50%;
-			}
-		}
-	</style>
-</head>
-<body>
-	<div class="container">
-		<h1>黑特告白中山股份無限匿名版</h1>
-		<form>
-			<input type="text" placeholder="在這裡輸入...">
-			<button type="submit">送出</button>
-		</form>
-	</div>
-</body>
+      button:hover {
+        background-color: #70a7dd;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Gradient Background Animation</h1>
+      <input type="text" placeholder="Enter text...">
+      <button>Submit</button>
+    </div>
+  </body>
 </html>
