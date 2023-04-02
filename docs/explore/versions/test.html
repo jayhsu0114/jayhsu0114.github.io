@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
+	<meta charset="UTF-8">
 	<title>黑特告白中山股份無限匿名版</title>
-	<style type="text/css">
+	<style>
 		body {
 			background-color: #FEFDF7;
 			font-family: Arial, sans-serif;
-			font-size: 16px;
-			line-height: 1.5;
 			margin: 0;
 			padding: 0;
 		}
+
 		.container {
 			display: flex;
 			flex-direction: column;
@@ -19,53 +18,77 @@
 			justify-content: center;
 			height: 100vh;
 		}
-		.title {
-			font-size: 36px;
+
+		h1 {
+			font-size: 2rem;
 			font-weight: bold;
-			text-align: center;
 			color: #DE3637;
-			text-shadow: 1px 1px 0px #FFFFFF;
-			margin-bottom: 20px;
+			margin-bottom: 1.5rem;
+			text-align: center;
 		}
-		.input-group {
+
+		form {
 			display: flex;
+			flex-direction: column;
 			align-items: center;
 			justify-content: center;
-			background-color: #FFFFFF;
-			box-shadow: 1px 1px 10px #BBBBBB;
-			border-radius: 10px;
-			padding: 20px;
-		}
-		.input {
-			flex: 1;
-			padding: 10px;
-			border: none;
-			border-radius: 5px;
-			margin-right: 10px;
-			font-size: 18px;
-		}
-		.button {
+			padding: 1.5rem;
 			background-color: #70a7dd;
-			color: #FFFFFF;
-			font-size: 18px;
-			font-weight: bold;
+			border-radius: 10px;
+			box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+			max-width: 80%;
+			margin: 0 auto;
+		}
+
+		input[type="text"] {
+			padding: 0.5rem;
 			border: none;
 			border-radius: 5px;
-			padding: 10px 20px;
-			cursor: pointer;
+			margin-bottom: 1rem;
+			max-width: 100%;
+			box-sizing: border-box;
+			font-size: 1.2rem;
+			color: #333;
+			background-color: #fff;
 		}
-		.button:hover {
-			background-color: #5E94C5;
+
+		button {
+			padding: 0.5rem 1rem;
+			border: none;
+			border-radius: 5px;
+			background-color: #DE3637;
+			color: #FEFDF7;
+			font-size: 1.2rem;
+			font-weight: bold;
+			cursor: pointer;
+			transition: all 0.3s ease;
+		}
+
+		button:hover {
+			background-color: #FEFDF7;
+			color: #DE3637;
+			box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+		}
+
+		@media only screen and (min-width: 768px) {
+			h1 {
+				font-size: 3rem;
+				margin-bottom: 2rem;
+			}
+
+			form {
+				max-width: 50%;
+			}
 		}
 	</style>
 </head>
 <body>
 	<div class="container">
-		<div class="title">黑特告白中山股份無限匿名版</div>
-		<div class="input-group">
-			<input type="text" class="input" placeholder="輸入你的告白">
-			<button class="button">送出</button>
-		</div>
+		<h1>黑特告白中山股份無限匿名版</h1>
+		<form>
+			<input type="text" placeholder="在這裡輸入...">
+			<button type="submit">送出</button>
+		</form>
 	</div>
 </body>
 </html>
