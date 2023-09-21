@@ -1,19 +1,16 @@
-<div class="r0">
-    <input type="radio" name="q19489:29_answer" disabled="disabled" value="0" id="q19489:29_answer0" aria-labelledby="q19489:29_answer0_label">
-    <div class="d-flex w-100" id="q19489:29_answer0_label" data-region="answer-label">
-    <span class="answernumber">A. </span>
-    <div class="flex-fill ml-1">
-    <p dir="ltr" style="text-align: left;">惠崇</p>
-    </div>
-    </div>
-    </div>
-    <div class="r1 correct">
-    <input type="radio" name="q19489:29_answer" disabled="disabled" value="1" id="q19489:29_answer1" aria-labelledby="q19489:29_answer1_label" checked="checked">
-    <div class="d-flex w-100" id="q19489:29_answer1_label" data-region="answer-label">
-    <span class="answernumber">B. </span>
-    <div class="flex-fill ml-1">
-    <p dir="ltr" style="text-align: left;">曾幾</p>
-    </div>
-    </div>
-    <i class="icon fa fa-check text-success fa-fw " title="答對" aria-label="答對">
-    </div>
+<html>
+    <head>
+
+    </head>
+    <body>
+        <script>
+            const searchParams = new URLSearchParams(window.location.search);
+            console.log(searchParams.has('sort')); // true
+            console.log(searchParams.get('sort')); // price_descending
+            for (const param of searchParams)
+            {
+                console.log(param);
+            }
+        </script>
+    </body>
+</html>
