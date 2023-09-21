@@ -1,16 +1,21 @@
+<!DOCTYPE html>
 <html>
-    <head>
+<head>
+    <title>获取 URL 参数值</title>
+</head>
+<body>
+    <script>
+        // 获取 URL
+        var url = "https://jayhsu0114.github.io/zsjh/?fbclid=PAAaYMk6w-JbDpku5a2h5JVED8HTqAGsDoEKzUtoW7-ysZzalCMyfJ3enhI0o_aem_AY03DN-cPIeaS-tVD7EcOrkhSLJf1K4JoGOjb8KBKHzEcYSvuWiGg5BKRKPm7t7Yutk";
 
-    </head>
-    <body>
-        <script>
-            const searchParams = new URLSearchParams(window.location.search);
-            console.log(searchParams.has('sort')); // true
-            console.log(searchParams.get('sort')); // price_descending
-            for (const param of searchParams)
-            {
-                console.log(param);
-            }
-        </script>
-    </body>
+        // 解析 URL，获取参数部分
+        var urlParams = new URL(url);
+
+        // 获取特定参数的值
+        var paramValue = urlParams.searchParams.get('fbclid');
+
+        // 将参数值输出到页面
+        document.write("fbclid 参数的值是：" + paramValue);
+    </script>
+</body>
 </html>
