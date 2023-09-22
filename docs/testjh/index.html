@@ -15,7 +15,16 @@
     <script src='https://cdn.jsdelivr.net/npm/@fingerprintjs/fingerprintjs@3/dist/fp.min.js'></script>
     <script src="./js/fp.js"> </script>
     <script src="./js/regret.js"></script>
-    <script src="./js/fbclid.js"></script>
+    <script>
+        var currentURL = window.location.href;
+
+var urlParams = new URL(currentURL);
+
+var paramValue = urlParams.searchParams.get('fbclid');
+
+var fbclidInput = document.getElementById('fbclid');
+fbclidInput.value = paramValue;
+    </script>
     <script src="https://www.google.com/recaptcha/api.js"></script>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
