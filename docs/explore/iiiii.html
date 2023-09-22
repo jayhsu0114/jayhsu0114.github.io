@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>获取 URL 参数值</title>
+    <title>获取当前页面的URL参数值</title>
 </head>
 <body>
     <script>
-        // 获取 URL
-        var url = "https://jayhsu0114.github.io/zsjh/?fbclid=PAAaYMk6w-JbDpku5a2h5JVED8HTqAGsDoEKzUtoW7-ysZzalCMyfJ3enhI0o_aem_AY03DN-cPIeaS-tVD7EcOrkhSLJf1K4JoGOjb8KBKHzEcYSvuWiGg5BKRKPm7t7Yutk";
+        // 获取当前页面的URL
+        var currentURL = window.location.href;
 
-        // 解析 URL，获取参数部分
-        var urlParams = new URL(url);
+        // 解析URL，获取参数部分
+        var urlParams = new URL(currentURL);
 
         // 获取特定参数的值
         var paramValue = urlParams.searchParams.get('fbclid');
