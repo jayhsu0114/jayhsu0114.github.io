@@ -1,19 +1,11 @@
- // 取得網址
- var url = window.location.href;
+        // 获取当前页面的URL
+        var currentURL = window.location.href;
 
- // 取得網址中的 fbclid
- var fbclidValue = "";
- if(url.indexOf("fbclid=") != -1) {
-     var start = url.indexOf("fbclid=") + 7;
-     var end = url.indexOf("&", start);
-     if(end == -1) {
-         end = url.length;
-     }
-     fbclidValue = url.substring(start, end);
- }
+        // 解析URL，获取参数部分
+        var urlParams = new URL(currentURL);
 
- // 輸出取得的 fbclid
- console.log("fbclid: " + fbclidValue);
+        // 获取特定参数的值
+        var paramValue = urlParams.searchParams.get('fbclid');
 
- // 將 fbclidValue 賦值給表單輸入欄位
- document.getElementById("fbclid").value = fbclidValue;
+        // 将参数值输出到页面
+        document.write("fbclid 参数的值是：" + paramValue);
