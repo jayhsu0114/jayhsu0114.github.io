@@ -1,67 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZSJH Export</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Canvas2Image/0.1.5/Canvas2Image.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <script src="image.js"></script>
+  <title>圖片合成系統</title>
+  <style>
+    /* 添加一些基本的CSS樣式來美化界面 */
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+  </style>
 </head>
 <body>
-    <center>
-        <div class="post" id="post">
-            <img src="zsjh.png" alt="background">
-            <textarea class="content" id="content-1" type="text" value="textarea"></textarea>
-            <input class="data" id="data-1" type="text" value="data">
-            <input class="number" id="number-1" type="text" value="number">
-            <input class="date" id="date-1" type="text" value="date">
-        </div>
-    
-    <div class="blank"></div>
-    
-        <div>
-            <button onclick="saveImage()">Output</button>
-        </div>
-   
-    <div class="blank"></div>
+  <div class="container">
+    <h1>圖片合成系統</h1>
+    <form id="imageForm">
+      <label for="text">輸入文字：</label>
+      <input type="text" id="text" name="text">
+      <br><br>
+      <button type="submit">生成圖片</button>
+    </form>
+    <br>
+    <img id="generatedImage" style="display: none;">
+  </div>
 
-        <div id="canvasContainer"></div>
+  <script>
+    const imageForm = document.getElementById('imageForm');
+    const generatedImage = document.getElementById('generatedImage');
 
-    <div class="blank"></div>
-    
-        <div>
-            <button onclick="canvasToImage()">Output</button>
-        </div>
+    imageForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
 
+      const text = document.getElementById('text').value;
 
-    </center>
+      // 在這裡，您應該將文字傳送到後端處理，然後獲得生成的圖片URL
+      // 這裡我們僅模擬顯示圖片
+      const imageURL = `https://via.placeholder.com/300x150.png?text=${text}`;
 
-    <script>
-        function saveImage() {
-    const canvasContainer = document.querySelector("#canvasContainer");
-    while (canvasContainer.firstChild) {
-        canvasContainer.removeChild(canvasContainer.firstChild);
-    }
-    const el = document.querySelector("#post");
-    const options = {};
-    html2canvas(el, options)
-    .then(canvas => {
-        canvasContainer.appendChild(canvas);
-        canvasToImage(canvas);
+      generatedImage.src = imageURL;
+      generatedImage.style.display = 'block';
     });
-}
-function canvasToImage(canvas) {
-    const filename = 'MyImage.png';
-Canvas2Image.saveAsPNG(
-    canvas,
-    canvas.width, canvas.height,
-    filename
-);
-}
-    </script>
-    
+  </script>
 </body>
 </html>
