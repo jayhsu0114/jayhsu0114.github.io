@@ -1,39 +1,39 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>显示UUID示例</title>
-    <script type="text/javascript">
-      // 初始化 eruda
-      eruda.init();
-    
-      // 接下来可以放置其他 JavaScript 代码
-    </script>
+    <title>显示设备相关UUID示例</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/3.3.2/uuid-api.min.js"></script>
 </head>
 <body>
-    <h1>显示UUID示例</h1>
+    <h1>显示设备相关UUID示例</h1>
     
-    <!-- 添加一个段落元素用于显示UUID -->
+    <!-- 添加一个段落元素用于显示设备相关UUID -->
     <p id="uuidDisplay"></p>
 
     <script type="text/javascript">
-        // 检查是否已经存储UUID
-        let storedUUID = localStorage.getItem('myUUID');
+        // 获取设备信息，例如用户代理字符串
+        const userAgent = navigator.userAgent;
 
-        if (!storedUUID) {
-            // 如果localStorage中没有存储UUID，就生成一个新的UUID
-            storedUUID = generateUUID();
-            localStorage.setItem('myUUID', storedUUID);
+        // 使用设备信息生成UUID
+        const deviceUUID = generateDeviceUUID(userAgent);
+
+        // 显示设备相关UUID在网页上
+        document.getElementById('uuidDisplay').textContent = '设备相关UUID是：' + deviceUUID;
+
+        // 生成设备相关UUID的函数
+        function generateDeviceUUID(deviceInfo) {
+            // 使用uuid库生成UUID
+            const UUID = UUIDGenerator(deviceInfo);
+            return UUID;
         }
 
-        // 获取存储的UUID并显示在网页上
-        document.getElementById('uuidDisplay').textContent = '用户的UUID是：' + storedUUID;
+        // UUID生成函数
+        function UUIDGenerator(deviceInfo) {
+            // 使用uuid库生成UUID，将设备信息作为命名空间（namespace）
+            const namespace = '6ba7b810-9dad-11d1-80b4-00c04fd430c8';
+            const v5UUID = uuidv5(deviceInfo, namespace);
 
-        // 生成UUID的函数
-        function generateUUID() {
-            // 生成UUID的代码
-            // 这可以使用第三方库或编程语言提供的函数来实现
-            // 以下是一个示例，使用JavaScript的uuid库：
-            return 'YourGeneratedUUIDHere';
+            return v5UUID;
         }
     </script>
 </body>
