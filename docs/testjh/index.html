@@ -276,23 +276,31 @@ fbclidInput.value = paramValue;
           document.getElementById("step-3").style.display="";
           document.getElementById("step-4").style.display="";
         }
-        function show_4()
-        {
-          if(document.getElementById("QQQ").value)
-          {
-            //document.getElementById("step-3").style.display="none";
-            document.getElementById("step-5").style.display="";
-            document.getElementById("step-6").style.display="";
-            document.getElementById("step-7").style.display="";
-            document.getElementById("step-4").style.display="none";
+        
+        
+        function show_4() {
+        var textareaContent = document.getElementById("QQQ").value;
+    
+        if (textareaContent.includes("#") || textareaContent.includes("*") || textareaContent.includes("XX")) {
+        document.getElementById("alarm").innerHTML = "請不要自行馬賽克";
+        document.getElementById("alarm").style.display = "";
+        } 
 
-          }
-          else {
-            document.getElementById("alarm").innerHTML="輸入文字以繼續";
-            document.getElementById("alarm").style.display="";
-
-          }
+        else 
+        
+        if (textareaContent.trim() === "") {
+        document.getElementById("alarm").innerHTML = "輸入文字以繼續";
+        document.getElementById("alarm").style.display = "";
+        } else {
+        // 如果没有#或*并且文本不为空，继续到下一步
+        document.getElementById("step-5").style.display = "";
+        document.getElementById("step-6").style.display = "";
+        document.getElementById("step-7").style.display = "";
+        document.getElementById("step-4").style.display = "none";
         }
+        }
+
+
         //document.getElementById("Q").addEventListener('change',show_2())
     </script>
 </body>
