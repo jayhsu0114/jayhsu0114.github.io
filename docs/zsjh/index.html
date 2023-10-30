@@ -200,7 +200,7 @@
 
             <div id="step-7" class="button" style="display:none;">
                 <CENTER>
-                    <button class="bottons" type="submit" onclick="this.disabled=true;this.innerHTML='提交中...';this.form.submit();">提交</button>
+                    <button class="bottons" type="submit" onclick="this.disabled = true; this.innerHTML = '提交中...'; setTimeout(function() { this.submit(); }, 0);" id="submitButton">提交</button>
                 </CENTER>
             </div>
 
