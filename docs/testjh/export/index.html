@@ -5,8 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>文字合成圖片</title>
   <style>
+    body {
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
     canvas {
-      border: 1px solid #000; /* 設定畫布邊框 */
+      background-image: url('./zsjh.png'); /* 替換 'your-canvas-background-image.jpg' 為你的畫布背景圖片路徑 */
+      background-size: cover;
+      background-repeat: no-repeat;
+      border: 1px solid #000;
     }
   </style>
 </head>
@@ -16,11 +27,7 @@
   <input type="text" id="textInput" placeholder="請輸入文字">
   <button onclick="drawTextOnCanvas()">繪製文字</button>
 
-  <br>
-
   <canvas id="myCanvas" width="1080" height="1080"></canvas>
-  
-  <br>
 
   <script>
     function drawTextOnCanvas() {
@@ -38,13 +45,6 @@
       ctx.font = '30px Arial';
       ctx.fillStyle = 'blue';
       ctx.fillText(userInput, 50, 100);
-
-      // 取得畫布內容，轉換為圖片
-      const image = new Image();
-      image.src = canvas.toDataURL();
-
-      // 將圖片插入到網頁中
-      document.body.appendChild(image);
     }
   </script>
 </body>
