@@ -45,6 +45,13 @@
       ctx.font = '30px Arial';
       ctx.fillStyle = 'blue';
       ctx.fillText(userInput, 50, 100);
+      
+      //取得畫布內容，轉換為圖片
+      const image = new Image();
+      image.src = canvas.toDataURL();
+
+      //將圖片插入網頁
+      document.body.appendChild(image);
     }
   </script>
 </body>
