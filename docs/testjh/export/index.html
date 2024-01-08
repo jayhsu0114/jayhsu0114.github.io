@@ -30,49 +30,59 @@
   <canvas id="myCanvas" width="1080" height="1080"></canvas>
     <br>
   
-  <script>
-    function drawTextOnCanvas() {
-    const userInput = document.getElementById('textInput').value;
-    const canvas = document.getElementById('myCanvas');
-    const ctx = canvas.getContext('2d');
-
-    // 載入背景圖片
-    const background = new Image();
-    background.src = './zsjh.png';
-
-    // 當背景圖片載入完成後執行
-    background.onload = function() {
-    
-    // 清空畫布
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    // 繪製背景圖片
-    ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
-
-    // 在畫布上繪製文字
-    ctx.font = '25px Arial';
-    ctx.fillStyle = 'black';
-    
-    // 計算文字寬度以便水平居中
-    const textWidth = ctx.measureText(userInput).width;
-    const xPosition = (canvas.width - textWidth) / 2;
-
-    // 垂直居中
-    const yPosition = canvas.height / 2;
-
-    ctx.fillText(userInput, xPosition, yPosition);
-
-    // 轉換為圖片
-    const image = new Image();
-    image.src = canvas.toDataURL();
-
-    // 插入到 body 中
-    document.body.appendChild(image);
-  };
-}
-  </script>
-
-
-
+    <script>
+        function drawTextOnCanvas() {
+          const userInput = document.getElementById('textInput').value;
+          const canvas = document.getElementById('myCanvas');
+          const ctx = canvas.getContext('2d');
+      
+          // 載入背景圖片
+          const background = new Image();
+          background.src = './zsjh.png';
+      
+          // 當背景圖片載入完成後執行
+          background.onload = function() {
+            // 清空畫布
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+            // 繪製背景圖片
+            ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+      
+            // 在畫布上繪製文字（允許換行）
+            ctx.font = '25px Arial';
+            ctx.fillStyle = 'black';
+      
+            // 設定最大寬度，這裡假設為畫布的寬度
+            const maxWidth = canvas.width - 100;  // 100 是預留給左右的邊距
+            const lineHeight = 35;  // 行高，可以根據需要調整
+            let yPosition = canvas.height / 2; // 垂直居中
+      
+            // 將文字分割成多行
+            const words = userInput.split(' ');
+            let line = '';
+            for (const word of words) {
+              const testLine = line + word + ' ';
+              const testWidth = ctx.measureText(testLine).width;
+              if (testWidth > maxWidth && line !== '') {
+                ctx.fillText(line, (canvas.width - ctx.measureText(line).width) / 2, yPosition);
+                line = word + ' ';
+                yPosition += lineHeight;
+              } else {
+                line = testLine;
+              }
+            }
+      
+            // 繪製最後一行文字
+            ctx.fillText(line, (canvas.width - ctx.measureText(line).width) / 2, yPosition);
+      
+            // 轉換為圖片
+            const image = new Image();
+            image.src = canvas.toDataURL();
+      
+            // 插入到 body 中
+            document.body.appendChild(image);
+          };
+        }
+      </script>
 </body>
 </html>
