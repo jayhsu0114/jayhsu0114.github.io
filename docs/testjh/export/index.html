@@ -29,30 +29,41 @@
     <br>
   <canvas id="myCanvas" width="1080" height="1080"></canvas>
     <br>
+  
   <script>
     function drawTextOnCanvas() {
-      // 獲取輸入框的值
-      const userInput = document.getElementById('textInput').value;
+    const userInput = document.getElementById('textInput').value;
+    const canvas = document.getElementById('myCanvas');
+    const ctx = canvas.getContext('2d');
 
-      // 獲取畫布元素
-      const canvas = document.getElementById('myCanvas');
-      const ctx = canvas.getContext('2d');
+    // 載入背景圖片
+    const background = new Image();
+    background.src = './zsjh.png';
 
-      // 清空畫布
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    // 當背景圖片載入完成後執行
+    background.onload = function() {
+    // 清空畫布
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // 在畫布上繪製文字
-      ctx.font = '30px Arial';
-      ctx.fillStyle = 'blue';
-      ctx.fillText(userInput, 50, 100);
-      
-      //取得畫布內容，轉換為圖片
-      const image = new Image();
-      image.src = canvas.toDataURL();
+    // 繪製背景圖片
+    ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
-      //將圖片插入網頁
-      document.body.appendChild(image);
-    }
+    // 在畫布上繪製文字
+    ctx.font = '30px Arial';
+    ctx.fillStyle = 'blue';
+    ctx.fillText(userInput, 50, 100);
+
+    // 轉換為圖片
+    const image = new Image();
+    image.src = canvas.toDataURL();
+
+    // 插入到 body 中
+    document.body.appendChild(image);
+  };
+}
   </script>
+
+
+
 </body>
 </html>
