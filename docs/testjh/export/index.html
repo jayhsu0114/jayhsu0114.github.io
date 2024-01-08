@@ -64,7 +64,7 @@
               const testLine = line + word + ' ';
               const testWidth = ctx.measureText(testLine).width;
               if (testWidth > maxWidth && line !== '') {
-                ctx.fillText(line, (canvas.width - ctx.measureText(line).width) / 2 + 150, yPosition); // 考慮左邊留白 150px
+                ctx.fillText(line, (canvas.width - testWidth) / 2, yPosition);
                 line = word + ' ';
                 yPosition += lineHeight;
               } else {
@@ -73,7 +73,7 @@
             }
       
             // 繪製最後一行文字
-            ctx.fillText(line, (canvas.width - ctx.measureText(line).width) / 2 + 150, yPosition); // 考慮左邊留白 150px
+            ctx.fillText(line, (canvas.width - testWidth) / 2, yPosition);
       
             // 轉換為圖片
             const image = new Image();
