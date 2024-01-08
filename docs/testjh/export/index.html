@@ -11,24 +11,37 @@
   </style>
 </head>
 <body>
+  <!-- 加入輸入框 -->
+  <label for="textInput">輸入文字：</label>
+  <input type="text" id="textInput" placeholder="請輸入文字">
+  <button onclick="drawTextOnCanvas()">繪製文字</button>
+
   <canvas id="myCanvas" width="400" height="200"></canvas>
 
   <script>
-    // 獲取畫布元素
-    const canvas = document.getElementById('myCanvas');
-    const ctx = canvas.getContext('2d');
+    function drawTextOnCanvas() {
+      // 獲取輸入框的值
+      const userInput = document.getElementById('textInput').value;
 
-    // 在畫布上繪製文字
-    ctx.font = '30px Arial';
-    ctx.fillStyle = 'blue';
-    ctx.fillText('Hello, World!', 50, 100);
+      // 獲取畫布元素
+      const canvas = document.getElementById('myCanvas');
+      const ctx = canvas.getContext('2d');
 
-    // 取得畫布內容，轉換為圖片
-    const image = new Image();
-    image.src = canvas.toDataURL(); // 將畫布轉換為圖片數據URL
+      // 清空畫布
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // 將圖片插入到網頁中
-    document.body.appendChild(image);
+      // 在畫布上繪製文字
+      ctx.font = '30px Arial';
+      ctx.fillStyle = 'blue';
+      ctx.fillText(userInput, 50, 100);
+
+      // 取得畫布內容，轉換為圖片
+      const image = new Image();
+      image.src = canvas.toDataURL();
+
+      // 將圖片插入到網頁中
+      document.body.appendChild(image);
+    }
   </script>
 </body>
 </html>
