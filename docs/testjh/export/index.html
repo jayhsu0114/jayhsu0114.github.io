@@ -53,9 +53,9 @@
             ctx.fillStyle = 'black';
       
             // 設定最大寬度，這裡假設為畫布的寬度
-            const maxWidth = canvas.width - 350;  // 100 是預留給左右的邊距
+            const maxWidth = canvas.width - 400;  // 400 是預留給左右的邊距
             const lineHeight = 30;  // 行高，可以根據需要調整
-            let yPosition = canvas.height / 2; // 垂直居中
+            let yPosition = (canvas.height - calculateTextHeight(userInput, maxWidth, lineHeight)) / 2; // 垂直居中
       
             // 將文字分割成多行
             const words = userInput.split(' ');
@@ -64,7 +64,7 @@
               const testLine = line + word + ' ';
               const testWidth = ctx.measureText(testLine).width;
               if (testWidth > maxWidth && line !== '') {
-                ctx.fillText(line, (canvas.width - ctx.measureText(line).width) / 2, yPosition);
+                ctx.fillText(line, (canvas.width - ctx.measureText(line).width) / 2 + 150, yPosition); // 考慮左邊留白 150px
                 line = word + ' ';
                 yPosition += lineHeight;
               } else {
@@ -73,7 +73,7 @@
             }
       
             // 繪製最後一行文字
-            ctx.fillText(line, (canvas.width - ctx.measureText(line).width) / 2, yPosition);
+            ctx.fillText(line, (canvas.width - ctx.measureText(line).width) / 2 + 150, yPosition); // 考慮左邊留白 150px
       
             // 轉換為圖片
             const image = new Image();
@@ -83,6 +83,26 @@
             document.body.appendChild(image);
           };
         }
+      
+        function calculateTextHeight(text, maxWidth, lineHeight) {
+          const ctx = document.createElement('canvas').getContext('2d');
+          ctx.font = '25px Arial';
+          const words = text.split(' ');
+          let line = '';
+          let height = lineHeight; // 起始高度為行高
+          for (const word of words) {
+            const testLine = line + word + ' ';
+            const testWidth = ctx.measureText(testLine).width;
+            if (testWidth > maxWidth && line !== '') {
+              line = word + ' ';
+              height += lineHeight;
+            } else {
+              line = testLine;
+            }
+          }
+          return height;
+        }
       </script>
+
 </body>
 </html>
