@@ -27,7 +27,7 @@ function drawTextOnCanvas() {
 const totalChars = userInput.length;
 
 // 每28個字換一行
-const maxCharsPerLine = 28;
+const maxCharsPerLine = 27;
 let lines = [];
 for (let i = 0; i < totalChars; i += maxCharsPerLine) {
     const line = userInput.substring(i, i + maxCharsPerLine);
