@@ -20,7 +20,7 @@ function drawTextOnCanvas() {
         ctx.fillStyle = 'black';
 
         // 設定最大寬度，這裡假設為畫布的寬度
-        const maxWidth = canvas.width - 400;  // 400 是預留給左右的邊距
+        const maxWidth = canvas.width - 420;  // 420 是預留給左右的邊距
         const lineHeight = 25;  // 行高，可以根據需要調整
 
 // 計算文字總字數
