@@ -24,7 +24,7 @@ function drawTextOnCanvas() {
         const lineHeight = 25;  // 行高，可以根據需要調整
 
 // 將文字分割成多行
-const words = userInput.split(' '); 
+const words = userInput.split(/\s+/); // 使用正規表達式來分割字串，包含空格和換行
 let lines = [];
 let currentLine = '';
 
@@ -32,7 +32,7 @@ for (const word of words) {
     const testLine = currentLine + word + ' ';
     const testWidth = ctx.measureText(testLine).width;
 
-    if (testWidth <= maxWidth && currentLine.trim().split(' ').length <= 30) {
+    if (testWidth <= maxWidth && currentLine.trim().split(' ').length <= 30 && !testLine.includes('\n')) {
         currentLine = testLine;
     } else {
         lines.push(currentLine.trim());
