@@ -54,7 +54,7 @@
 
             // 設定最大寬度，這裡假設為畫布的寬度
             const maxWidth = canvas.width - 400;  // 400 是預留給左右的邊距
-            const lineHeight = 35;  // 行高，可以根據需要調整
+            const lineHeight = 25;  // 行高，可以根據需要調整
             let yPosition = canvas.height / 2; // 垂直居中
 
             // 將文字分割成多行
@@ -62,16 +62,16 @@
             let line = '';
             for (const word of words) {
             const testLine = line + word + ' ';
-            const testWidth = ctx.measureText(testLine).width;
+            const testWidth = ctx.measureText(testLine).width;    
             if (testWidth > maxWidth && line !== '') {
-                ctx.fillText(line, (canvas.width - ctx.measureText(line).width) / 2, yPosition);
-                line = word + ' ';
-                yPosition += lineHeight;
+            ctx.fillText(line, (canvas.width - ctx.measureText(line).width) / 2, yPosition);
+            line = word + ' ';
+            yPosition += lineHeight;
             } else {
-                line = testLine;
+            line = testLine;
             }
             }
-            
+
             // 繪製最後一行文字
             ctx.fillText(line, (canvas.width - ctx.measureText(line).width) / 2, yPosition);
       
