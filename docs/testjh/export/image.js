@@ -27,12 +27,14 @@ function drawTextOnCanvas() {
 const maxCharsPerLine = 30;
 let lines = [];
 let currentLine = '';
-const symbolsToBreakOn = ['。', '，', '；', '？', '！', '、', ' ', '\n'];
 
 for (const char of userInput) {
     currentLine += char;
 
-    if (currentLine.length >= maxCharsPerLine && symbolsToBreakOn.includes(char)) {
+    // 使用正規表達式判斷是否為漢字
+    const isChineseChar = char.match(/[\u4e00-\u9fa5]/);
+
+    if (currentLine.length >= maxCharsPerLine && (!isChineseChar || char === '\n')) {
         lines.push(currentLine.trim());
         currentLine = '';
     }
