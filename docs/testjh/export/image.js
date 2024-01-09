@@ -23,25 +23,19 @@ function drawTextOnCanvas() {
         const maxWidth = canvas.width - 400;  // 400 是預留給左右的邊距
         const lineHeight = 25;  // 行高，可以根據需要調整
 
-// 將文字分割成多行
+// 消除所有換行符號
+const userInputWithoutNewlines = userInput.replace(/\n/g, '');
+
+// 計算文字總字數
+const totalChars = userInputWithoutNewlines.length;
+
+// 將文字分割成多行，每30個字元插入一個換行符號
 const maxCharsPerLine = 30;
 let lines = [];
-let currentLine = '';
-
-for (const char of userInput) {
-    currentLine += char;
-
-    // 使用正規表達式判斷是否為漢字
-    const isChineseChar = char.match(/[\u4e00-\u9fa5]/);
-
-    if (currentLine.length >= maxCharsPerLine && (!isChineseChar || char === '\n')) {
-        lines.push(currentLine.trim());
-        currentLine = '';
-    }
+for (let i = 0; i < totalChars; i += maxCharsPerLine) {
+    const line = userInputWithoutNewlines.substring(i, i + maxCharsPerLine);
+    lines.push(line);
 }
-
-// 將最後一行文字添加到 lines
-lines.push(currentLine.trim());
 
 // 計算文字整體高度
 const totalTextHeight = lines.length * lineHeight;
