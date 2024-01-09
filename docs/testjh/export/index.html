@@ -23,12 +23,72 @@
 </head>
 <body>
   <!-- 加入輸入框 -->
-  <label for="textInput">輸入文字：</label>
+  <label for="textInput">輸入文字1：</label>
   <input type="text" id="textInput" placeholder="請輸入文字">
+  <br>
+  <!-- 新增第二個輸入框 -->
+  <label for="textInput2">輸入文字2：</label>
+  <input type="text" id="textInput2" placeholder="請輸入文字">
   <button onclick="drawTextOnCanvas()">繪製文字</button>
-    <br>
+  <br>
   <canvas id="myCanvas" width="1080" height="1080"></canvas>
-    <br>
-  <script type="text/javascript" src="./image.js"></script>
+  <br>
+
+  <script type="text/javascript">
+    function drawTextOnCanvas() {
+      const userInput = document.getElementById('textInput').value;
+      const userInput2 = document.getElementById('textInput2').value;
+      const canvas = document.getElementById('myCanvas');
+      const ctx = canvas.getContext('2d');
+
+      // 載入背景圖片
+      const background = new Image();
+      background.src = './zsjh.png';
+
+      // 當背景圖片載入完成後執行
+      background.onload = function() {
+          // 清空畫布
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+          // 繪製背景圖片
+          ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+
+          // 在畫布上繪製文字（允許換行）
+          ctx.font = '25px Arial';
+          ctx.fillStyle = 'black';
+
+          // 設定最大寬度，這裡假設為畫布的寬度
+          const maxWidth = canvas.width - 450;  // 450 是預留給左右的邊距
+          const lineHeight = 25;  // 行高，可以根據需要調整
+
+          // 計算文字總字數
+          const totalChars = userInput.length;
+
+          // 每28個字換一行
+          const maxCharsPerLine = 27;
+          let lines = [];
+          for (let i = 0; i < totalChars; i += maxCharsPerLine) {
+              const line = userInput.substring(i, i + maxCharsPerLine);
+              lines.push(line);
+          }
+
+          // 計算文字整體高度
+          const totalTextHeight = lines.length * lineHeight;
+          let yPosition = (canvas.height - totalTextHeight) / 2;
+
+          // 繪製每一行文字
+          for (const line of lines) {
+              ctx.fillText(line, (canvas.width - ctx.measureText(line).width) / 2, yPosition);
+              yPosition += lineHeight;
+          }
+
+          // 計算第二行文字整體寬度
+          const totalWidth2 = ctx.measureText(userInput2).width;
+
+          // 繪製第二行文字
+          ctx.fillText(userInput2, (canvas.width - totalWidth2) / 2, canvas.height - 200);
+      };
+  }
+  </script>
 </body>
 </html>
