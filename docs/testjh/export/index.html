@@ -87,6 +87,14 @@
 
           // 繪製第二行文字
           ctx.fillText(userInput2, (canvas.width - totalWidth2) / 2, canvas.height - 180);
+
+           // 轉換為圖片
+        const image = new Image();
+        image.src = canvas.toDataURL();
+
+        // 插入到 body 中
+        document.body.appendChild(image);
+        
       };
   }
   </script>
