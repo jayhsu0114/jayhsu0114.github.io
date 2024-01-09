@@ -26,8 +26,8 @@ function drawTextOnCanvas() {
 // 計算文字總字數
 const totalChars = userInput.length;
 
-// 每30個字換一行
-const maxCharsPerLine = 30;
+// 每28個字換一行
+const maxCharsPerLine = 28;
 let lines = [];
 for (let i = 0; i < totalChars; i += maxCharsPerLine) {
     const line = userInput.substring(i, i + maxCharsPerLine);
