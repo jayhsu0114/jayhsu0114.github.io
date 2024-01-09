@@ -57,22 +57,24 @@
             const lineHeight = 25;  // 行高，可以根據需要調整
             let yPosition = canvas.height / 2; // 垂直居中
 
+            // 每行最大字數
+            const maxCharsPerLine = 30; // 請根據需要調整
+
             // 將文字分割成多行
-            const words = userInput.split(' ');
+            const words = userInput.split(' '); 
             let line = '';
+
             for (const word of words) {
-            const testLine = line + word + ' ';
-            const testWidth = ctx.measureText(testLine).width;    
-            if (testWidth > maxWidth && line !== '') {
-            ctx.fillText(line, (canvas.width - ctx.measureText(line).width) / 2, yPosition);
-            line = word + ' ';
-            yPosition += lineHeight;
+            if (line.length + word.length <= maxCharsPerLine) {
+                line += word + ' ';
             } else {
-            line = testLine;
+                ctx.fillText(line, (canvas.width - ctx.measureText(line).width) / 2, yPosition);
+                line = word + ' ';
+                yPosition += lineHeight;
             }
             }
 
-            // 繪製最後一行文字
+            // 確保最後一行文字也被繪製
             ctx.fillText(line, (canvas.width - ctx.measureText(line).width) / 2, yPosition);
       
             // 轉換為圖片
