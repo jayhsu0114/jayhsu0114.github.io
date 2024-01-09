@@ -23,36 +23,35 @@ function drawTextOnCanvas() {
         const maxWidth = canvas.width - 400;  // 400 是預留給左右的邊距
         const lineHeight = 25;  // 行高，可以根據需要調整
 
-        // 將文字分割成多行
-        const words = userInput.split(' '); 
-        let lines = [];
-        let currentLine = '';
+// 將文字分割成多行
+const words = userInput.split(' '); 
+let lines = [];
+let currentLine = '';
 
-        for (const word of words) {
-            const testLine = currentLine + word + ' ';
-            const testWidth = ctx.measureText(testLine).width;
+for (const word of words) {
+    const testLine = currentLine + word + ' ';
+    const testWidth = ctx.measureText(testLine).width;
 
-            if (testWidth <= maxWidth) {
-                currentLine = testLine;
-            } else {
-                lines.push(currentLine.trim());
-                currentLine = word + ' ';
-            }
-        }
-
-        // 將最後一行文字添加到 lines
+    if (testWidth <= maxWidth && currentLine.trim().split(' ').length <= 30) {
+        currentLine = testLine;
+    } else {
         lines.push(currentLine.trim());
+        currentLine = word + ' ';
+    }
+}
 
-        // 計算文字整體高度
-        const totalTextHeight = lines.length * lineHeight;
-        let yPosition = (canvas.height - totalTextHeight) / 2;
+// 將最後一行文字添加到 lines
+lines.push(currentLine.trim());
 
-        // 繪製每一行文字
-        for (const line of lines) {
-            ctx.fillText(line, (canvas.width - ctx.measureText(line).width) / 2, yPosition);
-            yPosition += lineHeight;
-        }
+// 計算文字整體高度
+const totalTextHeight = lines.length * lineHeight;
+let yPosition = (canvas.height - totalTextHeight) / 2;
 
+// 繪製每一行文字
+for (const line of lines) {
+    ctx.fillText(line, (canvas.width - ctx.measureText(line).width) / 2, yPosition);
+    yPosition += lineHeight;
+}
         // 轉換為圖片
         const image = new Image();
         image.src = canvas.toDataURL();
