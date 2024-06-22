@@ -59,13 +59,29 @@
         </form>
     </div>
 
-    <!-- JavaScript 可以用來處理表單提交，將資料發送到後端處理 -->
     <script>
         document.getElementById('anonymousForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // 防止表單默認提交行為
+            event.preventDefault();
 
-            // 可以在這裡添加 JavaScript 代碼，以將資料發送到後端處理
-            // 例如使用 XMLHttpRequest 或 Fetch API
+            const anonymousContent = document.getElementById('anonymousContent').value;
+            const userIP = '127.0.0.1'; 
+
+            fetch('/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ content: anonymousContent, ip: userIP }),
+            })
+            .then(response => response.text())
+            .then(data => {
+                alert('提交成功');
+                document.getElementById('anonymousForm').reset();
+            })
+            .catch(error => {
+                console.error('提交失敗:', error);
+                alert('提交失敗');
+            });
         });
     </script>
 </body>
