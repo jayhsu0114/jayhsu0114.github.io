@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中山匿名網頁</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+        }
+        textarea {
+            width: 100%;
+            height: 120px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: vertical;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>中山匿名網頁 - 匿名提交</h2>
+        <form id="anonymousForm">
+            <div class="form-group">
+                <label for="anonymousContent">請輸入匿名內容：</label>
+                <textarea id="anonymousContent" name="anonymousContent" placeholder="在這裡輸入你的匿名內容..." required></textarea>
+            </div>
+            <button type="submit">提交</button>
+        </form>
+    </div>
+
+    <!-- JavaScript 可以用來處理表單提交，將資料發送到後端處理 -->
+    <script>
+        document.getElementById('anonymousForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // 防止表單默認提交行為
+
+            // 可以在這裡添加 JavaScript 代碼，以將資料發送到後端處理
+            // 例如使用 XMLHttpRequest 或 Fetch API
+        });
+    </script>
+</body>
+</html>
