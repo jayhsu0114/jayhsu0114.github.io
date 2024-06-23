@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Google Sheets Data</title>
+</head>
+<body>
+  <h1>Google Sheets Data</h1>
+  <div id="data"></div>
+
+  <script>
+    // 使用你的 Cloud Run 服务 URL
+    const API_URL = 'https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/sheet-data';
+
+    fetch(API_URL)
+      .then(response => response.json())
+      .then(data => {
+        let html = '<table border="1">';
+        data.forEach(row => {
+          html += '<tr>';
+          row.forEach(cell => {
+            html += `<td>${cell}</td>`;
+          });
+          html += '</tr>';
+        });
+        html += '</table>';
+        document.getElementById('data').innerHTML = html;
+      })
+      .catch(error => console.error('Error:', error));
+  </script>
+</body>
+</html>
