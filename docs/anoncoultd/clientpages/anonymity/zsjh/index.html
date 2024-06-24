@@ -10,10 +10,12 @@
         <input type="text" id="anonymousContent" name="anonymousContent" required>
         <input type="hidden" id="userIP" name="userIP">
         <input type="hidden" id="formId" name="formId" value="zsjh">
-        <button type="submit">提交</button>
+        <button type="submit" id="submitButton">提交</button>
     </form>
 
     <script>
+        let isSubmitted = false;  // Flag to check if the form is already submitted
+
         async function getUserIP() {
             const response = await fetch('https://api.ipify.org?format=json');
             const data = await response.json();
@@ -22,6 +24,15 @@
 
         document.getElementById('zsjhForm').addEventListener('submit', async function(event) {
             event.preventDefault();
+            
+            if (isSubmitted) {
+                alert('表单已经提交，请稍候再试。');
+                return;
+            }
+            
+            isSubmitted = true;  // Set the flag to true to prevent further submissions
+            document.getElementById('submitButton').disabled = true;  // Disable the submit button
+
             const ip = await getUserIP();
             document.getElementById('userIP').value = ip;
 
@@ -31,8 +42,20 @@
                 body: formData
             })
             .then(response => response.json())
-            .then(data => alert('提交成功！'))
-            .catch(error => console.error('提交失敗:', error));
+            .then(data => {
+                alert('提交成功！');
+                // Optionally, reset the form and re-enable the submit button after a successful submission
+                // this.reset();
+                // document.getElementById('submitButton').disabled = false;
+                // isSubmitted = false;
+            })
+            .catch(error => {
+                console.error('提交失败:', error);
+                alert('提交失败，请稍候再试。');
+                // Re-enable the submit button and reset the flag in case of an error
+                document.getElementById('submitButton').disabled = false;
+                isSubmitted = false;
+            });
         });
     </script>
 </body>
