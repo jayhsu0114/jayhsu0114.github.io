@@ -1,37 +1,58 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>zsjh 表单</title>
+    <title>中山資料庫</title>
 </head>
 <body>
-    <h1>zsjh 表单</h1>
+    <h1>中山資料庫</h1>
     <form id="zsjhForm">
-        <label for="anonymousContent">匿名内容：</label>
-        <input type="text" id="anonymousContent" name="anonymousContent" required><br><br>
+        <label for="anonymousContent">匿名內容:</label>
+        <input type="text" id="anonymousContent" name="anonymousContent" required>
+        <input type="hidden" id="userIP" name="userIP">
         <input type="hidden" id="formId" name="formId" value="zsjh">
-        <button type="submit">提交</button>
+        <button type="submit" id="submitButton">提交</button>
     </form>
 
     <script>
-        document.getElementById('zsjhForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            var formData = new FormData(this);
+        let isSubmitted = false;  // Flag to check if the form is already submitted
 
+        async function getUserIP() {
+            const response = await fetch('https://api.ipify.org?format=json');
+            const data = await response.json();
+            return data.ip;
+        }
+
+        document.getElementById('zsjhForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            
+            if (isSubmitted) {
+                alert('表单已经提交，请稍候再试。');
+                return;
+            }
+            
+            isSubmitted = true;  // Set the flag to true to prevent further submissions
+            document.getElementById('submitButton').disabled = true;  // Disable the submit button
+
+            const ip = await getUserIP();
+            document.getElementById('userIP').value = ip;
+
+            const formData = new FormData(this);
             fetch('https://script.google.com/macros/s/AKfycbwC_5HrfS_D8d5QiWnAzga5NYJpYZHjP9jOeE-QJz0_VgayXva7Ss4Nl62atsWaQvmR/exec', {
                 method: 'POST',
                 body: formData
             })
             .then(response => response.json())
             .then(data => {
-                console.log('Response:', data);
-                alert('提交成功');
-                document.getElementById('zsjhForm').reset(); // 重置表单
+                alert('提交成功！');
+                this.reset();  // Reset the form
+                document.getElementById('submitButton').disabled = false;  // Re-enable the submit button
+                isSubmitted = false;  // Reset the flag
             })
             .catch(error => {
-                console.error('Error:', error);
-                alert('提交失败，请稍后再试');
+                console.error('提交失败:', error);
+                alert('提交失败，请稍候再试。');
+                document.getElementById('submitButton').disabled = false;  // Re-enable the submit button
+                isSubmitted = false;  // Reset the flag
             });
         });
     </script>
