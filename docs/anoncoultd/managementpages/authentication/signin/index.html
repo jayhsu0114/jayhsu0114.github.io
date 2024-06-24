@@ -4,53 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login Page</title>
-  <style>
-    /* CSS 样式可以根据需要进行自定义 */
-  </style>
 </head>
 <body>
-  <h1>Login Page</h1>
-  <form id="loginForm">
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="username" required>
-    <br>
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" required>
-    <br>
+  <h2>Login</h2>
+  <form action="/login" method="POST">
+    <label for="username">Username:</label><br>
+    <input type="text" id="username" name="username" required><br><br>
+    <label for="password">Password:</label><br>
+    <input type="password" id="password" name="password" required><br><br>
     <button type="submit">Login</button>
   </form>
-
-  <div id="message"></div>
-
-  <script>
-    document.getElementById('loginForm').addEventListener('submit', async function(event) {
-      event.preventDefault();
-      
-      const username = document.getElementById('username').value;
-      const password = document.getElementById('password').value;
-
-      try {
-        const response = await fetch('/login', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ username, password })
-        });
-
-        const data = await response.json();
-
-        if (response.ok) {
-          document.getElementById('message').textContent = data.message;
-          // 处理登录成功后的逻辑，如跳转到用户的个人页面
-        } else {
-          document.getElementById('message').textContent = data.message;
-        }
-      } catch (error) {
-        console.error('Error:', error);
-        document.getElementById('message').textContent = 'Error logging in';
-      }
-    });
-  </script>
 </body>
 </html>
