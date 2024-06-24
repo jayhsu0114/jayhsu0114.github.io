@@ -44,17 +44,15 @@
             .then(response => response.json())
             .then(data => {
                 alert('提交成功！');
-                // Optionally, reset the form and re-enable the submit button after a successful submission
-                // this.reset();
-                // document.getElementById('submitButton').disabled = false;
-                // isSubmitted = false;
+                this.reset();  // Reset the form
+                document.getElementById('submitButton').disabled = false;  // Re-enable the submit button
+                isSubmitted = false;  // Reset the flag
             })
             .catch(error => {
                 console.error('提交失败:', error);
                 alert('提交失败，请稍候再试。');
-                // Re-enable the submit button and reset the flag in case of an error
-                document.getElementById('submitButton').disabled = false;
-                isSubmitted = false;
+                document.getElementById('submitButton').disabled = false;  // Re-enable the submit button
+                isSubmitted = false;  // Reset the flag
             });
         });
     </script>
