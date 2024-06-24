@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ctjh Data Page</title>
+  <title>Ctjh Data Page</title>
 </head>
 <body>
   <div id="ctjh-data">
@@ -23,7 +23,7 @@
         const data = response.data;
         const ctjhDataElement = document.getElementById('ctjh-data');
 
-        if (data && data.length > 0) {
+        if (data && data.length > 0 && data[0].length > 0) {
           // 如果有数据，生成 HTML 表格并更新页面内容
           const tableHtml = generateTableHtml(data);
           ctjhDataElement.innerHTML = tableHtml;
