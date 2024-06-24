@@ -7,33 +7,34 @@
 
 /* Body styles */
 body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
     background-color: #f0f0f0;
-    padding: 20px;
+    font-family: Arial, sans-serif;
 }
 
 /* Page container */
 .container {
-    max-width: 600px;
-    margin: 0 auto;
-    background-color: #fff;
+    max-width: 400px;
     padding: 20px;
+    background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center; /* 水平居中内容 */
 }
 
-/* Header styles */
 h1 {
-    text-align: center;
-    margin-bottom: 20px;
     color: #333;
+    margin-bottom: 20px;
 }
 
-/* Form styles */
 form {
-    max-width: 400px;
-    margin: 0 auto;
+    max-width: 300px;
+    margin: 0 auto; /* 居中表单 */
+    text-align: left; /* 左对齐表单内部内容 */
 }
 
 label {
@@ -50,7 +51,7 @@ input[type="text"] {
 }
 
 input[type="hidden"] {
-    display: none; /* Hide hidden inputs */
+    display: none; /* 隐藏隐藏输入 */
 }
 
 button[type="submit"] {
@@ -72,23 +73,4 @@ button[type="submit"]:hover {
 button:disabled {
     background-color: #ccc;
     cursor: not-allowed;
-}
-
-/* Alerts */
-.alert {
-    padding: 10px;
-    margin-top: 10px;
-    border-radius: 4px;
-}
-
-.alert-success {
-    background-color: #dff0d8;
-    border: 1px solid #d6e9c6;
-    color: #3c763d;
-}
-
-.alert-error {
-    background-color: #f2dede;
-    border: 1px solid #ebccd1;
-    color: #a94442;
 }
