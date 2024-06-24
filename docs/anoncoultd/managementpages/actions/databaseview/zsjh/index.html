@@ -1,43 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>zsjh Google Sheet Data</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zsjh Data Page</title>
 </head>
 <body>
-    <h1>zsjh Google Sheet Data</h1>
-    <div id="zsjh-data"></div>
+  <div id="zsjh-data">
+    <!-- 初始显示的文本，当数据加载完成后会被替换 -->
+    Loading data...
+  </div>
 
-    <script>
-        async function fetchSheetData() {
-            try {
-                const response = await fetch('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/zsjh-sheet-data');
-                const data = await response.json();
-                displayData(data, 'zsjh-data');
-            } catch (error) {
-                document.getElementById('zsjh-data').innerHTML = 'Error fetching data: ' + error;
-            }
+  <!-- 引入 Axios 库，用于发起 HTTP 请求 -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+  <!-- 在此处添加 JavaScript 代码 -->
+  <script>
+    // 使用 Axios 发起 GET 请求获取数据
+    axios.get('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/zsjh-sheet-data')
+      .then(function (response) {
+        // 请求成功处理
+        const data = response.data;
+        const zsjhDataElement = document.getElementById('zsjh-data');
+
+        if (data && data.length > 0) {
+          // 如果有数据，生成 HTML 表格并更新页面内容
+          const tableHtml = generateTableHtml(data);
+          zsjhDataElement.innerHTML = tableHtml;
+        } else {
+          // 如果没有数据，显示 "No data found."
+          zsjhDataElement.textContent = 'No data found.';
         }
+      })
+      .catch(function (error) {
+        // 请求失败处理
+        console.error('Error fetching data:', error);
+        const zsjhDataElement = document.getElementById('zsjh-data');
+        zsjhDataElement.textContent = 'Error fetching data.';
+      });
 
-        function displayData(data, elementId) {
-            if (data && data.values && data.values.length > 0) {
-                let output = '<table border="1">';
-                data.values.forEach(row => {
-                    output += '<tr>';
-                    row.forEach(cell => {
-                        output += `<td>${cell}</td>`;
-                    });
-                    output += '</tr>';
-                });
-                output += '</table>';
-                document.getElementById(elementId).innerHTML = output;
-            } else {
-                document.getElementById(elementId).innerHTML = 'No data found.';
-            }
-        }
-
-        fetchSheetData();
-    </script>
+    // 生成 HTML 表格的函数
+    function generateTableHtml(data) {
+      let html = '<table border="1">';
+      // 遍历数据行
+      data.forEach(function (row) {
+        html += '<tr>';
+        // 遍历行中的每个单元格
+        row.forEach(function (cell) {
+          html += `<td>${cell}</td>`;
+        });
+        html += '</tr>';
+      });
+      html += '</table>';
+      return html;
+    }
+  </script>
 </body>
 </html>
