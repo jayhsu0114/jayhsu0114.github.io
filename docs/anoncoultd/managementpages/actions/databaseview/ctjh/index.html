@@ -18,9 +18,12 @@
   <h1>江翠資料庫</h1>
   <div id="data"></div>
 
+  <!-- 修改以下行，确保指向正确的 Cloud Run 服务 URL -->
+  <script src="https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/ctjh-database-view.js"></script>
+
   <script>
     // 使用你的 Cloud Run 服务 URL
-    const API_URL = 'https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/ctjh-database-view';
+    const API_URL = 'https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/sheet-data';
 
     fetch(API_URL)
       .then(response => response.json())
