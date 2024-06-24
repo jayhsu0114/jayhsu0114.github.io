@@ -1,56 +1,43 @@
+<!-- index.html -->
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
   <title>江翠資料庫</title>
-  <style>
-    table {
-      border-collapse: collapse;
-      width: 100%;
-    }
-    th, td {
-      border: 1px solid black;
-      padding: 8px;
-      text-align: left;
-    }
-  </style>
 </head>
 <body>
   <h1>江翠資料庫</h1>
   <div id="data"></div>
 
-  <!-- 修改以下行，确保指向正确的 Cloud Run 服务 URL -->
-  <script src="https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/ctjh-database-view.js"></script>
+  <!-- 引入自定义 JavaScript 文件 -->
+  <script src="/ctjh-database-view.js"></script>
 
+  <!-- 在这里处理数据的显示 -->
   <script>
-    // 使用你的 Cloud Run 服务 URL
-    const API_URL = 'https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/sheet-data';
-
-    fetch(API_URL)
-      .then(response => response.json())
-      .then(data => {
-        if (data.length > 0) {
-          let html = '<table>';
-          // 创建表头
-          html += '<tr>';
-          data[0].forEach(header => {
-            html += `<th>${header}</th>`;
-          });
-          html += '</tr>';
-          // 创建表格行
-          data.slice(1).forEach(row => {
-            html += '<tr>';
-            row.forEach(cell => {
-              html += `<td>${cell}</td>`;
-            });
-            html += '</tr>';
-          });
-          html += '</table>';
-          document.getElementById('data').innerHTML = html;
-        } else {
-          document.getElementById('data').innerHTML = 'No data found.';
-        }
-      })
-      .catch(error => console.error('Error:', error));
+    // 输出从 ctjh-database-view.js 中获取的数据
+    console.log('Sheet Data:', sheetData);
+    
+    // 示例：将数据显示在页面上
+    const dataDiv = document.getElementById('data');
+    if (sheetData && sheetData.length > 0) {
+      let html = '<table border="1"><tr>';
+      sheetData[0].forEach(header => {
+        html += `<th>${header}</th>`;
+      });
+      html += '</tr>';
+      sheetData.slice(1).forEach(row => {
+        html += '<tr>';
+        row.forEach(cell => {
+          html += `<td>${cell}</td>`;
+        });
+        html += '</tr>';
+      });
+      html += '</table>';
+      dataDiv.innerHTML = html;
+    } else {
+      dataDiv.innerHTML = 'No data found.';
+    }
   </script>
 </body>
 </html>
