@@ -3,6 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>中山匿名網頁</title>
+   
+</head>
+<body>
+    <h1>中山匿名網頁</h1>
+    <form id="zsjhForm">
+        <label for="anonymousContent">匿名內容:</label>
+        <input type="text" id="anonymousContent" name="anonymousContent" required>
+        <input type="hidden" id="userIP" name="userIP">
+        <input type="hidden" id="formId" name="formId" value="zsjh">
+        <button type="submit" id="submitButton">提交</button>
+    </form>
     <script>
         let isSubmitted = false;  // Flag to check if the form is already submitted
 
@@ -51,11 +62,5 @@
             });
         });
     </script>
-</head>
-<body>
-    <h1>中山匿名網頁</h1>
-    <form id="zsjhForm">
-        <label for="anonymousContent">匿名內容:</label>
-        <input type="text" id="anonymousContent" name="anonymousContent" required>
-        <input type="hidden" id="userIP" name="userIP">
-        <input type="h
+</body>
+</html>
