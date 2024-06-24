@@ -1,53 +1,43 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>中山資料庫</title>
-  <style>
-    table {
-      border-collapse: collapse;
-      width: 100%;
-    }
-    th, td {
-      border: 1px solid black;
-      padding: 8px;
-      text-align: left;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>zsjh Google Sheet Data</title>
 </head>
 <body>
-  <h1>中山資料庫</h1>
-  <div id="data"></div>
+    <h1>zsjh Google Sheet Data</h1>
+    <div id="zsjh-data"></div>
 
-  <script>
-    // 使用你的 Cloud Run 服务 URL
-    const API_URL = 'https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/zsjh-database-view';
-
-    fetch(API_URL)
-      .then(response => response.json())
-      .then(data => {
-        if (data.length > 0) {
-          let html = '<table>';
-          // 创建表头
-          html += '<tr>';
-          data[0].forEach(header => {
-            html += `<th>${header}</th>`;
-          });
-          html += '</tr>';
-          // 创建表格行
-          data.slice(1).forEach(row => {
-            html += '<tr>';
-            row.forEach(cell => {
-              html += `<td>${cell}</td>`;
-            });
-            html += '</tr>';
-          });
-          html += '</table>';
-          document.getElementById('data').innerHTML = html;
-        } else {
-          document.getElementById('data').innerHTML = 'No data found.';
+    <script>
+        async function fetchSheetData() {
+            try {
+                const response = await fetch('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/zsjh-sheet-data');
+                const data = await response.json();
+                displayData(data, 'zsjh-data');
+            } catch (error) {
+                document.getElementById('zsjh-data').innerHTML = 'Error fetching data: ' + error;
+            }
         }
-      })
-      .catch(error => console.error('Error:', error));
-  </script>
+
+        function displayData(data, elementId) {
+            if (data && data.values && data.values.length > 0) {
+                let output = '<table border="1">';
+                data.values.forEach(row => {
+                    output += '<tr>';
+                    row.forEach(cell => {
+                        output += `<td>${cell}</td>`;
+                    });
+                    output += '</tr>';
+                });
+                output += '</table>';
+                document.getElementById(elementId).innerHTML = output;
+            } else {
+                document.getElementById(elementId).innerHTML = 'No data found.';
+            }
+        }
+
+        fetchSheetData();
+    </script>
 </body>
 </html>
