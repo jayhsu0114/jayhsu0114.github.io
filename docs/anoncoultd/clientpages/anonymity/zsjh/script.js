@@ -1,0 +1,46 @@
+let isSubmitted = false;  // Flag to check if the form is already submitted
+
+async function getUserIP() {
+    try {
+        const response = await fetch('https://api.ipify.org?format=json');
+        const data = await response.json();
+        return data.ip;
+    } catch (error) {
+        console.error('獲取使用者IP地址失敗:', error);
+        return 'unknown';  // 返回一個默認值
+    }
+}
+
+document.getElementById('zsjhForm').addEventListener('submit', async function(event) {
+    event.preventDefault();
+    
+    if (isSubmitted) {
+        alert('表單已經提交，請稍候再試。');
+        return;
+    }
+    
+    isSubmitted = true;  // 設置標誌為true，以防止進一步提交
+    document.getElementById('submitButton').disabled = true;  // 禁用提交按鈕
+
+    const ip = await getUserIP();
+    document.getElementById('userIP').value = ip;
+
+    const formData = new FormData(this);
+    fetch('https://script.google.com/macros/s/AKfycbwC_5HrfS_D8d5QiWnAzga5NYJpYZHjP9jOeE-QJz0_VgayXva7Ss4Nl62atsWaQvmR/exec', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        alert('提交成功！');
+        this.reset();  // 重置表單
+        document.getElementById('submitButton').disabled = false;  // 重新啟用提交按鈕
+        isSubmitted = false;  // 重置標誌
+    })
+    .catch(error => {
+        console.error('提交失敗:', error);
+        alert('提交失敗，請稍候再試。');
+        document.getElementById('submitButton').disabled = false;  // 重新啟用提交按鈕
+        isSubmitted = false;  // 重置標誌
+    });
+});
