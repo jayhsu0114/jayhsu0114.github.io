@@ -1,39 +1,37 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-TW">
 <head>
-    <title>江翠資料庫</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ctjh 表单</title>
 </head>
 <body>
-    <h1>江翠資料庫</h1>
+    <h1>ctjh 表单</h1>
     <form id="ctjhForm">
-        <label for="anonymousContent">匿名內容:</label>
-        <input type="text" id="anonymousContent" name="anonymousContent" required>
+        <label for="anonymousContent">匿名内容：</label>
+        <input type="text" id="anonymousContent" name="anonymousContent" required><br><br>
         <input type="hidden" id="formId" name="formId" value="ctjh">
-        <button type="submit" id="submitButton">提交</button>
+        <button type="submit">提交</button>
     </form>
 
     <script>
-        document.getElementById('ctjhForm').addEventListener('submit', async function(event) {
+        document.getElementById('ctjhForm').addEventListener('submit', function(event) {
             event.preventDefault();
+            var formData = new FormData(this);
 
-            // 禁用提交按钮
-            document.getElementById('submitButton').disabled = true;
-
-            const formData = new FormData(this);
             fetch('https://script.google.com/macros/s/AKfycbwC_5HrfS_D8d5QiWnAzga5NYJpYZHjP9jOeE-QJz0_VgayXva7Ss4Nl62atsWaQvmR/exec', {
                 method: 'POST',
                 body: formData
             })
             .then(response => response.json())
             .then(data => {
-                alert('提交成功！');
-                this.reset();  // 重置表单
-                document.getElementById('submitButton').disabled = false;  // 重新启用提交按钮
+                console.log('Response:', data);
+                alert('提交成功');
+                document.getElementById('ctjhForm').reset(); // 重置表单
             })
             .catch(error => {
-                console.error('提交失败:', error);
-                alert('提交失败，请稍候再试。');
-                document.getElementById('submitButton').disabled = false;  // 重新启用提交按钮
+                console.error('Error:', error);
+                alert('提交失败，请稍后再试');
             });
         });
     </script>
