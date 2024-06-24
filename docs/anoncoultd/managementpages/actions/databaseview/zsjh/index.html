@@ -23,7 +23,7 @@
         const data = response.data;
         const zsjhDataElement = document.getElementById('zsjh-data');
 
-        if (data && data.length > 0) {
+        if (data && data.length > 0 && data[0].length > 0) {
           // 如果有数据，生成 HTML 表格并更新页面内容
           const tableHtml = generateTableHtml(data);
           zsjhDataElement.innerHTML = tableHtml;
