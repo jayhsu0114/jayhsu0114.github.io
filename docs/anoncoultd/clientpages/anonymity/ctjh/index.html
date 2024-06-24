@@ -8,33 +8,16 @@
     <form id="ctjhForm">
         <label for="anonymousContent">匿名內容:</label>
         <input type="text" id="anonymousContent" name="anonymousContent" required>
-        <input type="hidden" id="userIP" name="userIP">
         <input type="hidden" id="formId" name="formId" value="ctjh">
         <button type="submit" id="submitButton">提交</button>
     </form>
 
     <script>
-        let isSubmitted = false;  // Flag to check if the form is already submitted
-
-        async function getUserIP() {
-            const response = await fetch('https://api.ipify.org?format=json');
-            const data = await response.json();
-            return data.ip;
-        }
-
         document.getElementById('ctjhForm').addEventListener('submit', async function(event) {
             event.preventDefault();
-            
-            if (isSubmitted) {
-                alert('表单已经提交，请稍候再试。');
-                return;
-            }
-            
-            isSubmitted = true;  // Set the flag to true to prevent further submissions
-            document.getElementById('submitButton').disabled = true;  // Disable the submit button
 
-            const ip = await getUserIP();
-            document.getElementById('userIP').value = ip;
+            // 禁用提交按钮
+            document.getElementById('submitButton').disabled = true;
 
             const formData = new FormData(this);
             fetch('https://script.google.com/macros/s/AKfycbwC_5HrfS_D8d5QiWnAzga5NYJpYZHjP9jOeE-QJz0_VgayXva7Ss4Nl62atsWaQvmR/exec', {
@@ -44,15 +27,13 @@
             .then(response => response.json())
             .then(data => {
                 alert('提交成功！');
-                this.reset();  // Reset the form
-                document.getElementById('submitButton').disabled = false;  // Re-enable the submit button
-                isSubmitted = false;  // Reset the flag
+                this.reset();  // 重置表单
+                document.getElementById('submitButton').disabled = false;  // 重新启用提交按钮
             })
             .catch(error => {
                 console.error('提交失败:', error);
                 alert('提交失败，请稍候再试。');
-                document.getElementById('submitButton').disabled = false;  // Re-enable the submit button
-                isSubmitted = false;  // Reset the flag
+                document.getElementById('submitButton').disabled = false;  // 重新启用提交按钮
             });
         });
     </script>
