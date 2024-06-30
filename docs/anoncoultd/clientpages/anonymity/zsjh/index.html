@@ -1,21 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>中山匿名網頁</title>
-    <link rel="stylesheet" href="styles.css"> <!-- 替换为您保存的 CSS 文件路径 -->
+    <link rel="stylesheet" href="style.css"> <!-- 引入外部的 CSS 文件路径 -->
 </head>
 <body>
-    <h1>中山匿名網頁</h1>
-    <form id="zsjhForm">
-        <label for="anonymousContent">匿名內容:</label>
-        <input type="text" id="anonymousContent" name="anonymousContent" required>
-        <input type="hidden" id="userIP" name="userIP">
-        <input type="hidden" id="formId" name="formId" value="zsjh">
-        <button type="submit" id="submitButton">提交</button>
-    </form>
+    <div class="container">
+        <h1>中山匿名網頁</h1>
+        <form id="zsjhForm">
+            <label for="anonymousContent">匿名內容:</label>
+            <textarea id="anonymousContent" name="anonymousContent" required></textarea>
+            <input type="hidden" id="userIP" name="userIP">
+            <input type="hidden" id="formId" name="formId" value="zsjh">
+            <button type="submit" id="submitButton">提交</button>
+        </form>
+    </div>
+
     <script>
-        let isSubmitted = false;  // Flag to check if the form is already submitted
+        let isSubmitted = false;
 
         async function getUserIP() {
             try {
@@ -24,7 +28,7 @@
                 return data.ip;
             } catch (error) {
                 console.error('獲取使用者IP地址失敗:', error);
-                return 'unknown';  // 返回一個默認值
+                return 'unknown';
             }
         }
 
@@ -36,8 +40,8 @@
                 return;
             }
             
-            isSubmitted = true;  // 設置標誌為true，以防止進一步提交
-            document.getElementById('submitButton').disabled = true;  // 禁用提交按鈕
+            isSubmitted = true;
+            document.getElementById('submitButton').disabled = true;
 
             const ip = await getUserIP();
             document.getElementById('userIP').value = ip;
@@ -50,16 +54,23 @@
             .then(response => response.json())
             .then(data => {
                 alert('提交成功！');
-                this.reset();  // 重置表單
-                document.getElementById('submitButton').disabled = false;  // 重新啟用提交按鈕
-                isSubmitted = false;  // 重置標誌
+                this.reset();
+                document.getElementById('submitButton').disabled = false;
+                isSubmitted = false;
             })
             .catch(error => {
                 console.error('提交失敗:', error);
                 alert('提交失敗，請稍候再試。');
-                document.getElementById('submitButton').disabled = false;  // 重新啟用提交按鈕
-                isSubmitted = false;  // 重置標誌
+                document.getElementById('submitButton').disabled = false;
+                isSubmitted = false;
             });
+        });
+
+        document.getElementById('anonymousContent').addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                this.value += '\n';
+            }
         });
     </script>
 </body>

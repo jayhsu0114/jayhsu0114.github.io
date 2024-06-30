@@ -14,6 +14,7 @@ body {
     margin: 0;
     background-color: #f0f0f0;
     font-family: Arial, sans-serif;
+    text-align: center; /* 水平居中内容 */
 }
 
 /* Page container */
@@ -23,7 +24,6 @@ body {
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center; /* 水平居中内容 */
 }
 
 h1 {
@@ -33,8 +33,7 @@ h1 {
 
 form {
     max-width: 300px;
-    margin: 0 auto; /* 居中表单 */
-    text-align: left; /* 左对齐表单内部内容 */
+    margin: 0 auto;
 }
 
 label {
@@ -42,16 +41,19 @@ label {
     margin-bottom: 10px;
 }
 
-input[type="text"] {
+textarea {
     width: 100%;
+    height: 100px;
     padding: 8px;
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    resize: none;
+    white-space: pre-wrap; /* 保留换行符并自动换行 */
 }
 
 input[type="hidden"] {
-    display: none; /* 隐藏隐藏输入 */
+    display: none;
 }
 
 button[type="submit"] {
