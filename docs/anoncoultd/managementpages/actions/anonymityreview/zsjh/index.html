@@ -49,16 +49,21 @@
             if (cellIndex === 1) {
               html += `<td class="content-cell"><textarea class="content-textarea">${cell}</textarea></td>`;
             } else if (cellIndex === 3) {
-              // 檢查是否已存在通過或不通過狀態
-              const status = row[3] || row[4];
+              const status = row[3];
               if (status) {
-                html += `<td class="action-cell">${row[3]}</td>`;
+                html += `<td class="action-cell">${status}</td>`;
                 html += `<td class="action-cell"></td>`;
               } else {
                 html += `<td class="action-cell"><button class="action-button" onclick="handleButtonClick(${rowIndex}, '通過', this)">通過</button></td>`;
                 html += `<td class="action-cell"><button class="action-button" onclick="handleButtonClick(${rowIndex}, '不通過', this)">不通過</button></td>`;
               }
-            } else if (cellIndex !== 4) {
+            } else if (cellIndex === 4) {
+              const status = row[4];
+              if (status) {
+                html += `<td class="action-cell"></td>`;
+                html += `<td class="action-cell">${status}</td>`;
+              }
+            } else {
               html += `<td>${cell}</td>`;
             }
           }
