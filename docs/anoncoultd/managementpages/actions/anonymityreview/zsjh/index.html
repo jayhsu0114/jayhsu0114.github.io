@@ -3,71 +3,68 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ZSJH審核頁面</title>
-  <link rel="stylesheet" href="style.css"> <!-- 引入外部 CSS 文件 -->
+  <title>Zsjh Data Page</title>
+  <link rel="stylesheet" href="styles.css"> <!-- 引入外部 CSS 文件 -->
 </head>
 <body>
   <div id="zsjh-data">
-    <!-- 初始顯示的文字，當數據加載完成後會被替換 -->
-    正在加載數據...
+    <!-- 初始显示的文本，当数据加载完成后会被替换 -->
+    Loading data...
   </div>
 
-  <!-- 引入 Axios 庫，用於發起 HTTP 請求 -->
+  <!-- 引入 Axios 库，用于发起 HTTP 请求 -->
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
-  <!-- 在此處添加 JavaScript 代碼 -->
+  <!-- 在此处添加 JavaScript 代码 -->
   <script>
-    // 使用 Axios 發起 GET 請求獲取數據
+    // 使用 Axios 发起 GET 请求获取数据
     axios.get('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/zsjh-sheet-data')
       .then(function (response) {
-        // 請求成功處理
+        // 请求成功处理
         const data = response.data;
         const zsjhDataElement = document.getElementById('zsjh-data');
 
         if (data && data.length > 0) {
-          // 在這裡檢查每一行數據，如果長度不足，則填充空白列
+          // 在这里检查每一行数据，如果长度不足，则填充空白列
           data.forEach(function (row, rowIndex) {
-            while (row.length < 7) { // 假設每行最多有7列，根據您的實際情況調整
+            while (row.length < 7) { // 假设每行最多有7列，根据您的实际情况调整
               row.push(""); // 添加空白列
             }
 
-            // 在除了標題列之外的每一列的「通過」和「不通過」單元格中添加按鈕和文本框
-            if (rowIndex > 0) { // 跳過標題行
-              row[1] = `<textarea class="content-textarea">${row[1]}</textarea>`;
-              row[3] = `<button class="action-button" onclick="handleButtonClick('通過', ${rowIndex}, this)">通過</button>`;
-              row[4] = `<button class="action-button" onclick="handleButtonClick('不通過', ${rowIndex}, this)">不通過</button>`;
+            // 在除了标题列之外的每一列的「通過」和「不通過」单元格中添加按钮
+            if (rowIndex > 0) { // 跳过标题行
+              row[3] = `<button class="action-button" onclick="handleButtonClick(this, ${rowIndex})">通過</button>`;
+              row[4] = `<button class="action-button" onclick="handleButtonClick(this, ${rowIndex})">不通過</button>`;
             }
           });
 
-          // 生成 HTML 表格並更新頁面內容
+          // 生成 HTML 表格并更新页面内容
           const tableHtml = generateTableHtml(data);
           zsjhDataElement.innerHTML = tableHtml;
         } else {
-          // 如果沒有數據，顯示 "No data found."
-          zsjhDataElement.textContent = '找不到數據.';
+          // 如果没有数据，显示 "No data found."
+          zsjhDataElement.textContent = 'No data found.';
         }
       })
       .catch(function (error) {
-        // 請求失敗處理
+        // 请求失败处理
         console.error('Error fetching data:', error);
         const zsjhDataElement = document.getElementById('zsjh-data');
-        zsjhDataElement.textContent = '獲取數據出錯.';
+        zsjhDataElement.textContent = 'Error fetching data.';
       });
 
-    // 生成 HTML 表格的函數
+    // 生成 HTML 表格的函数
     function generateTableHtml(data) {
       let html = '<table>';
-      // 遍歷數據行
+      // 遍历数据行
       data.forEach(function (row, rowIndex) {
         html += '<tr>';
-        // 遍歷行中的每個單元格
+        // 遍历行中的每个单元格
         row.forEach(function (cell, cellIndex) {
           if (rowIndex === 0) {
             html += `<th>${cell}</th>`;
           } else {
-            if (cellIndex === 1) { // 「匿名內容」列
-              html += `<td class="content-cell">${cell}</td>`;
-            } else if (cellIndex === 3 || cellIndex === 4) { // 「通過」和「不通過」列
+            if (cellIndex === 3 || cellIndex === 4) { // 「通過」和「不通過」列
               html += `<td class="action-cell">${cell}</td>`;
             } else {
               html += `<td>${cell}</td>`;
@@ -80,55 +77,15 @@
       return html;
     }
 
-    // 处理按钮点击事件
-    function handleButtonClick(action, rowIndex, button) {
-      const cell = getCellAddress(rowIndex, 3); // 假设「通過」按钮在第四列（D列）
+    // 按钮点击处理函数
+    function handleButtonClick(button, rowIndex) {
+      // 找到当前行的所有按钮
+      const rowButtons = document.querySelectorAll(`#zsjh-data table tr:nth-child(${rowIndex + 1}) .action-button`);
 
-      // 隐藏点击的按钮及其对应的另一个按钮
-      const otherButton = button.parentNode.querySelector(action === '通過' ? 'button[action="不通過"]' : 'button[action="通過"]');
-      button.style.display = 'none';
-      otherButton.style.display = 'none';
-
-      axios.post('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/zsjh-anonymity-update', {
-        cell: cell,
-        value: action,
-      })
-      .then(function (response) {
-        console.log(response.data);
-        // 更新成功，重新加载数据
-        reloadSheetData();
-      })
-      .catch(function (error) {
-        console.error('Error updating cell:', error);
-        // 处理更新失败的情况
+      // 隐藏当前行的所有按钮
+      rowButtons.forEach(function (btn) {
+        btn.style.display = 'none';
       });
-    }
-
-    // 获取单元格地址函数，例如 rowIndex = 1，colIndex = 3 返回 'D2'
-    function getCellAddress(rowIndex, colIndex) {
-      const columnName = String.fromCharCode(65 + colIndex); // 将列索引转换为字母
-      return `${columnName}${rowIndex + 1}`; // rowIndex + 1 是因为 Google Sheets 行索引从1开始
-    }
-
-    // 重新加载 Google Sheets 数据
-    function reloadSheetData() {
-      axios.get('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/zsjh-sheet-data')
-        .then(function (response) {
-          const data = response.data;
-          const zsjhDataElement = document.getElementById('zsjh-data');
-
-          if (data && data.length > 0) {
-            const tableHtml = generateTableHtml(data);
-            zsjhDataElement.innerHTML = tableHtml;
-          } else {
-            zsjhDataElement.textContent = '找不到數據.';
-          }
-        })
-        .catch(function (error) {
-          console.error('Error reloading data:', error);
-          const zsjhDataElement = document.getElementById('zsjh-data');
-          zsjhDataElement.textContent = '重新加載數據出錯.';
-        });
     }
   </script>
 </body>
