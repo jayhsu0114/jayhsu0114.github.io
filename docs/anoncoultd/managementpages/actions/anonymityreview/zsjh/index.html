@@ -34,8 +34,8 @@
             // 在除了標題列之外的每一列的「通過」和「不通過」單元格中添加按鈕和文本框
             if (rowIndex > 0) { // 跳過標題行
               row[1] = `<textarea class="content-textarea">${row[1]}</textarea>`;
-              row[3] = `<button class="action-button" onclick="handleButtonClick('通過', ${rowIndex})">通過</button>`;
-              row[4] = `<button class="action-button" onclick="handleButtonClick('不通過', ${rowIndex})">不通過</button>`;
+              row[3] = `<button id="pass-button-${rowIndex}" class="action-button" onclick="handleButtonClick('通過', ${rowIndex})">通過</button>`;
+              row[4] = `<button id="fail-button-${rowIndex}" class="action-button" onclick="handleButtonClick('不通過', ${rowIndex})">不通過</button>`;
             }
           });
 
@@ -90,13 +90,69 @@
       })
       .then(function (response) {
         console.log(response.data);
-        // 更新成功，可能需要更新页面状态或其他操作
+        // 更新成功，隐藏按钮并重新加载数据
+        const passButton = document.getElementById(`pass-button-${rowIndex}`);
+        const failButton = document.getElementById(`fail-button-${rowIndex}`);
+
+        if (passButton && failButton) {
+          passButton.style.display = 'none';
+          failButton.style.display = 'none';
+
+          // 重新加载数据
+          loadSheetData();
+        } else {
+          console.error('Pass or fail button not found.');
+        }
       })
       .catch(function (error) {
         console.error('Error updating cell:', error);
         // 处理更新失败的情况
       });
     }
+
+    // 使用 Axios 發起 GET 請求獲取數據
+    function loadSheetData() {
+      axios.get('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/zsjh-sheet-data')
+        .then(function (response) {
+          // 請求成功處理
+          const data = response.data;
+          const zsjhDataElement = document.getElementById('zsjh-data');
+
+          if (data && data.length > 0) {
+            // 在這裡檢查每一行數據，如果長度不足，則填充空白列
+            data.forEach(function (row, rowIndex) {
+              while (row.length < 7) { // 假設每行最多有7列，根據您的實際情況調整
+                row.push(""); // 添加空白列
+              }
+
+              // 在除了標題列之外的每一列的「通過」和「不通過」單元格中添加按鈕和文本框
+              if (rowIndex > 0) { // 跳過標題行
+                row[1] = `<textarea class="content-textarea">${row[1]}</textarea>`;
+                row[3] = `<button id="pass-button-${rowIndex}" class="action-button" onclick="handleButtonClick('通過', ${rowIndex})">通過</button>`;
+                row[4] = `<button id="fail-button-${rowIndex}" class="action-button" onclick="handleButtonClick('不通過', ${rowIndex})">不通過</button>`;
+              }
+            });
+
+            // 生成 HTML 表格並更新頁面內容
+            const tableHtml = generateTableHtml(data);
+            zsjhDataElement.innerHTML = tableHtml;
+          } else {
+            // 如果沒有數據，顯示 "No data found."
+            zsjhDataElement.textContent = '找不到數據.';
+          }
+        })
+        .catch(function (error) {
+          // 請求失敗處理
+          console.error('Error fetching data:', error);
+          const zsjhDataElement = document.getElementById('zsjh-data');
+          zsjhDataElement.textContent = '獲取數據出錯.';
+        });
+    }
+
+    // 页面加载时加载数据
+    document.addEventListener('DOMContentLoaded', function () {
+      loadSheetData();
+    });
 
     // 获取单元格地址函数，例如 rowIndex = 1，colIndex = 3 返回 'D2'
     function getCellAddress(rowIndex, colIndex) {
