@@ -47,7 +47,10 @@
         html += '<tr>';
         // 遍历行中的每个单元格
         row.forEach((cell, cellIndex) => {
-          if (cellIndex === 3 || cellIndex === 4) { // 通過（D）和不通過（E）列
+          if (rowIndex === 0) {
+            // 标题行，不添加按钮
+            html += `<td>${cell}</td>`;
+          } else if (cellIndex === 3 || cellIndex === 4) { // 通過（D）和不通過（E）列
             const buttonText = cellIndex === 3 ? '通過' : '不通過';
             html += `<td><button onclick="updateCell(${rowIndex + 1}, ${cellIndex + 1}, '${buttonText}')">${buttonText}</button></td>`;
           } else {
