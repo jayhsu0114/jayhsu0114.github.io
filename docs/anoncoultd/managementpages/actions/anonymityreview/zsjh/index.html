@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ctjh Data Page</title>
+  <title>Zsjh Data Page</title>
 </head>
 <body>
-  <div id="ctjh-data">
+  <div id="zsjh-data">
     <!-- 初始显示的文本，当数据加载完成后会被替换 -->
     Loading data...
   </div>
@@ -17,42 +17,63 @@
   <!-- 在此处添加 JavaScript 代码 -->
   <script>
     // 使用 Axios 发起 GET 请求获取数据
-    axios.get('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/ctjh-sheet-data')
+    axios.get('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/zsjh-sheet-data')
       .then(function (response) {
         // 请求成功处理
         const data = response.data;
-        const ctjhDataElement = document.getElementById('ctjh-data');
+        const zsjhDataElement = document.getElementById('zsjh-data');
 
         if (data && data.length > 0 && data[0].length > 0) {
           // 如果有数据，生成 HTML 表格并更新页面内容
           const tableHtml = generateTableHtml(data);
-          ctjhDataElement.innerHTML = tableHtml;
+          zsjhDataElement.innerHTML = tableHtml;
         } else {
           // 如果没有数据，显示 "No data found."
-          ctjhDataElement.textContent = 'No data found.';
+          zsjhDataElement.textContent = 'No data found.';
         }
       })
       .catch(function (error) {
         // 请求失败处理
         console.error('Error fetching data:', error);
-        const ctjhDataElement = document.getElementById('ctjh-data');
-        ctjhDataElement.textContent = 'Error fetching data.';
+        const zsjhDataElement = document.getElementById('zsjh-data');
+        zsjhDataElement.textContent = 'Error fetching data.';
       });
 
     // 生成 HTML 表格的函数
     function generateTableHtml(data) {
       let html = '<table border="1">';
       // 遍历数据行
-      data.forEach(function (row) {
+      data.forEach((row, rowIndex) => {
         html += '<tr>';
         // 遍历行中的每个单元格
-        row.forEach(function (cell) {
-          html += `<td>${cell}</td>`;
+        row.forEach((cell, cellIndex) => {
+          if (cellIndex === 3 || cellIndex === 4) { // 通過（D）和不通過（E）列
+            const buttonText = cellIndex === 3 ? '通過' : '不通過';
+            html += `<td><button onclick="updateCell(${rowIndex + 1}, ${cellIndex + 1}, '${buttonText}')">${buttonText}</button></td>`;
+          } else {
+            html += `<td>${cell}</td>`;
+          }
         });
         html += '</tr>';
       });
       html += '</table>';
       return html;
+    }
+
+    // 更新单元格数据的函数
+    function updateCell(row, col, value) {
+      axios.post('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/zsjh-update-cell', {
+        row: row,
+        col: col,
+        value: value
+      })
+      .then(function (response) {
+        // 更新成功，刷新页面数据
+        location.reload();
+      })
+      .catch(function (error) {
+        console.error('Error updating cell:', error);
+      });
     }
   </script>
 </body>
