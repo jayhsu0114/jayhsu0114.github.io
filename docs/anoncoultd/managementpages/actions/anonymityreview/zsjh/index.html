@@ -47,11 +47,11 @@
             html += `<th>${cell}</th>`;
           } else {
             if (cellIndex === 1) {
-              html += `<td class="content-cell"><textarea class="content-textarea">${cell}</textarea></td>`;
+              html += `<td class="content-cell"><textarea class="content-textarea" id="textarea-${rowIndex}">${cell}</textarea></td>`;
             } else if (cellIndex === 3) {
-              html += `<td class="action-cell"><button class="action-button" onclick="handleButtonClick(${rowIndex}, '通過', this)">通過</button></td>`;
+              html += `<td class="action-cell"><button class="action-button" onclick="handleButtonClick(${rowIndex}, '通過')">通過</button></td>`;
             } else if (cellIndex === 4) {
-              html += `<td class="action-cell"><button class="action-button" onclick="handleButtonClick(${rowIndex}, '不通過', this)">不通過</button></td>`;
+              html += `<td class="action-cell"><button class="action-button" onclick="handleButtonClick(${rowIndex}, '不通過')">不通過</button></td>`;
             } else {
               html += `<td>${cell}</td>`;
             }
@@ -63,30 +63,24 @@
       return html;
     }
 
-    function handleButtonClick(rowIndex, status, button) {
+    function handleButtonClick(rowIndex, status) {
       const row = document.querySelector(`#zsjh-data table tr:nth-child(${rowIndex + 1})`);
       const buttons = row.querySelectorAll('.action-button');
-      const textarea = row.querySelector('.content-textarea');
+      const textarea = row.querySelector(`#textarea-${rowIndex}`).value;
 
-      // 隱藏所有按鈕
-      buttons.forEach(btn => btn.style.display = 'none');
+      buttons.forEach(button => button.disabled = true);
 
-      // 設置 textarea 為不可編輯
-      if (textarea) {
-        textarea.disabled = true;
-      }
-
-      // 在同一格顯示狀態
-      const statusCell = row.cells[status === '通過' ? 3 : 4];
-      statusCell.textContent = status;
-
-      // 發送 POST 請求更新狀態
       axios.post('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/zsjh-anonymity-update', {
         rowIndex: rowIndex,
-        status: status
+        status: status,
+        anonymousContent: textarea  // 傳遞匿名內容至後端
       })
       .then(function (response) {
         console.log('Status updated successfully');
+        // 更新前端顯示，例如在按鈕消失後顯示狀態
+        const cellToUpdate = status === '通過' ? 3 : 4;
+        row.querySelector(`td:nth-child(${cellToUpdate + 1})`).textContent = status;
+        row.querySelector(`#textarea-${rowIndex}`).disabled = true; // 禁用textarea
       })
       .catch(function (error) {
         console.error('Error updating status:', error);
