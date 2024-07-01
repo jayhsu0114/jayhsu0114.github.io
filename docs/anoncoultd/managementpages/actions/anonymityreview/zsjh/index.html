@@ -84,7 +84,7 @@
     function handleButtonClick(action, rowIndex) {
       const cell = getCellAddress(rowIndex, 3); // 假设「通過」按钮在第四列（D列）
       
-      axios.post('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/update-cell', {
+      axios.post('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/zsjh-anonymity-update', {
         cell: cell,
         value: action,
       })
