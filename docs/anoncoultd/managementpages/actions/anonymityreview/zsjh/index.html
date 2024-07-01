@@ -80,30 +80,28 @@
       return html;
     }
 
-    // 按鈕點擊處理函數
-    function handleButtonClick(status, rowIndex) {
-      const cellIndex = status === '通過' ? 3 : 4; // 確定要填入的儲存格索引
-
-      // 獲取要更新的數據
-      const cellValue = status;
-
-      // 發送 POST 請求以更新後端數據
-      axios.post('https://your-backend-url/zsjh-anonymity-view', {
-        rowIndex: rowIndex,
-        cellIndex: cellIndex,
-        cellValue: cellValue
+    // 处理按钮点击事件
+    function handleButtonClick(action, rowIndex) {
+      const cell = getCellAddress(rowIndex, 3); // 假设「通過」按钮在第四列（D列）
+      
+      axios.post('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/update-cell', {
+        cell: cell,
+        value: action,
       })
       .then(function (response) {
-        // 成功處理
-        console.log('成功更新數據:', response.data);
-        // 可選：更新前端顯示以反映後端更改
-        const updatedCell = document.querySelector(`#zsjh-data table tr:nth-child(${rowIndex + 1}) td:nth-child(${cellIndex + 1})`);
-        updatedCell.textContent = cellValue;
+        console.log(response.data);
+        // 更新成功，可能需要更新页面状态或其他操作
       })
       .catch(function (error) {
-        // 失敗處理
-        console.error('更新數據出錯:', error);
+        console.error('Error updating cell:', error);
+        // 处理更新失败的情况
       });
+    }
+
+    // 获取单元格地址函数，例如 rowIndex = 1，colIndex = 3 返回 'D2'
+    function getCellAddress(rowIndex, colIndex) {
+      const columnName = String.fromCharCode(65 + colIndex); // 将列索引转换为字母
+      return `${columnName}${rowIndex + 1}`; // rowIndex + 1 是因为 Google Sheets 行索引从1开始
     }
   </script>
 </body>
