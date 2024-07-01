@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hant">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Zsjh Data Page</title>
-  <link rel="stylesheet" href="style.css"> <!-- 引入外部 CSS 文件 -->
+  <link rel="stylesheet" href="styles.css"> <!-- 引入外部 CSS 文件 -->
 </head>
 <body>
   <div id="zsjh-data">
@@ -33,8 +33,8 @@
 
             // 在除了标题列之外的每一列的「通過」和「不通過」单元格中添加按钮
             if (rowIndex > 0) { // 跳过标题行
-              row[3] = '<button class="action-button">通過</button>';
-              row[4] = '<button class="action-button">不通過</button>';
+              row[3] = `<button class="action-button" onclick="handleButtonClick(this, ${rowIndex})">通過</button>`;
+              row[4] = `<button class="action-button" onclick="handleButtonClick(this, ${rowIndex})">不通過</button>`;
             }
           });
 
@@ -75,6 +75,17 @@
       });
       html += '</table>';
       return html;
+    }
+
+    // 按钮点击处理函数
+    function handleButtonClick(button, rowIndex) {
+      // 找到当前行的所有按钮
+      const rowButtons = document.querySelectorAll(`#zsjh-data table tr:nth-child(${rowIndex + 1}) .action-button`);
+
+      // 隐藏当前行的所有按钮
+      rowButtons.forEach(function (btn) {
+        btn.style.display = 'none';
+      });
     }
   </script>
 </body>
