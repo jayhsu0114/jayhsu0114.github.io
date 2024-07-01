@@ -43,16 +43,41 @@
     function generateTableHtml(data) {
       let html = '<table border="1">';
       // 遍历数据行
-      data.forEach(function (row) {
+      data.forEach((row, rowIndex) => {
         html += '<tr>';
         // 遍历行中的每个单元格
-        row.forEach(function (cell) {
-          html += `<td>${cell}</td>`;
+        row.forEach((cell, cellIndex) => {
+          const cellValue = cell !== undefined && cell !== null ? cell : ''; // 确保空单元格显示为空字符串
+          if (rowIndex === 0) {
+            // 标题行，不添加按钮
+            html += `<td>${cellValue}</td>`;
+          } else if (cellIndex === 3 || cellIndex === 4) { // 通過（D）和不通過（E）列
+            const buttonText = cellIndex === 3 ? '通過' : '不通過';
+            html += `<td><button onclick="updateCell(${rowIndex + 1}, ${cellIndex + 1}, '${buttonText}')">${buttonText}</button></td>`;
+          } else {
+            html += `<td>${cellValue}</td>`;
+          }
         });
         html += '</tr>';
       });
       html += '</table>';
       return html;
+    }
+
+    // 更新单元格数据的函数
+    function updateCell(row, col, value) {
+      axios.post('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/zsjh-update-cell', {
+        row: row,
+        col: col,
+        value: value
+      })
+      .then(function (response) {
+        // 更新成功，刷新页面数据
+        location.reload();
+      })
+      .catch(function (error) {
+        console.error('Error updating cell:', error);
+      });
     }
   </script>
 </body>
