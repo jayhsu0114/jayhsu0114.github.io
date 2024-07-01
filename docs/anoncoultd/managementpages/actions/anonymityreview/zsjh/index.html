@@ -49,19 +49,9 @@
             if (cellIndex === 1) {
               html += `<td class="content-cell"><textarea class="content-textarea">${cell}</textarea></td>`;
             } else if (cellIndex === 3) {
-              const status = row[6]; // Assume status is stored in the 7th column (0-based index)
-              if (status === '通過' || status === '不通過') {
-                html += `<td>${status}</td>`;
-              } else {
-                html += `<td class="action-cell"><button class="action-button" onclick="handleButtonClick(${rowIndex}, '通過', this)">通過</button></td>`;
-              }
+              html += `<td class="action-cell"><button class="action-button" onclick="handleButtonClick(${rowIndex}, '通過', this)">通過</button></td>`;
             } else if (cellIndex === 4) {
-              const status = row[6]; // Assume status is stored in the 7th column (0-based index)
-              if (status === '通過' || status === '不通過') {
-                html += `<td>${status}</td>`;
-              } else {
-                html += `<td class="action-cell"><button class="action-button" onclick="handleButtonClick(${rowIndex}, '不通過', this)">不通過</button></td>`;
-              }
+              html += `<td class="action-cell"><button class="action-button" onclick="handleButtonClick(${rowIndex}, '不通過', this)">不通過</button></td>`;
             } else {
               html += `<td>${cell}</td>`;
             }
@@ -75,11 +65,12 @@
 
     function handleButtonClick(rowIndex, status, button) {
       const row = document.querySelector(`#zsjh-data table tr:nth-child(${rowIndex + 1})`);
+      const buttons = row.querySelectorAll('.action-button');
       const textarea = row.querySelector('.content-textarea');
 
-      // 隱藏按鈕
-      button.style.display = 'none';
-      
+      // 隱藏所有按鈕
+      buttons.forEach(btn => btn.style.display = 'none');
+
       // 設置 textarea 為不可編輯
       if (textarea) {
         textarea.disabled = true;
@@ -89,11 +80,7 @@
       const statusCell = row.cells[status === '通過' ? 3 : 4];
       statusCell.textContent = status;
 
-      // 更新數據
-      updateGoogleSheet(rowIndex, status);
-    }
-
-    function updateGoogleSheet(rowIndex, status) {
+      // 發送 POST 請求更新狀態
       axios.post('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/zsjh-anonymity-update', {
         rowIndex: rowIndex,
         status: status
