@@ -11,7 +11,7 @@
     資料載入中...
   </div>
 
-  <!-- 引入 Axios 库，用于發起 HTTP 請求 -->
+  <!-- 引入 Axios 庫，用於發起 HTTP 請求 -->
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
   <!-- JavaScript 代碼部分 -->
@@ -24,12 +24,9 @@
         const zsjhDataElement = document.getElementById('zsjh-data');
 
         if (data && data.length > 0 && data[0].length > 0) {
-          // 如果有資料，生成空的 HTML 表格結構
-          const tableHtml = '<table border="1" id="zsjh-table"></table>';
+          // 如果有資料，生成 HTML 表格並更新頁面內容
+          const tableHtml = generateTableHtml(data);
           zsjhDataElement.innerHTML = tableHtml;
-
-          // 填充表格內容
-          fillTable(data);
         } else {
           // 如果沒有資料，顯示 "找不到資料."
           zsjhDataElement.textContent = '找不到資料.';
@@ -42,21 +39,44 @@
         zsjhDataElement.textContent = '請求資料失敗，請檢查網路連接或稍後再試.';
       });
 
-    // 填充表格內容的函式
-    function fillTable(data) {
-      const table = document.getElementById('zsjh-table');
-
+    // 生成 HTML 表格的函式
+    function generateTableHtml(data) {
+      let html = '<table border="1">';
       // 遍歷資料行
       data.forEach((row, rowIndex) => {
-        const tr = document.createElement('tr');
+        html += '<tr>';
         // 遍歷行中的每個單元格
         row.forEach((cell, cellIndex) => {
-          const td = document.createElement('td');
           const cellValue = cell !== undefined && cell !== null ? cell : ''; // 確保空單元格顯示為空字符串
-          td.textContent = cellValue;
-          tr.appendChild(td);
+          if (rowIndex === 0) {
+            // 標題行，不添加按鈕
+            html += `<td>${cellValue}</td>`;
+          } else if (cellIndex === 3 || cellIndex === 4) { // 通過（D）和不通過（E）列
+            const buttonText = cellIndex === 3 ? '通過' : '不通過';
+            html += `<td><button onclick="updateCell(${rowIndex + 1}, ${cellIndex + 1}, '${buttonText}')">${buttonText}</button></td>`;
+          } else {
+            html += `<td>${cellValue}</td>`;
+          }
         });
-        table.appendChild(tr);
+        html += '</tr>';
+      });
+      html += '</table>';
+      return html;
+    }
+
+    // 更新單元格資料的函式
+    function updateCell(row, col, value) {
+      axios.post('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/zsjh-update-cell', {
+        row: row,
+        col: col,
+        value: value
+      })
+      .then(function (response) {
+        // 更新成功，重新加載頁面資料
+        location.reload();
+      })
+      .catch(function (error) {
+        console.error('更新單元格錯誤:', error);
       });
     }
   </script>
