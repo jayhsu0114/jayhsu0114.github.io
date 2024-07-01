@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-TW">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,46 +7,46 @@
 </head>
 <body>
   <div id="zsjh-data">
-    <!-- 初始顯示的文本，當數據加載完成後會被替換 -->
-    Loading data...
+    <!-- 初始顯示的文字，當資料加載完成後會被替換 -->
+    資料載入中...
   </div>
 
-  <!-- 引入 Axios 库，用于發起 HTTP 请求 -->
+  <!-- 引入 Axios 库，用于发起 HTTP 请求 -->
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
-  <!-- 在此處添加 JavaScript 代碼 -->
+  <!-- JavaScript 代碼部分 -->
   <script>
-    // 使用 Axios 發起 GET 請求獲取數據
+    // 使用 Axios 發起 GET 請求獲取資料
     axios.get('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/zsjh-sheet-data')
       .then(function (response) {
         // 請求成功處理
         const data = response.data;
         const zsjhDataElement = document.getElementById('zsjh-data');
 
-        if (data && data.length > 0) {
-          // 如果有數據，生成 HTML 表格並更新頁面內容
+        if (data && data.length > 0 && data[0].length > 0) {
+          // 如果有資料，生成 HTML 表格並更新頁面內容
           const tableHtml = generateTableHtml(data);
           zsjhDataElement.innerHTML = tableHtml;
         } else {
-          // 如果沒有數據，顯示 "No data found."
-          zsjhDataElement.textContent = 'No data found.';
+          // 如果沒有資料，顯示 "找不到資料."
+          zsjhDataElement.textContent = '找不到資料.';
         }
       })
       .catch(function (error) {
         // 請求失敗處理
-        console.error('Error fetching data:', error);
+        console.error('錯誤發生:', error);
         const zsjhDataElement = document.getElementById('zsjh-data');
-        zsjhDataElement.textContent = 'Error fetching data.';
+        zsjhDataElement.textContent = '請求資料失敗，請檢查網路連接或稍後再試.';
       });
 
-    // 生成 HTML 表格的函數
+    // 生成 HTML 表格的函式
     function generateTableHtml(data) {
       let html = '<table border="1">';
-      // 遍歷數據行
-      data.forEach(function (row, rowIndex) {
+      // 遍歷資料行
+      data.forEach((row, rowIndex) => {
         html += '<tr>';
         // 遍歷行中的每個單元格
-        row.forEach(function (cell, cellIndex) {
+        row.forEach((cell, cellIndex) => {
           const cellValue = cell !== undefined && cell !== null ? cell : ''; // 確保空單元格顯示為空字符串
           if (rowIndex === 0) {
             // 標題行，不添加按鈕
@@ -64,7 +64,7 @@
       return html;
     }
 
-    // 更新單元格數據的函數
+    // 更新單元格資料的函式
     function updateCell(row, col, value) {
       axios.post('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/zsjh-update-cell', {
         row: row,
@@ -72,11 +72,11 @@
         value: value
       })
       .then(function (response) {
-        // 更新成功，刷新頁面數據
+        // 更新成功，重新加載頁面資料
         location.reload();
       })
       .catch(function (error) {
-        console.error('Error updating cell:', error);
+        console.error('更新單元格錯誤:', error);
       });
     }
   </script>
