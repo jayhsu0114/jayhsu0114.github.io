@@ -48,15 +48,17 @@
           } else {
             if (cellIndex === 1) {
               html += `<td class="content-cell"><textarea class="content-textarea">${cell}</textarea></td>`;
-            } else if (cellIndex === 3 || cellIndex === 4) {
+            } else if (cellIndex === 3) {
               // 檢查是否已存在通過或不通過狀態
               const status = row[3] || row[4];
               if (status) {
-                html += `<td class="action-cell">${status}</td>`;
+                html += `<td class="action-cell">${row[3]}</td>`;
+                html += `<td class="action-cell"></td>`;
               } else {
-                html += `<td class="action-cell"><button class="action-button" onclick="handleButtonClick(${rowIndex}, '${cellIndex === 3 ? '通過' : '不通過'}', this)">${cellIndex === 3 ? '通過' : '不通過'}</button></td>`;
+                html += `<td class="action-cell"><button class="action-button" onclick="handleButtonClick(${rowIndex}, '通過', this)">通過</button></td>`;
+                html += `<td class="action-cell"><button class="action-button" onclick="handleButtonClick(${rowIndex}, '不通過', this)">不通過</button></td>`;
               }
-            } else {
+            } else if (cellIndex !== 4) {
               html += `<td>${cell}</td>`;
             }
           }
@@ -83,6 +85,10 @@
       // 在同一格顯示狀態
       const statusCell = row.cells[status === '通過' ? 3 : 4];
       statusCell.textContent = status;
+
+      // 確保另一格是空白
+      const otherStatusCell = row.cells[status === '通過' ? 4 : 3];
+      otherStatusCell.textContent = '';
 
       // 發送 POST 請求更新狀態
       axios.post('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/zsjh-anonymity-update', {
