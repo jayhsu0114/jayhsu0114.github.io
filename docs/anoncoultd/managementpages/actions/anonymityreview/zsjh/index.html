@@ -28,8 +28,8 @@
           const tableHtml = generateTableHtml(data);
           zsjhDataElement.innerHTML = tableHtml;
         } else {
-          // 如果沒有資料，顯示 "找不到資料."，生成空表格框架
-          zsjhDataElement.innerHTML = generateEmptyTable();
+          // 如果沒有資料，顯示 "找不到資料."
+          zsjhDataElement.textContent = '找不到資料.';
         }
       })
       .catch(function (error) {
@@ -48,49 +48,12 @@
         // 遍歷行中的每個單元格
         row.forEach((cell, cellIndex) => {
           const cellValue = cell !== undefined && cell !== null ? cell : ''; // 確保空單元格顯示為空字符串
-          if (rowIndex === 0) {
-            // 標題行，不添加按鈕
-            html += `<td>${cellValue}</td>`;
-          } else if (cellIndex === 3 || cellIndex === 4) { // 通過（D）和不通過（E）列
-            const buttonText = cellIndex === 3 ? '通過' : '不通過';
-            html += `<td><button onclick="updateCell(${rowIndex + 1}, ${cellIndex + 1}, '${buttonText}')">${buttonText}</button></td>`;
-          } else {
-            html += `<td>${cellValue}</td>`;
-          }
+          html += `<td>${cellValue}</td>`;
         });
         html += '</tr>';
       });
       html += '</table>';
       return html;
-    }
-
-    // 生成空表格框架的函式
-    function generateEmptyTable() {
-      let html = '<table border="1">';
-      // 生成一行占位用的空单元格
-      html += '<tr>';
-      for (let i = 0; i < 7; i++) { // 假設至少需要 7 列
-        html += '<td></td>';
-      }
-      html += '</tr>';
-      html += '</table>';
-      return html;
-    }
-
-    // 更新單元格資料的函式
-    function updateCell(row, col, value) {
-      axios.post('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/zsjh-update-cell', {
-        row: row,
-        col: col,
-        value: value
-      })
-      .then(function (response) {
-        // 更新成功，重新加載頁面資料
-        location.reload();
-      })
-      .catch(function (error) {
-        console.error('更新單元格錯誤:', error);
-      });
     }
   </script>
 </body>
