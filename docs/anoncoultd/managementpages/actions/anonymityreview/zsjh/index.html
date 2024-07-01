@@ -49,9 +49,9 @@
             if (cellIndex === 1) {
               html += `<td class="content-cell"><textarea class="content-textarea">${cell}</textarea></td>`;
             } else if (cellIndex === 3) {
-              html += `<td class="action-cell"><button class="action-button" onclick="handleButtonClick(this, ${rowIndex}, '通過')">通過</button></td>`;
+              html += `<td class="action-cell"><button class="action-button" onclick="handleButtonClick(${rowIndex}, '通過')">通過</button></td>`;
             } else if (cellIndex === 4) {
-              html += `<td class="action-cell"><button class="action-button" onclick="handleButtonClick(this, ${rowIndex}, '不通過')">不通過</button></td>`;
+              html += `<td class="action-cell"><button class="action-button" onclick="handleButtonClick(${rowIndex}, '不通過')">不通過</button></td>`;
             } else {
               html += `<td>${cell}</td>`;
             }
@@ -63,16 +63,14 @@
       return html;
     }
 
-    function handleButtonClick(button, rowIndex, status) {
-      const rowButtons = document.querySelectorAll(`#zsjh-data table tr:nth-child(${rowIndex + 1}) .action-button`);
-      const textarea = document.querySelector(`#zsjh-data table tr:nth-child(${rowIndex + 1}) .content-textarea`);
+    function handleButtonClick(rowIndex, status) {
+      const row = document.querySelector(`#zsjh-data table tr:nth-child(${rowIndex + 1})`);
+      const buttons = row.querySelectorAll('.action-button');
+      const textarea = row.querySelector('.content-textarea');
 
-      rowButtons.forEach(function (btn) {
-        btn.style.display = 'none';
-      });
-
+      buttons.forEach(button => button.disabled = true);
       if (textarea) {
-        textarea.setAttribute('disabled', 'disabled');
+        textarea.disabled = true;
       }
 
       axios.post('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/zsjh-anonymity-update', {
