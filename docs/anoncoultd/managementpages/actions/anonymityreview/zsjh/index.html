@@ -33,6 +33,7 @@
 
             // 在除了標題列之外的每一列的「通過」和「不通過」單元格中添加按鈕
             if (rowIndex > 0) { // 跳過標題行
+              row[1] = `<textarea class="content-textarea" readonly>${row[1]}</textarea>`;
               row[3] = `<button class="action-button" onclick="handleButtonClick(this, ${rowIndex})">通過</button>`;
               row[4] = `<button class="action-button" onclick="handleButtonClick(this, ${rowIndex})">不通過</button>`;
             }
@@ -64,7 +65,9 @@
           if (rowIndex === 0) {
             html += `<th>${cell}</th>`;
           } else {
-            if (cellIndex === 3 || cellIndex === 4) { // 「通過」和「不通過」列
+            if (cellIndex === 1) { // 「匿名內容」列
+              html += `<td>${cell}</td>`;
+            } else if (cellIndex === 3 || cellIndex === 4) { // 「通過」和「不通過」列
               html += `<td class="action-cell">${cell}</td>`;
             } else {
               html += `<td>${cell}</td>`;
