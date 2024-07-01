@@ -28,8 +28,8 @@
           const tableHtml = generateTableHtml(data);
           zsjhDataElement.innerHTML = tableHtml;
         } else {
-          // 如果沒有資料，顯示 "找不到資料."
-          zsjhDataElement.textContent = '找不到資料.';
+          // 如果沒有資料，顯示 "找不到資料."，生成空表格框架
+          zsjhDataElement.innerHTML = generateEmptyTable();
         }
       })
       .catch(function (error) {
@@ -60,6 +60,19 @@
         });
         html += '</tr>';
       });
+      html += '</table>';
+      return html;
+    }
+
+    // 生成空表格框架的函式
+    function generateEmptyTable() {
+      let html = '<table border="1">';
+      // 生成一行占位用的空单元格
+      html += '<tr>';
+      for (let i = 0; i < 5; i++) { // 假設至少需要 5 列
+        html += '<td></td>';
+      }
+      html += '</tr>';
       html += '</table>';
       return html;
     }
