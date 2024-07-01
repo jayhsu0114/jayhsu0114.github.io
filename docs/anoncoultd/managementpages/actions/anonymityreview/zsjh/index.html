@@ -49,9 +49,9 @@
             if (cellIndex === 1) {
               html += `<td class="content-cell"><textarea class="content-textarea">${cell}</textarea></td>`;
             } else if (cellIndex === 3) {
-              html += `<td class="action-cell"><button class="action-button" onclick="handleButtonClick(${rowIndex}, '通過', this)">通過</button></td>`;
+              html += `<td class="action-cell">${row[3] || `<button class="action-button" onclick="handleButtonClick(${rowIndex}, '通過', this)">通過</button>`}</td>`;
             } else if (cellIndex === 4) {
-              html += `<td class="action-cell"><button class="action-button" onclick="handleButtonClick(${rowIndex}, '不通過', this)">不通過</button></td>`;
+              html += `<td class="action-cell">${row[4] || `<button class="action-button" onclick="handleButtonClick(${rowIndex}, '不通過', this)">不通過</button>`}</td>`;
             } else {
               html += `<td>${cell}</td>`;
             }
