@@ -20,14 +20,12 @@
         const zsjhDataElement = document.getElementById('zsjh-data');
 
         if (data && data.length > 0) {
-          // 填充空白列
           data.forEach(function (row) {
             while (row.length < 7) {
               row.push("");
             }
           });
 
-          // 生成 HTML 表格並更新頁面內容
           const tableHtml = generateTableHtml(data);
           zsjhDataElement.innerHTML = tableHtml;
         } else {
@@ -51,9 +49,9 @@
             if (cellIndex === 1) {
               html += `<td class="content-cell"><textarea class="content-textarea">${cell}</textarea></td>`;
             } else if (cellIndex === 3) {
-              html += `<td class="action-cell"><button class="action-button" onclick="handleButtonClick(this, ${rowIndex})">通過</button></td>`;
+              html += `<td class="action-cell"><button class="action-button" onclick="handleButtonClick(this, ${rowIndex}, '通過')">通過</button></td>`;
             } else if (cellIndex === 4) {
-              html += `<td class="action-cell"><button class="action-button" onclick="handleButtonClick(this, ${rowIndex})">不通過</button></td>`;
+              html += `<td class="action-cell"><button class="action-button" onclick="handleButtonClick(this, ${rowIndex}, '不通過')">不通過</button></td>`;
             } else {
               html += `<td>${cell}</td>`;
             }
@@ -65,19 +63,28 @@
       return html;
     }
 
-    function handleButtonClick(button, rowIndex) {
+    function handleButtonClick(button, rowIndex, status) {
       const rowButtons = document.querySelectorAll(`#zsjh-data table tr:nth-child(${rowIndex + 1}) .action-button`);
       const textarea = document.querySelector(`#zsjh-data table tr:nth-child(${rowIndex + 1}) .content-textarea`);
 
-      // 隱藏當前行的所有按鈕
       rowButtons.forEach(function (btn) {
         btn.style.display = 'none';
       });
 
-      // 將當前行的 textarea 設置為不能編輯
       if (textarea) {
         textarea.setAttribute('disabled', 'disabled');
       }
+
+      axios.post('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/zsjh-anonymity-update', {
+        rowIndex: rowIndex,
+        status: status
+      })
+      .then(function (response) {
+        console.log('Status updated successfully');
+      })
+      .catch(function (error) {
+        console.error('Error updating status:', error);
+      });
     }
   </script>
 </body>
