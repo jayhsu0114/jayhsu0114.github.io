@@ -82,7 +82,7 @@
       const statusCell = row.cells[status === '通過' ? 3 : 4];
       statusCell.textContent = status;
 
-      // 發送 POST 請求更新狀態
+      // 發送 POST 請求更新狀態到代理
       axios.post('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/zsjh-anonymity-update', {
         rowIndex: rowIndex,
         status: status
@@ -92,6 +92,18 @@
       })
       .catch(function (error) {
         console.error('Error updating status:', error);
+      });
+
+      // 發送 POST 請求到 Apps Script 更新狀態並生成編號
+      axios.post('https://script.google.com/macros/s/AKfycbzwma2Ot9SQMDCvZ4tR9UuXTXwGJSVOJOfibPzLrA3UYsSGqC6j8eoaHMltCRf7FIOk/exec', {
+        rowIndex: rowIndex,
+        status: status
+      })
+      .then(function (response) {
+        console.log('Status and code updated successfully');
+      })
+      .catch(function (error) {
+        console.error('Error updating status and code:', error);
       });
     }
   </script>
