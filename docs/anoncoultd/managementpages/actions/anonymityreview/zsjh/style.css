@@ -1,4 +1,5 @@
-/* styles.css */
+/* style.css */
+
 .action-button {
     padding: 5px 10px;
     cursor: pointer;
@@ -26,5 +27,18 @@
   
   th {
     background-color: #f2f2f2;
+  }
+  
+  .content-textarea {
+    width: 100%;
+    height: auto;
+    min-height: 36px; /* 设置最小高度以确保视觉上的一致性 */
+    resize: none;
+    box-sizing: border-box;
+    overflow: auto;
+    border: none;
+    background-color: inherit;
+    font-family: inherit;
+    font-size: inherit;
   }
   
