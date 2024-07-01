@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Zsjh Data Page</title>
+  <link rel="stylesheet" href="styles.css"> <!-- 引入外部 CSS 文件 -->
 </head>
 <body>
   <div id="zsjh-data">
@@ -25,9 +26,15 @@
 
         if (data && data.length > 0) {
           // 在这里检查每一行数据，如果长度不足，则填充空白列
-          data.forEach(function (row) {
+          data.forEach(function (row, rowIndex) {
             while (row.length < 7) { // 假设每行最多有7列，根据您的实际情况调整
               row.push(""); // 添加空白列
+            }
+
+            // 在除了标题列之外的每一列的「通過」和「不通過」单元格中添加按钮
+            if (rowIndex > 0) { // 跳过标题行
+              row[3] = '<button class="action-button">通過</button>';
+              row[4] = '<button class="action-button">不通過</button>';
             }
           });
 
@@ -48,13 +55,21 @@
 
     // 生成 HTML 表格的函数
     function generateTableHtml(data) {
-      let html = '<table border="1">';
+      let html = '<table>';
       // 遍历数据行
-      data.forEach(function (row) {
+      data.forEach(function (row, rowIndex) {
         html += '<tr>';
         // 遍历行中的每个单元格
-        row.forEach(function (cell) {
-          html += `<td>${cell}</td>`;
+        row.forEach(function (cell, cellIndex) {
+          if (rowIndex === 0) {
+            html += `<th>${cell}</th>`;
+          } else {
+            if (cellIndex === 3 || cellIndex === 4) { // 「通過」和「不通過」列
+              html += `<td class="action-cell">${cell}</td>`;
+            } else {
+              html += `<td>${cell}</td>`;
+            }
+          }
         });
         html += '</tr>';
       });
