@@ -36,7 +36,7 @@
         // 请求失败处理
         console.error('Error fetching data:', error);
         const zsjhDataElement = document.getElementById('zsjh-data');
-        zsjhDataElement.textContent = 'Error fetching data.';
+        zsjhDataElement.textContent = 'Error fetching data. Please check your connection and try again.';
       });
 
     // 生成 HTML 表格的函数
@@ -77,6 +77,7 @@
       })
       .catch(function (error) {
         console.error('Error updating cell:', error);
+        alert('Error updating cell. Please try again later.');
       });
     }
   </script>
