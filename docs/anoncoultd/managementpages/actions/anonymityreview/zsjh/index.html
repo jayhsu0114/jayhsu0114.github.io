@@ -34,8 +34,8 @@
             // 在除了標題列之外的每一列的「通過」和「不通過」單元格中添加按鈕和文本框
             if (rowIndex > 0) { // 跳過標題行
               row[1] = `<textarea class="content-textarea">${row[1]}</textarea>`;
-              row[3] = `<button class="action-button" onclick="handleButtonClick(this, ${rowIndex})">通過</button>`;
-              row[4] = `<button class="action-button" onclick="handleButtonClick(this, ${rowIndex})">不通過</button>`;
+              row[3] = `<button class="action-button" onclick="handleButtonClick('通過', ${rowIndex})">通過</button>`;
+              row[4] = `<button class="action-button" onclick="handleButtonClick('不通過', ${rowIndex})">不通過</button>`;
             }
           });
 
@@ -81,13 +81,28 @@
     }
 
     // 按鈕點擊處理函數
-    function handleButtonClick(button, rowIndex) {
-      // 找到當前行的所有按鈕
-      const rowButtons = document.querySelectorAll(`#zsjh-data table tr:nth-child(${rowIndex + 1}) .action-button`);
+    function handleButtonClick(status, rowIndex) {
+      const cellIndex = status === '通過' ? 3 : 4; // 確定要填入的儲存格索引
 
-      // 隱藏當前行的所有按鈕
-      rowButtons.forEach(function (btn) {
-        btn.style.display = 'none';
+      // 獲取要更新的數據
+      const cellValue = status;
+
+      // 發送 POST 請求以更新後端數據
+      axios.post('https://your-backend-url/zsjh-anonymity-view', {
+        rowIndex: rowIndex,
+        cellIndex: cellIndex,
+        cellValue: cellValue
+      })
+      .then(function (response) {
+        // 成功處理
+        console.log('成功更新數據:', response.data);
+        // 可選：更新前端顯示以反映後端更改
+        const updatedCell = document.querySelector(`#zsjh-data table tr:nth-child(${rowIndex + 1}) td:nth-child(${cellIndex + 1})`);
+        updatedCell.textContent = cellValue;
+      })
+      .catch(function (error) {
+        // 失敗處理
+        console.error('更新數據出錯:', error);
       });
     }
   </script>
