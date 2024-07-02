@@ -84,19 +84,6 @@
       return html;
     }
 
-    function handleButtonClick(rowIndex, status, button) {
-      // 檢查上一行是否存在未處理的按鈕
-      if (rowIndex > 1) {
-        const prevRow = document.querySelector(`#zsjh-data table tr:nth-child(${rowIndex})`);
-        const prevRowButtons = prevRow.querySelectorAll('.action-button');
-        const prevRowHasButtons = Array.from(prevRowButtons).some(btn => btn.style.display !== 'none');
-
-        if (prevRowHasButtons) {
-          alert('上一行尚未處理，請先處理上一行。');
-          return;
-        }
-      }
-
       const row = document.querySelector(`#zsjh-data table tr:nth-child(${rowIndex + 1})`);
       const buttons = row.querySelectorAll('.action-button');
       const textarea = row.querySelector('.content-textarea');
