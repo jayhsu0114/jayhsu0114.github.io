@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ZSJH審核頁面</title>
+  <title>ZSJH審核頁面（未簡化）</title>
   <link rel="stylesheet" href="style.css"> <!-- 引入外部 CSS 文件 -->
 </head>
 <body>
@@ -38,27 +38,8 @@
       });
 
     function generateTableHtml(data) {
-      let startIndex = 0;
-
-      // 找到第六行最末行的編號
-      const lastRow = data[data.length - 1];
-      const lastNumberCell = lastRow[5];
-      const lastNumber = parseInt(lastNumberCell.replace('ZSJH', ''));
-      
-      // 如果尾數不是1，找到最新一行尾數是1的行
-      if (lastNumber % 10 !== 1) {
-        for (let i = data.length - 1; i >= 0; i--) {
-          const numberCell = data[i][5];
-          const number = parseInt(numberCell.replace('ZSJH', ''));
-          if (number % 10 === 1) {
-            startIndex = i;
-            break;
-          }
-        }
-      }
-
       let html = '<table>';
-      data.slice(startIndex).forEach(function (row, rowIndex) {
+      data.forEach(function (row, rowIndex) {
         html += '<tr>';
         const statusExists = row[3] === '通過' || row[4] === '不通過';
 
@@ -69,9 +50,9 @@
             if (cellIndex === 1) {
               html += `<td class="content-cell"><textarea class="content-textarea" ${statusExists ? 'disabled' : ''}>${cell}</textarea></td>`;
             } else if (cellIndex === 3) {
-              html += `<td class="action-cell">${statusExists ? cell : `<button class="action-button" onclick="handleButtonClick(${rowIndex + startIndex}, '通過', this)">通過</button>`}</td>`;
+              html += `<td class="action-cell">${statusExists ? cell : `<button class="action-button" onclick="handleButtonClick(${rowIndex}, '通過', this)">通過</button>`}</td>`;
             } else if (cellIndex === 4) {
-              html += `<td class="action-cell">${statusExists ? cell : `<button class="action-button" onclick="handleButtonClick(${rowIndex + startIndex}, '不通過', this)">不通過</button>`}</td>`;
+              html += `<td class="action-cell">${statusExists ? cell : `<button class="action-button" onclick="handleButtonClick(${rowIndex}, '不通過', this)">不通過</button>`}</td>`;
             } else if (cellIndex === 5) {
               html += `<td class="number-cell">${cell}</td>`;
             } else {
