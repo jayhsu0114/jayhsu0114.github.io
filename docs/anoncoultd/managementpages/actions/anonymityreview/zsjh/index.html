@@ -83,11 +83,13 @@
       const statusCell = row.cells[status === '通過' ? 3 : 4];
       statusCell.textContent = status;
 
-      // 更新編號
-      const numberCell = row.cells[5];
-      const prevRowNumber = findPreviousRowNumber(rowIndex);
-      const newNumber = `ZSJH${prevRowNumber + 1}`;
-      numberCell.textContent = newNumber;
+      // 如果是通過，則更新編號
+      if (status === '通過') {
+        const numberCell = row.cells[5];
+        const prevRowNumber = findPreviousRowNumber(rowIndex);
+        const newNumber = `ZSJH${prevRowNumber + 1}`;
+        numberCell.textContent = newNumber;
+      }
 
       // 獲取 textarea 中的內容
       const content = textarea ? textarea.value : '';
