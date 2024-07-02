@@ -7,12 +7,11 @@
   <link rel="stylesheet" href="style.css"> <!-- 引入外部 CSS 文件 -->
 </head>
 <body>
-  <div id="zsjh-data">
+  <div id="zsjh-data" class="loading">
     正在加載數據...
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
   <script>
     axios.get('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/zsjh-sheet-data')
       .then(function (response) {
@@ -82,22 +81,27 @@
       const statusCell = row.cells[status === '通過' ? 3 : 4];
       statusCell.textContent = status;
 
-      // 發送 POST 請求更新狀態到代理
+      // 獲取 textarea 中的內容
+      const content = textarea ? textarea.value : '';
+
+      // 發送 POST 請求更新狀態和 textarea 內容到代理
       axios.post('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/zsjh-anonymity-update', {
         rowIndex: rowIndex,
-        status: status
+        status: status,
+        content: content
       })
       .then(function (response) {
-        console.log('Status updated successfully');
+        console.log('Status and content updated successfully');
       })
       .catch(function (error) {
-        console.error('Error updating status:', error);
+        console.error('Error updating status and content:', error);
       });
 
       // 發送 POST 請求到 Apps Script 更新狀態並生成編號
       axios.post('https://script.google.com/macros/s/AKfycbzwma2Ot9SQMDCvZ4tR9UuXTXwGJSVOJOfibPzLrA3UYsSGqC6j8eoaHMltCRf7FIOk/exec', {
         rowIndex: rowIndex,
-        status: status
+        status: status,
+        content: content
       }, {
         headers: {
           'Content-Type': 'application/json'
