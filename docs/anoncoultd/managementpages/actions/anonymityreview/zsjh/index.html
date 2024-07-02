@@ -25,8 +25,7 @@
             }
           });
 
-          const startIndex = findStartIndex(data);
-          const tableHtml = generateTableHtml(data.slice(startIndex));
+          const tableHtml = generateTableHtml(data);
           zsjhDataElement.innerHTML = tableHtml;
         } else {
           zsjhDataElement.textContent = '找不到數據.';
@@ -38,47 +37,48 @@
         zsjhDataElement.textContent = '獲取數據出錯.';
       });
 
-    function findStartIndex(data) {
-      const lastRow = data[data.length - 1];
-      const lastNumber = lastRow[5];
+    function generateTableHtml(data) {
+      let html = '<table>';
+      let startIndex = 1; // 初始化為1，確保顯示標題行
 
-      if (lastNumber.endsWith('1')) {
-        return 1; // 从第二行开始显示（跳过标题行）
-      }
+      // 找到第六列最後一行的編號
+      const lastRowNumber = data[data.length - 1][5];
+      const lastRowNumberSuffix = lastRowNumber.slice(-1);
 
-      for (let i = data.length - 2; i >= 1; i--) {
-        if (data[i][5].endsWith('1')) {
-          return i; // 找到尾数是1的行，从该行开始显示
+      if (lastRowNumberSuffix !== '1') {
+        // 從底部往上找到最新的尾數為1的行
+        for (let i = data.length - 1; i > 0; i--) {
+          if (data[i][5].slice(-1) === '1') {
+            startIndex = i;
+            break;
+          }
         }
       }
 
-      return 1; // 如果没有找到尾数是1的行，默认从第二行开始显示
-    }
-
-    function generateTableHtml(data) {
-      let html = '<table>';
       data.forEach(function (row, rowIndex) {
-        html += '<tr>';
-        const statusExists = row[3] === '通過' || row[4] === '不通過';
+        if (rowIndex === 0 || rowIndex >= startIndex) {
+          html += '<tr>';
+          const statusExists = row[3] === '通過' || row[4] === '不通過';
 
-        row.forEach(function (cell, cellIndex) {
-          if (rowIndex === 0) {
-            html += `<th>${cell}</th>`;
-          } else {
-            if (cellIndex === 1) {
-              html += `<td class="content-cell"><textarea class="content-textarea" ${statusExists ? 'disabled' : ''}>${cell}</textarea></td>`;
-            } else if (cellIndex === 3) {
-              html += `<td class="action-cell">${statusExists ? cell : `<button class="action-button" onclick="handleButtonClick(${rowIndex}, '通過', this)">通過</button>`}</td>`;
-            } else if (cellIndex === 4) {
-              html += `<td class="action-cell">${statusExists ? cell : `<button class="action-button" onclick="handleButtonClick(${rowIndex}, '不通過', this)">不通過</button>`}</td>`;
-            } else if (cellIndex === 5) {
-              html += `<td class="number-cell">${cell}</td>`;
+          row.forEach(function (cell, cellIndex) {
+            if (rowIndex === 0) {
+              html += `<th>${cell}</th>`;
             } else {
-              html += `<td>${cell}</td>`;
+              if (cellIndex === 1) {
+                html += `<td class="content-cell"><textarea class="content-textarea" ${statusExists ? 'disabled' : ''}>${cell}</textarea></td>`;
+              } else if (cellIndex === 3) {
+                html += `<td class="action-cell">${statusExists ? cell : `<button class="action-button" onclick="handleButtonClick(${rowIndex}, '通過', this)">通過</button>`}</td>`;
+              } else if (cellIndex === 4) {
+                html += `<td class="action-cell">${statusExists ? cell : `<button class="action-button" onclick="handleButtonClick(${rowIndex}, '不通過', this)">不通過</button>`}</td>`;
+              } else if (cellIndex === 5) {
+                html += `<td class="number-cell">${cell}</td>`;
+              } else {
+                html += `<td>${cell}</td>`;
+              }
             }
-          }
-        });
-        html += '</tr>';
+          });
+          html += '</tr>';
+        }
       });
       html += '</table>';
       return html;
