@@ -3,8 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ZSJH審核頁面簡化一版頂替跑不過的版本</title>
+  <title>ZSJH審核頁面更新</title>
   <link rel="stylesheet" href="style.css"> <!-- 引入外部 CSS 文件 -->
+  <style>
+    /* 可以在這裡添加自定義的 CSS 樣式 */
+  </style>
 </head>
 <body>
   <div id="zsjh-data" class="loading">
@@ -28,8 +31,22 @@
           const tableHtml = generateTableHtml(data);
           zsjhDataElement.innerHTML = tableHtml;
 
-          // 隱藏符合條件的行
-          hideRows(data);
+          // 找到第六欄中最後一個數字是1的儲存格在哪一列
+          let targetRowIndex = -1;
+          for (let i = 0; i < data.length; i++) {
+            const cellValue = data[i][5]; // 第六欄
+            if (typeof cellValue === 'string' && cellValue.trim().endsWith('1')) {
+              targetRowIndex = i;
+            }
+          }
+
+          // 隱藏符合條件的行之前的所有行
+          if (targetRowIndex !== -1) {
+            const table = zsjhDataElement.querySelector('table');
+            const rowsToHide = Array.from(table.querySelectorAll('tr')).slice(0, targetRowIndex);
+            rowsToHide.forEach(row => row.style.display = 'none');
+          }
+
         } else {
           zsjhDataElement.textContent = '找不到數據.';
         }
@@ -67,27 +84,6 @@
       });
       html += '</table>';
       return html;
-    }
-
-    function hideRows(data) {
-      let firstVisibleRowFound = false;
-
-      data.forEach(function (row, rowIndex) {
-        if (rowIndex === 0) {
-          // Skip header row
-          return;
-        }
-
-        const numberCell = row[5];
-        if (numberCell.endsWith('1')) {
-          if (!firstVisibleRowFound) {
-            firstVisibleRowFound = true;
-          } else {
-            const rowElement = document.querySelector(`#zsjh-data table tr:nth-child(${rowIndex + 1})`);
-            rowElement.style.display = 'none';
-          }
-        }
-      });
     }
 
     function handleButtonClick(rowIndex, status, button) {
