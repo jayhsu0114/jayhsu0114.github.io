@@ -85,7 +85,7 @@
     }
 
     function handleButtonClick(rowIndex, status, button) {
-      // 檢查上一行是否存在未處理的按鈕
+      // 確保只有在上一行存在未處理按鈕的情況下才會警告
       if (rowIndex > 1) {
         const prevRow = document.querySelector(`#zsjh-data table tr:nth-child(${rowIndex})`);
         const prevRowButtons = prevRow.querySelectorAll('.action-button');
