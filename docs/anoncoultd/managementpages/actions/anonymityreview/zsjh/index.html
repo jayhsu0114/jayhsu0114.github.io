@@ -53,7 +53,7 @@
               html += `<td class="action-cell">${statusExists ? cell : `<button class="action-button" onclick="handleButtonClick(${rowIndex}, '通過', this)">通過</button>`}</td>`;
             } else if (cellIndex === 4) {
               html += `<td class="action-cell">${statusExists ? cell : `<button class="action-button" onclick="handleButtonClick(${rowIndex}, '不通過', this)">不通過</button>`}</td>`;
-            } else if (cellIndex === 6) {
+            } else if (cellIndex === 5) {
               html += `<td class="number-cell">${cell}</td>`;
             } else {
               html += `<td>${cell}</td>`;
@@ -84,7 +84,7 @@
       statusCell.textContent = status;
 
       // 更新編號
-      const numberCell = row.cells[6];
+      const numberCell = row.cells[5];
       const prevRowNumber = findPreviousRowNumber(rowIndex);
       const newNumber = `ZSJH${prevRowNumber + 1}`;
       numberCell.textContent = newNumber;
@@ -110,7 +110,7 @@
       // 從 rowIndex 開始向上查找前一行有編號的行
       for (let i = rowIndex - 1; i >= 0; i--) {
         const row = document.querySelector(`#zsjh-data table tr:nth-child(${i + 1})`);
-        const numberCell = row.cells[6];
+        const numberCell = row.cells[5];
         if (numberCell.textContent.startsWith('ZSJH')) {
           const number = parseInt(numberCell.textContent.replace('ZSJH', ''));
           if (!isNaN(number)) {
