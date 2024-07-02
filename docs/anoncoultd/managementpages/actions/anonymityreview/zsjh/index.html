@@ -53,6 +53,8 @@
               html += `<td class="action-cell">${statusExists ? cell : `<button class="action-button" onclick="handleButtonClick(${rowIndex}, '通過', this)">通過</button>`}</td>`;
             } else if (cellIndex === 4) {
               html += `<td class="action-cell">${statusExists ? cell : `<button class="action-button" onclick="handleButtonClick(${rowIndex}, '不通過', this)">不通過</button>`}</td>`;
+            } else if (cellIndex === 6) {
+              html += `<td class="number-cell">${cell}</td>`;
             } else {
               html += `<td>${cell}</td>`;
             }
@@ -81,6 +83,12 @@
       const statusCell = row.cells[status === '通過' ? 3 : 4];
       statusCell.textContent = status;
 
+      // 更新編號
+      const numberCell = row.cells[6];
+      const prevRowNumber = findPreviousRowNumber(rowIndex);
+      const newNumber = `ZSJH${prevRowNumber + 1}`;
+      numberCell.textContent = newNumber;
+
       // 獲取 textarea 中的內容
       const content = textarea ? textarea.value : '';
 
@@ -96,23 +104,21 @@
       .catch(function (error) {
         console.error('Error updating status and content:', error);
       });
+    }
 
-      // 發送 POST 請求到 Apps Script 更新狀態並生成編號
-      axios.post('https://script.google.com/macros/s/AKfycbzwma2Ot9SQMDCvZ4tR9UuXTXwGJSVOJOfibPzLrA3UYsSGqC6j8eoaHMltCRf7FIOk/exec', {
-        rowIndex: rowIndex,
-        status: status,
-        content: content
-      }, {
-        headers: {
-          'Content-Type': 'application/json'
+    function findPreviousRowNumber(rowIndex) {
+      // 從 rowIndex 開始向上查找前一行有編號的行
+      for (let i = rowIndex - 1; i >= 0; i--) {
+        const row = document.querySelector(`#zsjh-data table tr:nth-child(${i + 1})`);
+        const numberCell = row.cells[6];
+        if (numberCell.textContent.startsWith('ZSJH')) {
+          const number = parseInt(numberCell.textContent.replace('ZSJH', ''));
+          if (!isNaN(number)) {
+            return number;
+          }
         }
-      })
-      .then(function (response) {
-        console.log('Status and code updated successfully');
-      })
-      .catch(function (error) {
-        console.error('Error updating status and code:', error);
-      });
+      }
+      return 0; // 如果找不到前一行有編號的行，返回 0
     }
   </script>
 </body>
