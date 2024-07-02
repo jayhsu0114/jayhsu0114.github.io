@@ -67,9 +67,9 @@
               if (cellIndex === 1) {
                 html += `<td class="content-cell"><textarea class="content-textarea" ${statusExists ? 'disabled' : ''}>${cell}</textarea></td>`;
               } else if (cellIndex === 3) {
-                html += `<td class="action-cell">${statusExists ? cell : `<button class="action-button" onclick="handleButtonClick(${rowIndex}, '通過', this)">通過</button>`}</td>`;
+                html += `<td class="action-cell">${statusExists ? cell : `<button class="action-button" onclick="handleButtonClick(${rowIndex}, ${cellIndex}, '通過', this)">通過</button>`}</td>`;
               } else if (cellIndex === 4) {
-                html += `<td class="action-cell">${statusExists ? cell : `<button class="action-button" onclick="handleButtonClick(${rowIndex}, '不通過', this)">不通過</button>`}</td>`;
+                html += `<td class="action-cell">${statusExists ? cell : `<button class="action-button" onclick="handleButtonClick(${rowIndex}, ${cellIndex}, '不通過', this)">不通過</button>`}</td>`;
               } else if (cellIndex === 5) {
                 html += `<td class="number-cell">${cell}</td>`;
               } else {
@@ -84,15 +84,24 @@
       return html;
     }
 
-    function handleButtonClick(rowIndex, status, button) {
-      // 確保只有在上一行存在未處理按鈕的情況下才會警告
-      if (rowIndex > 1) {
+    function handleButtonClick(rowIndex, cellIndex, status, button) {
+      // 檢查上一行和上一列是否存在未處理的按鈕
+      if (rowIndex > 1 || cellIndex > 1) {
         const prevRow = document.querySelector(`#zsjh-data table tr:nth-child(${rowIndex})`);
         const prevRowButtons = prevRow.querySelectorAll('.action-button');
         const prevRowHasButtons = Array.from(prevRowButtons).some(btn => btn.style.display !== 'none');
 
-        if (prevRowHasButtons) {
-          alert('上一行尚未處理，請先處理上一行。');
+        const prevColButtons = [];
+        for (let i = rowIndex; i > 0; i--) {
+          const cell = document.querySelector(`#zsjh-data table tr:nth-child(${i}) td:nth-child(${cellIndex}) .action-button`);
+          if (cell && cell.style.display !== 'none') {
+            prevColButtons.push(cell);
+          }
+        }
+        const prevColHasButtons = prevColButtons.length > 0;
+
+        if (prevRowHasButtons || prevColHasButtons) {
+          alert('上一行或上一列尚未處理，請先處理上一行或上一列。');
           return;
         }
       }
