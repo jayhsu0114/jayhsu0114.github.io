@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ZSJH審核頁面</title>
+  <title>ZSJH審核頁面（未簡化）</title>
   <link rel="stylesheet" href="style.css"> <!-- 引入外部 CSS 文件 -->
 </head>
 <body>
@@ -39,50 +39,45 @@
 
     function generateTableHtml(data) {
       let html = '<table>';
-      let startIndex = 1; // 初始化為1，確保顯示標題行
-
-      // 找到第六列最後一行的編號
-      const lastRowNumber = data[data.length - 1][5];
-      const lastRowNumberSuffix = lastRowNumber.slice(-1);
-
-      if (lastRowNumberSuffix !== '1') {
-        // 從底部往上找到最新的尾數為1的行
-        for (let i = data.length - 1; i > 0; i--) {
-          if (data[i][5].slice(-1) === '1') {
-            startIndex = i;
-            break;
-          }
-        }
-      }
-
       data.forEach(function (row, rowIndex) {
-        if (rowIndex === 0 || rowIndex >= startIndex) {
-          html += '<tr>';
-          const statusExists = row[3] === '通過' || row[4] === '不通過';
+        html += '<tr>';
+        const statusExists = row[3] === '通過' || row[4] === '不通過';
 
-          row.forEach(function (cell, cellIndex) {
-            if (rowIndex === 0) {
-              html += `<th>${cell}</th>`;
+        row.forEach(function (cell, cellIndex) {
+          if (rowIndex === 0) {
+            html += `<th>${cell}</th>`;
+          } else {
+            if (cellIndex === 1) {
+              html += `<td class="content-cell"><textarea class="content-textarea" ${statusExists ? 'disabled' : ''}>${cell}</textarea></td>`;
+            } else if (cellIndex === 3) {
+              html += `<td class="action-cell">${statusExists ? cell : `<button class="action-button" onclick="handleButtonClick(${rowIndex}, '通過', this)">通過</button>`}</td>`;
+            } else if (cellIndex === 4) {
+              html += `<td class="action-cell">${statusExists ? cell : `<button class="action-button" onclick="handleButtonClick(${rowIndex}, '不通過', this)">不通過</button>`}</td>`;
+            } else if (cellIndex === 5) {
+              html += `<td class="number-cell">${cell}</td>`;
             } else {
-              if (cellIndex === 1) {
-                html += `<td class="content-cell"><textarea class="content-textarea" ${statusExists ? 'disabled' : ''}>${cell}</textarea></td>`;
-              } else if (cellIndex === 3) {
-                html += `<td class="action-cell">${statusExists ? cell : `<button class="action-button" onclick="handleButtonClick(${rowIndex}, '通過', this)">通過</button>`}</td>`;
-              } else if (cellIndex === 4) {
-                html += `<td class="action-cell">${statusExists ? cell : `<button class="action-button" onclick="handleButtonClick(${rowIndex}, '不通過', this)">不通過</button>`}</td>`;
-              } else if (cellIndex === 5) {
-                html += `<td class="number-cell">${cell}</td>`;
-              } else {
-                html += `<td>${cell}</td>`;
-              }
+              html += `<td>${cell}</td>`;
             }
-          });
-          html += '</tr>';
-        }
+          }
+        });
+        html += '</tr>';
       });
       html += '</table>';
       return html;
     }
+
+    function handleButtonClick(rowIndex, status, button) {
+      // 檢查上一行是否存在未處理的按鈕
+      if (rowIndex > 1) {
+        const prevRow = document.querySelector(`#zsjh-data table tr:nth-child(${rowIndex})`);
+        const prevRowButtons = prevRow.querySelectorAll('.action-button');
+        const prevRowHasButtons = Array.from(prevRowButtons).some(btn => btn.style.display !== 'none');
+
+        if (prevRowHasButtons) {
+          alert('上一行尚未處理，請先處理上一行。');
+          return;
+        }
+      }
 
       const row = document.querySelector(`#zsjh-data table tr:nth-child(${rowIndex + 1})`);
       const buttons = row.querySelectorAll('.action-button');
