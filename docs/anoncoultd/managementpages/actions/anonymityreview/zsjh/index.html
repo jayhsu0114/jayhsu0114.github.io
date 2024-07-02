@@ -83,28 +83,29 @@
       const statusCell = row.cells[status === '通過' ? 3 : 4];
       statusCell.textContent = status;
 
-      // 如果是通過，則更新編號
+      let newNumber = '';
       if (status === '通過') {
         const numberCell = row.cells[5];
         const prevRowNumber = findPreviousRowNumber(rowIndex);
-        const newNumber = `ZSJH${prevRowNumber + 1}`;
+        newNumber = `ZSJH${prevRowNumber + 1}`;
         numberCell.textContent = newNumber;
       }
 
       // 獲取 textarea 中的內容
       const content = textarea ? textarea.value : '';
 
-      // 發送 POST 請求更新狀態和 textarea 內容到代理
+      // 發送 POST 請求更新狀態、textarea 內容和編號到代理
       axios.post('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/zsjh-anonymity-update', {
         rowIndex: rowIndex,
         status: status,
-        content: content
+        content: content,
+        number: newNumber // 添加編號到請求數據中
       })
       .then(function (response) {
-        console.log('Status and content updated successfully');
+        console.log('Status, content and number updated successfully');
       })
       .catch(function (error) {
-        console.error('Error updating status and content:', error);
+        console.error('Error updating status, content and number:', error);
       });
     }
 
