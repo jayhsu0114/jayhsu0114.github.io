@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ZSJH審核頁面（未簡化）</title>
+  <title>ZSJH審核頁面</title>
   <link rel="stylesheet" href="style.css"> <!-- 引入外部 CSS 文件 -->
 </head>
 <body>
@@ -25,7 +25,8 @@
             }
           });
 
-          const tableHtml = generateTableHtml(data);
+          const startIndex = findStartIndex(data);
+          const tableHtml = generateTableHtml(data.slice(startIndex));
           zsjhDataElement.innerHTML = tableHtml;
         } else {
           zsjhDataElement.textContent = '找不到數據.';
@@ -36,6 +37,23 @@
         const zsjhDataElement = document.getElementById('zsjh-data');
         zsjhDataElement.textContent = '獲取數據出錯.';
       });
+
+    function findStartIndex(data) {
+      const lastRow = data[data.length - 1];
+      const lastNumber = lastRow[5];
+
+      if (lastNumber.endsWith('1')) {
+        return 1; // 从第二行开始显示（跳过标题行）
+      }
+
+      for (let i = data.length - 2; i >= 1; i--) {
+        if (data[i][5].endsWith('1')) {
+          return i; // 找到尾数是1的行，从该行开始显示
+        }
+      }
+
+      return 1; // 如果没有找到尾数是1的行，默认从第二行开始显示
+    }
 
     function generateTableHtml(data) {
       let html = '<table>';
