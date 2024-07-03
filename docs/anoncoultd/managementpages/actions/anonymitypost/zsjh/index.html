@@ -2,23 +2,23 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8">
-  <title>获取和修改图像示例</title>
+  <title>取得與修改圖片範例</title>
 </head>
 <body>
-  <h1>获取和修改图像示例</h1>
-  <button id="getImageBtn">获取图像</button>
+  <h1>取得與修改圖片範例</h1>
+  <button id="getImageBtn">取得圖片</button>
   <div id="imageContainer"></div>
 
   <script>
     const getImageBtn = document.getElementById('getImageBtn');
     const imageContainer = document.getElementById('imageContainer');
-    const apiBaseUrl = 'https://google-sheets-proxy-mk66ircp2a-uc.a.run.app'; // 替换为你的 API 服务 URL
+    const apiBaseUrl = 'https://google-sheets-proxy-mk66ircp2a-uc.a.run.app'; // 替換為你的 API 服務 URL
 
     getImageBtn.addEventListener('click', () => {
       fetch(`${apiBaseUrl}/zsjh-postmaker/get-image`)
         .then(response => {
           if (!response.ok) {
-            throw new Error('网络响应失败');
+            throw new Error('網路回應失敗');
           }
           return response.blob();
         })
@@ -26,51 +26,51 @@
           const imageUrl = URL.createObjectURL(blob);
           const imageElement = document.createElement('img');
           imageElement.src = imageUrl;
-          imageContainer.innerHTML = ''; // 清除之前的图像
+          imageContainer.innerHTML = ''; // 清除之前的圖片
           imageContainer.appendChild(imageElement);
 
           imageElement.onload = () => {
-            // Log image dimensions to console
-            console.log('图像宽度:', imageElement.width);
-            console.log('图像高度:', imageElement.height);
+            // 記錄圖片尺寸到控制台
+            console.log('圖片寬度:', imageElement.width);
+            console.log('圖片高度:', imageElement.height);
 
-            // 创建一个与图像大小相同的画布
+            // 創建一個與圖片大小相同的畫布
             const canvas = document.createElement('canvas');
             const ctx = canvas.getContext('2d');
             canvas.width = imageElement.width;
             canvas.height = imageElement.height;
             
-            // 在画布上绘制图像
+            // 在畫布上繪製圖片
             ctx.drawImage(imageElement, 0, 0);
 
-            // 示例文本（根据你的动态输入替换）
-            const inputText = '示例文字';
+            // 示例文本（根據你的動態輸入替換）
+            const inputText = '示例文字示例文字示例文字示例文字示例文字示例文字示例文字示例文字示例文字示例文字示例文字示例文字示例文字示例文字示例文字示例文字示例文字示例文字示例文字示例文字示例文字示例文字示例文字示例文字示例文字示例文字示例文字示例文字';
             const inputFlow = '流程文字';
             const inputId = 'ID 文字';
-            const inputTimestamp = '时间戳文字';
+            const inputTimestamp = '時間戳文字';
 
-            // 在画布上绘制文本
+            // 在畫布上繪製文本
             ctx.font = '36px Arial';
-            ctx.fillStyle = '#000'; // 黑色字体
+            ctx.fillStyle = '#000'; // 黑色字體
             ctx.textAlign = 'center';
 
-            // 根据要求布置文本位置
+            // 根據要求佈置文本位置
             const centerX = canvas.width / 2;
-            ctx.fillText(inputText, centerX, 200);
-            ctx.fillStyle = '#E76F51'; // 流程文本颜色
-            ctx.fillText(inputFlow, centerX, 400);
-            ctx.fillStyle = '#F4A261'; // ID 文本颜色
-            ctx.fillText(inputId, centerX, 450);
-            ctx.fillStyle = '#2A9D8F'; // 时间戳文本颜色
-            ctx.fillText(inputTimestamp, centerX, 500);
+            ctx.fillText(inputText, centerX, 900);
+            ctx.fillStyle = '#E76F51'; // 流程文本顏色
+            ctx.fillText(inputFlow, centerX, );
+            ctx.fillStyle = '#F4A261'; // ID 文本顏色
+            ctx.fillText(inputId, centerX, 1000);
+            ctx.fillStyle = '#2A9D8F'; // 時間戳文本顏色
+            ctx.fillText(inputTimestamp, centerX, 1100);
 
-            // 替换图像元素为画布
-            imageContainer.innerHTML = ''; // 清除之前的图像
+            // 替換圖片元素為畫布
+            imageContainer.innerHTML = ''; // 清除之前的圖片
             imageContainer.appendChild(canvas);
           };
         })
         .catch(error => {
-          console.error('获取图像时出错:', error);
+          console.error('取得圖片時發生錯誤:', error);
         });
     });
   </script>
