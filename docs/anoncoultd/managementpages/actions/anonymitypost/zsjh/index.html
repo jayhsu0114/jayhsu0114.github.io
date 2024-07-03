@@ -2,17 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Fetch Image Example</title>
+  <title>Fetch and Modify Image Example</title>
 </head>
 <body>
-  <h1>Fetch Image Example</h1>
+  <h1>Fetch and Modify Image Example</h1>
   <button id="getImageBtn">Get Image</button>
   <div id="imageContainer"></div>
 
   <script>
     const getImageBtn = document.getElementById('getImageBtn');
     const imageContainer = document.getElementById('imageContainer');
-    const apiBaseUrl = 'https://google-sheets-proxy-mk66ircp2a-uc.a.run.app'; // 替換成你的 API 服務網址
+    const apiBaseUrl = 'https://google-sheets-proxy-mk66ircp2a-uc.a.run.app'; // Replace with your API service URL
 
     getImageBtn.addEventListener('click', () => {
       fetch(`${apiBaseUrl}/zsjh-postmaker/get-image`)
@@ -26,7 +26,44 @@
           const imageUrl = URL.createObjectURL(blob);
           const imageElement = document.createElement('img');
           imageElement.src = imageUrl;
+          imageContainer.innerHTML = ''; // Clear previous images
           imageContainer.appendChild(imageElement);
+
+          imageElement.onload = () => {
+            // Once image is loaded, create a canvas
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = imageElement.width;
+            canvas.height = imageElement.height;
+            
+            // Draw the image onto the canvas
+            ctx.drawImage(imageElement, 0, 0);
+
+            // Example text to be added (replace with your dynamic inputs)
+            const inputText = 'Example Text';
+            const inputFlow = 'Flow Text';
+            const inputId = 'ID Text';
+            const inputTimestamp = 'Timestamp Text';
+
+            // Draw text on the canvas
+            ctx.font = '36px Arial';
+            ctx.fillStyle = '#000'; // Black font
+            ctx.textAlign = 'center';
+
+            // Text positions based on your requirements
+            const centerX = canvas.width / 2;
+            ctx.fillText(inputText, centerX, 200);
+            ctx.fillStyle = '#E76F51'; // Flow color
+            ctx.fillText(inputFlow, centerX, 400);
+            ctx.fillStyle = '#F4A261'; // ID color
+            ctx.fillText(inputId, centerX, 450);
+            ctx.fillStyle = '#2A9D8F'; // Timestamp color
+            ctx.fillText(inputTimestamp, centerX, 500);
+
+            // Replace image element with canvas
+            imageContainer.innerHTML = ''; // Clear previous image
+            imageContainer.appendChild(canvas);
+          };
         })
         .catch(error => {
           console.error('Fetch error:', error);
