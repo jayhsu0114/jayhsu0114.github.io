@@ -1,52 +1,35 @@
+<!-- index.html -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Generate Image</title>
+  <title>Display Image from Backend</title>
 </head>
 <body>
-  <button id="generateBtn">Generate Image</button>
+  <h1>Display Image from Backend</h1>
+  <button id="getImageBtn">Get Image from Backend</button>
+  <div id="imageContainer"></div>
 
   <script>
-    document.getElementById('generateBtn').addEventListener('click', async () => {
+    const getImageBtn = document.getElementById('getImageBtn');
+    const imageContainer = document.getElementById('imageContainer');
+
+    getImageBtn.addEventListener('click', async () => {
       try {
-        // 假設您使用fetch發送POST請求到後端的API端點
-        const response = await fetch('/api/generate-image', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            inputText: 'Your input text', // 替換為您的輸入資料
-            inputFlow: 'Flow information',
-            inputId: '12345',
-            inputTimestamp: '2024-07-05'
-          })
-        });
-
-        // 檢查響應是否成功
-        if (response.ok) {
-          // 將返回的圖片路徑轉換為可下載的URL
-          const imageUrl = await response.blob();
-          const url = window.URL.createObjectURL(imageUrl);
-
-          // 創建一個下載鏈接並將其添加到頁面
-          const link = document.createElement('a');
-          link.href = url;
-          link.download = 'generated-image.png'; // 下載時的文件名
-          document.body.appendChild(link);
-
-          // 模擬點擊下載鏈接
-          link.click();
-
-          // 清理URL物件以節省記憶體
-          window.URL.revokeObjectURL(url);
-        } else {
-          console.error('Failed to generate image');
+        const response = await fetch('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/zsjh-anonymity-post/get-image');
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
         }
+        const imageData = await response.blob();
+        const imageUrl = URL.createObjectURL(imageData);
+        const imageElement = document.createElement('img');
+        imageElement.src = imageUrl;
+        imageContainer.innerHTML = ''; // 清空容器中的內容
+        imageContainer.appendChild(imageElement);
       } catch (error) {
-        console.error('Error generating image:', error);
+        console.error('Error fetching image:', error);
       }
     });
   </script>
