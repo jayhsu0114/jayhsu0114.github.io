@@ -44,7 +44,7 @@
             ctx.drawImage(imageElement, 0, 0);
 
             // 示例文本（根據你的動態輸入替換）
-            const inputText = '示例文字示例文字示例文字示例文字示例文字示例文字示例文字示例文字示例文字示例文字示例文字示例文字示例文字示例文字示例文字示例文字示例文字示例文字示例文字示例文字示例文字示例文字示例文字示例文字示例文字示例文字示例文字示例文字';
+            const inputText = '示例文字示例文字示例文字示例文字示例文字示例文字示例文字示例文字示例文字示例文字示例文字';
             const inputFlow = '流程文字';
             const inputId = 'ID 文字';
             const inputTimestamp = '時間戳文字';
@@ -53,16 +53,21 @@
             ctx.font = '36px Arial';
             ctx.fillStyle = '#000'; // 黑色字體
             ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle'; // 垂直居中
 
             // 根據要求佈置文本位置
             const centerX = canvas.width / 2;
-            ctx.fillText(inputText, centerX, 900);
+            const centerY = canvas.height / 2;
+            const lineHeight = 50; // 行高
+
+            // 分行繪製 inputText
+            wrapText(ctx, inputText, centerX, centerY, lineHeight, 20);
             ctx.fillStyle = '#E76F51'; // 流程文本顏色
-            ctx.fillText(inputFlow, centerX,1100);
+            ctx.fillText(inputFlow, centerX, centerY + lineHeight);
             ctx.fillStyle = '#F4A261'; // ID 文本顏色
-            ctx.fillText(inputId, centerX, 1000);
+            ctx.fillText(inputId, centerX, centerY + 2 * lineHeight);
             ctx.fillStyle = '#2A9D8F'; // 時間戳文本顏色
-            ctx.fillText(inputTimestamp, centerX, 1100);
+            ctx.fillText(inputTimestamp, centerX, centerY + 3 * lineHeight);
 
             // 替換圖片元素為畫布
             imageContainer.innerHTML = ''; // 清除之前的圖片
@@ -73,6 +78,27 @@
           console.error('取得圖片時發生錯誤:', error);
         });
     });
+
+    // 自定義函數：分行繪製文本
+    function wrapText(context, text, x, y, lineHeight, maxLineLength) {
+      const words = text.split(' ');
+      let line = '';
+      let lineCount = 0;
+
+      for (let n = 0; n < words.length; n++) {
+        const testLine = line + words[n] + ' ';
+        const metrics = context.measureText(testLine);
+        const testWidth = metrics.width;
+        if (testWidth > maxLineLength && n > 0) {
+          context.fillText(line.trim(), x, y + (lineCount * lineHeight));
+          line = words[n] + ' ';
+          lineCount++;
+        } else {
+          line = testLine;
+        }
+      }
+      context.fillText(line.trim(), x, y + (lineCount * lineHeight));
+    }
   </script>
 </body>
 </html>
