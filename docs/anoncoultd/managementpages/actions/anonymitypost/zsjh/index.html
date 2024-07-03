@@ -2,35 +2,54 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Fetch Image Example</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generate Image</title>
 </head>
 <body>
-  <h1>Fetch Image Example</h1>
-  <button id="getImageBtn">Get Image</button>
-  <div id="imageContainer"></div>
+  <form id="imageForm">
+    <label for="text">內容：</label>
+    <input type="text" id="text" name="text" required><br>
+
+    <label for="flow">流量：</label>
+    <input type="text" id="flow" name="flow" required><br>
+
+    <label for="id">編號：</label>
+    <input type="text" id="id" name="id" required><br>
+
+    <label for="timestamp">時間標記：</label>
+    <input type="text" id="timestamp" name="timestamp" required><br>
+
+    <button type="submit">生成圖片</button>
+  </form>
+
+  <img id="resultImage" alt="Result Image" style="display:none;">
 
   <script>
-    const getImageBtn = document.getElementById('getImageBtn');
-    const imageContainer = document.getElementById('imageContainer');
-    const apiBaseUrl = 'https://google-sheets-proxy-mk66ircp2a-uc.a.run.app'; // 替換成你的 API 服務網址
+    document.getElementById('imageForm').addEventListener('submit', async (event) => {
+      event.preventDefault();
 
-    getImageBtn.addEventListener('click', () => {
-      fetch(`${apiBaseUrl}/zsjh-postmaker/get-image`)
-        .then(response => {
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
-          }
-          return response.blob();
-        })
-        .then(blob => {
-          const imageUrl = URL.createObjectURL(blob);
-          const imageElement = document.createElement('img');
-          imageElement.src = imageUrl;
-          imageContainer.appendChild(imageElement);
-        })
-        .catch(error => {
-          console.error('Fetch error:', error);
-        });
+      const text = document.getElementById('text').value;
+      const flow = document.getElementById('flow').value;
+      const id = document.getElementById('id').value;
+      const timestamp = document.getElementById('timestamp').value;
+
+      const response = await fetch('/generate-image', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ text, flow, id, timestamp })
+      });
+
+      if (response.ok) {
+        const blob = await response.blob();
+        const url = URL.createObjectURL(blob);
+        const resultImage = document.getElementById('resultImage');
+        resultImage.src = url;
+        resultImage.style.display = 'block';
+      } else {
+        alert('生成圖片時出錯');
+      }
     });
   </script>
 </body>
