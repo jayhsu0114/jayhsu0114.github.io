@@ -30,7 +30,11 @@
           imageContainer.appendChild(imageElement);
 
           imageElement.onload = () => {
-            // 图像加载后，创建一个画布
+            // Log image dimensions to console
+            console.log('图像宽度:', imageElement.width);
+            console.log('图像高度:', imageElement.height);
+
+            // 创建一个与图像大小相同的画布
             const canvas = document.createElement('canvas');
             const ctx = canvas.getContext('2d');
             canvas.width = imageElement.width;
