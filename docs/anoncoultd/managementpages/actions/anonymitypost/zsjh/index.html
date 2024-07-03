@@ -1,24 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hant">
 <head>
   <meta charset="UTF-8">
-  <title>Fetch and Modify Image Example</title>
+  <title>获取和修改图像示例</title>
 </head>
 <body>
-  <h1>Fetch and Modify Image Example</h1>
-  <button id="getImageBtn">Get Image</button>
+  <h1>获取和修改图像示例</h1>
+  <button id="getImageBtn">获取图像</button>
   <div id="imageContainer"></div>
 
   <script>
     const getImageBtn = document.getElementById('getImageBtn');
     const imageContainer = document.getElementById('imageContainer');
-    const apiBaseUrl = 'https://google-sheets-proxy-mk66ircp2a-uc.a.run.app'; // Replace with your API service URL
+    const apiBaseUrl = 'https://google-sheets-proxy-mk66ircp2a-uc.a.run.app'; // 替换为你的 API 服务 URL
 
     getImageBtn.addEventListener('click', () => {
       fetch(`${apiBaseUrl}/zsjh-postmaker/get-image`)
         .then(response => {
           if (!response.ok) {
-            throw new Error('Network response was not ok');
+            throw new Error('网络响应失败');
           }
           return response.blob();
         })
@@ -26,47 +26,47 @@
           const imageUrl = URL.createObjectURL(blob);
           const imageElement = document.createElement('img');
           imageElement.src = imageUrl;
-          imageContainer.innerHTML = ''; // Clear previous images
+          imageContainer.innerHTML = ''; // 清除之前的图像
           imageContainer.appendChild(imageElement);
 
           imageElement.onload = () => {
-            // Once image is loaded, create a canvas
+            // 图像加载后，创建一个画布
             const canvas = document.createElement('canvas');
             const ctx = canvas.getContext('2d');
             canvas.width = imageElement.width;
             canvas.height = imageElement.height;
             
-            // Draw the image onto the canvas
+            // 在画布上绘制图像
             ctx.drawImage(imageElement, 0, 0);
 
-            // Example text to be added (replace with your dynamic inputs)
-            const inputText = 'Example Text';
-            const inputFlow = 'Flow Text';
-            const inputId = 'ID Text';
-            const inputTimestamp = 'Timestamp Text';
+            // 示例文本（根据你的动态输入替换）
+            const inputText = '示例文字';
+            const inputFlow = '流程文字';
+            const inputId = 'ID 文字';
+            const inputTimestamp = '时间戳文字';
 
-            // Draw text on the canvas
+            // 在画布上绘制文本
             ctx.font = '36px Arial';
-            ctx.fillStyle = '#000'; // Black font
+            ctx.fillStyle = '#000'; // 黑色字体
             ctx.textAlign = 'center';
 
-            // Text positions based on your requirements
+            // 根据要求布置文本位置
             const centerX = canvas.width / 2;
             ctx.fillText(inputText, centerX, 200);
-            ctx.fillStyle = '#E76F51'; // Flow color
+            ctx.fillStyle = '#E76F51'; // 流程文本颜色
             ctx.fillText(inputFlow, centerX, 400);
-            ctx.fillStyle = '#F4A261'; // ID color
+            ctx.fillStyle = '#F4A261'; // ID 文本颜色
             ctx.fillText(inputId, centerX, 450);
-            ctx.fillStyle = '#2A9D8F'; // Timestamp color
+            ctx.fillStyle = '#2A9D8F'; // 时间戳文本颜色
             ctx.fillText(inputTimestamp, centerX, 500);
 
-            // Replace image element with canvas
-            imageContainer.innerHTML = ''; // Clear previous image
+            // 替换图像元素为画布
+            imageContainer.innerHTML = ''; // 清除之前的图像
             imageContainer.appendChild(canvas);
           };
         })
         .catch(error => {
-          console.error('Fetch error:', error);
+          console.error('获取图像时出错:', error);
         });
     });
   </script>
