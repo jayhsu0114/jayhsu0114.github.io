@@ -59,9 +59,10 @@
             const centerX = canvas.width / 2;
             const centerY = canvas.height / 2;
             const lineHeight = 50; // 行高
+            const maxLineLength = 400; // 每行最大寬度
 
             // 分行繪製 inputText
-            wrapText(ctx, inputText, centerX, centerY, lineHeight, 20);
+            wrapText(ctx, inputText, centerX, centerY, lineHeight, maxLineLength);
             ctx.fillStyle = '#E76F51'; // 流程文本顏色
             ctx.fillText(inputFlow, centerX, centerY + lineHeight);
             ctx.fillStyle = '#F4A261'; // ID 文本顏色
@@ -83,21 +84,25 @@
     function wrapText(context, text, x, y, lineHeight, maxLineLength) {
       const words = text.split(' ');
       let line = '';
-      let lineCount = 0;
+      let lines = [];
 
       for (let n = 0; n < words.length; n++) {
         const testLine = line + words[n] + ' ';
         const metrics = context.measureText(testLine);
         const testWidth = metrics.width;
         if (testWidth > maxLineLength && n > 0) {
-          context.fillText(line.trim(), x, y + (lineCount * lineHeight));
+          lines.push(line.trim());
           line = words[n] + ' ';
-          lineCount++;
         } else {
           line = testLine;
         }
       }
-      context.fillText(line.trim(), x, y + (lineCount * lineHeight));
+      lines.push(line.trim());
+
+      // 繪製每一行文本
+      lines.forEach((line, index) => {
+        context.fillText(line, x, y + (index * lineHeight));
+      });
     }
   </script>
 </body>
