@@ -48,7 +48,29 @@
             const inputFlow = '流程文字';
             const inputId = 'ID 文字';
             const inputTimestamp = '時間戳文字';
+            // 自定義函數：分行繪製文本
+            function wrapText(context, text, x, y, lineHeight, maxLineLength) {
+            const words = text.split(' ');
+            let line = '';
+            let lines = [];
 
+            for (let n = 0; n < words.length; n++) {
+            const testLine = line + words[n] + ' ';
+            const metrics = context.measureText(testLine);
+            const testWidth = metrics.width;
+            if (testWidth > maxLineLength && n > 0) {
+            lines.push(line.trim());
+            line = words[n] + ' ';
+            } else {
+            line = testLine;
+            }}
+            lines.push(line.trim());
+
+            // 繪製每一行文本
+            lines.forEach((line, index) => {
+                context.fillText(line, x, y + (index * lineHeight));
+            });
+            }
             // 在畫布上繪製文本
             ctx.font = '36px Arial';
             ctx.fillStyle = '#000'; // 黑色字體
@@ -67,7 +89,7 @@
             ctx.fillText(inputFlow, centerX, centerY + lineHeight);
             ctx.fillStyle = '#F4A261'; // ID 文本顏色
             ctx.fillText(inputId, centerX, centerY + 2 * lineHeight);
-            ctx.fillStyle = '#2A9D8F'; // 時間戳文本顏色
+            ctx.fillStyle = '#F4A261'; // 時間戳文本顏色
             ctx.fillText(inputTimestamp, centerX, centerY + 3 * lineHeight);
 
             // 替換圖片元素為畫布
@@ -80,30 +102,7 @@
         });
     });
 
-    // 自定義函數：分行繪製文本
-    function wrapText(context, text, x, y, lineHeight, maxLineLength) {
-      const words = text.split(' ');
-      let line = '';
-      let lines = [];
-
-      for (let n = 0; n < words.length; n++) {
-        const testLine = line + words[n] + ' ';
-        const metrics = context.measureText(testLine);
-        const testWidth = metrics.width;
-        if (testWidth > maxLineLength && n > 0) {
-          lines.push(line.trim());
-          line = words[n] + ' ';
-        } else {
-          line = testLine;
-        }
-      }
-      lines.push(line.trim());
-
-      // 繪製每一行文本
-      lines.forEach((line, index) => {
-        context.fillText(line, x, y + (index * lineHeight));
-      });
-    }
+    
   </script>
 </body>
 </html>
