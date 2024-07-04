@@ -7,12 +7,16 @@
 <body>
   <h1>取得與修改圖片範例</h1>
   <button id="getImageBtn">取得圖片</button>
+  <button id="downloadImageBtn" style="display:none;">下載圖片</button>
   <div id="imageContainer"></div>
 
   <script>
     const getImageBtn = document.getElementById('getImageBtn');
+    const downloadImageBtn = document.getElementById('downloadImageBtn');
     const imageContainer = document.getElementById('imageContainer');
     const apiBaseUrl = 'https://google-sheets-proxy-mk66ircp2a-uc.a.run.app'; // 替換為你的 API 服務 URL
+
+    let canvas;
 
     getImageBtn.addEventListener('click', () => {
       fetch(`${apiBaseUrl}/zsjh-postmaker/get-image`)
@@ -35,7 +39,7 @@
             console.log('圖片高度:', imageElement.height);
 
             // 創建一個與圖片大小相同的畫布
-            const canvas = document.createElement('canvas');
+            canvas = document.createElement('canvas');
             const ctx = canvas.getContext('2d');
             canvas.width = imageElement.width;
             canvas.height = imageElement.height;
@@ -44,7 +48,7 @@
             ctx.drawImage(imageElement, 0, 0);
 
             // 示例文本（根據你的動態輸入替換）
-            const inputText = '這是一段示例文字，用於測試換行功能。';
+            const inputText = '這是一段示例文字，用於測試換行功能。這是一段示例文字，用於測試換行功能。這是一段示例文字，用於測試換行功能。這是一段示例文字，用於測試換行功能。這是一段示例文字，用於測試換行功能。這是一段示例文字，用於測試換行功能。這是一段示例文字，用於測試換行功能。這是一段示例文字，用於測試換行功能。';
             const inputFlow = '系統負載率：100%';
             const inputId = 'ZSJH11417';
             const inputTimestamp = '2024/1/14 下午 1:14:17';
@@ -80,11 +84,21 @@
             // 替換圖片元素為畫布
             imageContainer.innerHTML = ''; // 清除之前的圖片
             imageContainer.appendChild(canvas);
+            
+            // 顯示下載按鈕
+            downloadImageBtn.style.display = 'block';
           };
         })
         .catch(error => {
           console.error('取得圖片時發生錯誤:', error);
         });
+    });
+
+    downloadImageBtn.addEventListener('click', () => {
+      const link = document.createElement('a');
+      link.href = canvas.toDataURL('image/png');
+      link.download = '處理好的圖片.png';
+      link.click();
     });
 
     function wrapText(text, maxCharactersPerLine) {
