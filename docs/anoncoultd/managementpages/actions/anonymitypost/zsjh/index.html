@@ -5,6 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ZSJH審核頁面有標題為對齊</title>
   <link rel="stylesheet" href="style.css"> <!-- 引入外部 CSS 文件 -->
+  <style>
+    .image-button {
+      display: inline-block;
+      padding: 5px 10px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      text-align: center;
+      border-radius: 4px;
+    }
+  </style>
 </head>
 <body>
   <div id="header-table">
@@ -61,15 +74,13 @@
           if (rowIndex === 0) {
             html += `<th>${cell}</th>`;
           } else {
-            html += `<td>${cell}</td>`;
+            if (cellIndex === 6 && row[5]) {
+              html += `<td><button class="image-button" onclick="handleImageButtonClick(${rowIndex}, this)">插入圖片</button></td>`;
+            } else {
+              html += `<td>${cell}</td>`;
+            }
           }
         });
-
-        if (rowIndex > 0 && row[5] !== "") {
-          html += `<td><button onclick="handleImageClick('${row[5]}')">產生圖片</button></td>`;
-        } else {
-          html += '<td></td>';
-        }
 
         html += '</tr>';
       });
@@ -77,10 +88,10 @@
       return html;
     }
 
-    function handleImageClick(number) {
-      // 處理點擊產生圖片按鈕事件
-      alert(`產生圖片 ${number}`);
-      // 在這裡可以添加生成圖片的相關邏輯，例如調用 API 生成圖片
+    function handleImageButtonClick(rowIndex, button) {
+      // 按钮点击处理逻辑
+      alert(`你点击了第 ${rowIndex} 行的插入圖片按鈕`);
+      // 这里可以添加更多的逻辑来处理插入圖片的操作
     }
   </script>
 </body>
