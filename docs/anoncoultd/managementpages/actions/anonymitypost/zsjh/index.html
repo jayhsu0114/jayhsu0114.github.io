@@ -3,6 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <title>取得與修改圖片範例</title>
+  <style>
+    #imageContainer {
+      display: none;
+    }
+  </style>
 </head>
 <body>
   <h1>取得與修改圖片範例</h1>
@@ -71,10 +76,10 @@
 
             // 繪製每一行文本
             lines.forEach((line, index) => {
-              ctx.fillText(line, textX,30+ startY + (index * lineHeight));
+              ctx.fillText(line, textX, 30 + startY + (index * lineHeight));
             });
 
-            ctx.fillStyle = '#E76F51'; // 流程文本顏色
+            ctx.fillStyle = '#eBAfAf;'; // 流程文本顏色
             ctx.fillText(inputFlow, canvas.width / 2, 870);
             ctx.fillStyle = '#F4A261'; // ID 文本顏色
             ctx.fillText(inputId, canvas.width / 2, 912.5);
