@@ -2,123 +2,73 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8">
-  <title>取得與修改圖片範例</title>
-  <style>
-    #imageContainer {
-      display: none;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZSJH審核頁面有標題為對齊</title>
+  <link rel="stylesheet" href="style.css"> <!-- 引入外部 CSS 文件 -->
 </head>
 <body>
-  <h1>取得與修改圖片範例</h1>
-  <button id="getImageBtn">生成圖片</button>
-  <button id="downloadImageBtn" style="display:none;">下載圖片</button>
-  <div id="imageContainer"></div>
+  <div id="header-table">
+    <table>
+      <tr>
+        <th>輸入時間</th>
+        <th>匿名內容</th>
+        <th>輸入者IP</th>
+        <th>通過</th>
+        <th>不通過</th>
+        <th>編號</th>
+        <th>發布</th>
+      </tr>
+    </table>
+  </div>
 
+  <div id="zsjh-data" class="loading">
+    正在加載數據...
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script>
-    const getImageBtn = document.getElementById('getImageBtn');
-    const downloadImageBtn = document.getElementById('downloadImageBtn');
-    const imageContainer = document.getElementById('imageContainer');
-    const apiBaseUrl = 'https://google-sheets-proxy-mk66ircp2a-uc.a.run.app'; // 替換為你的 API 服務 URL
+    axios.get('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/zsjh-sheet-data')
+      .then(function (response) {
+        const data = response.data;
+        const zsjhDataElement = document.getElementById('zsjh-data');
 
-    let canvas;
+        if (data && data.length > 0) {
+          data.forEach(function (row) {
+            while (row.length < 7) {
+              row.push("");
+            }
+          });
 
-    getImageBtn.addEventListener('click', () => {
-      fetch(`${apiBaseUrl}/zsjh-postmaker/get-image`)
-        .then(response => {
-          if (!response.ok) {
-            throw new Error('網路回應失敗');
-          }
-          return response.blob();
-        })
-        .then(blob => {
-          const imageUrl = URL.createObjectURL(blob);
-          const imageElement = document.createElement('img');
-          imageElement.src = imageUrl;
-          imageContainer.innerHTML = ''; // 清除之前的圖片
-          imageContainer.appendChild(imageElement);
+          const tableHtml = generateTableHtml(data);
+          zsjhDataElement.innerHTML = tableHtml;
 
-          imageElement.onload = () => {
-            // 記錄圖片尺寸到控制台
-            console.log('圖片寬度:', imageElement.width);
-            console.log('圖片高度:', imageElement.height);
-
-            // 創建一個與圖片大小相同的畫布
-            canvas = document.createElement('canvas');
-            const ctx = canvas.getContext('2d');
-            canvas.width = imageElement.width;
-            canvas.height = imageElement.height;
-            
-            // 在畫布上繪製圖片
-            ctx.drawImage(imageElement, 0, 0);
-
-            // 示例文本（根據你的動態輸入替換）
-            const inputText = '這是一段示例文字，用於測試換行功能。這是一段示例文字，用於測試換行功能。這是一段示例文字，用於測試換行功能。這是一段示例文字，用於測試換行功能。這是一段示例文字，用於測試換行功能。這是一段示例文字，用於測試換行功能。這是一段示例文字，用於測試換行功能。這是一段示例文字，用於測試換行功能。這是一段示例文字，用於測試換行功能。這是一段示例文字，用於測試換行功能。';
-            const inputFlow = '系統負載率：100%';
-            const inputId = 'ZSJH11417';
-            const inputTimestamp = '2024/1/14 下午 1:14:17';
-
-            // 在畫布上繪製文本
-            ctx.font = '30px Arial';
-            ctx.fillStyle = '#000'; // 黑色字體
-            ctx.textAlign = 'center';
-
-            const textX = canvas.width / 2;
-            const textY = 200;
-            const lineHeight = 40;
-            const maxCharactersPerLine = 20;
-
-            const lines = wrapText(inputText, maxCharactersPerLine);
-
-            // 垂直居中計算
-            const textHeight = lines.length * lineHeight;
-            const startY = (canvas.height - textHeight) / 2; // 修改此行
-
-            // 繪製每一行文本
-            lines.forEach((line, index) => {
-              ctx.fillText(line, textX, 30 + startY + (index * lineHeight));
-            });
-
-            ctx.fillStyle = '#EBAFAF'; // 流程文本顏色
-            ctx.fillText(inputFlow, canvas.width / 2, 870);
-            ctx.fillStyle = '#F4A261'; // ID 文本顏色
-            ctx.fillText(inputId, canvas.width / 2, 912.5);
-            ctx.fillStyle = '#F4A261'; // 時間戳文本顏色
-            ctx.fillText(inputTimestamp, canvas.width / 2, 955);
-
-            // 替換圖片元素為畫布
-            imageContainer.innerHTML = ''; // 清除之前的圖片
-            imageContainer.appendChild(canvas);
-            
-            // 顯示下載按鈕
-            downloadImageBtn.style.display = 'block';
-          };
-        })
-        .catch(error => {
-          console.error('取得圖片時發生錯誤:', error);
-        });
-    });
-
-    downloadImageBtn.addEventListener('click', () => {
-      const link = document.createElement('a');
-      link.href = canvas.toDataURL('image/png');
-      link.download = '處理好的圖片.png';
-      link.click();
-    });
-
-    function wrapText(text, maxCharactersPerLine) {
-      const lines = [];
-      let line = '';
-
-      for (let i = 0; i < text.length; i++) {
-        line += text[i];
-        if ((i + 1) % maxCharactersPerLine === 0 || i === text.length - 1) {
-          lines.push(line);
-          line = '';
+        } else {
+          zsjhDataElement.textContent = '找不到數據.';
         }
-      }
+      })
+      .catch(function (error) {
+        console.error('Error fetching data:', error);
+        const zsjhDataElement = document.getElementById('zsjh-data');
+        zsjhDataElement.textContent = '獲取數據出錯.';
+      });
 
-      return lines;
+    function generateTableHtml(data) {
+      let html = '<table>';
+      data.forEach(function (row, rowIndex) {
+        html += '<tr>';
+
+        row.forEach(function (cell, cellIndex) {
+          if (rowIndex === 0) {
+            html += `<th>${cell}</th>`;
+          } else {
+            html += `<td>${cell}</td>`;
+          }
+        });
+
+        html += '</tr>';
+      });
+      html += '</table>';
+      return html;
     }
   </script>
 </body>
