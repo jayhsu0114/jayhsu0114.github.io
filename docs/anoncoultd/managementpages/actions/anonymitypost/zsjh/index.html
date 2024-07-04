@@ -45,9 +45,9 @@
 
             // 示例文本（根據你的動態輸入替換）
             const inputText = '這是一段示例文字，用於測試換行功能。這是一段示例文字，用於測試換行功能。這是一段示例文字，用於測試換行功能。這是一段示例文字，用於測試換行功能。這是一段示例文字，用於測試換行功能。這是一段示例文字，用於測試換行功能。這是一段示例文字，用於測試換行功能。這是一段示例文字，用於測試換行功能。';
-            const inputFlow = '這是流程文字';
-            const inputId = '這是ID文字';
-            const inputTimestamp = '這是時間戳文字';
+            const inputFlow = '系統負載率：100%';
+            const inputId = 'ZSJH11417';
+            const inputTimestamp = '2024/1/14 下午 1:14:17';
 
             // 在畫布上繪製文本
             ctx.font = '30px Arial';
@@ -73,9 +73,9 @@
             ctx.fillStyle = '#E76F51'; // 流程文本顏色
             ctx.fillText(inputFlow, x, 870);
             ctx.fillStyle = '#F4A261'; // ID 文本顏色
-            ctx.fillText(inputId, x, 910);
+            ctx.fillText(inputId, x, 912.5);
             ctx.fillStyle = '#F4A261'; // 時間戳文本顏色
-            ctx.fillText(inputTimestamp, x,950);
+            ctx.fillText(inputTimestamp, x,955);
 
             // 替換圖片元素為畫布
             imageContainer.innerHTML = ''; // 清除之前的圖片
