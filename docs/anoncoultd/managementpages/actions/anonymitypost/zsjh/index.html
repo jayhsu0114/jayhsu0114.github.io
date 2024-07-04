@@ -11,7 +11,7 @@
 </head>
 <body>
   <h1>取得與修改圖片範例</h1>
-  <button id="getImageBtn">取得圖片</button>
+  <button id="getImageBtn">生成圖片</button>
   <button id="downloadImageBtn" style="display:none;">下載圖片</button>
   <div id="imageContainer"></div>
 
@@ -79,7 +79,7 @@
               ctx.fillText(line, textX, 30 + startY + (index * lineHeight));
             });
 
-            ctx.fillStyle = '#eBAfAf;'; // 流程文本顏色
+            ctx.fillStyle = '#EBAFAF;'; // 流程文本顏色
             ctx.fillText(inputFlow, canvas.width / 2, 870);
             ctx.fillStyle = '#F4A261'; // ID 文本顏色
             ctx.fillText(inputId, canvas.width / 2, 912.5);
