@@ -76,4 +76,14 @@
     50% { transform: scale(1.2); }
     100% { transform: scale(0.8); }
   }
-  
+  .image-button {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 4px;
+  }
