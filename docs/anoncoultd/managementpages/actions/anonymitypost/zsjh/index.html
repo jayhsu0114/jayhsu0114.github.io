@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ZSJH貼文製圖</title>
+  <title>ZSJH審核頁面有標題為對齊</title>
   <link rel="stylesheet" href="style.css"> <!-- 引入外部 CSS 文件 -->
 </head>
 <body>
@@ -65,10 +65,22 @@
           }
         });
 
+        if (rowIndex > 0 && row[5] !== "") {
+          html += `<td><button onclick="handleImageClick('${row[5]}')">產生圖片</button></td>`;
+        } else {
+          html += '<td></td>';
+        }
+
         html += '</tr>';
       });
       html += '</table>';
       return html;
+    }
+
+    function handleImageClick(number) {
+      // 處理點擊產生圖片按鈕事件
+      alert(`產生圖片 ${number}`);
+      // 在這裡可以添加生成圖片的相關邏輯，例如調用 API 生成圖片
     }
   </script>
 </body>
