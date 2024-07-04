@@ -59,14 +59,23 @@
             const lineHeight = 40;
             const maxCharactersPerLine = 10;
 
-            wrapText(ctx, inputText, x, y, lineHeight, maxCharactersPerLine);
+            const lines = wrapText(inputText, maxCharactersPerLine);
+
+            // 垂直居中計算
+            const textHeight = lines.length * lineHeight;
+            const startY = y - textHeight / 2;
+
+            // 繪製每一行文本
+            lines.forEach((line, index) => {
+              ctx.fillText(line, x, startY + (index * lineHeight));
+            });
 
             ctx.fillStyle = '#E76F51'; // 流程文本顏色
-            ctx.fillText(inputFlow, x, y + lineHeight);
+            ctx.fillText(inputFlow, x, startY + lines.length * lineHeight + lineHeight);
             ctx.fillStyle = '#F4A261'; // ID 文本顏色
-            ctx.fillText(inputId, x, y + 2 * lineHeight);
+            ctx.fillText(inputId, x, startY + (lines.length + 1) * lineHeight + lineHeight);
             ctx.fillStyle = '#2A9D8F'; // 時間戳文本顏色
-            ctx.fillText(inputTimestamp, x, y + 3 * lineHeight);
+            ctx.fillText(inputTimestamp, x, startY + (lines.length + 2) * lineHeight + lineHeight);
 
             // 替換圖片元素為畫布
             imageContainer.innerHTML = ''; // 清除之前的圖片
@@ -78,26 +87,19 @@
         });
     });
 
-    function wrapText(context, text, x, y, lineHeight, maxCharactersPerLine) {
-      const words = text.split(' ');
+    function wrapText(text, maxCharactersPerLine) {
+      const lines = [];
       let line = '';
-      let lines = [];
 
-      for (let n = 0; n < words.length; n++) {
-        const testLine = line + words[n] + ' ';
-        if ((n + 1) % maxCharactersPerLine === 0) {
-          lines.push(line.trim());
+      for (let i = 0; i < text.length; i++) {
+        line += text[i];
+        if ((i + 1) % maxCharactersPerLine === 0 || i === text.length - 1) {
+          lines.push(line);
           line = '';
-        } else {
-          line = testLine;
         }
       }
-      lines.push(line.trim());
 
-      // 繪製每一行文本
-      lines.forEach((line, index) => {
-        context.fillText(line, x, y + (index * lineHeight));
-      });
+      return lines;
     }
   </script>
 </body>
