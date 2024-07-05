@@ -16,7 +16,7 @@
         <th>通過</th>
         <th>不通過</th>
         <th>編號</th>
-        <th>操作</th>
+        <th>發布</th>
       </tr>
     </table>
   </div>
@@ -64,7 +64,7 @@
             html += `<th>${cell}</th>`;
           } else {
             if (cellIndex === 6 && row[5]) {
-              html += `<td><button class="image-button" onclick="handleImageButtonClick(${rowIndex}, '${row[1]}', '${row[5]}', '${row[0]}', this)">生成圖片並發布</button></td>`;
+              html += `<td><button class="image-button" onclick="handleImageButtonClick(${rowIndex}, '${row[1]}', '${row[5]}', '${row[0]}', this)">生成圖片</button></td>`;
             } else {
               html += `<td>${cell}</td>`;
             }
@@ -135,40 +135,40 @@
             ctx.fillText(inputTimestamp, canvas.width / 2, 955);
 
             // 替換圖片元素為畫布
-            imageContainer.innerHTML = ''; // 清除之前的內容
+            imageContainer.innerHTML = ''; // 清除之前的圖片
             imageContainer.appendChild(canvas);
 
-            // 在圖片生成完成後，發送請求來更新狀態為「已發布」
-            axios.post(`${apiBaseUrl}/zsjh-update-status`, { rowIndex: rowIndex })
-              .then(function (response) {
-                alert('已發布');
-                console.log('Status updated successfully', response);
-              })
-              .catch(function (error) {
-                console.error('Error updating status:', error);
-              });
+            // 自動下載圖片
+            const link = document.createElement('a');
+            link.href = canvas.toDataURL('image/png');
+            link.download = `${inputId}.png`; // 使用 inputId 作為文件名
+            link.click();
+            
+            // 隱藏按鈕
+            buttonElement.style.display = 'none';
+
+            // 更新儲存格內容為 "已發布"
+            const table = document.querySelector('#zsjh-data table');
+            table.rows[rowIndex].cells[6].innerText = '已發布';
           };
         })
         .catch(error => {
-          console.error('Error fetching image:', error);
+          console.error('取得圖片時發生錯誤:', error);
         });
     }
 
     function wrapText(text, maxCharactersPerLine) {
-      const words = text.split(' ');
       const lines = [];
-      let currentLine = '';
+      let line = '';
 
-      words.forEach(word => {
-        if ((currentLine + word).length > maxCharactersPerLine) {
-          lines.push(currentLine);
-          currentLine = word + ' ';
-        } else {
-          currentLine += word + ' ';
+      for (let i = 0; i < text.length; i++) {
+        line += text[i];
+        if ((i + 1) % maxCharactersPerLine === 0 || i === text.length - 1) {
+          lines.push(line);
+          line = '';
         }
-      });
+      }
 
-      lines.push(currentLine.trim());
       return lines;
     }
   </script>
