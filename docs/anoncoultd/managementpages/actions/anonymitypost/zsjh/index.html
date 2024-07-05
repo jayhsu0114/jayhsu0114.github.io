@@ -139,7 +139,7 @@
             imageContainer.appendChild(canvas);
 
             // 在圖片生成完成後，發送請求來更新狀態為「已發布」
-            axios.post(`${apiBaseUrl}/update-status`, { rowIndex: rowIndex })
+            axios.post(`${apiBaseUrl}/zsjh-update-status`, { rowIndex: rowIndex })
               .then(function (response) {
                 alert('已發布');
                 console.log('Status updated successfully', response);
