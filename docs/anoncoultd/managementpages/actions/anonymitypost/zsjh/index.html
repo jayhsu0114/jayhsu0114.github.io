@@ -16,7 +16,7 @@
         <th>通過</th>
         <th>不通過</th>
         <th>編號</th>
-        <th>發布</th>
+        <th>操作</th>
       </tr>
     </table>
   </div>
@@ -64,7 +64,7 @@
             html += `<th>${cell}</th>`;
           } else {
             if (cellIndex === 6 && row[5]) {
-              html += `<td><button class="image-button" onclick="handleImageButtonClick(${rowIndex}, '${row[1]}', '${row[5]}', '${row[0]}', this)">生成圖片</button><button class="publish-button" onclick="handlePublishButtonClick(${rowIndex})">發布</button></td>`;
+              html += `<td><button class="image-button" onclick="handleImageButtonClick(${rowIndex}, '${row[1]}', '${row[5]}', '${row[0]}', this)">生成圖片並發布</button></td>`;
             } else {
               html += `<td>${cell}</td>`;
             }
@@ -135,25 +135,22 @@
             ctx.fillText(inputTimestamp, canvas.width / 2, 955);
 
             // 替換圖片元素為畫布
-            imageContainer.innerHTML = ''; // 清除...
+            imageContainer.innerHTML = ''; // 清除之前的內容
             imageContainer.appendChild(canvas);
+
+            // 在圖片生成完成後，發送請求來更新狀態為「已發布」
+            axios.post(`${apiBaseUrl}/update-status`, { rowIndex: rowIndex })
+              .then(function (response) {
+                alert('已發布');
+                console.log('Status updated successfully', response);
+              })
+              .catch(function (error) {
+                console.error('Error updating status:', error);
+              });
           };
         })
         .catch(error => {
           console.error('Error fetching image:', error);
-        });
-    }
-
-    function handlePublishButtonClick(rowIndex) {
-      const apiBaseUrl = 'https://google-sheets-proxy-mk66ircp2a-uc.a.run.app'; // 替換為你的 API 服務 URL
-
-      axios.post(`${apiBaseUrl}/zsjh-update-status`, { rowIndex: rowIndex })
-        .then(function (response) {
-          alert('已發布');
-          console.log('Status updated successfully', response);
-        })
-        .catch(function (error) {
-          console.error('Error updating status:', error);
         });
     }
 
