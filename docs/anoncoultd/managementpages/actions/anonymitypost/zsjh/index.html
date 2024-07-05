@@ -147,7 +147,7 @@
     function handlePublishButtonClick(rowIndex) {
       const apiBaseUrl = 'https://google-sheets-proxy-mk66ircp2a-uc.a.run.app'; // 替換為你的 API 服務 URL
 
-      axios.post(`${apiBaseUrl}/update-status`, { rowIndex: rowIndex })
+      axios.post(`${apiBaseUrl}/zsjh-update-status`, { rowIndex: rowIndex })
         .then(function (response) {
           alert('已發布');
           console.log('Status updated successfully', response);
