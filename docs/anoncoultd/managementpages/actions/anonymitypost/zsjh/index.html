@@ -64,9 +64,7 @@
             html += `<th>${cell}</th>`;
           } else {
             if (cellIndex === 6 && row[5]) {
-              html += `<td><button class="image-button" onclick="handleImageButtonClick(${rowIndex}, '${row[1]}', '${row[5]}', '${row[0]}', this)">生成圖片</button></td>`;
-            } else if (cellIndex === 6) {
-              html += `<td><button class="publish-button" onclick="handlePublishButtonClick(${rowIndex}, this)">發布</button></td>`;
+              html += `<td><button class="image-button" onclick="handleImageButtonClick(${rowIndex}, '${row[1]}', '${row[5]}', '${row[0]}', this)">生成圖片</button><button class="publish-button" onclick="handlePublishButtonClick(${rowIndex})">發布</button></td>`;
             } else {
               html += `<td>${cell}</td>`;
             }
@@ -77,21 +75,6 @@
       });
       html += '</table>';
       return html;
-    }
-
-    function handlePublishButtonClick(rowIndex, buttonElement) {
-      // 發送請求更新Google試算表
-      axios.post('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/zsjh-update-sheet', {
-        rowIndex: rowIndex
-      })
-      .then(function (response) {
-        console.log('發布狀態已更新');
-        buttonElement.innerText = '已發布';
-        buttonElement.disabled = true;
-      })
-      .catch(function (error) {
-        console.error('Error updating publish status:', error);
-      });
     }
 
     function handleImageButtonClick(rowIndex, inputText, inputId, inputTimestamp, buttonElement) {
@@ -152,7 +135,7 @@
             ctx.fillText(inputTimestamp, canvas.width / 2, 955);
 
             // 替換圖片元素為畫布
-            imageContainer.innerHTML = ''; // 清除之前的內容
+            imageContainer.innerHTML = ''; // 清除...
             imageContainer.appendChild(canvas);
           };
         })
@@ -161,21 +144,34 @@
         });
     }
 
+    function handlePublishButtonClick(rowIndex) {
+      const apiBaseUrl = 'https://google-sheets-proxy-mk66ircp2a-uc.a.run.app'; // 替換為你的 API 服務 URL
+
+      axios.post(`${apiBaseUrl}/update-status`, { rowIndex: rowIndex })
+        .then(function (response) {
+          alert('已發布');
+          console.log('Status updated successfully', response);
+        })
+        .catch(function (error) {
+          console.error('Error updating status:', error);
+        });
+    }
+
     function wrapText(text, maxCharactersPerLine) {
       const words = text.split(' ');
       const lines = [];
-      let currentLine = words[0];
+      let currentLine = '';
 
-      for (let i = 1; i < words.length; i++) {
-        const word = words[i];
-        if ((currentLine + ' ' + word).length <= maxCharactersPerLine) {
-          currentLine += ' ' + word;
-        } else {
+      words.forEach(word => {
+        if ((currentLine + word).length > maxCharactersPerLine) {
           lines.push(currentLine);
-          currentLine = word;
+          currentLine = word + ' ';
+        } else {
+          currentLine += word + ' ';
         }
-      }
-      lines.push(currentLine);
+      });
+
+      lines.push(currentLine.trim());
       return lines;
     }
   </script>
