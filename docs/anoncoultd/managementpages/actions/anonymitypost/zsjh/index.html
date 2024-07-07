@@ -29,11 +29,9 @@
 
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script>
-    console.log('Fetching data from the backend...');
     axios.get('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/zsjh-sheet-data')
       .then(function (response) {
         const data = response.data;
-        console.log('Data fetched:', data);
         const zsjhDataElement = document.getElementById('zsjh-data');
 
         if (data && data.length > 0) {
@@ -44,8 +42,8 @@
           });
 
           const tableHtml = generateTableHtml(data);
-          console.log('Generated table HTML:', tableHtml);
           zsjhDataElement.innerHTML = tableHtml;
+
         } else {
           zsjhDataElement.textContent = '找不到數據.';
         }
@@ -57,7 +55,6 @@
       });
 
     function generateTableHtml(data) {
-      console.log('Generating table HTML...');
       let html = '<table>';
       data.forEach(function (row, rowIndex) {
         html += '<tr>';
@@ -77,22 +74,21 @@
         html += '</tr>';
       });
       html += '</table>';
-      console.log('Table HTML generated:', html);
       return html;
     }
 
     function handleImageButtonClick(rowIndex, inputText, inputId, inputTimestamp, buttonElement) {
-      console.log('Button clicked for row:', rowIndex);
+      console.log(`Button clicked for row: ${rowIndex}`);
       const apiBaseUrl = 'https://google-sheets-proxy-mk66ircp2a-uc.a.run.app';
-
       const imageUrl = `${apiBaseUrl}/zsjh-postmaker/get-image?text=${encodeURIComponent(inputText)}&id=${encodeURIComponent(inputId)}&timestamp=${encodeURIComponent(inputTimestamp)}`;
-      console.log('Fetching image from URL:', imageUrl);
-
+      console.log(`Fetching image from URL: ${imageUrl}`);
+      
       const imageElement = document.createElement('img');
       imageElement.src = imageUrl;
       const imageContainer = document.getElementById('imageContainer');
       imageContainer.innerHTML = '';
       imageContainer.appendChild(imageElement);
+      console.log('Image element added to DOM:', imageElement);
 
       imageElement.onload = () => {
         console.log('Image loaded successfully');
@@ -107,8 +103,6 @@
       imageElement.onerror = (error) => {
         console.error('取得圖片時發生錯誤:', error);
       };
-
-      console.log('Image element added to DOM:', imageElement);
     }
   </script>
 </body>
