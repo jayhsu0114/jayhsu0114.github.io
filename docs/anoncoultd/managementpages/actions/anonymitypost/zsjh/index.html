@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ZSJH審核頁面有標題為對齊</title>
-  <link rel="stylesheet" href="style.css"> <!-- 引入外部 CSS 文件 -->
+  <title>ZSJH審核頁面</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div id="header-table">
@@ -78,98 +78,25 @@
     }
 
     function handleImageButtonClick(rowIndex, inputText, inputId, inputTimestamp, buttonElement) {
-      const apiBaseUrl = 'https://google-sheets-proxy-mk66ircp2a-uc.a.run.app'; // 替換為你的 API 服務 URL
+      const apiBaseUrl = 'https://google-sheets-proxy-mk66ircp2a-uc.a.run.app';
 
-      fetch(`${apiBaseUrl}/zsjh-postmaker/get-image`)
-        .then(response => {
-          if (!response.ok) {
-            throw new Error('網路回應失敗');
-          }
-          return response.blob();
-        })
-        .then(blob => {
-          const imageUrl = URL.createObjectURL(blob);
-          const imageElement = document.createElement('img');
-          imageElement.src = imageUrl;
-          const imageContainer = document.getElementById('imageContainer');
-          imageContainer.innerHTML = ''; // 清除之前的圖片
-          imageContainer.appendChild(imageElement);
+      const imageUrl = `${apiBaseUrl}/zsjh-postmaker/get-image?text=${encodeURIComponent(inputText)}&id=${encodeURIComponent(inputId)}&timestamp=${encodeURIComponent(inputTimestamp)}`;
 
-          imageElement.onload = () => {
-            // 創建一個與圖片大小相同的畫布
-            const canvas = document.createElement('canvas');
-            const ctx = canvas.getContext('2d');
-            canvas.width = imageElement.width;
-            canvas.height = imageElement.height;
+      const imageElement = document.createElement('img');
+      imageElement.src = imageUrl;
+      const imageContainer = document.getElementById('imageContainer');
+      imageContainer.innerHTML = '';
+      imageContainer.appendChild(imageElement);
 
-            // 在畫布上繪製圖片
-            ctx.drawImage(imageElement, 0, 0);
+      imageElement.onload = () => {
+        buttonElement.style.display = 'none';
+        const table = document.querySelector('#zsjh-data table');
+        table.rows[rowIndex].cells[6].innerText = '已發布';
+      };
 
-            const inputFlow = '系統負載率：100%';
-
-            // 在畫布上繪製文本
-            ctx.font = '30px Arial';
-            ctx.fillStyle = '#000'; // 黑色字體
-            ctx.textAlign = 'center';
-
-            const textX = canvas.width / 2;
-            const lineHeight = 40;
-            const maxCharactersPerLine = 20;
-
-            const lines = wrapText(inputText, maxCharactersPerLine);
-
-            // 垂直居中計算
-            const textHeight = lines.length * lineHeight;
-            const startY = (canvas.height - textHeight) / 2;
-
-            // 繪製每一行文本
-            lines.forEach((line, index) => {
-              ctx.fillText(line, textX, 30 + startY + (index * lineHeight));
-            });
-
-            ctx.fillStyle = '#EBAFAF'; // 流程文本顏色
-            ctx.fillText(inputFlow, canvas.width / 2, 870);
-            ctx.fillStyle = '#F4A261'; // ID 文本顏色
-            ctx.fillText(inputId, canvas.width / 2, 912.5);
-            ctx.fillStyle = '#F4A261'; // 時間戳文本顏色
-            ctx.fillText(inputTimestamp, canvas.width / 2, 955);
-
-            // 替換圖片元素為畫布
-            imageContainer.innerHTML = ''; // 清除之前的圖片
-            imageContainer.appendChild(canvas);
-
-            // 自動下載圖片
-            const link = document.createElement('a');
-            link.href = canvas.toDataURL('image/png');
-            link.download = `${inputId}.png`; // 使用 inputId 作為文件名
-            link.click();
-            
-            // 隱藏按鈕
-            buttonElement.style.display = 'none';
-
-            // 更新儲存格內容為 "已發布"
-            const table = document.querySelector('#zsjh-data table');
-            table.rows[rowIndex].cells[6].innerText = '已發布';
-          };
-        })
-        .catch(error => {
-          console.error('取得圖片時發生錯誤:', error);
-        });
-    }
-
-    function wrapText(text, maxCharactersPerLine) {
-      const lines = [];
-      let line = '';
-
-      for (let i = 0; i < text.length; i++) {
-        line += text[i];
-        if ((i + 1) % maxCharactersPerLine === 0 || i === text.length - 1) {
-          lines.push(line);
-          line = '';
-        }
-      }
-
-      return lines;
+      imageElement.onerror = (error) => {
+        console.error('取得圖片時發生錯誤:', error);
+      };
     }
   </script>
 </body>
