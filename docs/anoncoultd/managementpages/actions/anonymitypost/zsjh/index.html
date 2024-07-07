@@ -77,13 +77,14 @@
       return html;
     }
 
-    function handleImageButtonClick(rowIndex, inputText, inputId, inputTimestamp, buttonElement) {
+    async function handleImageButtonClick(rowIndex, inputText, inputId, inputTimestamp, buttonElement) {
       console.log(`Button clicked for row: ${rowIndex}`);
       const apiBaseUrl = 'https://google-sheets-proxy-mk66ircp2a-uc.a.run.app';
       const imageUrl = `${apiBaseUrl}/zsjh-postmaker/get-image?text=${encodeURIComponent(inputText)}&id=${encodeURIComponent(inputId)}&timestamp=${encodeURIComponent(inputTimestamp)}`;
       console.log(`Fetching image from URL: ${imageUrl}`);
       
       const imageElement = document.createElement('img');
+      imageElement.crossOrigin = "Anonymous"; // 设置跨域属性
       imageElement.src = imageUrl;
       const imageContainer = document.getElementById('imageContainer');
       imageContainer.innerHTML = '';
@@ -92,11 +93,28 @@
 
       imageElement.onload = () => {
         console.log('Image loaded successfully');
+        const canvas = document.createElement('canvas');
+        canvas.width = imageElement.width;
+        canvas.height = imageElement.height;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(imageElement, 0, 0, canvas.width, canvas.height);
+
+        canvas.toBlob((blob) => {
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = `image_${inputId}.png`; // 设置下载文件名
+          a.style.display = 'none';
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          URL.revokeObjectURL(url); // 释放 URL 对象
+        }, 'image/png');
+        
         buttonElement.style.display = 'none';
         const table = document.querySelector('#zsjh-data table');
-        console.log('Table before update:', table);
         table.rows[rowIndex].cells[6].innerText = '已發布';
-        console.log('Table after update:', table);
+        console.log('Table updated after image download');
         console.log('Button hidden');
       };
 
