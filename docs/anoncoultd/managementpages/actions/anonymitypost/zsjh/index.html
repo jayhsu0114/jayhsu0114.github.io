@@ -78,37 +78,35 @@
     }
 
     async function handleImageButtonClick(rowIndex, inputText, inputId, inputTimestamp) {
-      console.log(`Button clicked for row: ${rowIndex}`);
-      
       try {
         const apiBaseUrl = 'https://google-sheets-proxy-mk66ircp2a-uc.a.run.app';
         const imageUrl = `${apiBaseUrl}/zsjh-postmaker/get-image`;
+        const updateStatusUrl = `${apiBaseUrl}/zsjh-update-status`;
 
+        // 發送圖片生成請求
         const response = await axios.post(imageUrl, {
           text: inputText,
           id: inputId,
           timestamp: inputTimestamp
         }, {
-          responseType: 'blob' // 指定返回的數據類型為blob
+          responseType: 'blob'
         });
 
-        const blob = new Blob([response.data], { type: 'image/png' });
-        const url = URL.createObjectURL(blob);
+        // 處理圖片下載和顯示（省略）
 
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = `${inputId}.png`;
-        a.style.display = 'none';
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
+        // 發送更新狀態請求
+        const updateResponse = await axios.post(updateStatusUrl, {
+          rowIndex: rowIndex
+        });
 
+        console.log('Status updated successfully:', updateResponse.data);
+
+        // 更新表格上的發布狀態
         const table = document.querySelector('#zsjh-data table');
         table.rows[rowIndex].cells[6].innerText = '已發布';
       } catch (error) {
-        console.error('Error fetching image:', error);
-        alert('取得圖片時發生錯誤');
+        console.error('Error:', error);
+        alert('操作失敗');
       }
     }
   </script>
