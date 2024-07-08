@@ -5,11 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ZSJH製圖頁面</title>
   <link rel="stylesheet" href="style.css">
-  <style>
-    .hidden-row {
-      display: none;
-    }
-  </style>
 </head>
 <body>
   <div id="header-table">
@@ -40,25 +35,9 @@
         const zsjhDataElement = document.getElementById('zsjh-data');
 
         if (data && data.length > 0) {
-          data.forEach(function (row, rowIndex) {
-            while (row.length < 7) {
-              row.push("");
-            }
-
-            // 檢查是否要隱藏此行
-            if (rowIndex > 0) {
-              const published = row[6] === '已發布';
-              const lastDigitIsZero = row[5].slice(-1) === '0';
-
-              if (published && lastDigitIsZero) {
-                // 找到最後一位為0的行，設置樣式隱藏
-                const tableRow = document.querySelector(`#zsjh-data table tr:nth-child(${rowIndex + 1})`);
-                tableRow.classList.add('hidden-row');
-              }
-            }
-          });
-
-          const tableHtml = generateTableHtml(data);
+          // 根據規則過濾顯示的行
+          const filteredData = filterDataToShow(data);
+          const tableHtml = generateTableHtml(filteredData);
           zsjhDataElement.innerHTML = tableHtml;
 
         } else {
@@ -71,16 +50,46 @@
         zsjhDataElement.textContent = '獲取數據出錯.';
       });
 
+    function filterDataToShow(data) {
+      let filteredData = [];
+      let lastPublishedRow = -1;
+
+      // 找到第七欄最後一個「已發布」的位置
+      for (let i = 1; i < data.length; i++) { // 從第二行開始，第一行永遠顯示
+        if (data[i][6] === '已發布') {
+          lastPublishedRow = i;
+        }
+      }
+
+      if (lastPublishedRow === -1) {
+        // 如果沒有找到「已發布」，則全部顯示
+        filteredData = data;
+      } else {
+        // 找到最後一個「已發布」後，檢查規則3和4
+        let foundRow = -1;
+        for (let i = lastPublishedRow; i >= 1; i--) {
+          if (data[i][5].endsWith('0')) {
+            foundRow = i;
+            break;
+          }
+        }
+
+        if (foundRow === -1) {
+          // 如果沒有符合規則3的行，顯示所有行
+          filteredData = data;
+        } else {
+          // 符合規則3的行及其以上的行不顯示
+          filteredData = data.slice(0, foundRow + 1);
+        }
+      }
+
+      return filteredData;
+    }
+
     function generateTableHtml(data) {
       let html = '<table>';
       data.forEach(function (row, rowIndex) {
-        html += '<tr';
-
-        if (rowIndex > 0) {
-          html += ' class="hidden-row"';
-        }
-
-        html += '>';
+        html += '<tr>';
 
         row.forEach(function (cell, cellIndex) {
           if (rowIndex === 0) {
@@ -140,29 +149,10 @@
         // 更新表格上的發布狀態
         const table = document.querySelector('#zsjh-data table');
         table.rows[rowIndex].cells[6].innerText = '已發布';
-
-        // 隱藏相關行
-        hideRows();
-
       } catch (error) {
         console.error('Error:', error);
         alert('操作失敗');
       }
-    }
-
-    function hideRows() {
-      const rows = document.querySelectorAll('#zsjh-data table tr');
-
-      rows.forEach(function (row, index) {
-        if (index > 0) { // 排除第一行
-          const publishCell = row.cells[6];
-          if (publishCell && publishCell.innerText === '已發布') {
-            row.classList.add('hidden-row');
-          } else {
-            row.classList.remove('hidden-row');
-          }
-        }
-      });
     }
   </script>
 </body>
