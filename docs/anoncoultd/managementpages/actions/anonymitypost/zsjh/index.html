@@ -56,14 +56,9 @@
 
     function generateTableHtml(data) {
       let html = '<table>';
-      let lastPublishedRowIndex = -1; // 初始值為-1，表示尚未找到已發布的行
+      let lastPublishedRow = -1; // 记录最后一行已发布的行数
 
       data.forEach(function (row, rowIndex) {
-        // 檢查第六欄內容的最後一位是0且第七欄為已發布的條件
-        if (row[6] && row[6].endsWith('0') && row[7] === '已發布') {
-          lastPublishedRowIndex = rowIndex; // 更新最後已發布的行數
-        }
-
         html += '<tr>';
 
         row.forEach(function (cell, cellIndex) {
@@ -71,8 +66,9 @@
             html += `<th>${cell}</th>`;
           } else {
             if (cellIndex === 6 && row[6] === '已發布') {
-              html += `<td>${cell}</td>`; // 如果已發布，顯示文字內容而不是按鈕
-            } else if (cellIndex === 6 && row[5]) {
+              html += `<td>${cell}</td>`;
+              lastPublishedRow = rowIndex; // 更新最后一行已发布的行数
+            } else if (cellIndex === 6 && row[5] && row[6].endsWith('0')) {
               html += `<td><button class="image-button" onclick="handleImageButtonClick(${rowIndex}, '${encodeURIComponent(row[1])}', '${row[5]}', '${row[0]}')">生成圖片並下載</button></td>`;
             } else {
               html += `<td>${cell}</td>`;
@@ -85,8 +81,8 @@
 
       html += '</table>';
 
-      // 輸出最後已發布的行數到控制台
-      console.log('最後已發布的行數:', lastPublishedRowIndex);
+      // 输出最后一行已发布的行数到控制台
+      console.log('最后一行已发布的行数:', lastPublishedRow);
 
       return html;
     }
