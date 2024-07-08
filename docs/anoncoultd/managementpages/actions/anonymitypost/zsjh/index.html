@@ -64,7 +64,7 @@
             html += `<th>${cell}</th>`;
           } else {
             if (cellIndex === 6 && row[5]) {
-              html += `<td><button class="image-button" onclick="handleImageButtonClick(${rowIndex}, '${row[1]}', '${row[5]}', '${row[0]}', this)">生成圖片</button></td>`;
+              html += `<td><button class="image-button" onclick="handleImageButtonClick(${rowIndex}, '${row[1]}', '${row[5]}', '${row[0]}')">生成圖片</button></td>`;
             } else {
               html += `<td>${cell}</td>`;
             }
@@ -77,48 +77,35 @@
       return html;
     }
 
-    async function handleImageButtonClick(rowIndex, inputText, inputId, inputTimestamp, buttonElement) {
+    async function handleImageButtonClick(rowIndex, inputText, inputId, inputTimestamp) {
       console.log(`Button clicked for row: ${rowIndex}`);
-      const apiBaseUrl = 'https://google-sheets-proxy-mk66ircp2a-uc.a.run.app';
-      const imageUrl = `${apiBaseUrl}/zsjh-postmaker/get-image`;
       
       try {
+        const apiBaseUrl = 'https://google-sheets-proxy-mk66ircp2a-uc.a.run.app';
+        const imageUrl = `${apiBaseUrl}/zsjh-postmaker/get-image`;
+
         const response = await axios.post(imageUrl, {
           text: inputText,
           id: inputId,
           timestamp: inputTimestamp
+        }, {
+          responseType: 'blob' // 指定返回的數據類型為blob
         });
 
-        const imageBlob = new Blob([response.data], { type: 'image/png' });
-        const url = URL.createObjectURL(imageBlob);
+        const blob = new Blob([response.data], { type: 'image/png' });
+        const url = URL.createObjectURL(blob);
 
-        const imageElement = document.createElement('img');
-        imageElement.src = url;
-        imageElement.onload = () => {
-          const canvas = document.createElement('canvas');
-          canvas.width = imageElement.width;
-          canvas.height = imageElement.height;
-          const ctx = canvas.getContext('2d');
-          ctx.drawImage(imageElement, 0, 0, canvas.width, canvas.height);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `${inputId}.png`;
+        a.style.display = 'none';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
 
-          canvas.toBlob((blob) => {
-            const a = document.createElement('a');
-            a.href = URL.createObjectURL(blob);
-            a.download = `${inputId}.png`;
-            a.style.display = 'none';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(a.href);
-          }, 'image/png');
-          
-          buttonElement.style.display = 'none';
-          const table = document.querySelector('#zsjh-data table');
-          table.rows[rowIndex].cells[6].innerText = '已發布';
-        };
-
-        document.getElementById('imageContainer').innerHTML = '';
-        document.getElementById('imageContainer').appendChild(imageElement);
+        const table = document.querySelector('#zsjh-data table');
+        table.rows[rowIndex].cells[6].innerText = '已發布';
       } catch (error) {
         console.error('Error fetching image:', error);
         alert('取得圖片時發生錯誤');
