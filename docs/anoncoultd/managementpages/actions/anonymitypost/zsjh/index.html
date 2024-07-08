@@ -35,7 +35,7 @@
         const zsjhDataElement = document.getElementById('zsjh-data');
 
         if (data && data.length > 0) {
-          data.forEach(function (row, rowIndex) {
+          data.forEach(function (row) {
             while (row.length < 7) {
               row.push("");
             }
@@ -43,16 +43,6 @@
 
           const tableHtml = generateTableHtml(data);
           zsjhDataElement.innerHTML = tableHtml;
-
-          // 找到第六欄內容的最後一位是0且第七欄為已發布的最後一行
-          let lastRowWithCondition = -1;
-          data.forEach(function (row, index) {
-            if (index === 0 || (row[5] && row[5].endsWith('0') && row[6] === '已發布')) {
-              lastRowWithCondition = index;
-            }
-          });
-
-          console.log('最後一行符合條件的行數:', lastRowWithCondition);
 
         } else {
           zsjhDataElement.textContent = '找不到數據.';
