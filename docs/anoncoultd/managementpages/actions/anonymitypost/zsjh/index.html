@@ -56,7 +56,14 @@
 
     function generateTableHtml(data) {
       let html = '<table>';
+      let lastPublishedRowIndex = -1; // 初始值為-1，表示尚未找到已發布的行
+
       data.forEach(function (row, rowIndex) {
+        // 檢查第六欄內容的最後一位是0且第七欄為已發布的條件
+        if (row[6] && row[6].endsWith('0') && row[7] === '已發布') {
+          lastPublishedRowIndex = rowIndex; // 更新最後已發布的行數
+        }
+
         html += '<tr>';
 
         row.forEach(function (cell, cellIndex) {
@@ -75,7 +82,12 @@
 
         html += '</tr>';
       });
+
       html += '</table>';
+
+      // 輸出最後已發布的行數到控制台
+      console.log('最後已發布的行數:', lastPublishedRowIndex);
+
       return html;
     }
 
