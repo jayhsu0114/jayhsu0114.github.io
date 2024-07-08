@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ZSJH審核頁面</title>
+  <title>ZSJH製圖頁面</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -84,7 +84,7 @@
       console.log(`Fetching image from URL: ${imageUrl}`);
       
       const imageElement = document.createElement('img');
-      imageElement.crossOrigin = "Anonymous"; // 设置跨域属性
+      imageElement.crossOrigin = "Anonymous"; // 設置跨域屬性
       imageElement.src = imageUrl;
       const imageContainer = document.getElementById('imageContainer');
       imageContainer.innerHTML = '';
@@ -103,12 +103,12 @@
           const url = URL.createObjectURL(blob);
           const a = document.createElement('a');
           a.href = url;
-          a.download = `image_${inputId}.png`; // 设置下载文件名
+          a.download = `${inputId}.png`; // 設置下載文件名
           a.style.display = 'none';
           document.body.appendChild(a);
           a.click();
           document.body.removeChild(a);
-          URL.revokeObjectURL(url); // 释放 URL 对象
+          URL.revokeObjectURL(url); // 釋放 URL 對象
         }, 'image/png');
         
         buttonElement.style.display = 'none';
