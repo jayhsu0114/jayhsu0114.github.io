@@ -80,47 +80,55 @@
     async function handleImageButtonClick(rowIndex, inputText, inputId, inputTimestamp, buttonElement) {
       console.log(`Button clicked for row: ${rowIndex}`);
       const apiBaseUrl = 'https://google-sheets-proxy-mk66ircp2a-uc.a.run.app';
-      const imageUrl = `${apiBaseUrl}/zsjh-postmaker/get-image?text=${encodeURIComponent(inputText)}&id=${encodeURIComponent(inputId)}&timestamp=${encodeURIComponent(inputTimestamp)}`;
-      console.log(`Fetching image from URL: ${imageUrl}`);
-      
-      const imageElement = document.createElement('img');
-      imageElement.crossOrigin = "Anonymous"; // 設置跨域屬性
-      imageElement.src = imageUrl;
-      const imageContainer = document.getElementById('imageContainer');
-      imageContainer.innerHTML = '';
-      imageContainer.appendChild(imageElement);
-      console.log('Image element added to DOM:', imageElement);
+      const imageUrl = `${apiBaseUrl}/zsjh-postmaker/get-image`;
 
-      imageElement.onload = () => {
-        console.log('Image loaded successfully');
-        const canvas = document.createElement('canvas');
-        canvas.width = imageElement.width;
-        canvas.height = imageElement.height;
-        const ctx = canvas.getContext('2d');
-        ctx.drawImage(imageElement, 0, 0, canvas.width, canvas.height);
-
-        canvas.toBlob((blob) => {
-          const url = URL.createObjectURL(blob);
-          const a = document.createElement('a');
-          a.href = url;
-          a.download = `${inputId}.png`; // 設置下載文件名
-          a.style.display = 'none';
-          document.body.appendChild(a);
-          a.click();
-          document.body.removeChild(a);
-          URL.revokeObjectURL(url); // 釋放 URL 對象
-        }, 'image/png');
-        
-        buttonElement.style.display = 'none';
-        const table = document.querySelector('#zsjh-data table');
-        table.rows[rowIndex].cells[6].innerText = '已發布';
-        console.log('Table updated after image download');
-        console.log('Button hidden');
+      const requestData = {
+        text: inputText,
+        id: inputId,
+        timestamp: inputTimestamp
       };
 
-      imageElement.onerror = (error) => {
-        console.error('取得圖片時發生錯誤:', error);
-      };
+      try {
+        const response = await axios.post(imageUrl, requestData);
+        const imageUrl = response.data;
+
+        const imageElement = document.createElement('img');
+        imageElement.crossOrigin = "Anonymous"; // 設置跨域屬性
+        imageElement.src = imageUrl;
+        const imageContainer = document.getElementById('imageContainer');
+        imageContainer.innerHTML = '';
+        imageContainer.appendChild(imageElement);
+
+        imageElement.onload = () => {
+          const canvas = document.createElement('canvas');
+          canvas.width = imageElement.width;
+          canvas.height = imageElement.height;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(imageElement, 0, 0, canvas.width, canvas.height);
+
+          canvas.toBlob((blob) => {
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `${inputId}.png`; // 設置下載文件名
+            a.style.display = 'none';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url); // 釋放 URL 對象
+          }, 'image/png');
+          
+          buttonElement.style.display = 'none';
+          const table = document.querySelector('#zsjh-data table');
+          table.rows[rowIndex].cells[6].innerText = '已發布';
+        };
+
+        imageElement.onerror = (error) => {
+          console.error('取得圖片時發生錯誤:', error);
+        };
+      } catch (error) {
+        console.error('Error fetching image:', error);
+      }
     }
   </script>
 </body>
