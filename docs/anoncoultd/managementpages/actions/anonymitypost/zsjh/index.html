@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ZSJH製圖頁面</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    .hidden-row {
+      display: none;
+    }
+  </style>
 </head>
 <body>
   <div id="header-table">
@@ -35,9 +40,21 @@
         const zsjhDataElement = document.getElementById('zsjh-data');
 
         if (data && data.length > 0) {
-          data.forEach(function (row) {
+          data.forEach(function (row, rowIndex) {
             while (row.length < 7) {
               row.push("");
+            }
+
+            // 檢查是否要隱藏此行
+            if (rowIndex > 0) {
+              const published = row[6] === '已發布';
+              const lastDigitIsZero = row[5].slice(-1) === '0';
+
+              if (published && lastDigitIsZero) {
+                // 找到最後一位為0的行，設置樣式隱藏
+                const tableRow = document.querySelector(`#zsjh-data table tr:nth-child(${rowIndex + 1})`);
+                tableRow.classList.add('hidden-row');
+              }
             }
           });
 
@@ -57,7 +74,13 @@
     function generateTableHtml(data) {
       let html = '<table>';
       data.forEach(function (row, rowIndex) {
-        html += '<tr>';
+        html += '<tr';
+
+        if (rowIndex > 0) {
+          html += ' class="hidden-row"';
+        }
+
+        html += '>';
 
         row.forEach(function (cell, cellIndex) {
           if (rowIndex === 0) {
@@ -117,10 +140,29 @@
         // 更新表格上的發布狀態
         const table = document.querySelector('#zsjh-data table');
         table.rows[rowIndex].cells[6].innerText = '已發布';
+
+        // 隱藏相關行
+        hideRows();
+
       } catch (error) {
         console.error('Error:', error);
         alert('操作失敗');
       }
+    }
+
+    function hideRows() {
+      const rows = document.querySelectorAll('#zsjh-data table tr');
+
+      rows.forEach(function (row, index) {
+        if (index > 0) { // 排除第一行
+          const publishCell = row.cells[6];
+          if (publishCell && publishCell.innerText === '已發布') {
+            row.classList.add('hidden-row');
+          } else {
+            row.classList.remove('hidden-row');
+          }
+        }
+      });
     }
   </script>
 </body>
