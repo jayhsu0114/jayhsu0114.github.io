@@ -87,7 +87,7 @@
 
         // 發送圖片生成請求
         const response = await axios.post(imageUrl, {
-          text: inputText,
+          text: encodeURIComponent(inputText),
           id: inputId,
           timestamp: inputTimestamp
         }, {
