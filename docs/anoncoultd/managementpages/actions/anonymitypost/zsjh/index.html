@@ -66,7 +66,7 @@
             if (cellIndex === 6 && row[6] === '已發布') {
               html += `<td>${cell}</td>`; // 如果已發布，顯示文字內容而不是按鈕
             } else if (cellIndex === 6 && row[5]) {
-              html += `<td><button class="image-button" onclick="handleImageButtonClick(${rowIndex}, '${row[1]}', '${row[5]}', '${row[0]}')">生成圖片並下載</button></td>`;
+              html += `<td><button class="image-button" onclick="handleImageButtonClick(${rowIndex}, '${encodeURIComponent(row[1])}', '${row[5]}', '${row[0]}')">生成圖片並下載</button></td>`;
             } else {
               html += `<td>${cell}</td>`;
             }
@@ -87,7 +87,7 @@
 
         // 發送圖片生成請求
         const response = await axios.post(imageUrl, {
-          text: JSON.stringify(inputText),
+          text: decodeURIComponent(inputText), // 解碼
           id: inputId,
           timestamp: inputTimestamp
         }, {
