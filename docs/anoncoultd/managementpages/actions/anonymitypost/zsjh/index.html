@@ -148,7 +148,10 @@
         const row = rows.find(row => row.dataset.originalIndex == rowIndex);
         if (row) {
           row.cells[6].innerText = '已發布';
-          row.querySelector('button').remove(); // 移除按鈕
+          const button = row.querySelector('button');
+          if (button) {
+            button.remove(); // 移除按鈕
+          }
         }
       } catch (error) {
         console.error('Error:', error);
