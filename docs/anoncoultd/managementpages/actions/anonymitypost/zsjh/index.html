@@ -41,6 +41,9 @@
             }
           });
 
+          const tableHtml = generateTableHtml(data);
+          zsjhDataElement.innerHTML = tableHtml;
+
           // 找到第六欄內容的最後一位是0且第七欄為已發布的最後一行
           let lastRowWithCondition = -1;
           data.forEach(function (row, index) {
@@ -51,8 +54,6 @@
 
           console.log('最後一行符合條件的行數:', lastRowWithCondition);
 
-          const tableHtml = generateTableHtml(data, lastRowWithCondition);
-          zsjhDataElement.innerHTML = tableHtml;
         } else {
           zsjhDataElement.textContent = '找不到數據.';
         }
@@ -63,14 +64,9 @@
         zsjhDataElement.textContent = '獲取數據出錯.';
       });
 
-    function generateTableHtml(data, lastRowWithCondition) {
+    function generateTableHtml(data) {
       let html = '<table>';
       data.forEach(function (row, rowIndex) {
-        // 避免顯示2到最後一行符合條件行數之間的行
-        if (rowIndex > 0 && rowIndex < lastRowWithCondition) {
-          return;
-        }
-
         html += '<tr>';
 
         row.forEach(function (cell, cellIndex) {
