@@ -36,7 +36,7 @@
 
         if (data && data.length > 0) {
           // 補充數據
-          data.forEach(function (row, rowIndex) {
+          data.forEach(function (row) {
             while (row.length < 7) {
               row.push("");
             }
@@ -132,7 +132,7 @@
 
         // 更新表格上的發布狀態
         const table = document.querySelector('#zsjh-data table');
-        table.rows[rowIndex].cells[6].innerText = '已發布';
+        table.rows[rowIndex + 1].cells[6].innerText = '已發布'; // rowIndex + 1 來匹配表格的行索引
       } catch (error) {
         console.error('Error:', error);
         alert('操作失敗');
