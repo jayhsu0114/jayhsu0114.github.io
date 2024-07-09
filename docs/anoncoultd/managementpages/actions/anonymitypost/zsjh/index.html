@@ -35,11 +35,14 @@
         const zsjhDataElement = document.getElementById('zsjh-data');
 
         if (data && data.length > 0) {
-          data.forEach(function (row) {
+          data.forEach(function (row, rowIndex) {
             while (row.length < 7) {
               row.push("");
             }
           });
+
+          const tableHtml = generateTableHtml(data);
+          zsjhDataElement.innerHTML = tableHtml;
 
           // 找到第六欄內容的最後一位是0且第七欄為已發布的最後一行
           let lastRowWithCondition = -1;
@@ -50,16 +53,6 @@
           });
 
           console.log('最後一行符合條件的行數:', lastRowWithCondition);
-
-          const filteredData = data.filter((row, index) => {
-            if (index <= 1) return true; // 顯示標題行和第二行
-            if (index <= lastRowWithCondition) return false; // 隱藏 lastRowWithCondition 之間的行
-            if (index > lastRowWithCondition && !row[5]) return false; // 隱藏第六欄中沒有內容的行
-            return true;
-          });
-
-          const tableHtml = generateTableHtml(filteredData);
-          zsjhDataElement.innerHTML = tableHtml;
 
         } else {
           zsjhDataElement.textContent = '找不到數據.';
@@ -73,9 +66,17 @@
 
     function generateTableHtml(data) {
       let html = '<table>';
-      data.forEach(function (row, rowIndex) {
-        html += '<tr>';
+      const hiddenRows = [];
 
+      data.forEach(function (row, rowIndex) {
+        const shouldHide = (rowIndex > 1 && rowIndex <= lastRowWithCondition) || (rowIndex > lastRowWithCondition && !row[5]);
+        
+        if (shouldHide) {
+          hiddenRows.push(rowIndex); // 保留被隱藏行的索引
+          return; // 跳過不顯示的行
+        }
+
+        html += '<tr data-original-index="' + rowIndex + '">';
         row.forEach(function (cell, cellIndex) {
           if (rowIndex === 0) {
             html += `<th>${cell}</th>`;
@@ -89,10 +90,10 @@
             }
           }
         });
-
         html += '</tr>';
       });
       html += '</table>';
+      console.log('隱藏的行索引:', hiddenRows); // 打印隱藏的行索引
       return html;
     }
 
@@ -133,7 +134,10 @@
 
         // 更新表格上的發布狀態
         const table = document.querySelector('#zsjh-data table');
-        table.rows[rowIndex].cells[6].innerText = '已發布';
+        const row = Array.from(table.rows).find(row => row.dataset.originalIndex == rowIndex);
+        if (row) {
+          row.cells[6].innerText = '已發布';
+        }
       } catch (error) {
         console.error('Error:', error);
         alert('操作失敗');
