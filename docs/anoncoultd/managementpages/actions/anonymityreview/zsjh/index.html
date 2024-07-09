@@ -45,17 +45,17 @@
           // 找到第六欄中最後一個數字是1的儲存格在哪一列
           let targetRowIndex = -1;
           for (let i = 0; i < data.length; i++) {
-            const cellValue = data[i][5]; // 第六欄
-            if (typeof cellValue === 'string' && cellValue.trim().endsWith('1')) {
-              targetRowIndex = i;
-            }
+          const cellValue = data[i][5]; // 第六欄
+          if (typeof cellValue === 'string' && cellValue.trim().endsWith('1')) {
+          targetRowIndex = i;
+          }
           }
 
-          // 隱藏符合條件的行之前的所有行
+          // 隱藏符合條件的行之前的所有行，但顯示第一行
           if (targetRowIndex !== -1) {
-            const table = zsjhDataElement.querySelector('table');
-            const rowsToHide = Array.from(table.querySelectorAll('tr')).slice(0, targetRowIndex);
-            rowsToHide.forEach(row => row.style.display = 'none');
+          const table = zsjhDataElement.querySelector('table');
+          const rowsToHide = Array.from(table.querySelectorAll('tr')).slice(1, targetRowIndex); // 從第二行開始
+          rowsToHide.forEach(row => row.style.display = 'none');
           }
 
         } else {
