@@ -67,11 +67,10 @@
     function generateTableHtml(data, lastRowWithCondition) {
       let html = '<table>';
       const hiddenRows = [];
-      let previousRowHasButton = false;
 
       data.forEach(function (row, rowIndex) {
         const shouldHide = (rowIndex > 1 && rowIndex <= lastRowWithCondition) || (rowIndex > lastRowWithCondition && !row[5]);
-
+        
         if (shouldHide) {
           hiddenRows.push(rowIndex); // 保留被隱藏行的索引
           return; // 跳過不顯示的行
@@ -85,11 +84,7 @@
             if (cellIndex === 6 && row[6] === '已發布') {
               html += `<td>${cell}</td>`; // 如果已發布，顯示文字內容而不是按鈕
             } else if (cellIndex === 6 && row[5]) {
-              const buttonDisabled = previousRowHasButton ? 'disabled' : '';
-              html += `<td><button class="image-button" onclick="handleImageButtonClick(${rowIndex}, '${encodeURIComponent(row[1])}', '${row[5]}', '${row[0]}')" ${buttonDisabled}>生成圖片並下載</button></td>`;
-              if (!previousRowHasButton) {
-                previousRowHasButton = true;
-              }
+              html += `<td><button class="image-button" onclick="handleImageButtonClick(${rowIndex}, '${encodeURIComponent(row[1])}', '${row[5]}', '${row[0]}')">生成圖片並下載</button></td>`;
             } else {
               html += `<td>${cell}</td>`;
             }
@@ -103,6 +98,18 @@
     }
 
     async function handleImageButtonClick(rowIndex, inputText, inputId, inputTimestamp) {
+      const table = document.querySelector('#zsjh-data table');
+      const rows = Array.from(table.rows);
+
+      // 檢查前面的行是否仍有按鈕
+      for (let i = 1; i < rowIndex; i++) {
+        const row = rows.find(row => row.dataset.originalIndex == i);
+        if (row && row.querySelector('button')) {
+          alert('請按下前面按鈕');
+          return;
+        }
+      }
+
       try {
         const apiBaseUrl = 'https://google-sheets-proxy-mk66ircp2a-uc.a.run.app';
         const imageUrl = `${apiBaseUrl}/zsjh-postmaker/get-image`;
@@ -138,10 +145,10 @@
         console.log('Status updated successfully:', updateResponse.data);
 
         // 更新表格上的發布狀態
-        const table = document.querySelector('#zsjh-data table');
-        const row = Array.from(table.rows).find(row => row.dataset.originalIndex == rowIndex);
+        const row = rows.find(row => row.dataset.originalIndex == rowIndex);
         if (row) {
           row.cells[6].innerText = '已發布';
+          row.querySelector('button').remove(); // 移除按鈕
         }
       } catch (error) {
         console.error('Error:', error);
