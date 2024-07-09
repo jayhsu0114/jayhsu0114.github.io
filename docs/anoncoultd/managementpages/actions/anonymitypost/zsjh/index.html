@@ -44,7 +44,7 @@
           // 找到第六欄內容的最後一位是0且第七欄為已發布的最後一行
           let lastRowWithCondition = -1;
           data.forEach(function (row, index) {
-            if (row[5] && row[5].endsWith('0') && row[6] === '已發布') {
+            if (index === 0 || (row[5] && row[5].endsWith('0') && row[6] === '已發布')) {
               lastRowWithCondition = index;
             }
           });
@@ -53,7 +53,6 @@
 
           const tableHtml = generateTableHtml(data, lastRowWithCondition);
           zsjhDataElement.innerHTML = tableHtml;
-
         } else {
           zsjhDataElement.textContent = '找不到數據.';
         }
@@ -67,23 +66,28 @@
     function generateTableHtml(data, lastRowWithCondition) {
       let html = '<table>';
       data.forEach(function (row, rowIndex) {
-        if (rowIndex === 0 || rowIndex > lastRowWithCondition) { // 顯示第一行和最後一行之後的所有行
-          html += '<tr>';
-          row.forEach(function (cell, cellIndex) {
-            if (rowIndex === 0) {
-              html += `<th>${cell}</th>`;
-            } else {
-              if (cellIndex === 6 && row[6] === '已發布') {
-                html += `<td>${cell}</td>`; // 如果已發布，顯示文字內容而不是按鈕
-              } else if (cellIndex === 6 && row[5]) {
-                html += `<td><button class="image-button" onclick="handleImageButtonClick(${rowIndex}, '${row[1]}', '${row[5]}', '${row[0]}')">生成圖片並下載</button></td>`;
-              } else {
-                html += `<td>${cell}</td>`;
-              }
-            }
-          });
-          html += '</tr>';
+        // 避免顯示2到最後一行符合條件行數之間的行
+        if (rowIndex > 0 && rowIndex < lastRowWithCondition) {
+          return;
         }
+
+        html += '<tr>';
+
+        row.forEach(function (cell, cellIndex) {
+          if (rowIndex === 0) {
+            html += `<th>${cell}</th>`;
+          } else {
+            if (cellIndex === 6 && row[6] === '已發布') {
+              html += `<td>${cell}</td>`; // 如果已發布，顯示文字內容而不是按鈕
+            } else if (cellIndex === 6 && row[5]) {
+              html += `<td><button class="image-button" onclick="handleImageButtonClick(${rowIndex}, '${row[1]}', '${row[5]}', '${row[0]}')">生成圖片並下載</button></td>`;
+            } else {
+              html += `<td>${cell}</td>`;
+            }
+          }
+        });
+
+        html += '</tr>';
       });
       html += '</table>';
       return html;
