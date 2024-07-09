@@ -35,7 +35,7 @@
         const zsjhDataElement = document.getElementById('zsjh-data');
 
         if (data && data.length > 0) {
-          data.forEach(function (row, rowIndex) {
+          data.forEach(function (row) {
             while (row.length < 7) {
               row.push("");
             }
@@ -51,7 +51,14 @@
 
           console.log('最後一行符合條件的行數:', lastRowWithCondition);
 
-          const tableHtml = generateTableHtml(data, lastRowWithCondition);
+          const filteredData = data.filter((row, index) => {
+            if (index <= 1) return true; // 顯示標題行和第二行
+            if (index <= lastRowWithCondition) return false; // 隱藏 lastRowWithCondition 之間的行
+            if (index > lastRowWithCondition && !row[5]) return false; // 隱藏第六欄中沒有內容的行
+            return true;
+          });
+
+          const tableHtml = generateTableHtml(filteredData);
           zsjhDataElement.innerHTML = tableHtml;
 
         } else {
@@ -64,17 +71,9 @@
         zsjhDataElement.textContent = '獲取數據出錯.';
       });
 
-    function generateTableHtml(data, lastRowWithCondition) {
+    function generateTableHtml(data) {
       let html = '<table>';
       data.forEach(function (row, rowIndex) {
-        // 檢查是否需要隱藏這一行
-        if (rowIndex > 1 && rowIndex < lastRowWithCondition) {
-          return; // 跳過這一行
-        }
-        if (rowIndex > lastRowWithCondition && !row[5]) {
-          return; // 跳過這一行
-        }
-
         html += '<tr>';
 
         row.forEach(function (cell, cellIndex) {
