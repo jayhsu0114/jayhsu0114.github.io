@@ -35,16 +35,14 @@
         const zsjhDataElement = document.getElementById('zsjh-data');
 
         if (data && data.length > 0) {
+          // 補充數據
           data.forEach(function (row, rowIndex) {
             while (row.length < 7) {
               row.push("");
             }
           });
 
-          const tableHtml = generateTableHtml(data);
-          zsjhDataElement.innerHTML = tableHtml;
-
-          // 找到第六欄內容的最後一位是0且第七欄為已發布的最後一行
+          // 找到符合條件的最後一行
           let lastRowWithCondition = -1;
           data.forEach(function (row, index) {
             if (index === 0 || (row[5] && row[5].endsWith('0') && row[6] === '已發布')) {
@@ -53,6 +51,10 @@
           });
 
           console.log('最後一行符合條件的行數:', lastRowWithCondition);
+
+          // 生成表格HTML，只顯示第一行和符合條件的行
+          const tableHtml = generateTableHtml(data, lastRowWithCondition);
+          zsjhDataElement.innerHTML = tableHtml;
 
         } else {
           zsjhDataElement.textContent = '找不到數據.';
@@ -65,26 +67,29 @@
       });
 
 
-    function generateTableHtml(data) {
+    function generateTableHtml(data, lastRowWithCondition) {
       let html = '<table>';
       data.forEach(function (row, rowIndex) {
-        html += '<tr>';
+        // 僅顯示第一行和lastRowWithCondition之後第六欄有內容的行
+        if (rowIndex === 0 || (rowIndex > lastRowWithCondition && row[5])) {
+          html += '<tr>';
 
-        row.forEach(function (cell, cellIndex) {
-          if (rowIndex === 0) {
-            html += `<th>${cell}</th>`;
-          } else {
-            if (cellIndex === 6 && row[6] === '已發布') {
-              html += `<td>${cell}</td>`; // 如果已發布，顯示文字內容而不是按鈕
-            } else if (cellIndex === 6 && row[5]) {
-              html += `<td><button class="image-button" onclick="handleImageButtonClick(${rowIndex}, '${encodeURIComponent(row[1])}', '${row[5]}', '${row[0]}')">生成圖片並下載</button></td>`;
+          row.forEach(function (cell, cellIndex) {
+            if (rowIndex === 0) {
+              html += `<th>${cell}</th>`;
             } else {
-              html += `<td>${cell}</td>`;
+              if (cellIndex === 6 && row[6] === '已發布') {
+                html += `<td>${cell}</td>`; // 如果已發布，顯示文字內容而不是按鈕
+              } else if (cellIndex === 6 && row[5]) {
+                html += `<td><button class="image-button" onclick="handleImageButtonClick(${rowIndex}, '${encodeURIComponent(row[1])}', '${row[5]}', '${row[0]}')">生成圖片並下載</button></td>`;
+              } else {
+                html += `<td>${cell}</td>`;
+              }
             }
-          }
-        });
+          });
 
-        html += '</tr>';
+          html += '</tr>';
+        }
       });
       html += '</table>';
       return html;
