@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
@@ -35,14 +36,16 @@
         const zsjhDataElement = document.getElementById('zsjh-data');
 
         if (data && data.length > 0) {
-          // 補充數據
-          data.forEach(function (row) {
+          data.forEach(function (row, rowIndex) {
             while (row.length < 7) {
               row.push("");
             }
           });
 
-          // 找到符合條件的最後一行
+          const tableHtml = generateTableHtml(data);
+          zsjhDataElement.innerHTML = tableHtml;
+
+          // 找到第六欄內容的最後一位是0且第七欄為已發布的最後一行
           let lastRowWithCondition = -1;
           data.forEach(function (row, index) {
             if (index === 0 || (row[5] && row[5].endsWith('0') && row[6] === '已發布')) {
@@ -51,10 +54,6 @@
           });
 
           console.log('最後一行符合條件的行數:', lastRowWithCondition);
-
-          // 生成表格HTML，只顯示第一行和符合條件的行
-          const tableHtml = generateTableHtml(data, lastRowWithCondition);
-          zsjhDataElement.innerHTML = tableHtml;
 
         } else {
           zsjhDataElement.textContent = '找不到數據.';
@@ -67,29 +66,26 @@
       });
 
 
-    function generateTableHtml(data, lastRowWithCondition) {
+    function generateTableHtml(data) {
       let html = '<table>';
       data.forEach(function (row, rowIndex) {
-        // 僅顯示第一行和lastRowWithCondition之後第六欄有內容的行
-        if (rowIndex === 0 || (rowIndex > lastRowWithCondition && row[5])) {
-          html += '<tr>';
+        html += '<tr>';
 
-          row.forEach(function (cell, cellIndex) {
-            if (rowIndex === 0) {
-              html += `<th>${cell}</th>`;
+        row.forEach(function (cell, cellIndex) {
+          if (rowIndex === 0) {
+            html += `<th>${cell}</th>`;
+          } else {
+            if (cellIndex === 6 && row[6] === '已發布') {
+              html += `<td>${cell}</td>`; // 如果已發布，顯示文字內容而不是按鈕
+            } else if (cellIndex === 6 && row[5]) {
+              html += `<td><button class="image-button" onclick="handleImageButtonClick(${rowIndex}, '${encodeURIComponent(row[1])}', '${row[5]}', '${row[0]}')">生成圖片並下載</button></td>`;
             } else {
-              if (cellIndex === 6 && row[6] === '已發布') {
-                html += `<td>${cell}</td>`; // 如果已發布，顯示文字內容而不是按鈕
-              } else if (cellIndex === 6 && row[5]) {
-                html += `<td><button class="image-button" onclick="handleImageButtonClick(${rowIndex}, '${encodeURIComponent(row[1])}', '${row[5]}', '${row[0]}')">生成圖片並下載</button></td>`;
-              } else {
-                html += `<td>${cell}</td>`;
-              }
+              html += `<td>${cell}</td>`;
             }
-          });
+          }
+        });
 
-          html += '</tr>';
-        }
+        html += '</tr>';
       });
       html += '</table>';
       return html;
@@ -132,7 +128,7 @@
 
         // 更新表格上的發布狀態
         const table = document.querySelector('#zsjh-data table');
-        table.rows[rowIndex + 1].cells[6].innerText = '已發布'; // rowIndex + 1 來匹配表格的行索引
+        table.rows[rowIndex].cells[6].innerText = '已發布';
       } catch (error) {
         console.error('Error:', error);
         alert('操作失敗');
