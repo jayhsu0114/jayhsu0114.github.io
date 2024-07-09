@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
@@ -42,9 +41,6 @@
             }
           });
 
-          const tableHtml = generateTableHtml(data);
-          zsjhDataElement.innerHTML = tableHtml;
-
           // 找到第六欄內容的最後一位是0且第七欄為已發布的最後一行
           let lastRowWithCondition = -1;
           data.forEach(function (row, index) {
@@ -54,6 +50,9 @@
           });
 
           console.log('最後一行符合條件的行數:', lastRowWithCondition);
+
+          const tableHtml = generateTableHtml(data, lastRowWithCondition);
+          zsjhDataElement.innerHTML = tableHtml;
 
         } else {
           zsjhDataElement.textContent = '找不到數據.';
@@ -65,10 +64,17 @@
         zsjhDataElement.textContent = '獲取數據出錯.';
       });
 
-
-    function generateTableHtml(data) {
+    function generateTableHtml(data, lastRowWithCondition) {
       let html = '<table>';
       data.forEach(function (row, rowIndex) {
+        // 檢查是否需要隱藏這一行
+        if (rowIndex > 1 && rowIndex < lastRowWithCondition) {
+          return; // 跳過這一行
+        }
+        if (rowIndex > lastRowWithCondition && !row[5]) {
+          return; // 跳過這一行
+        }
+
         html += '<tr>';
 
         row.forEach(function (cell, cellIndex) {
