@@ -67,10 +67,11 @@
     function generateTableHtml(data, lastRowWithCondition) {
       let html = '<table>';
       const hiddenRows = [];
+      let previousRowHasButton = false;
 
       data.forEach(function (row, rowIndex) {
         const shouldHide = (rowIndex > 1 && rowIndex <= lastRowWithCondition) || (rowIndex > lastRowWithCondition && !row[5]);
-        
+
         if (shouldHide) {
           hiddenRows.push(rowIndex); // 保留被隱藏行的索引
           return; // 跳過不顯示的行
@@ -84,7 +85,11 @@
             if (cellIndex === 6 && row[6] === '已發布') {
               html += `<td>${cell}</td>`; // 如果已發布，顯示文字內容而不是按鈕
             } else if (cellIndex === 6 && row[5]) {
-              html += `<td><button class="image-button" onclick="handleImageButtonClick(${rowIndex}, '${encodeURIComponent(row[1])}', '${row[5]}', '${row[0]}')">生成圖片並下載</button></td>`;
+              const buttonDisabled = previousRowHasButton ? 'disabled' : '';
+              html += `<td><button class="image-button" onclick="handleImageButtonClick(${rowIndex}, '${encodeURIComponent(row[1])}', '${row[5]}', '${row[0]}')" ${buttonDisabled}>生成圖片並下載</button></td>`;
+              if (!previousRowHasButton) {
+                previousRowHasButton = true;
+              }
             } else {
               html += `<td>${cell}</td>`;
             }
