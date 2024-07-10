@@ -34,10 +34,11 @@ body {
 }
 
 .input-group input {
-    width: 100%;
+    width: calc(100% - 22px);
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
+    margin: 0 auto;
 }
 
 button {
