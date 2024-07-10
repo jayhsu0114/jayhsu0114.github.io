@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HSJH製圖頁面</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="management-buttons">
+    <button>審核頁面</button>
+    <button>回資料庫</button>
+  </div>
+
+  <div id="hsjh-data" class="loading">
+    正在加載數據...
+  </div>
+
+  <div id="imageContainer"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    axios.get('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/hsjh-sheet-data')
+      .then(function (response) {
+        const data = response.data;
+        const hsjhDataElement = document.getElementById('hsjh-data');
+
+        if (data && data.length > 0) {
+          data.forEach(function (row, rowIndex) {
+            while (row.length < 7) {
+              row.push("");
+            }
+          });
+
+          // 找到第六欄內容的最後一位是0且第七欄為已發布的最後一行
+          let lastRowWithCondition = -1;
+          data.forEach(function (row, index) {
+            if (index === 0 || (row[5] && row[5].endsWith('0') && row[6] === '已發布')) {
+              lastRowWithCondition = index;
+            }
+          });
+
+          console.log('最後一行符合條件的行數:', lastRowWithCondition);
+
+          const tableHtml = generateTableHtml(data, lastRowWithCondition);
+          hsjhDataElement.innerHTML = tableHtml;
+
+        } else {
+          hsjhDataElement.textContent = '找不到數據.';
+        }
+      })
+      .catch(function (error) {
+        console.error('Error fetching data:', error);
+        const hsjhDataElement = document.getElementById('hsjh-data');
+        hsjhDataElement.textContent = '獲取數據出錯.';
+      });
+
+    function generateTableHtml(data, lastRowWithCondition) {
+      let html = '<table>';
+      const hiddenRows = [];
+
+      data.forEach(function (row, rowIndex) {
+        const shouldHide = (rowIndex > 1 && rowIndex <= lastRowWithCondition) || (rowIndex > lastRowWithCondition && !row[5]);
+        
+        if (shouldHide) {
+          hiddenRows.push(rowIndex); // 保留被隱藏行的索引
+          return; // 跳過不顯示的行
+        }
+
+        html += '<tr data-original-index="' + rowIndex + '">';
+        row.forEach(function (cell, cellIndex) {
+          if (rowIndex === 0) {
+            html += `<th>${cell}</th>`;
+          } else {
+            if (cellIndex === 6 && row[6] === '已發布') {
+              html += `<td>${cell}</td>`; // 如果已發布，顯示文字內容而不是按鈕
+            } else if (cellIndex === 6 && row[5]) {
+              html += `<td><button class="image-button" onclick="handleImageButtonClick(${rowIndex}, '${encodeURIComponent(row[1])}', '${row[5]}', '${row[0]}')">生成圖片並下載</button></td>`;
+            } else {
+              html += `<td>${cell}</td>`;
+            }
+          }
+        });
+        html += '</tr>';
+      });
+      html += '</table>';
+      console.log('隱藏的行索引:', hiddenRows); // 打印隱藏的行索引
+      return html;
+    }
+
+    async function handleImageButtonClick(rowIndex, inputText, inputId, inputTimestamp) {
+      const table = document.querySelector('#hsjh-data table');
+      const rows = Array.from(table.rows);
+
+      // 檢查前面的行是否仍有按鈕
+      for (let i = 1; i < rowIndex; i++) {
+        const row = rows.find(row => row.dataset.originalIndex == i);
+        if (row && row.querySelector('button')) {
+          alert('請按下前面按鈕');
+          return;
+        }
+      }
+
+      try {
+        const apiBaseUrl = 'https://google-sheets-proxy-mk66ircp2a-uc.a.run.app';
+        const imageUrl = `${apiBaseUrl}/hsjh-postmaker/get-image`;
+        const updateStatusUrl = `${apiBaseUrl}/hsjh-update-status`;
+
+        // 發送圖片生成請求
+        const response = await axios.post(imageUrl, {
+          text: decodeURIComponent(inputText), // 解碼
+          id: inputId,
+          timestamp: inputTimestamp
+        }, {
+          responseType: 'blob'
+        });
+
+        const blob = new Blob([response.data], { type: 'image/png' });
+        const url = URL.createObjectURL(blob);
+
+        // 下載圖片
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `${inputId}.png`;
+        a.style.display = 'none';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+
+        // 發送更新狀態請求
+        const updateResponse = await axios.post(updateStatusUrl, {
+          rowIndex: rowIndex
+        });
+
+        console.log('Status updated successfully:', updateResponse.data);
+
+        // 更新表格上的發布狀態
+        const row = rows.find(row => row.dataset.originalIndex == rowIndex);
+        if (row) {
+          row.cells[6].innerText = '已發布';
+          const button = row.querySelector('button');
+          if (button) {
+            button.remove(); // 移除按鈕
+          }
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        alert('操作失敗');
+      }
+    }
+  </script>
+</body>
+</html>
