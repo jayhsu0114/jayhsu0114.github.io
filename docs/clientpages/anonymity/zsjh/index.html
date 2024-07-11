@@ -77,15 +77,43 @@
         function createRandomCircles() {
             const colors = ['#70a7dd', '#de6768'];
             const container = document.querySelector('body');
-            const numCircles = Math.floor(window.innerWidth * window.innerHeight / 5000); // 根据屏幕尺寸计算球的数量
+            const circles = [];
+            const circleSize = 50; // 圆球的直径
+            const numCircles = Math.floor(window.innerWidth * window.innerHeight / (circleSize * circleSize * 2)); // 根据屏幕尺寸计算球的数量
+
+            function isOverlapping(newCircle) {
+                for (const circle of circles) {
+                    const dx = newCircle.left - circle.left;
+                    const dy = newCircle.top - circle.top;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    if (distance < circleSize) {
+                        return true;
+                    }
+                }
+                return false;
+            }
 
             for (let i = 0; i < numCircles; i++) {
-                const circle = document.createElement('div');
-                circle.className = 'circle';
-                circle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                circle.style.left = `${Math.random() * 100}%`;
-                circle.style.top = `${Math.random() * 100}%`;
-                container.appendChild(circle);
+                let newCircle;
+                let attempts = 0;
+
+                do {
+                    newCircle = {
+                        left: Math.random() * (window.innerWidth - circleSize),
+                        top: Math.random() * (window.innerHeight - circleSize)
+                    };
+                    attempts++;
+                } while (isOverlapping(newCircle) && attempts < 100); // 限制尝试次数，避免死循环
+
+                if (attempts < 100) {
+                    const circle = document.createElement('div');
+                    circle.className = 'circle';
+                    circle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    circle.style.left = `${newCircle.left}px`;
+                    circle.style.top = `${newCircle.top}px`;
+                    container.appendChild(circle);
+                    circles.push(newCircle);
+                }
             }
         }
 
