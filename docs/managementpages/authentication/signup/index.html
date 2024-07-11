@@ -51,15 +51,17 @@
                     if (!response.ok) {
                         throw new Error('Network response was not ok');
                     }
-                    return response.json();
+                    return response.text(); // 返回純文字回應
                 })
                 .then(data => {
                     console.log('Success:', data);
-                    // 可以在此處添加成功後的處理邏輯，如跳轉到另一個頁面或顯示成功訊息
+                    // 在這裡處理後端返回的成功訊息，例如顯示在界面上或跳轉到其他頁面
+                    alert(data); // 這裡示範使用alert顯示訊息，您可以根據需要進行更進一步的處理
                 })
                 .catch((error) => {
                     console.error('Error:', error);
                     // 可以在此處添加失敗後的處理邏輯，如顯示錯誤訊息給使用者
+                    alert('註冊失敗，請重試'); // 這裡示範使用alert顯示錯誤訊息，您可以根據需要進行更進一步的處理
                 });
             }
 
