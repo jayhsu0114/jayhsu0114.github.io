@@ -8,6 +8,7 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2383721687553257" crossorigin="anonymous"></script>
 </head>
 <body>
+    <canvas id="gravityCanvas"></canvas>
     <div class="container">
         <h1>中山匿名網頁</h1>
         <form id="zsjhForm">
@@ -73,6 +74,89 @@
                 this.value += '\n';
             }
         });
+
+        // 以下是模擬重力的腳本
+        const canvas = document.getElementById('gravityCanvas');
+        const ctx = canvas.getContext('2d');
+        const colors = ['#FF0000', '#0000FF'];
+        const balls = [];
+        const numBalls = 20;
+        const gravity = 0.5;
+        const friction = 0.99;
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Ball {
+            constructor(x, y, dx, dy, radius, color) {
+                this.x = x;
+                this.y = y;
+                this.dx = dx;
+                this.dy = dy;
+                this.radius = radius;
+                this.color = color;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+                ctx.closePath();
+            }
+
+            update() {
+                if (this.y + this.radius + this.dy > canvas.height) {
+                    this.dy = -this.dy * friction;
+                } else {
+                    this.dy += gravity;
+                }
+
+                if (this.x + this.radius + this.dx > canvas.width || this.x - this.radius + this.dx < 0) {
+                    this.dx = -this.dx;
+                }
+
+                this.x += this.dx;
+                this.y += this.dy;
+                this.draw();
+            }
+        }
+
+        function init() {
+            balls.length = 0;
+            for (let i = 0; i < numBalls; i++) {
+                const radius = 20;
+                const x = Math.random() * (canvas.width - radius * 2) + radius;
+                const y = Math.random() * (canvas.height - radius * 2) + radius;
+                const dx = (Math.random() - 0.5) * 2;
+                const dy = (Math.random() - 0.5) * 2;
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                balls.push(new Ball(x, y, dx, dy, radius, color));
+            }
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            balls.forEach(ball => ball.update());
+        }
+
+        window.addEventListener('devicemotion', (event) => {
+            const ax = event.accelerationIncludingGravity.x;
+            const ay = event.accelerationIncludingGravity.y;
+            balls.forEach(ball => {
+                ball.dx += ax * 0.1;
+                ball.dy += ay * 0.1;
+            });
+        });
+
+        init();
+        animate();
     </script>
 </body>
 </html>
