@@ -40,7 +40,7 @@
                 };
 
                 // 發送POST請求到後端
-                fetch('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/AgnostosTheos', {
+                fetch('/your-backend-route', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -57,6 +57,7 @@
                     console.log('Success:', data);
                     // 在這裡處理後端返回的成功訊息，例如顯示在界面上或跳轉到其他頁面
                     alert(data); // 這裡示範使用alert顯示訊息，您可以根據需要進行更進一步的處理
+                    window.location.href = '/managementpages/authentication/signin'; // 跳轉到管理者登入頁面
                 })
                 .catch((error) => {
                     console.error('Error:', error);
