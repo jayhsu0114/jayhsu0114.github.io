@@ -65,6 +65,12 @@
                     alert('確認密碼與密碼不一致');
                     return;
                 }
+                // 檢查密碼是否與用戶名相同
+                if (password === username) {
+                    alert('密碼不能與用戶名相同');
+                    return;
+                }
+
 
                 // 建立表單資料對象
                 const formData = {
