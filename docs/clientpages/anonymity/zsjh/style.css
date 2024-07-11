@@ -25,7 +25,7 @@ body {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    opacity: 0.7;
+    opacity: 0.9;
     pointer-events: none; /* 禁止鼠标事件，以免影响表单操作 */
 }
 
