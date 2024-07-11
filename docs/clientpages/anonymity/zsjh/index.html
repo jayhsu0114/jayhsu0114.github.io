@@ -75,14 +75,14 @@
             }
         });
 
-        // 以下是模擬重力的腳本
+        // 以下是模擬重力和碰撞的腳本
         const canvas = document.getElementById('gravityCanvas');
         const ctx = canvas.getContext('2d');
-        const colors = ['#FF0000', '#0000FF'];
+        const colors = ['#70a7dd', '#de6768'];
         const balls = [];
         const numBalls = 20;
-        const gravity = 0.5;
-        const friction = 0.99;
+        const gravity = 0.1;  // 降低重力值
+        const friction = 0.98;
 
         function resizeCanvas() {
             canvas.width = window.innerWidth;
@@ -133,8 +133,8 @@
                 const radius = 20;
                 const x = Math.random() * (canvas.width - radius * 2) + radius;
                 const y = Math.random() * (canvas.height - radius * 2) + radius;
-                const dx = (Math.random() - 0.5) * 2;
-                const dy = (Math.random() - 0.5) * 2;
+                const dx = (Math.random() - 0.5) * 1;  // 降低初始速度
+                const dy = (Math.random() - 0.5) * 1;  // 降低初始速度
                 const color = colors[Math.floor(Math.random() * colors.length)];
                 balls.push(new Ball(x, y, dx, dy, radius, color));
             }
@@ -144,14 +144,65 @@
             requestAnimationFrame(animate);
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             balls.forEach(ball => ball.update());
+            checkCollisions();
+        }
+
+        function checkCollisions() {
+            for (let i = 0; i < balls.length; i++) {
+                for (let j = i + 1; j < balls.length; j++) {
+                    const dx = balls[i].x - balls[j].x;
+                    const dy = balls[i].y - balls[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < balls[i].radius + balls[j].radius) {
+                        resolveCollision(balls[i], balls[j]);
+                    }
+                }
+            }
+        }
+
+        function resolveCollision(ball1, ball2) {
+            const xVelocityDiff = ball1.dx - ball2.dx;
+            const yVelocityDiff = ball1.dy - ball2.dy;
+            const xDist = ball2.x - ball1.x;
+            const yDist = ball2.y - ball1.y;
+
+            if (xVelocityDiff * xDist + yVelocityDiff * yDist >= 0) {
+                const angle = -Math.atan2(ball2.y - ball1.y, ball2.x - ball1.x);
+
+                const m1 = ball1.radius;
+                const m2 = ball2.radius;
+
+                const u1 = rotate(ball1.dx, ball1.dy, angle);
+                const u2 = rotate(ball2.dx, ball2.dy, angle);
+
+                const v1 = { x: u1.x * (m1 - m2) / (m1 + m2) + u2.x * 2 * m2 / (m1 + m2), y: u1.y };
+                const v2 = { x: u2.x * (m1 - m2) / (m1 + m2) + u1.x * 2 * m1 / (m1 + m2), y: u2.y };
+
+                const vFinal1 = rotate(v1.x, v1.y, -angle);
+                const vFinal2 = rotate(v2.x, v2.y, -angle);
+
+                ball1.dx = vFinal1.x;
+                ball1.dy = vFinal1.y;
+
+                ball2.dx = vFinal2.x;
+                ball2.dy = vFinal2.y;
+            }
+        }
+
+        function rotate(dx, dy, angle) {
+            return {
+                x: dx * Math.cos(angle) - dy * Math.sin(angle),
+                y: dx * Math.sin(angle) + dy * Math.cos(angle)
+            };
         }
 
         window.addEventListener('devicemotion', (event) => {
             const ax = event.accelerationIncludingGravity.x;
             const ay = event.accelerationIncludingGravity.y;
             balls.forEach(ball => {
-                ball.dx += ax * 0.1;
-                ball.dy += ay * 0.1;
+                ball.dx += ax * 0.05;  // 降低加速度影響
+                ball.dy += ay * 0.05;  // 降低加速度影響
             });
         });
 
