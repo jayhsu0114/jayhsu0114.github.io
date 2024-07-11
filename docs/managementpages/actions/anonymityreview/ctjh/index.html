@@ -16,7 +16,7 @@
     } else {
         // 如果有 token，將 token 放入 Authorization header 中
         console.log('Token found. Verifying token...');
-        fetch('/soter', {
+        fetch('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/soter', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
