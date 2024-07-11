@@ -15,7 +15,7 @@
             // 將 username 存入 localStorage
             localStorage.setItem('username', username);
 
-            fetch('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/authentication', {
+            fetch('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/authentication/janus', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -24,14 +24,20 @@
             })
             .then(response => {
                 if (response.ok) {
-                    return response.text(); // 如果回應是成功的，返回文本
+                    return response.json(); // 如果回應是成功的，返回 JSON 格式的數據
                 } else {
                     throw new Error('Network response was not ok.');
                 }
             })
             .then(data => {
-                // 根據後端返回的路徑進行重定向
-                window.location.href = data;
+                // 獲取後端返回的 JWT token
+                const token = data.token;
+
+                // 將 token 存入 localStorage
+                localStorage.setItem('token', token);
+
+                // 根據後端返回的重定向路徑進行跳轉
+                window.location.href = data.redirectUrl;
             })
             .catch(error => {
                 console.error('Error during login:', error);
