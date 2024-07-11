@@ -5,18 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ANON系統註冊</title>
     <link rel="stylesheet" href="style.css">
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 加載時從 localStorage 中獲取 username
+            const savedUsername = localStorage.getItem('username');
+            if (savedUsername) {
+                document.getElementById('username').value = savedUsername; // 將值填入表單中的 username 欄位
+            }
+
+            // 提交表單時的處理函數
+            function handleSubmit(event) {
+                event.preventDefault(); // 防止表單提交預設行為
+
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+                const passwordconfirm = document.getElementById('passwordconfirm').value;
+                const email = document.getElementById('email').value;
+                const name = document.getElementById('name').value;
+                const school = document.getElementById('school').value;
+
+                // 在這裡添加對表單的進一步處理和驗證
+
+                // 這裡可以添加將表單數據提交到後端的代碼
+            }
+        });
+    </script>
 </head>
 <body>
     <div class="login-container">
         <h1>管理者註冊</h1>
         <form onsubmit="handleSubmit(event)">
             <div class="input-group">
-                <input type="text" id="username" name="username">
+                <input type="text" id="username" name="username" required>
+                <label for="username">帳號</label>
+            </div>
+            <div class="input-group">
                 <label for="password">更新密碼</label>
                 <input type="password" id="password" name="password" required>
             </div>
             <div class="input-group">
-                <label for="password">確認密碼</label>
+                <label for="passwordconfirm">確認密碼</label>
                 <input type="password" id="passwordconfirm" name="passwordconfirm" required>
             </div>
             <div class="input-group">
@@ -31,7 +59,7 @@
                 <label for="school">所屬學校</label>
                 <input type="text" id="school" name="school" required>
             </div>
-            <button type="submit">登入</button>
+            <button type="submit">註冊</button>
         </form>
     </div>
 </body>
