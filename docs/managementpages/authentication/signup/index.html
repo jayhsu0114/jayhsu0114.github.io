@@ -19,15 +19,33 @@
 
                 const username = document.getElementById('username').value;
                 const password = document.getElementById('password').value;
-                const passwordconfirm = document.getElementById('passwordconfirm').value;
+                const passwordConfirm = document.getElementById('passwordconfirm').value;
                 const email = document.getElementById('email').value;
                 const name = document.getElementById('name').value;
                 const school = document.getElementById('school').value;
+
+                // 檢查密碼和確認密碼是否一致
+                if (password !== passwordConfirm) {
+                    alert('確認密碼與密碼不一致');
+                    return;
+                }
 
                 // 在這裡添加對表單的進一步處理和驗證
 
                 // 這裡可以添加將表單數據提交到後端的代碼
             }
+
+            // 監聽密碼確認欄位的輸入事件，以便及時檢查密碼是否一致
+            document.getElementById('passwordconfirm').addEventListener('input', function() {
+                const password = document.getElementById('password').value;
+                const passwordConfirm = this.value;
+
+                if (password !== passwordConfirm) {
+                    this.setCustomValidity('確認密碼與密碼不一致');
+                } else {
+                    this.setCustomValidity('');
+                }
+            });
         });
     </script>
 </head>
@@ -36,8 +54,7 @@
         <h1>管理者註冊</h1>
         <form onsubmit="handleSubmit(event)">
             <div class="input-group">
-                <input type="text" id="username" name="username" required>
-                <label for="username">帳號</label>
+                <input type="hidden" id="username" name="username" required>
             </div>
             <div class="input-group">
                 <label for="password">更新密碼</label>
