@@ -40,7 +40,7 @@
                 };
 
                 // 發送POST請求到後端
-                fetch('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/AgnostosTheos', {
+                fetch('/your-backend-route', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -69,13 +69,16 @@
                     this.setCustomValidity('');
                 }
             });
+
+            // 監聽表單的提交事件
+            document.getElementById('registration-form').addEventListener('submit', handleSubmit);
         });
     </script>
 </head>
 <body>
     <div class="login-container">
         <h1>管理者註冊</h1>
-        <form onsubmit="handleSubmit(event)">
+        <form id="registration-form">
             <div class="input-group">
                 <input type="hidden" id="username" name="username" required>
             </div>
