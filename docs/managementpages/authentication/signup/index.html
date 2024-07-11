@@ -30,9 +30,32 @@
                     return;
                 }
 
-                // 在這裡添加對表單的進一步處理和驗證
+                // 建立表單資料對象
+                const formData = {
+                    username,
+                    password,
+                    email,
+                    name,
+                    school
+                };
 
-                // 這裡可以添加將表單數據提交到後端的代碼
+                // 發送POST請求到後端
+                fetch('/your-backend-route', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Success:', data);
+                    // 可以在此處添加成功後的處理邏輯，如跳轉到另一個頁面或顯示成功訊息
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    // 可以在此處添加失敗後的處理邏輯，如顯示錯誤訊息給使用者
+                });
             }
 
             // 監聽密碼確認欄位的輸入事件，以便及時檢查密碼是否一致
