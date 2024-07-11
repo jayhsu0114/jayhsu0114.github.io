@@ -22,8 +22,8 @@ body {
 /* Circle styles */
 .circle {
     position: absolute;
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height:30px;
     border-radius: 50%;
     opacity: 0.9;
     pointer-events: none; /* 禁止鼠标事件，以免影响表单操作 */
