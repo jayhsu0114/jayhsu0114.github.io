@@ -24,33 +24,19 @@
             })
             .then(response => {
                 if (response.ok) {
-                    return response.json(); // 如果回應是成功的，返回 JSON
+                    return response.text(); // 如果回應是成功的，返回文本
                 } else {
                     throw new Error('Network response was not ok.');
                 }
             })
-            .then(async data => {
-                const token = data.token;
-
-                // 使用 JWE 解碼獲取路徑
-                const { JWE, JWK } = jose;
-                const key = JWK.generateSync('oct', 256);
-                const { payload } = await JWE.decrypt(token, key, { complete: true });
-
+            .then(data => {
                 // 根據後端返回的路徑進行重定向
-                window.location.href = payload.path;
+                window.location.href = data;
             })
             .catch(error => {
                 console.error('Error during login:', error);
                 alert('登入失敗：無效的帳號或密碼。');
             });
-        }
-
-        // 載入 jose.js 庫
-        window.onload = function() {
-            const script = document.createElement('script');
-            script.src = 'https://cdnjs.cloudflare.com/ajax/libs/jose/3.13.1/jose.min.js';
-            document.head.appendChild(script);
         }
     </script>
 </head>
