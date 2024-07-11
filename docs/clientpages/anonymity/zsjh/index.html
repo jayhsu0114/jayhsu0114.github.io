@@ -73,6 +73,23 @@
                 this.value += '\n';
             }
         });
+
+        function createRandomCircles() {
+            const colors = ['#70a7dd', '#de6768'];
+            const container = document.querySelector('body');
+            const numCircles = Math.floor(window.innerWidth * window.innerHeight / 5000); // 根据屏幕尺寸计算球的数量
+
+            for (let i = 0; i < numCircles; i++) {
+                const circle = document.createElement('div');
+                circle.className = 'circle';
+                circle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                circle.style.left = `${Math.random() * 100}%`;
+                circle.style.top = `${Math.random() * 100}%`;
+                container.appendChild(circle);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', createRandomCircles);
     </script>
 </body>
 </html>

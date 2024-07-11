@@ -15,6 +15,18 @@ body {
     background-color: #f0f0f0;
     font-family: Arial, sans-serif;
     text-align: center; /* 水平居中内容 */
+    position: relative;
+    overflow: hidden;
+}
+
+/* Circle styles */
+.circle {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    opacity: 0.7;
+    pointer-events: none; /* 禁止鼠标事件，以免影响表单操作 */
 }
 
 /* Page container */
@@ -22,9 +34,10 @@ body {
     max-width: 400px;
     padding: 20px;
     background-color: #fefdf7;
-    ;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative; /* 确保在球之上 */
+    z-index: 1; /* 确保在球之上 */
 }
 
 h1 {
@@ -71,7 +84,6 @@ button[type="submit"] {
 
 button[type="submit"]:hover {
     background-color: #de6768;
-    ;
 }
 
 button:disabled {
