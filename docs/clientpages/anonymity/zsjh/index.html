@@ -6,10 +6,8 @@
     <title>中山匿名網頁</title>
     <link rel="stylesheet" href="style.css"> <!-- 引入外部的 CSS 文件路径 -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2383721687553257" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.18.0/matter.min.js"></script>
 </head>
 <body>
-    <div id="ball-container"></div>
     <div class="container">
         <h1>中山匿名網頁</h1>
         <form id="zsjhForm">
@@ -75,39 +73,6 @@
                 this.value += '\n';
             }
         });
-
-        // Matter.js initialization
-        const { Engine, Render, Runner, Bodies, Composite } = Matter;
-
-        const engine = Engine.create();
-        const render = Render.create({
-            element: document.getElementById('ball-container'),
-            engine: engine,
-            options: {
-                width: window.innerWidth,
-                height: window.innerHeight,
-                wireframes: false,
-                background: 'transparent'
-            }
-        });
-
-        const colors = ['#70a7dd', '#de6768'];
-        const balls = [];
-
-        for (let i = 0; i < 20; i++) {
-            const ball = Bodies.circle(Math.random() * window.innerWidth, Math.random() * window.innerHeight, 20, {
-                render: {
-                    fillStyle: colors[i % 2]
-                }
-            });
-            balls.push(ball);
-        }
-
-        Composite.add(engine.world, balls);
-
-        Render.run(render);
-        const runner = Runner.create();
-        Runner.run(runner, engine);
     </script>
 </body>
 </html>

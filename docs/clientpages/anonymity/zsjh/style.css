@@ -14,9 +14,7 @@ body {
     margin: 0;
     background-color: #f0f0f0;
     font-family: Arial, sans-serif;
-    text-align: center;
-    position: relative; /* 使背景球相对于 body 定位 */
-    overflow: hidden; /* 隐藏超出 body 的部分 */
+    text-align: center; /* 水平居中内容 */
 }
 
 /* Page container */
@@ -24,10 +22,9 @@ body {
     max-width: 400px;
     padding: 20px;
     background-color: #fefdf7;
+    ;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    z-index: 1; /* 使内容在球的上方 */
-    position: relative; /* 确保 z-index 生效 */
 }
 
 h1 {
@@ -74,6 +71,7 @@ button[type="submit"] {
 
 button[type="submit"]:hover {
     background-color: #de6768;
+    ;
 }
 
 button:disabled {
