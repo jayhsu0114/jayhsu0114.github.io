@@ -47,7 +47,12 @@
                     },
                     body: JSON.stringify(formData),
                 })
-                .then(response => response.json())
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
                 .then(data => {
                     console.log('Success:', data);
                     // 可以在此處添加成功後的處理邏輯，如跳轉到另一個頁面或顯示成功訊息
