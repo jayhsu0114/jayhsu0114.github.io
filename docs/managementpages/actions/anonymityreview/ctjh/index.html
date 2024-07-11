@@ -12,7 +12,7 @@
     if (!token) {
         // 如果沒有 token，重定向到登入頁面
         console.log('No token found. Redirecting to login page...');
-        window.location.href = '/managementpages/authentication/signup'; // 根據實際情況調整登入頁面的路徑
+        window.location.href = '/managementpages/authentication/signin'; // 根據實際情況調整登入頁面的路徑
     } else {
         // 如果有 token，將 token 放入 Authorization header 中
         console.log('Token found. Verifying token...');
@@ -30,7 +30,7 @@
             } else {
                 // 如果 token 驗證失敗，重定向到登入頁面
                 console.log('Token validation failed. Redirecting to login page...');
-                window.location.href = 'https://google.com'; // 根據實際情況調整登入頁面的路徑
+                window.location.href = '/managementpages/authentication/signin'; // 根據實際情況調整登入頁面的路徑
             }
         })
         .catch(error => {
