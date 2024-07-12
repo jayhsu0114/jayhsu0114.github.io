@@ -74,7 +74,7 @@ button[type="submit"] {
     display: block;
     width: 100%;
     padding: 10px;
-    margin-top: 20px;
+    margin: 20px;
     background-color: #ebafaf;
     color: black;
     border: none;
@@ -95,8 +95,8 @@ button:disabled {
 
 /* 按钮变成球的动画 */
 button.transformToCircle {
-    width: 40px; /* 变成40px宽 */
-    height: 40px; /* 变成40px高 */
+    width: 50px; /* 变成40px宽 */
+    height: 50px; /* 变成40px高 */
     border-radius: 50%; /* 圆形 */
     background-color: #ebafaf; /* 不透明背景 */
     left: 50%; /* 保持在中间 */
