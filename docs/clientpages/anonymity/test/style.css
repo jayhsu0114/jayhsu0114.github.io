@@ -1,100 +1,56 @@
-/* Reset default styles */
-* {
+body, html {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-}
-
-/* Body styles */
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    background-color: #f0f0f0;
-    font-family: Arial, sans-serif;
-    text-align: center; /* 水平居中内容 */
-    position: relative;
+    height: 100%;
     overflow: hidden;
+    font-family: Arial, sans-serif;
+    background: #f0f0f0;
 }
 
-/* Circle styles */
-.circle {
+.bubbles {
     position: absolute;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    opacity: 0.7;
-    pointer-events: none; /* 禁止鼠标事件，以免影响表单操作 */
-}
-
-/* Page container */
-.container {
-    max-width: 400px;
-    padding: 20px;
-    background-color: #fefdf7;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    position: relative; /* 确保在球之上 */
-    z-index: 1; /* 确保在球之上 */
-}
-
-h1 {
-    color: #333;
-    margin-bottom: 20px;
-}
-
-form {
-    max-width: 300px;
-    margin: 0 auto;
-}
-
-label {
-    display: block;
-    margin-bottom: 10px;
-}
-
-textarea {
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 100px;
-    padding: 8px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    resize: none;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
 }
 
-button[type="submit"] {
-    display: inline-block;
-    width: 100px;
-    height: 40px;
-    padding: 10px;
-    background-color: #f3c3c3;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    position: relative;
-}
-
-button[type="submit"]:hover {
-    background-color: #bf9a9a;
-}
-
-button[type="submit"].transformToCircle {
+.bubble {
     position: absolute;
-    top: 50%;
-    left: 50%;
+    bottom: -100px;
     width: 40px;
     height: 40px;
+    background-color: #70a7dd;
     border-radius: 50%;
-    background-color: transparent;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
+    opacity: 0.6;
+    animation: rise 10s infinite ease-in-out;
 }
 
-button[type="submit"].transformToCircle span {
-    display: none;
+.bubble:nth-child(2n) {
+    background-color: #de6768;
+}
+
+.bubble:nth-child(1) { left: 10%; animation-delay: 0s; }
+.bubble:nth-child(2) { left: 20%; animation-delay: 2s; }
+.bubble:nth-child(3) { left: 30%; animation-delay: 4s; }
+.bubble:nth-child(4) { left: 40%; animation-delay: 6s; }
+.bubble:nth-child(5) { left: 50%; animation-delay: 8s; }
+.bubble:nth-child(6) { left: 60%; animation-delay: 1s; }
+.bubble:nth-child(7) { left: 70%; animation-delay: 3s; }
+.bubble:nth-child(8) { left: 80%; animation-delay: 5s; }
+.bubble:nth-child(9) { left: 90%; animation-delay: 7s; }
+.bubble:nth-child(10) { left: 95%; animation-delay: 9s; }
+
+@keyframes rise {
+    0% {
+        transform: translateY(0) scale(1);
+    }
+    50% {
+        transform: translateY(-300px) scale(1.1);
+    }
+    100% {
+        transform: translateY(-600px) scale(1);
+    }
 }
