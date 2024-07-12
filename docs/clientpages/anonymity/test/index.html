@@ -8,17 +8,20 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2383721687553257" crossorigin="anonymous"></script>
 </head>
 <body>
-    <div class="container">
+    <div class="container" id="container">
         <h1>中山匿名網頁</h1>
         <form id="zsjhForm">
             <label for="anonymousContent">匿名內容</label>
             <textarea id="anonymousContent" name="anonymousContent" required></textarea>
             <input type="hidden" id="userIP" name="userIP">
             <input type="hidden" id="formId" name="formId" value="zsjh">
-            <center>
             <button type="submit" id="submitButton"><span>提交</span></button>
-            </center>
         </form>
+    </div>
+
+    <div class="container" id="newContainer" style="display: none;">
+        <h1>新的一組 Container</h1>
+        <button id="newButton">新按鈕</button>
     </div>
 
     <script>
@@ -153,17 +156,22 @@
 
         // 按钮点击变球动画
         document.getElementById('submitButton').addEventListener('click', function() {
-            this.classList.add('transformToCircle');
+            const button = this;
+            const container = document.getElementById('container');
+
+            container.style.display = 'none';
+
             const colors = ['#70a7dd', '#de6768'];
             const circle = document.createElement('div');
             circle.className = 'circle';
             circle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-            circle.style.left = `${this.getBoundingClientRect().left}px`;
-            circle.style.top = `${this.getBoundingClientRect().top}px`;
+            circle.style.left = `${button.getBoundingClientRect().left}px`;
+            circle.style.top = `${button.getBoundingClientRect().top}px`;
             document.body.appendChild(circle);
 
-            let dx = (Math.random() - 0.5) * 0.5;
-            let dy = -Math.random() * 0.5;
+            let dx = (Math.random() - 0.5) * 1.5;
+            let dy = -Math.random() * 1.5; // 三倍速上升
+
             function moveCircle() {
                 let left = parseFloat(circle.style.left);
                 let top = parseFloat(circle.style.top);
@@ -173,8 +181,11 @@
                 if (left <= 0 || left >= window.innerWidth - 50) {
                     dx *= -1;
                 }
+
                 if (top <= -50) {
-                    top = window.innerHeight;
+                    circle.remove();
+                    document.getElementById('newContainer').style.display = 'block';
+                    return;
                 }
 
                 circle.style.left = `${left}px`;
