@@ -3,51 +3,159 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>hsjh 表单</title>
-    <link rel="stylesheet" href="style.css">
+    <title>中山匿名網頁</title>
+    <link rel="stylesheet" href="style.css"> <!-- 引入外部的 CSS 文件路径 -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2383721687553257" crossorigin="anonymous"></script>
 </head>
 <body>
-    <div class="bubbles">
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
+    <div class="container">
+        <h1>中山匿名網頁</h1>
+        <form id="zsjhForm">
+            <label for="anonymousContent">匿名內容</label>
+            <textarea id="anonymousContent" name="anonymousContent" required></textarea>
+            <input type="hidden" id="userIP" name="userIP">
+            <input type="hidden" id="formId" name="formId" value="zsjh">
+            <button type="submit" id="submitButton">提交</button>
+        </form>
     </div>
-    <h1>hsjh 表单</h1>
-    <form id="hsjhForm">
-        <label for="anonymousContent">匿名内容：</label>
-        <input type="text" id="anonymousContent" name="anonymousContent" required><br><br>
-        <input type="hidden" id="formId" name="formId" value="hsjh">
-        <p>提交表示您同意<a href="/clientpages/regulations">使用協議</a></p>
-        <center><button type="submit">提交</button></center>
-    </form>
 
     <script>
-        document.getElementById('hsjhForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            var formData = new FormData(this);
+        let isSubmitted = false;
 
+        async function getUserIP() {
+            try {
+                const response = await fetch('https://api.ipify.org?format=json');
+                const data = await response.json();
+                return data.ip;
+            } catch (error) {
+                console.error('獲取使用者IP地址失敗:', error);
+                return 'unknown';
+            }
+        }
+
+        document.getElementById('zsjhForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            
+            if (isSubmitted) {
+                alert('表單已經提交，請稍候再試。');
+                return;
+            }
+            
+            isSubmitted = true;
+            document.getElementById('submitButton').disabled = true;
+
+            const ip = await getUserIP();
+            document.getElementById('userIP').value = ip;
+
+            const formData = new FormData(this);
             fetch('https://script.google.com/macros/s/AKfycbwC_5HrfS_D8d5QiWnAzga5NYJpYZHjP9jOeE-QJz0_VgayXva7Ss4Nl62atsWaQvmR/exec', {
                 method: 'POST',
                 body: formData
             })
             .then(response => response.json())
             .then(data => {
-                console.log('Response:', data);
-                alert('提交成功');
-                document.getElementById('hsjhForm').reset(); // 重置表单
+                alert('提交成功！');
+                this.reset();
+                document.getElementById('submitButton').disabled = false;
+                isSubmitted = false;
             })
             .catch(error => {
-                console.error('Error:', error);
-                alert('提交失败，请稍后再试');
+                console.error('提交失敗:', error);
+                alert('提交失敗，請稍候再試。');
+                document.getElementById('submitButton').disabled = false;
+                isSubmitted = false;
             });
         });
+
+        document.getElementById('anonymousContent').addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                this.value += '\n';
+            }
+        });
+
+        function createRandomCircles() {
+            const colors = ['#70a7dd', '#de6768'];
+            const container = document.querySelector('body');
+            const circles = [];
+            const circleSize = 40; // 圆球的直径
+            const numCircles = Math.floor(window.innerWidth * window.innerHeight / (circleSize * circleSize * 2)); // 根据屏幕尺寸计算球的数量
+            const speedFactor = 0.3; // 调整移动速度
+
+            function isOverlapping(newCircle) {
+                for (const circle of circles) {
+                    const dx = newCircle.left - circle.left;
+                    const dy = newCircle.top - circle.top;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    if (distance < circleSize) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+
+            for (let i = 0; i < numCircles; i++) {
+                let newCircle;
+                let attempts = 0;
+
+                do {
+                    newCircle = {
+                        left: Math.random() * (window.innerWidth - circleSize),
+                        top: Math.random() * (window.innerHeight - circleSize)
+                    };
+                    attempts++;
+                } while (isOverlapping(newCircle) && attempts < 100); // 限制尝试次数，避免死循环
+
+                if (attempts < 100) {
+                    const circle = document.createElement('div');
+                    circle.className = 'circle';
+                    circle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    circle.style.left = `${newCircle.left}px`;
+                    circle.style.top = `${newCircle.top}px`;
+                    container.appendChild(circle);
+                    circles.push({
+                        element: circle,
+                        ...newCircle,
+                        dx: (Math.random() - 0.5) * speedFactor,
+                        dy: (Math.random() - 0.5) * speedFactor
+                    });
+                }
+            }
+
+            function moveCircles() {
+                for (const circle of circles) {
+                    circle.left += circle.dx;
+                    circle.top += circle.dy;
+
+                    if (circle.left <= 0 || circle.left >= window.innerWidth - circleSize) {
+                        circle.dx *= -1;
+                    }
+                    if (circle.top <= 0 || circle.top >= window.innerHeight - circleSize) {
+                        circle.dy *= -1;
+                    }
+
+                    for (const otherCircle of circles) {
+                        if (circle === otherCircle) continue;
+                        const dx = circle.left - otherCircle.left;
+                        const dy = circle.top - otherCircle.top;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+                        if (distance < circleSize) {
+                            circle.dx *= -1;
+                            circle.dy *= -1;
+                        }
+                    }
+
+                    circle.element.style.left = `${circle.left}px`;
+                    circle.element.style.top = `${circle.top}px`;
+                }
+
+                requestAnimationFrame(moveCircles);
+            }
+
+            moveCircles();
+        }
+
+        document.addEventListener('DOMContentLoaded', createRandomCircles);
     </script>
 </body>
 </html>
