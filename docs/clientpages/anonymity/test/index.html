@@ -123,34 +123,40 @@
             }
 
             function moveCircles() {
-                for (const circle of circles) {
-                    circle.left += circle.dx;
-                    circle.top += circle.dy;
+    const circleSize = 40; // 圆球的直径
 
-                    if (circle.left <= 0 || circle.left >= window.innerWidth - circleSize) {
-                        circle.dx *= -1;
-                    }
-                    if (circle.top <= 0 || circle.top >= window.innerHeight - circleSize) {
-                        circle.dy *= -1;
-                    }
+    for (const circle of circles) {
+        circle.left += circle.dx;
+        circle.top += circle.dy;
 
-                    for (const otherCircle of circles) {
-                        if (circle === otherCircle) continue;
-                        const dx = circle.left - otherCircle.left;
-                        const dy = circle.top - otherCircle.top;
-                        const distance = Math.sqrt(dx * dx + dy * dy);
-                        if (distance < circleSize) {
-                            circle.dx *= -1;
-                            circle.dy *= -1;
-                        }
-                    }
+        // 檢查是否超出邊界
+        if (circle.left <= 0 || circle.left >= window.innerWidth - circleSize) {
+            circle.dx *= -1;
+        }
+        if (circle.top <= 0) {
+            circle.top = window.innerHeight - circleSize; // 將球移動到底部
+        } else if (circle.top >= window.innerHeight - circleSize) {
+            circle.top = 0; // 將球移動到頂部
+        }
 
-                    circle.element.style.left = `${circle.left}px`;
-                    circle.element.style.top = `${circle.top}px`;
-                }
-
-                requestAnimationFrame(moveCircles);
+        for (const otherCircle of circles) {
+            if (circle === otherCircle) continue;
+            const dx = circle.left - otherCircle.left;
+            const dy = circle.top - otherCircle.top;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            if (distance < circleSize) {
+                circle.dx *= -1;
+                circle.dy *= -1;
             }
+        }
+
+        circle.element.style.left = `${circle.left}px`;
+        circle.element.style.top = `${circle.top}px`;
+    }
+
+    requestAnimationFrame(moveCircles);
+}
+
 
             moveCircles();
         }
