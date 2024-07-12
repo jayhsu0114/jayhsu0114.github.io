@@ -81,6 +81,7 @@ button[type="submit"] {
     border-radius: 4px;
     cursor: pointer;
     transition: transform 1s, width 1s, height 1s, border-radius 1s, background-color 1s;
+    position: relative; /* 确保动画期间保持在中间 */
 }
 
 button[type="submit"]:hover {
@@ -97,5 +98,11 @@ button.transformToCircle {
     width: 40px; /* 变成40px宽 */
     height: 40px; /* 变成40px高 */
     border-radius: 50%; /* 圆形 */
-    background-color: #ebafaf; /* 透明背景 */
+    background-color: #ebafaf; /* 不透明背景 */
+    left: 50%; /* 保持在中间 */
+    transform: translate(-50%, -50%); /* 保持在中间 */
+}
+
+button.transformToCircle span {
+    display: none; /* 隐藏文本 */
 }

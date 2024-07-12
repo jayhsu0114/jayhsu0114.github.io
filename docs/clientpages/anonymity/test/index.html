@@ -15,7 +15,7 @@
             <textarea id="anonymousContent" name="anonymousContent" required></textarea>
             <input type="hidden" id="userIP" name="userIP">
             <input type="hidden" id="formId" name="formId" value="zsjh">
-            <button type="submit" id="submitButton">提交</button>
+            <center><button type="submit" id="submitButton"><span>提交</span></button></center>
         </form>
     </div>
 
@@ -54,14 +54,14 @@
             })
             .then(response => response.json())
             .then(data => {
-                //alert('提交成功！');
+                alert('提交成功！');
                 this.reset();
                 document.getElementById('submitButton').disabled = false;
                 isSubmitted = false;
             })
             .catch(error => {
                 console.error('提交失敗:', error);
-                //alert('提交失敗，請稍候再試。');
+                alert('提交失敗，請稍候再試。');
                 document.getElementById('submitButton').disabled = false;
                 isSubmitted = false;
             });
@@ -80,7 +80,7 @@
             const circles = [];
             const circleSize = 50; // 圆球的直径
             const numCircles = Math.floor(window.innerWidth * window.innerHeight / (circleSize * circleSize * 2)); // 根据屏幕尺寸计算球的数量
-            const speedFactor = 2; // 调整移动速度
+            const speedFactor = 0.5; // 调整移动速度
 
             function isOverlapping(newCircle) {
                 for (const circle of circles) {
