@@ -75,95 +75,80 @@
         });
 
         function createRandomCircles() {
-            const colors = ['#70a7dd', '#de6768'];
-            const container = document.querySelector('body');
-            const circles = [];
-            const circleSize = 50; // 圆球的直径
-            const numCircles = Math.floor(window.innerWidth * window.innerHeight / (circleSize * circleSize * 2)); // 根据屏幕尺寸计算球的数量
-            const speedFactor = 0.5; // 调整移动速度
+    const colors = ['#70a7dd', '#de6768'];
+    const container = document.querySelector('body');
+    const circles = [];
+    const circleSize = 50; // 圆球的直径
+    const numCircles = Math.floor(window.innerWidth * window.innerHeight / (circleSize * circleSize * 2)); // 根据屏幕尺寸计算球的数量
+    const speedFactor = 0.5; // 调整移动速度
 
-            function isOverlapping(newCircle) {
-                for (const circle of circles) {
-                    const dx = newCircle.left - circle.left;
-                    const dy = newCircle.top - circle.top;
-                    const distance = Math.sqrt(dx * dx + dy * dy);
-                    if (distance < circleSize) {
-                        return true;
-                    }
-                }
-                return false;
+    function isOverlapping(newCircle) {
+        for (const circle of circles) {
+            const dx = newCircle.left - circle.left;
+            const dy = newCircle.top - circle.top;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            if (distance < circleSize) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    for (let i = 0; i < numCircles; i++) {
+        let newCircle;
+        let attempts = 0;
+
+        do {
+            newCircle = {
+                left: Math.random() * (window.innerWidth - circleSize),
+                top: Math.random() * (window.innerHeight - circleSize)
+            };
+            attempts++;
+        } while (isOverlapping(newCircle) && attempts < 100); // 限制尝试次数，避免死循环
+
+        if (attempts < 100) {
+            const circle = document.createElement('div');
+            circle.className = 'circle';
+            circle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            circle.style.left = `${newCircle.left}px`;
+            circle.style.top = `${newCircle.top}px`;
+            container.appendChild(circle);
+            circles.push({
+                element: circle,
+                ...newCircle,
+                dx: (Math.random() - 0.5) * speedFactor,
+                dy: -Math.random() * speedFactor // 确保球向上移动
+            });
+        }
+    }
+
+    function moveCircles() {
+        for (const circle of circles) {
+            circle.left += circle.dx;
+            circle.top += circle.dy;
+
+            // 球碰到左右边界时反弹
+            if (circle.left <= 0 || circle.left >= window.innerWidth - circleSize) {
+                circle.dx *= -1;
             }
 
-            for (let i = 0; i < numCircles; i++) {
-                let newCircle;
-                let attempts = 0;
-
-                do {
-                    newCircle = {
-                        left: Math.random() * (window.innerWidth - circleSize),
-                        top: Math.random() * (window.innerHeight - circleSize)
-                    };
-                    attempts++;
-                } while (isOverlapping(newCircle) && attempts < 100); // 限制尝试次数，避免死循环
-
-                if (attempts < 100) {
-                    const circle = document.createElement('div');
-                    circle.className = 'circle';
-                    circle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                    circle.style.left = `${newCircle.left}px`;
-                    circle.style.top = `${newCircle.top}px`;
-                    container.appendChild(circle);
-                    circles.push({
-                        element: circle,
-                        ...newCircle,
-                        dx: (Math.random() - 0.5) * speedFactor,
-                        dy: (Math.random() - 0.5) * speedFactor
-                    });
-                }
+            // 球超出屏幕顶部时从底部重新出现
+            if (circle.top <= -circleSize) {
+                circle.top = window.innerHeight;
             }
 
-            function moveCircles() {
-                for (const circle of circles) {
-                    circle.left += circle.dx;
-                    circle.top += circle.dy;
-
-                    if (circle.left <= 0 || circle.left >= window.innerWidth - circleSize) {
-                        circle.dx *= -1;
-                    }
-                    if (circle.top <= 0 || circle.top >= window.innerHeight - circleSize) {
-                        circle.dy *= -1;
-                    }
-
-                    for (const otherCircle of circles) {
-                        if (circle === otherCircle) continue;
-                        const dx = circle.left - otherCircle.left;
-                        const dy = circle.top - otherCircle.top;
-                        const distance = Math.sqrt(dx * dx + dy * dy);
-                        if (distance < circleSize) {
-                            circle.dx *= -1;
-                            circle.dy *= -1;
-                        }
-                    }
-
-                    circle.element.style.left = `${circle.left}px`;
-                    circle.element.style.top = `${circle.top}px`;
-                }
-
-                requestAnimationFrame(moveCircles);
-            }
-
-            moveCircles();
+            circle.element.style.left = `${circle.left}px`;
+            circle.element.style.top = `${circle.top}px`;
         }
 
-        document.addEventListener('DOMContentLoaded', createRandomCircles);
+        requestAnimationFrame(moveCircles);
+    }
 
-        // 按钮点击变球动画
-        document.getElementById('submitButton').addEventListener('click', function() {
-            this.classList.add('transformToCircle');
-            setTimeout(() => {
-                this.style.display = 'none';
-            }, 1000); // 动画结束后隐藏按钮
-        });
+    moveCircles();
+}
+
+document.addEventListener('DOMContentLoaded', createRandomCircles);
+
     </script>
 </body>
 </html>
