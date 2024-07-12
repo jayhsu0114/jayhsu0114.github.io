@@ -74,35 +74,32 @@ button[type="submit"] {
     display: block;
     width: 100%;
     padding: 10px;
-    margin: 20px;
+    margin-top: 20px;
     background-color: #ebafaf;
     color: black;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    transition: transform 1s, width 1s, height 1s, border-radius 1s, background-color 1s;
-    position: relative; /* 确保动画期间保持在中间 */
+    transition: all 0.3s ease;
+    position: relative; /* 为了定位内部的span */
 }
 
 button[type="submit"]:hover {
-    background-color: #de6768;
+    background-color: #bf9a9a;
 }
 
-button:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
+button[type="submit"].transformToCircle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: transparent;
+    transform: translate(-50%, -50%);
+    pointer-events: none; /* 禁用鼠标事件 */
 }
 
-/* 按钮变成球的动画 */
-button.transformToCircle {
-    width: 50px; /* 变成40px宽 */
-    height: 50px; /* 变成40px高 */
-    border-radius: 50%; /* 圆形 */
-    background-color: #ebafaf; /* 不透明背景 */
-    left: 50%; /* 保持在中间 */
-    transform: translate(-50%, -50%); /* 保持在中间 */
-}
-
-button.transformToCircle span {
-    display: none; /* 隐藏文本 */
+button[type="submit"].transformToCircle span {
+    display: none;
 }
