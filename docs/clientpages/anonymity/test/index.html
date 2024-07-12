@@ -80,7 +80,7 @@
     const circles = [];
     const circleSize = 50; // 圆球的直径
     const numCircles = Math.floor(window.innerWidth * window.innerHeight / (circleSize * circleSize * 2)); // 根据屏幕尺寸计算球的数量
-    const speedFactor = 0.5; // 调整移动速度
+    const speedFactor = 0.8; // 调整移动速度
 
     function isOverlapping(newCircle) {
         for (const circle of circles) {
