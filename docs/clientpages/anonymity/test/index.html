@@ -95,7 +95,7 @@
                     },
                     body: JSON.stringify({ fingerprint: result.visitorId }),
                 });
-                
+                console.log('POST 请求体给 Epiphron:', JSON.stringify({ fingerprint: result.visitorId }));
                 if (response.ok) {
                     const data = await response.json();
                     userId = data.userId;
