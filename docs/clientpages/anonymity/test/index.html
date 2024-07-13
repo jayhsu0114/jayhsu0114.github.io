@@ -88,7 +88,6 @@
             const result = await fp.get();
 
             // 获取其他信息
-            const ipAddress = await getIpAddress();
             const httpHeaders = getHttpHeaders();
             const deviceInfo = getDeviceInfo();
             const timezone = getTimezone();
@@ -100,7 +99,6 @@
             // 构建用户信息对象
             const userInfo = {
                 userId,
-                ipAddress,
                 browserFingerprint: result.visitorId,
                 httpHeaders,
                 deviceInfo,
@@ -122,13 +120,6 @@
 
             // 在页面上显示用户信息
             displayUserInfoOnPage(userInfo);
-        }
-
-        // 获取用户 IP 地址
-        async function getIpAddress() {
-            const response = await fetch('https://api.ipify.org?format=json');
-            const data = await response.json();
-            return data.ip;
         }
 
         // 获取 HTTP 标头信息
@@ -208,10 +199,6 @@
                         <tr>
                             <td data-label="數據類型">Cookie 用戶 ID</td>
                             <td data-label="值">${userInfo.userId}</td>
-                        </tr>
-                        <tr>
-                            <td data-label="數據類型">IP 地址</td>
-                            <td data-label="值">${userInfo.ipAddress}</td>
                         </tr>
                         <tr>
                             <td data-label="數據類型">瀏覽器指紋</td>
