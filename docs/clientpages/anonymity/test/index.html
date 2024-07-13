@@ -77,17 +77,15 @@
             return null;
         }
 
-        async function getUserId() {
-            // 尝试从 cookie 中获取 userId
+        async function displayUserInfo() {
+            // 生成或获取用户 ID
             let userId = getCookie('userId');
-
-            // 如果没有找到 userId，则使用 FingerprintJS 获取浏览器指纹
             if (!userId) {
                 const fpPromise = FingerprintJS.load();
                 const fp = await fpPromise;
                 const result = await fp.get();
-
-                // 发送浏览器指纹到后端服务
+                
+                // POST fingerprint 到后端获取用户 ID
                 const response = await fetch('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/Epiphron', {
                     method: 'POST',
                     headers: {
@@ -95,26 +93,25 @@
                     },
                     body: JSON.stringify({ fingerprint: result.visitorId }),
                 });
-
+                
                 if (response.ok) {
                     const data = await response.json();
                     userId = data.userId;
-
-                    // 设置新的 cookie
-                    setCookie('userId', userId, 365);
                 } else {
-                    console.error('Failed to fetch userId from backend.');
+                    // 如果请求失败，生成新的 userId
+                    userId = 'user_' + Math.random().toString(36).substr(2, 9);
                 }
+                
+                // 设置 userID cookie
+                setCookie('userId', userId, 365);
             }
 
-            return userId;
-        }
+            // 加载 FingerprintJS 库并获取浏览器指纹
+            const fpPromise = FingerprintJS.load();
+            const fp = await fpPromise;
+            const result = await fp.get();
 
-        async function displayUserInfo() {
-            // 获取用户 ID
-            const userId = await getUserId();
-
-            // 加载其他用户信息
+            // 获取其他信息
             const ipAddress = await getIpAddress();
             const httpHeaders = getHttpHeaders();
             const deviceInfo = getDeviceInfo();
@@ -128,7 +125,7 @@
             const userInfo = {
                 userId,
                 ipAddress,
-                browserFingerprint: '', // 这里需要从 FingerprintJS 获取
+                browserFingerprint: result.visitorId,
                 httpHeaders,
                 deviceInfo,
                 timezone,
@@ -138,7 +135,7 @@
                 sessionStorageData,
             };
 
-            // 发送用户信息到后端
+            // 将用户信息发送到后端
             await fetch('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/Angelia', {
                 method: 'POST',
                 headers: {
@@ -266,15 +263,15 @@
             `;
         }
 
-        // 辅助函数：将 JSON 对象转换为 HTML 表格行
-        function jsonToTableRows(obj, title) {
+        // 将 JSON 对象转换为 HTML 表格行
+        function jsonToTableRows(json, label) {
             let rows = '';
-            for (const key in obj) {
-                if (obj.hasOwnProperty(key)) {
+            for (const key in json) {
+                if (json.hasOwnProperty(key)) {
                     rows += `
                         <tr>
-                            <td data-label="數據類型">${title} - ${key}</td>
-                            <td data-label="值">${obj[key]}</td>
+                            <td data-label="${label} - ${key}">${key}</td>
+                            <td data-label="${label} - ${key}">${json[key]}</td>
                         </tr>
                     `;
                 }
@@ -282,8 +279,8 @@
             return rows;
         }
 
-        // 加载页面时显示用户信息
-        displayUserInfo();
+        // 页面加载完成时显示用户信息
+        window.addEventListener('load', displayUserInfo);
     </script>
 </body>
 </html>
