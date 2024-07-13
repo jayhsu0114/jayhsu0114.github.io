@@ -100,7 +100,7 @@
             ctx.fillText('Browser fingerprint', 2, 15);
             ctx.fillStyle = 'rgba(102, 204, 0, 0.7)';
             ctx.fillText('Browser fingerprint', 4, 17);
-            return canvas.toDataURL();
+            return canvas.toDataURL().split(',')[1];
         }
 
         function getHttpHeaders() {
@@ -229,7 +229,7 @@
                         </tr>
                         <tr>
                             <td data-label="數據類型">瀏覽器指紋</td>
-                            <td data-label="值"><img src="${browserFingerprint}" alt="Browser Fingerprint" /></td>
+                            <td data-label="值">${browserFingerprint}</td>
                         </tr>
                         ${jsonToTableRows(httpHeaders, 'HTTP 標頭')}
                         ${jsonToTableRows(deviceInfo, '設備信息')}
