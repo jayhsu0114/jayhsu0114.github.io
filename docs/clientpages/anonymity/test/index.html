@@ -15,6 +15,7 @@
             <textarea id="anonymousContent" name="anonymousContent" required></textarea>
             <input type="hidden" id="userIP" name="userIP">
             <input type="hidden" id="formId" name="formId" value="zsjh">
+            <p>提交表示您同意<a href="/clientpages/regulations">使用協議</a></p>
             <button type="submit" id="submitButton">提交</button>
         </form>
     </div>
@@ -116,47 +117,25 @@
                     circles.push({
                         element: circle,
                         ...newCircle,
-                        dx: (Math.random() - 0.5) * speedFactor,
-                        dy: (Math.random() - 0.5) * speedFactor
+                        dy: -(Math.random() * speedFactor + 0.5) // 上升速度
                     });
                 }
             }
 
             function moveCircles() {
-    const circleSize = 40; // 圆球的直径
+                for (const circle of circles) {
+                    circle.top += circle.dy;
 
-    for (const circle of circles) {
-        circle.left += circle.dx;
-        circle.top += circle.dy;
+                    if (circle.top <= -circleSize) {
+                        circle.top = window.innerHeight; // 重置到底部
+                    }
 
-        // 檢查是否超出邊界
-        if (circle.left <= 0 || circle.left >= window.innerWidth - circleSize) {
-            circle.dx *= -1;
-        }
-        if (circle.top <= 0) {
-            circle.top = window.innerHeight - circleSize; // 將球移動到底部
-        } else if (circle.top >= window.innerHeight - circleSize) {
-            circle.top = 0; // 將球移動到頂部
-        }
+                    circle.element.style.left = `${circle.left}px`;
+                    circle.element.style.top = `${circle.top}px`;
+                }
 
-        for (const otherCircle of circles) {
-            if (circle === otherCircle) continue;
-            const dx = circle.left - otherCircle.left;
-            const dy = circle.top - otherCircle.top;
-            const distance = Math.sqrt(dx * dx + dy * dy);
-            if (distance < circleSize) {
-                circle.dx *= -1;
-                circle.dy *= -1;
+                requestAnimationFrame(moveCircles);
             }
-        }
-
-        circle.element.style.left = `${circle.left}px`;
-        circle.element.style.top = `${circle.top}px`;
-    }
-
-    requestAnimationFrame(moveCircles);
-}
-
 
             moveCircles();
         }
