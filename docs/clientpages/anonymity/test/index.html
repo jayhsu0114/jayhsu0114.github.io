@@ -12,14 +12,26 @@
         h1 {
             color: #333;
         }
-        .info {
-            margin: 10px 0;
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
         }
     </style>
 </head>
 <body>
     <h1>User Identification Demo</h1>
-    <div id="user-info" class="info"></div>
+    <div id="user-info"></div>
     <script>
         // Function to set a cookie
         function setCookie(name, value, days) {
@@ -104,11 +116,32 @@
 
             const userInfoDiv = document.getElementById('user-info');
             userInfoDiv.innerHTML = `
-                <div><strong>Cookie User ID:</strong> ${userId}</div>
-                <div><strong>IP Address:</strong> ${ipAddress}</div>
-                <div><strong>Browser Fingerprint:</strong> ${browserFingerprint}</div>
-                <div><strong>HTTP Headers:</strong> ${JSON.stringify(httpHeaders, null, 2)}</div>
-                <div><strong>Device Info:</strong> ${JSON.stringify(deviceInfo, null, 2)}</div>
+                <table>
+                    <tr>
+                        <th>Data Type</th>
+                        <th>Value</th>
+                    </tr>
+                    <tr>
+                        <td>Cookie User ID</td>
+                        <td>${userId}</td>
+                    </tr>
+                    <tr>
+                        <td>IP Address</td>
+                        <td>${ipAddress}</td>
+                    </tr>
+                    <tr>
+                        <td>Browser Fingerprint</td>
+                        <td><img src="${browserFingerprint}" alt="Browser Fingerprint" /></td>
+                    </tr>
+                    <tr>
+                        <td>HTTP Headers</td>
+                        <td><pre>${JSON.stringify(httpHeaders, null, 2)}</pre></td>
+                    </tr>
+                    <tr>
+                        <td>Device Info</td>
+                        <td><pre>${JSON.stringify(deviceInfo, null, 2)}</pre></td>
+                    </tr>
+                </table>
             `;
         }
 
