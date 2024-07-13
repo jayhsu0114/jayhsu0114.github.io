@@ -84,6 +84,8 @@
                 const fpPromise = FingerprintJS.load();
                 const fp = await fpPromise;
                 const result = await fp.get();
+
+                console.log('浏览器指纹:', result.visitorId);
                 
                 // POST fingerprint 到后端获取用户 ID
                 const response = await fetch('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/Epiphron', {
