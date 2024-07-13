@@ -50,6 +50,8 @@
             }
         }
     </style>
+    <!-- 引入 fingerprint.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@fingerprintjs/fingerprintjs@3/dist/fp.min.js"></script>
 </head>
 <body>
     <h1>用戶識別與設備分辨示例</h1>
@@ -88,23 +90,11 @@
             return data.ip;
         }
 
-        function getBrowserFingerprint() {
-            const canvas = document.createElement('canvas');
-            const ctx = canvas.getContext('2d');
-    
-            // 设置 Canvas 尺寸
-            canvas.width = 200;
-            canvas.height = 50;
-    
-            // 绘制背景和文本
-            ctx.fillStyle = '#f60';
-            ctx.fillRect(0, 0, 200, 50);
-            ctx.fillStyle = '#069';
-            ctx.font = '14px Arial';
-            ctx.fillText('Browser fingerprint', 10, 25);
-    
-            // 返回 Canvas 的 base64 编码数据
-            return canvas.toDataURL().split(',')[1];
+        async function getBrowserFingerprint() {
+            const fpPromise = await FingerprintJS.load();
+            const fpInstance = await fpPromise.create();
+            const result = await fpInstance.get();
+            return result.visitorId;
         }
 
         function getHttpHeaders() {
@@ -203,7 +193,7 @@
         async function displayUserInfo() {
             const userId = generateUserId();
             const ipAddress = await getIpAddress();
-            const browserFingerprint = getBrowserFingerprint();
+            const browserFingerprint = await getBrowserFingerprint();
             const httpHeaders = getHttpHeaders();
             const deviceInfo = getDeviceInfo();
             const geolocation = await getGeolocation();
