@@ -21,6 +21,7 @@
     </div>
 
     <script>
+        
         let isSubmitted = false;
 
         async function getUserIP() {
@@ -117,33 +118,17 @@
                     circles.push({
                         element: circle,
                         ...newCircle,
-                        dx: (Math.random() - 0.5) * speedFactor,
-                        dy: (Math.random() - 0.5) * speedFactor
+                        dy: -(Math.random() * speedFactor + 0.5) // 上升速度
                     });
                 }
             }
 
             function moveCircles() {
                 for (const circle of circles) {
-                    circle.left += circle.dx;
                     circle.top += circle.dy;
 
-                    if (circle.left <= 0 || circle.left >= window.innerWidth - circleSize) {
-                        circle.dx *= -1;
-                    }
-                    if (circle.top <= 0 || circle.top >= window.innerHeight - circleSize) {
-                        circle.dy *= -1;
-                    }
-
-                    for (const otherCircle of circles) {
-                        if (circle === otherCircle) continue;
-                        const dx = circle.left - otherCircle.left;
-                        const dy = circle.top - otherCircle.top;
-                        const distance = Math.sqrt(dx * dx + dy * dy);
-                        if (distance < circleSize) {
-                            circle.dx *= -1;
-                            circle.dy *= -1;
-                        }
+                    if (circle.top <= -circleSize) {
+                        circle.top = window.innerHeight; // 重置到底部
                     }
 
                     circle.element.style.left = `${circle.left}px`;
@@ -157,6 +142,7 @@
         }
 
         document.addEventListener('DOMContentLoaded', createRandomCircles);
+        
     </script>
 </body>
 </html>
