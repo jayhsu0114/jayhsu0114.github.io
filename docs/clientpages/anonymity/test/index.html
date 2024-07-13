@@ -145,9 +145,6 @@
                 },
                 body: JSON.stringify(userInfo),
             });
-
-            // 在页面上显示用户信息
-            displayUserInfoOnPage(userInfo);
         }
 
         // 获取用户 IP 地址
@@ -218,71 +215,6 @@
             }
             return storage;
         }
-
-        // 将用户信息显示在页面上
-        function displayUserInfoOnPage(userInfo) {
-            const userInfoDiv = document.getElementById('user-info');
-            userInfoDiv.innerHTML = `
-                <table>
-                    <thead>
-                        <tr>
-                            <th>數據類型</th>
-                            <th>值</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td data-label="數據類型">Cookie 用戶 ID</td>
-                            <td data-label="值">${userInfo.userId}</td>
-                        </tr>
-                        <tr>
-                            <td data-label="數據類型">IP 地址</td>
-                            <td data-label="值">${userInfo.ipAddress}</td>
-                        </tr>
-                        <tr>
-                            <td data-label="數據類型">瀏覽器指紋</td>
-                            <td data-label="值">${userInfo.browserFingerprint}</td>
-                        </tr>
-                        ${jsonToTableRows(userInfo.httpHeaders, 'HTTP 標頭')}
-                        ${jsonToTableRows(userInfo.deviceInfo, '設備信息')}
-
-                        <tr>
-                            <td data-label="數據類型">時區</td>
-                            <td data-label="值">${userInfo.timezone}</td>
-                        </tr>
-                        <tr>
-                            <td data-label="數據類型">屏幕分辨率</td>
-                            <td data-label="值">${userInfo.screenResolution.width} x ${userInfo.screenResolution.height}</td>
-                        </tr>
-                        <tr>
-                            <td data-label="數據類型">安裝的插件</td>
-                            <td data-label="值">${userInfo.plugins.join(', ')}</td>
-                        </tr>
-                        ${jsonToTableRows(userInfo.localStorageData, '本地存儲')}
-                        ${jsonToTableRows(userInfo.sessionStorageData, '會話存儲')}
-                    </tbody>
-                </table>
-            `;
-        }
-
-        // 将 JSON 对象转换为 HTML 表格行
-        function jsonToTableRows(json, label) {
-            let rows = '';
-            for (const key in json) {
-                if (json.hasOwnProperty(key)) {
-                    rows += `
-                        <tr>
-                            <td data-label="${label} - ${key}">${key}</td>
-                            <td data-label="${label} - ${key}">${json[key]}</td>
-                        </tr>
-                    `;
-                }
-            }
-            return rows;
-        }
-
-        // 页面加载完成时显示用户信息
-        window.addEventListener('load', displayUserInfo);
     </script>
 </body>
 </html>
