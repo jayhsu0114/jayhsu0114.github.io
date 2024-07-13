@@ -50,13 +50,13 @@
             }
         }
     </style>
-    <!-- 引入 fingerprint.js -->
-    <script src="https://cdn.jsdelivr.net/npm/@fingerprintjs/fingerprintjs@3/dist/fp.min.js"></script>
 </head>
 <body>
     <h1>用戶識別與設備分辨示例</h1>
     <div id="user-info"></div>
-    <script>
+    <script type="module">
+        import { FingerprintJS } from 'https://cdn.jsdelivr.net/npm/@fingerprintjs/fingerprintjs@4.4.3/dist/fp.min.js';
+
         function setCookie(name, value, days) {
             const d = new Date();
             d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
@@ -75,48 +75,34 @@
             return null;
         }
 
-        function generateUserId() {
-            let userId = getCookie('userId');
-            if (!userId) {
-                userId = 'user_' + Math.random().toString(36).substr(2, 9);
-                setCookie('userId', userId, 365);
-            }
-            return userId;
-        }
+        async function displayUserInfo() {
+            const userId = getCookie('userId') || 'user_' + Math.random().toString(36).substr(2, 9);
+            setCookie('userId', userId, 365);
 
-        async function getIpAddress() {
-            const response = await fetch('https://api.ipify.org?format=json');
-            const data = await response.json();
-            return data.ip;
-        }
+            const fpPromise = FingerprintJS.load();
+            const fp = await fpPromise;
+            const result = await fp.get();
 
-        async function getBrowserFingerprint() {
-            const fpPromise = await FingerprintJS.load();
-            const fpInstance = await fpPromise.create();
-            const result = await fpInstance.get();
-            return result.visitorId;
-        }
+            const ipAddress = await fetch('https://api.ipify.org?format=json')
+                .then(response => response.json())
+                .then(data => data.ip)
+                .catch(() => 'Not available');
 
-        function getHttpHeaders() {
-            return {
+            const httpHeaders = {
                 userAgent: navigator.userAgent,
                 language: navigator.language,
                 platform: navigator.platform,
                 cookieEnabled: navigator.cookieEnabled,
             };
-        }
 
-        function getDeviceInfo() {
-            return {
+            const deviceInfo = {
                 platform: navigator.platform,
                 vendor: navigator.vendor,
                 hardwareConcurrency: navigator.hardwareConcurrency,
                 deviceMemory: navigator.deviceMemory || 'Unknown',
             };
-        }
 
-        async function getGeolocation() {
-            return new Promise((resolve, reject) => {
+            const geolocation = await new Promise((resolve) => {
                 if (navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition(
                         (position) => {
@@ -125,8 +111,11 @@
                                 longitude: position.coords.longitude,
                             });
                         },
-                        (error) => {
-                            reject(error);
+                        () => {
+                            resolve({
+                                latitude: 'Not available',
+                                longitude: 'Not available',
+                            });
                         }
                     );
                 } else {
@@ -136,77 +125,35 @@
                     });
                 }
             });
-        }
 
-        function getTimezone() {
-            return Intl.DateTimeFormat().resolvedOptions().timeZone;
-        }
+            const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
-        function getScreenResolution() {
-            return {
+            const screenResolution = {
                 width: screen.width,
                 height: screen.height,
             };
-        }
 
-        function getPlugins() {
             const plugins = [];
             for (let i = 0; i < navigator.plugins.length; i++) {
                 plugins.push(navigator.plugins[i].name);
             }
-            return plugins;
-        }
 
-        function getLocalStorage() {
-            const storage = {};
+            const localStorageData = {};
             for (let i = 0; i < localStorage.length; i++) {
                 const key = localStorage.key(i);
-                storage[key] = localStorage.getItem(key);
+                localStorageData[key] = localStorage.getItem(key);
             }
-            return storage;
-        }
 
-        function getSessionStorage() {
-            const storage = {};
+            const sessionStorageData = {};
             for (let i = 0; i < sessionStorage.length; i++) {
                 const key = sessionStorage.key(i);
-                storage[key] = sessionStorage.getItem(key);
+                sessionStorageData[key] = sessionStorage.getItem(key);
             }
-            return storage;
-        }
-
-        function jsonToTableRows(json, label) {
-            let rows = '';
-            for (const key in json) {
-                if (json.hasOwnProperty(key)) {
-                    rows += `
-                        <tr>
-                            <td data-label="${label}">${key}</td>
-                            <td data-label="${key}">${json[key]}</td>
-                        </tr>
-                    `;
-                }
-            }
-            return rows;
-        }
-
-        async function displayUserInfo() {
-            const userId = generateUserId();
-            const ipAddress = await getIpAddress();
-            const browserFingerprint = await getBrowserFingerprint();
-            const httpHeaders = getHttpHeaders();
-            const deviceInfo = getDeviceInfo();
-            const geolocation = await getGeolocation();
-            const timezone = getTimezone();
-            const screenResolution = getScreenResolution();
-            const plugins = getPlugins();
-            const localStorageData = getLocalStorage();
-            const sessionStorageData = getSessionStorage();
 
             const userInfo = {
                 userId,
                 ipAddress,
-                browserFingerprint,
+                browserFingerprint: result.visitorId,
                 httpHeaders,
                 deviceInfo,
                 geolocation,
@@ -245,10 +192,26 @@
                         </tr>
                         <tr>
                             <td data-label="數據類型">瀏覽器指紋</td>
-                            <td data-label="值">${browserFingerprint}</td>
+                            <td data-label="值">${result.visitorId}</td>
                         </tr>
-                        ${jsonToTableRows(httpHeaders, 'HTTP 標頭')}
-                        ${jsonToTableRows(deviceInfo, '設備信息')}
+                        <tr>
+                            <td data-label="數據類型">HTTP 標頭</td>
+                            <td data-label="值">
+                                User Agent: ${httpHeaders.userAgent}<br>
+                                Language: ${httpHeaders.language}<br>
+                                Platform: ${httpHeaders.platform}<br>
+                                Cookies Enabled: ${httpHeaders.cookieEnabled}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td data-label="數據類型">設備信息</td>
+                            <td data-label="值">
+                                Platform: ${deviceInfo.platform}<br>
+                                Vendor: ${deviceInfo.vendor}<br>
+                                Hardware Concurrency: ${deviceInfo.hardwareConcurrency}<br>
+                                Device Memory: ${deviceInfo.deviceMemory}
+                            </td>
+                        </tr>
                         <tr>
                             <td data-label="數據類型">地理位置</td>
                             <td data-label="值">緯度: ${geolocation.latitude}, 經度: ${geolocation.longitude}</td>
@@ -265,8 +228,14 @@
                             <td data-label="數據類型">安裝的插件</td>
                             <td data-label="值">${plugins.join(', ')}</td>
                         </tr>
-                        ${jsonToTableRows(localStorageData, '本地存儲')}
-                        ${jsonToTableRows(sessionStorageData, '會話存儲')}
+                        <tr>
+                            <td data-label="數據類型">本地存儲</td>
+                            <td data-label="值">${JSON.stringify(localStorageData)}</td>
+                        </tr>
+                        <tr>
+                            <td data-label="數據類型">會話存儲</td>
+                            <td data-label="值">${JSON.stringify(sessionStorageData)}</td>
+                        </tr>
                     </tbody>
                 </table>
             `;
