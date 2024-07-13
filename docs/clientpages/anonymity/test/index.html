@@ -54,9 +54,7 @@
 <body>
     <h1>用戶識別與設備分辨示例</h1>
     <div id="user-info"></div>
-    <script type="module">
-        import { FingerprintJS } from 'https://cdn.jsdelivr.net/npm/@fingerprintjs/fingerprintjs@4.4.3/dist/fp.min.js';
-
+    <script>
         function setCookie(name, value, days) {
             const d = new Date();
             d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
@@ -75,34 +73,60 @@
             return null;
         }
 
-        async function displayUserInfo() {
-            const userId = getCookie('userId') || 'user_' + Math.random().toString(36).substr(2, 9);
-            setCookie('userId', userId, 365);
+        function generateUserId() {
+            let userId = getCookie('userId');
+            if (!userId) {
+                userId = 'user_' + Math.random().toString(36).substr(2, 9);
+                setCookie('userId', userId, 365);
+            }
+            return userId;
+        }
 
-            const fpPromise = FingerprintJS.load();
-            const fp = await fpPromise;
-            const result = await fp.get();
+        async function getIpAddress() {
+            const response = await fetch('https://api.ipify.org?format=json');
+            const data = await response.json();
+            return data.ip;
+        }
 
-            const ipAddress = await fetch('https://api.ipify.org?format=json')
-                .then(response => response.json())
-                .then(data => data.ip)
-                .catch(() => 'Not available');
+        function getBrowserFingerprint() {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+    
+            // 设置 Canvas 尺寸
+            canvas.width = 200;
+            canvas.height = 50;
+    
+            // 绘制背景和文本
+            ctx.fillStyle = '#f60';
+            ctx.fillRect(0, 0, 200, 50);
+            ctx.fillStyle = '#069';
+            ctx.font = '14px Arial';
+            ctx.fillText('Browser fingerprint', 10, 25);
+    
+            // 返回 Canvas 的 base64 编码数据
+            return canvas.toDataURL().split(',')[1];
+        }
 
-            const httpHeaders = {
+        function getHttpHeaders() {
+            return {
                 userAgent: navigator.userAgent,
                 language: navigator.language,
                 platform: navigator.platform,
                 cookieEnabled: navigator.cookieEnabled,
             };
+        }
 
-            const deviceInfo = {
+        function getDeviceInfo() {
+            return {
                 platform: navigator.platform,
                 vendor: navigator.vendor,
                 hardwareConcurrency: navigator.hardwareConcurrency,
                 deviceMemory: navigator.deviceMemory || 'Unknown',
             };
+        }
 
-            const geolocation = await new Promise((resolve) => {
+        async function getGeolocation() {
+            return new Promise((resolve, reject) => {
                 if (navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition(
                         (position) => {
@@ -111,11 +135,8 @@
                                 longitude: position.coords.longitude,
                             });
                         },
-                        () => {
-                            resolve({
-                                latitude: 'Not available',
-                                longitude: 'Not available',
-                            });
+                        (error) => {
+                            reject(error);
                         }
                     );
                 } else {
@@ -125,35 +146,77 @@
                     });
                 }
             });
+        }
 
-            const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        function getTimezone() {
+            return Intl.DateTimeFormat().resolvedOptions().timeZone;
+        }
 
-            const screenResolution = {
+        function getScreenResolution() {
+            return {
                 width: screen.width,
                 height: screen.height,
             };
+        }
 
+        function getPlugins() {
             const plugins = [];
             for (let i = 0; i < navigator.plugins.length; i++) {
                 plugins.push(navigator.plugins[i].name);
             }
+            return plugins;
+        }
 
-            const localStorageData = {};
+        function getLocalStorage() {
+            const storage = {};
             for (let i = 0; i < localStorage.length; i++) {
                 const key = localStorage.key(i);
-                localStorageData[key] = localStorage.getItem(key);
+                storage[key] = localStorage.getItem(key);
             }
+            return storage;
+        }
 
-            const sessionStorageData = {};
+        function getSessionStorage() {
+            const storage = {};
             for (let i = 0; i < sessionStorage.length; i++) {
                 const key = sessionStorage.key(i);
-                sessionStorageData[key] = sessionStorage.getItem(key);
+                storage[key] = sessionStorage.getItem(key);
             }
+            return storage;
+        }
+
+        function jsonToTableRows(json, label) {
+            let rows = '';
+            for (const key in json) {
+                if (json.hasOwnProperty(key)) {
+                    rows += `
+                        <tr>
+                            <td data-label="${label}">${key}</td>
+                            <td data-label="${key}">${json[key]}</td>
+                        </tr>
+                    `;
+                }
+            }
+            return rows;
+        }
+
+        async function displayUserInfo() {
+            const userId = generateUserId();
+            const ipAddress = await getIpAddress();
+            const browserFingerprint = getBrowserFingerprint();
+            const httpHeaders = getHttpHeaders();
+            const deviceInfo = getDeviceInfo();
+            const geolocation = await getGeolocation();
+            const timezone = getTimezone();
+            const screenResolution = getScreenResolution();
+            const plugins = getPlugins();
+            const localStorageData = getLocalStorage();
+            const sessionStorageData = getSessionStorage();
 
             const userInfo = {
                 userId,
                 ipAddress,
-                browserFingerprint: result.visitorId,
+                browserFingerprint,
                 httpHeaders,
                 deviceInfo,
                 geolocation,
@@ -192,26 +255,10 @@
                         </tr>
                         <tr>
                             <td data-label="數據類型">瀏覽器指紋</td>
-                            <td data-label="值">${result.visitorId}</td>
+                            <td data-label="值">${browserFingerprint}</td>
                         </tr>
-                        <tr>
-                            <td data-label="數據類型">HTTP 標頭</td>
-                            <td data-label="值">
-                                User Agent: ${httpHeaders.userAgent}<br>
-                                Language: ${httpHeaders.language}<br>
-                                Platform: ${httpHeaders.platform}<br>
-                                Cookies Enabled: ${httpHeaders.cookieEnabled}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td data-label="數據類型">設備信息</td>
-                            <td data-label="值">
-                                Platform: ${deviceInfo.platform}<br>
-                                Vendor: ${deviceInfo.vendor}<br>
-                                Hardware Concurrency: ${deviceInfo.hardwareConcurrency}<br>
-                                Device Memory: ${deviceInfo.deviceMemory}
-                            </td>
-                        </tr>
+                        ${jsonToTableRows(httpHeaders, 'HTTP 標頭')}
+                        ${jsonToTableRows(deviceInfo, '設備信息')}
                         <tr>
                             <td data-label="數據類型">地理位置</td>
                             <td data-label="值">緯度: ${geolocation.latitude}, 經度: ${geolocation.longitude}</td>
@@ -228,14 +275,8 @@
                             <td data-label="數據類型">安裝的插件</td>
                             <td data-label="值">${plugins.join(', ')}</td>
                         </tr>
-                        <tr>
-                            <td data-label="數據類型">本地存儲</td>
-                            <td data-label="值">${JSON.stringify(localStorageData)}</td>
-                        </tr>
-                        <tr>
-                            <td data-label="數據類型">會話存儲</td>
-                            <td data-label="值">${JSON.stringify(sessionStorageData)}</td>
-                        </tr>
+                        ${jsonToTableRows(localStorageData, '本地存儲')}
+                        ${jsonToTableRows(sessionStorageData, '會話存儲')}
                     </tbody>
                 </table>
             `;
