@@ -13,7 +13,6 @@
     <script src="https://cdn.jsdelivr.net/npm/@fingerprintjs/fingerprintjs@3.3.1/dist/fp.min.js"></script>
 
     <script>
-        
         function setCookie(name, value, days) {
             const d = new Date();
             d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
@@ -58,9 +57,7 @@
                         userId = data.userId;
                     } else {
                         // 如果请求失败，生成新的 userId
-                        const url = window.location.href;
-                        const urlEnd = url.substr(url.length - 4);
-                        userId = urlEnd + '_' + Math.random().toString(36).substr(2, 9);
+                        userId = 'user_' + Math.random().toString(36).substr(2, 9);
                     }
 
                     // 设置 userID cookie
