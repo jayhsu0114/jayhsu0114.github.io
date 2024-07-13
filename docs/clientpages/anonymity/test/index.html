@@ -91,15 +91,19 @@
         function getBrowserFingerprint() {
             const canvas = document.createElement('canvas');
             const ctx = canvas.getContext('2d');
-            ctx.textBaseline = 'top';
-            ctx.font = '14px Arial';
-            ctx.textBaseline = 'alphabetic';
+    
+            // 设置 Canvas 尺寸
+            canvas.width = 200;
+            canvas.height = 50;
+    
+            // 绘制背景和文本
             ctx.fillStyle = '#f60';
-            ctx.fillRect(125, 1, 62, 20);
+            ctx.fillRect(0, 0, 200, 50);
             ctx.fillStyle = '#069';
-            ctx.fillText('Browser fingerprint', 2, 15);
-            ctx.fillStyle = 'rgba(102, 204, 0, 0.7)';
-            ctx.fillText('Browser fingerprint', 4, 17);
+            ctx.font = '14px Arial';
+            ctx.fillText('Browser fingerprint', 10, 25);
+    
+            // 返回 Canvas 的 base64 编码数据
             return canvas.toDataURL().split(',')[1];
         }
 
