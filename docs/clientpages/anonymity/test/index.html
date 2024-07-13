@@ -27,6 +27,28 @@
         th {
             background-color: #f2f2f2;
         }
+        @media (max-width: 600px) {
+            table, thead, tbody, th, td, tr {
+                display: block;
+            }
+            th {
+                display: none;
+            }
+            td {
+                border: none;
+                position: relative;
+                padding-left: 50%;
+            }
+            td:before {
+                content: attr(data-label);
+                position: absolute;
+                left: 0;
+                width: 45%;
+                padding-left: 15px;
+                font-weight: bold;
+                white-space: nowrap;
+            }
+        }
     </style>
 </head>
 <body>
@@ -106,6 +128,22 @@
             };
         }
 
+        // Helper function to convert JSON to table rows
+        function jsonToTableRows(json, label) {
+            let rows = '';
+            for (const key in json) {
+                if (json.hasOwnProperty(key)) {
+                    rows += `
+                        <tr>
+                            <td data-label="${label}">${key}</td>
+                            <td data-label="${key}">${json[key]}</td>
+                        </tr>
+                    `;
+                }
+            }
+            return rows;
+        }
+
         // Main function to display all information
         async function displayUserInfo() {
             const userId = generateUserId();
@@ -117,30 +155,28 @@
             const userInfoDiv = document.getElementById('user-info');
             userInfoDiv.innerHTML = `
                 <table>
-                    <tr>
-                        <th>數據類型</th>
-                        <th>值</th>
-                    </tr>
-                    <tr>
-                        <td>Cookie 用戶 ID</td>
-                        <td>${userId}</td>
-                    </tr>
-                    <tr>
-                        <td>IP 地址</td>
-                        <td>${ipAddress}</td>
-                    </tr>
-                    <tr>
-                        <td>瀏覽器指紋</td>
-                        <td><img src="${browserFingerprint}" alt="Browser Fingerprint" /></td>
-                    </tr>
-                    <tr>
-                        <td>HTTP 標頭</td>
-                        <td><pre>${JSON.stringify(httpHeaders, null, 2)}</pre></td>
-                    </tr>
-                    <tr>
-                        <td>設備信息</td>
-                        <td><pre>${JSON.stringify(deviceInfo, null, 2)}</pre></td>
-                    </tr>
+                    <thead>
+                        <tr>
+                            <th>數據類型</th>
+                            <th>值</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-label="數據類型">Cookie 用戶 ID</td>
+                            <td data-label="值">${userId}</td>
+                        </tr>
+                        <tr>
+                            <td data-label="數據類型">IP 地址</td>
+                            <td data-label="值">${ipAddress}</td>
+                        </tr>
+                        <tr>
+                            <td data-label="數據類型">瀏覽器指紋</td>
+                            <td data-label="值"><img src="${browserFingerprint}" alt="Browser Fingerprint" /></td>
+                        </tr>
+                        ${jsonToTableRows(httpHeaders, 'HTTP 標頭')}
+                        ${jsonToTableRows(deviceInfo, '設備信息')}
+                    </tbody>
                 </table>
             `;
         }
