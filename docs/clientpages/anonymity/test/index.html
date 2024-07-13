@@ -54,11 +54,9 @@
 <body>
     <h1>用戶識別與設備分辨示例</h1>
     <div id="user-info"></div>
+    <script type="module">
+        import { FingerprintJS } from 'https://cdn.jsdelivr.net/npm/@fingerprintjs/fingerprintjs@4.4.3/dist/fp.min.js';
 
-    <!-- 引入 FingerprintJS 库 -->
-    <script src="https://cdn.jsdelivr.net/npm/@fingerprintjs/fingerprintjs@4.4.3/dist/fp.min.js"></script>
-
-    <script>
         function setCookie(name, value, days) {
             const d = new Date();
             d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
@@ -78,27 +76,80 @@
         }
 
         async function displayUserInfo() {
-            // 生成或获取用户 ID
             const userId = getCookie('userId') || 'user_' + Math.random().toString(36).substr(2, 9);
             setCookie('userId', userId, 365);
 
-            // 加载 FingerprintJS 库并获取浏览器指纹
             const fpPromise = FingerprintJS.load();
             const fp = await fpPromise;
             const result = await fp.get();
 
-            // 获取其他信息
-            const ipAddress = await getIpAddress();
-            const httpHeaders = getHttpHeaders();
-            const deviceInfo = getDeviceInfo();
-            const geolocation = await getGeolocation();
-            const timezone = getTimezone();
-            const screenResolution = getScreenResolution();
-            const plugins = getPlugins();
-            const localStorageData = getLocalStorage();
-            const sessionStorageData = getSessionStorage();
+            const ipAddress = await fetch('https://api.ipify.org?format=json')
+                .then(response => response.json())
+                .then(data => data.ip)
+                .catch(() => 'Not available');
 
-            // 构建用户信息对象
+            const httpHeaders = {
+                userAgent: navigator.userAgent,
+                language: navigator.language,
+                platform: navigator.platform,
+                cookieEnabled: navigator.cookieEnabled,
+            };
+
+            const deviceInfo = {
+                platform: navigator.platform,
+                vendor: navigator.vendor,
+                hardwareConcurrency: navigator.hardwareConcurrency,
+                deviceMemory: navigator.deviceMemory || 'Unknown',
+            };
+
+            const geolocation = await new Promise((resolve) => {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(
+                        (position) => {
+                            resolve({
+                                latitude: position.coords.latitude,
+                                longitude: position.coords.longitude,
+                            });
+                        },
+                        () => {
+                            resolve({
+                                latitude: 'Not available',
+                                longitude: 'Not available',
+                            });
+                        }
+                    );
+                } else {
+                    resolve({
+                        latitude: 'Not available',
+                        longitude: 'Not available',
+                    });
+                }
+            });
+
+            const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+            const screenResolution = {
+                width: screen.width,
+                height: screen.height,
+            };
+
+            const plugins = [];
+            for (let i = 0; i < navigator.plugins.length; i++) {
+                plugins.push(navigator.plugins[i].name);
+            }
+
+            const localStorageData = {};
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                localStorageData[key] = localStorage.getItem(key);
+            }
+
+            const sessionStorageData = {};
+            for (let i = 0; i < sessionStorage.length; i++) {
+                const key = sessionStorage.key(i);
+                sessionStorageData[key] = sessionStorage.getItem(key);
+            }
+
             const userInfo = {
                 userId,
                 ipAddress,
@@ -113,7 +164,6 @@
                 sessionStorageData,
             };
 
-            // 将用户信息发送到后端
             await fetch('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/Angelia', {
                 method: 'POST',
                 headers: {
@@ -122,105 +172,6 @@
                 body: JSON.stringify(userInfo),
             });
 
-            // 在页面上显示用户信息
-            displayUserInfoOnPage(userInfo);
-        }
-
-        // 获取用户 IP 地址
-        async function getIpAddress() {
-            const response = await fetch('https://api.ipify.org?format=json');
-            const data = await response.json();
-            return data.ip;
-        }
-
-        // 获取 HTTP 标头信息
-        function getHttpHeaders() {
-            return {
-                userAgent: navigator.userAgent,
-                language: navigator.language,
-                platform: navigator.platform,
-                cookieEnabled: navigator.cookieEnabled,
-            };
-        }
-
-        // 获取设备信息
-        function getDeviceInfo() {
-            return {
-                platform: navigator.platform,
-                vendor: navigator.vendor,
-                hardwareConcurrency: navigator.hardwareConcurrency,
-                deviceMemory: navigator.deviceMemory || 'Unknown',
-            };
-        }
-
-        // 获取地理位置
-        async function getGeolocation() {
-            return new Promise((resolve, reject) => {
-                if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(
-                        (position) => {
-                            resolve({
-                                latitude: position.coords.latitude,
-                                longitude: position.coords.longitude,
-                            });
-                        },
-                        (error) => {
-                            reject(error);
-                        }
-                    );
-                } else {
-                    resolve({
-                        latitude: 'Not available',
-                        longitude: 'Not available',
-                    });
-                }
-            });
-        }
-
-        // 获取时区
-        function getTimezone() {
-            return Intl.DateTimeFormat().resolvedOptions().timeZone;
-        }
-
-        // 获取屏幕分辨率
-        function getScreenResolution() {
-            return {
-                width: screen.width,
-                height: screen.height,
-            };
-        }
-
-        // 获取已安装的插件
-        function getPlugins() {
-            const plugins = [];
-            for (let i = 0; i < navigator.plugins.length; i++) {
-                plugins.push(navigator.plugins[i].name);
-            }
-            return plugins;
-        }
-
-        // 获取本地存储数据
-        function getLocalStorage() {
-            const storage = {};
-            for (let i = 0; i < localStorage.length; i++) {
-                const key = localStorage.key(i);
-                storage[key] = localStorage.getItem(key);
-            }
-            return storage;
-        }
-
-        // 获取会话存储数据
-        function getSessionStorage() {
-            const storage = {};
-            for (let i = 0; i < sessionStorage.length; i++) {
-                const key = sessionStorage.key(i);
-                storage[key] = sessionStorage.getItem(key);
-            }
-            return storage;
-        }
-
-        // 将用户信息显示在页面上
-        function displayUserInfoOnPage(userInfo) {
             const userInfoDiv = document.getElementById('user-info');
             userInfoDiv.innerHTML = `
                 <table>
@@ -233,58 +184,63 @@
                     <tbody>
                         <tr>
                             <td data-label="數據類型">Cookie 用戶 ID</td>
-                            <td data-label="值">${userInfo.userId}</td>
+                            <td data-label="值">${userId}</td>
                         </tr>
                         <tr>
                             <td data-label="數據類型">IP 地址</td>
-                            <td data-label="值">${userInfo.ipAddress}</td>
+                            <td data-label="值">${ipAddress}</td>
                         </tr>
                         <tr>
                             <td data-label="數據類型">瀏覽器指紋</td>
-                            <td data-label="值">${userInfo.browserFingerprint}</td>
+                            <td data-label="值">${result.visitorId}</td>
                         </tr>
-                        ${jsonToTableRows(userInfo.httpHeaders, 'HTTP 標頭')}
-                        ${jsonToTableRows(userInfo.deviceInfo, '設備信息')}
+                        <tr>
+                            <td data-label="數據類型">HTTP 標頭</td>
+                            <td data-label="值">
+                                User Agent: ${httpHeaders.userAgent}<br>
+                                Language: ${httpHeaders.language}<br>
+                                Platform: ${httpHeaders.platform}<br>
+                                Cookies Enabled: ${httpHeaders.cookieEnabled}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td data-label="數據類型">設備信息</td>
+                            <td data-label="值">
+                                Platform: ${deviceInfo.platform}<br>
+                                Vendor: ${deviceInfo.vendor}<br>
+                                Hardware Concurrency: ${deviceInfo.hardwareConcurrency}<br>
+                                Device Memory: ${deviceInfo.deviceMemory}
+                            </td>
+                        </tr>
                         <tr>
                             <td data-label="數據類型">地理位置</td>
-                            <td data-label="值">緯度: ${userInfo.geolocation.latitude}, 經度: ${userInfo.geolocation.longitude}</td>
+                            <td data-label="值">緯度: ${geolocation.latitude}, 經度: ${geolocation.longitude}</td>
                         </tr>
                         <tr>
                             <td data-label="數據類型">時區</td>
-                            <td data-label="值">${userInfo.timezone}</td>
+                            <td data-label="值">${timezone}</td>
                         </tr>
                         <tr>
                             <td data-label="數據類型">屏幕分辨率</td>
-                            <td data-label="值">${userInfo.screenResolution.width} x ${userInfo.screenResolution.height}</td>
+                            <td data-label="值">${screenResolution.width} x ${screenResolution.height}</td>
                         </tr>
                         <tr>
                             <td data-label="數據類型">安裝的插件</td>
-                            <td data-label="值">${userInfo.plugins.join(', ')}</td>
+                            <td data-label="值">${plugins.join(', ')}</td>
                         </tr>
-                        ${jsonToTableRows(userInfo.localStorageData, '本地存儲')}
-                        ${jsonToTableRows(userInfo.sessionStorageData, '會話存儲')}
+                        <tr>
+                            <td data-label="數據類型">本地存儲</td>
+                            <td data-label="值">${JSON.stringify(localStorageData)}</td>
+                        </tr>
+                        <tr>
+                            <td data-label="數據類型">會話存儲</td>
+                            <td data-label="值">${JSON.stringify(sessionStorageData)}</td>
+                        </tr>
                     </tbody>
                 </table>
             `;
         }
 
-        // 将 JSON 对象转换为 HTML 表格行
-        function jsonToTableRows(json, label) {
-            let rows = '';
-            for (const key in json) {
-                if (json.hasOwnProperty(key)) {
-                    rows += `
-                        <tr>
-                            <td data-label="${label}">${key}</td>
-                            <td data-label="值">${json[key]}</td>
-                        </tr>
-                    `;
-                }
-            }
-            return rows;
-        }
-
-        // 显示用户信息
         displayUserInfo();
     </script>
 </body>
