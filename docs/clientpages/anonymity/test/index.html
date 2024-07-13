@@ -91,7 +91,6 @@
             const ipAddress = await getIpAddress();
             const httpHeaders = getHttpHeaders();
             const deviceInfo = getDeviceInfo();
-            const geolocation = await getGeolocation();
             const timezone = getTimezone();
             const screenResolution = getScreenResolution();
             const plugins = getPlugins();
@@ -105,7 +104,6 @@
                 browserFingerprint: result.visitorId,
                 httpHeaders,
                 deviceInfo,
-                geolocation,
                 timezone,
                 screenResolution,
                 plugins,
@@ -151,30 +149,6 @@
                 hardwareConcurrency: navigator.hardwareConcurrency,
                 deviceMemory: navigator.deviceMemory || 'Unknown',
             };
-        }
-
-        // 获取地理位置
-        async function getGeolocation() {
-            return new Promise((resolve, reject) => {
-                if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(
-                        (position) => {
-                            resolve({
-                                latitude: position.coords.latitude,
-                                longitude: position.coords.longitude,
-                            });
-                        },
-                        (error) => {
-                            reject(error);
-                        }
-                    );
-                } else {
-                    resolve({
-                        latitude: 'Not available',
-                        longitude: 'Not available',
-                    });
-                }
-            });
         }
 
         // 获取时区
@@ -245,10 +219,6 @@
                         </tr>
                         ${jsonToTableRows(userInfo.httpHeaders, 'HTTP 標頭')}
                         ${jsonToTableRows(userInfo.deviceInfo, '設備信息')}
-                        <tr>
-                            <td data-label="數據類型">地理位置</td>
-                            <td data-label="值">緯度: ${userInfo.geolocation.latitude}, 經度: ${userInfo.geolocation.longitude}</td>
-                        </tr>
                         <tr>
                             <td data-label="數據類型">時區</td>
                             <td data-label="值">${userInfo.timezone}</td>
