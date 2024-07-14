@@ -118,7 +118,6 @@
             var startTime = null;
             var initialTop = canvas.offsetTop;
             var moveUpDuration = 2000; // 移动持续时间（毫秒）
-            textarea.style.display = 'block';
 
             function move(timestamp) {
                 if (!startTime) startTime = timestamp;
@@ -132,6 +131,10 @@
 
                 if (easing < 1) {
                     requestAnimationFrame(move);
+                } else {
+                    // 动画结束后恢复 textarea 的显示
+                    canvas.style.display = 'none'; // 隐藏 canvas
+                    textarea.style.display = 'block'; // 显示 textarea
                 }
             }
 
