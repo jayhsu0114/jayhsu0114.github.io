@@ -48,7 +48,6 @@ h1 {
 form {
     max-width: 300px;
     margin: 0 auto;
-    position: relative; /* 为白色矩形提供相对定位的父容器 */
 }
 
 label {
@@ -68,10 +67,13 @@ textarea {
 }
 
 #whiteBox {
-    background-color: white;
-    display: none;
-    position: absolute; /* 絕對定位 */
-    z-index: 10; /* 確保它在其他元素之上 */
+    background-color: black;
+    width: 100%;
+    height: 100px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    display: none; /* 初始隐藏 */
 }
 
 input[type="hidden"] {
