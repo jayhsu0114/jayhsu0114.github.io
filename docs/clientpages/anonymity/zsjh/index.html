@@ -51,7 +51,10 @@
             console.log('userId (in form submit event):', userId);
     
             const formData = new FormData(this);
-            console.log('Request Body:', formData); // 打印发送的请求体
+            console.log(formData.get('anonymousContent'));
+            console.log(formData.get('userId'));
+            console.log(formData.get('formId'));
+            // 打印发送的请求体
     
             fetch('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/Mercury', {
                 method: 'POST',
