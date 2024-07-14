@@ -66,19 +66,18 @@ textarea {
     white-space: pre-wrap; /* 保留换行符并自动换行 */
 }
 
-#whiteBox {
-    background-color: white;
-    padding: 8px;
+canvas {
+    width: 100%;
+    height: 100px;
     border: 1px solid #ccc;
     border-radius: 4px;
 }
-
 
 input[type="hidden"] {
     display: none;
 }
 
-button[type="submit"] {
+button[type="submit"], button[type="button"] {
     display: block;
     width: 100%;
     padding: 10px;
@@ -90,7 +89,7 @@ button[type="submit"] {
     cursor: pointer;
 }
 
-button[type="submit"]:hover {
+button[type="submit"]:hover, button[type="button"]:hover {
     background-color: #de6768;
 }
 
