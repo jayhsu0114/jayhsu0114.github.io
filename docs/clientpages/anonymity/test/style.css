@@ -73,7 +73,9 @@ textarea {
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    box-sizing: border-box; /* 保持和textarea一致的盒模型 */
 }
+
 
 input[type="hidden"] {
     display: none;
