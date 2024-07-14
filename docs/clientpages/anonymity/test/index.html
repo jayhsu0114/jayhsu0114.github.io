@@ -30,13 +30,18 @@
             var textarea = document.getElementById('anonymousContent');
             var whiteBox = document.getElementById('whiteBox');
             
-            // 设置白色框的样式和位置与textarea一致
-            whiteBox.style.width = textarea.offsetWidth + 'px';
-            whiteBox.style.height = textarea.offsetHeight + 'px';
-            whiteBox.style.position = 'absolute';
+            // 获取textarea的位置和尺寸
             var rect = textarea.getBoundingClientRect();
-            whiteBox.style.top = rect.top + 'px';
-            whiteBox.style.left = rect.left + 'px';
+            var bodyRect = document.body.getBoundingClientRect();
+            var offsetTop = rect.top - bodyRect.top;
+            var offsetLeft = rect.left - bodyRect.left;
+
+            // 设置白色框的样式和位置与textarea一致
+            whiteBox.style.width = rect.width + 'px';
+            whiteBox.style.height = rect.height + 'px';
+            whiteBox.style.position = 'absolute';
+            whiteBox.style.top = offsetTop + 'px';
+            whiteBox.style.left = offsetLeft + 'px';
             whiteBox.style.backgroundColor = 'white';
             whiteBox.style.display = 'block';
             
