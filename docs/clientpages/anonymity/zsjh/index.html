@@ -36,26 +36,31 @@
                 return '';
             }
 
-            const form = document.getElementById('zsjhForm');
-            const userIdInput = document.getElementById('userId');
-
             // Fill userId input with cookie value
-            userIdInput.value = getCookie('userId');
+            document.getElementById('userId').value = getCookie('userId');
 
-            form.addEventListener('submit', function(event) {
+            // Form submission handling
+            document.getElementById('zsjhForm').addEventListener('submit', function(event) {
                 event.preventDefault();
 
                 // Disable submit button
                 const submitButton = document.getElementById('submitButton');
                 submitButton.disabled = true;
 
-                // Fetch form data
-                const formData = new FormData(form);
+                // Prepare data to send
+                const formData = {
+                    userId: getCookie('userId'),
+                    anonymousContent: document.getElementById('anonymousContent').value,
+                    formId: 'zsjh'
+                };
 
                 // Post data to backend URL
                 fetch('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/Mercury', {
                     method: 'POST',
-                    body: formData
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
                 })
                 .then(response => {
                     if (response.ok) {
