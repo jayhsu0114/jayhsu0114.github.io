@@ -23,17 +23,18 @@
     <script src="./js/Angelia.js"></script>
     <script>
         let isSubmitted = false;
-    
+
         async function getUserId() {
             try {
                 const userId = document.cookie.replace(/(?:(?:^|.*;\s*)UserId\s*=\s*([^;]*).*$)|^.*$/, "$1");
+                console.log('userId:', userId);
                 return userId;
             } catch (error) {
                 console.error('獲取使用者ID失敗:', error);
                 return 'unknown';
             }
         }
-    
+
         document.getElementById('zsjhForm').addEventListener('submit', async function(event) {
             event.preventDefault();
             
@@ -47,14 +48,18 @@
     
             const userId = await getUserId();
             document.getElementById('userId').value = userId;
+            console.log('userId (in form submit event):', userId);
     
             const formData = new FormData(this);
+            console.log('formData:', formData);
+    
             fetch('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/Mercury', {
                 method: 'POST',
                 body: formData
             })
             .then(response => response.json())
             .then(data => {
+                console.log('提交成功，回應資料:', data);
                 alert('提交成功！');
                 this.reset();
                 document.getElementById('submitButton').disabled = false;
