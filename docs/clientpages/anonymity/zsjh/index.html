@@ -47,7 +47,7 @@
     
             const userId = await getUserId();
             document.getElementById('userId').value = userId;
-    
+            console.log(userId)
             const formData = new FormData(this);
             fetch('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/Mercury', {
                 method: 'POST',
