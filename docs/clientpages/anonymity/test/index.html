@@ -118,6 +118,7 @@
             var startTime = null;
             var initialTop = canvas.offsetTop;
             var moveUpDuration = 2000; // 移动持续时间（毫秒）
+            textarea.style.display = 'block';
 
             function move(timestamp) {
                 if (!startTime) startTime = timestamp;
