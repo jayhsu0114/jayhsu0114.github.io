@@ -13,7 +13,7 @@
         <form id="zsjhForm">
             <label for="anonymousContent">匿名內容</label>
             <textarea id="anonymousContent" name="anonymousContent" required></textarea>
-            <div id="whiteBox"></div>
+            <div id="whiteBox" style="display: none;"></div>
             <p>提交表示您同意<a href="/clientpages/regulations">使用協議</a></p>
             <input type="hidden" id="userId" name="userId">
             <input type="hidden" id="formId" name="formId" value="zsjh">
@@ -24,5 +24,12 @@
     <script src="./js/Angelia.js"></script>
     <script src="./js/bubble.js"></script>
     <!--<script src="./js/post.js"></script>-->
+    <script>
+        document.getElementById('submitButton').addEventListener('click', function(event) {
+            event.preventDefault(); // 防止表单提交
+            document.getElementById('anonymousContent').style.display = 'none'; // 隱藏textarea
+            document.getElementById('whiteBox').style.display = 'block'; // 顯示white box
+        });
+    </script>
 </body>
 </html>
