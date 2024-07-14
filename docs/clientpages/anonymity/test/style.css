@@ -60,6 +60,7 @@ textarea {
     height: 100px;
     padding: 8px;
     font-size: 16px;
+    color:#000;
     border: 1px solid #ccc;
     border-radius: 4px;
     resize: none;
