@@ -66,6 +66,15 @@ textarea {
     white-space: pre-wrap; /* 保留换行符并自动换行 */
 }
 
+#whiteBox {
+    background-color: white;
+    display: none;
+}
+
+#whiteBox.hidden {
+    display: none;
+}
+
 input[type="hidden"] {
     display: none;
 }

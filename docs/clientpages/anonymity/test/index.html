@@ -13,6 +13,7 @@
         <form id="zsjhForm">
             <label for="anonymousContent">匿名內容</label>
             <textarea id="anonymousContent" name="anonymousContent" required></textarea>
+            <div id="whiteBox" class="hidden"></div>
             <p>提交表示您同意<a href="/clientpages/regulations">使用協議</a></p>
             <input type="hidden" id="userId" name="userId">
             <input type="hidden" id="formId" name="formId" value="zsjh">
@@ -22,6 +23,24 @@
     <script src="https://cdn.jsdelivr.net/npm/@fingerprintjs/fingerprintjs@3.3.1/dist/fp.min.js"></script>
     <script src="./js/Angelia.js"></script>
     <script src="./js/bubble.js"></script>
-    <script src="./js/post.js"></script>
+    <!--<script src="./js/post.js"></script>-->
+    <script>
+        document.getElementById('submitButton').addEventListener('click', function(event) {
+            event.preventDefault(); // 防止表单提交
+            var textarea = document.getElementById('anonymousContent');
+            var whiteBox = document.getElementById('whiteBox');
+            
+            // 设置白色框的样式和位置与textarea一致
+            whiteBox.style.width = textarea.offsetWidth + 'px';
+            whiteBox.style.height = textarea.offsetHeight + 'px';
+            whiteBox.style.position = 'absolute';
+            whiteBox.style.top = textarea.offsetTop + 'px';
+            whiteBox.style.left = textarea.offsetLeft + 'px';
+            whiteBox.classList.remove('hidden');
+            
+            // 隐藏textarea
+            textarea.style.display = 'none';
+        });
+    </script>
 </body>
 </html>
