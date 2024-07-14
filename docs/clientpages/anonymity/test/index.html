@@ -18,7 +18,7 @@
             <input type="hidden" id="formId" name="formId" value="zsjh">
             <button type="button" id="submitButton">提交</button>
         </form>
-        <canvas id="contentCanvas" style="display: none;"></canvas>
+        <canvas id="contentCanvas" style="display: none; position: absolute; top: 0; left: 0;"></canvas>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/@fingerprintjs/fingerprintjs@3.3.1/dist/fp.min.js"></script>
     <script src="./js/Angelia.js"></script>
@@ -30,6 +30,9 @@
             var canvas = document.getElementById('contentCanvas');
             var text = textarea.value;
 
+            // 每十個字符插入一個換行符
+            text = text.replace(/(.{10})/g, '$1\n');
+
             // 獲取textarea的寬高
             var width = textarea.offsetWidth;
             var height = textarea.offsetHeight;
@@ -37,6 +40,13 @@
             // 設置canvas的寬高與textarea一致
             canvas.width = width;
             canvas.height = height;
+
+            // 使canvas覆蓋textarea
+            var rect = textarea.getBoundingClientRect();
+            canvas.style.top = rect.top + 'px';
+            canvas.style.left = rect.left + 'px';
+            canvas.style.width = rect.width + 'px';
+            canvas.style.height = rect.height + 'px';
 
             // 顯示canvas，隱藏textarea
             canvas.style.display = 'block';
