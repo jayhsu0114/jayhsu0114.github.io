@@ -26,9 +26,21 @@
     <!--<script src="./js/post.js"></script>-->
     <script>
         document.getElementById('submitButton').addEventListener('click', function(event) {
-            event.preventDefault(); // 防止表单提交
-            document.getElementById('anonymousContent').style.display = 'none'; // 隱藏textarea
-            document.getElementById('whiteBox').style.display = 'block'; // 顯示white box
+            event.preventDefault(); // 防止表單提交
+            
+            // 取得textarea生成後的寬度和高度
+            var textareaWidth = document.getElementById('anonymousContent').clientWidth;
+            var textareaHeight = document.getElementById('anonymousContent').clientHeight;
+            console.log('Textarea 寬度: ' + textareaWidth + 'px, 高度: ' + textareaHeight + 'px');
+            
+            // 設置white box的寬度和高度與textarea相同
+            var whiteBox = document.getElementById('whiteBox');
+            whiteBox.style.width = textareaWidth + 'px';
+            whiteBox.style.height = textareaHeight + 'px';
+            
+            // 隱藏textarea並顯示white box
+            document.getElementById('anonymousContent').style.display = 'none';
+            whiteBox.style.display = 'block';
         });
     </script>
 </body>
