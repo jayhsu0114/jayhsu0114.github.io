@@ -35,16 +35,16 @@
             canvas.height = textarea.clientHeight;
 
             // Set canvas styles to match the textarea
-            context.font = window.getComputedStyle(textarea).font;
-            context.fillStyle = window.getComputedStyle(textarea).color;
+            var style = window.getComputedStyle(textarea);
+            context.font = style.fontSize + " " + style.fontFamily;
+            context.fillStyle = style.color;
             context.textAlign = 'left';
             context.textBaseline = 'top';
-            context.fillStyle = 'black'; // 設定文字顏色為黑色
 
             // Split the text content into lines
             var text = textarea.value;
             var lines = text.split('\n');
-            var lineHeight = parseInt(window.getComputedStyle(textarea).lineHeight);
+            var lineHeight = parseInt(style.lineHeight);
 
             // Draw each line of text on the canvas
             for (var i = 0; i < lines.length; i++) {
