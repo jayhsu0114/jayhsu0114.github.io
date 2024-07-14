@@ -73,7 +73,6 @@ textarea {
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    display: none; /* 初始隐藏 */
 }
 
 input[type="hidden"] {
