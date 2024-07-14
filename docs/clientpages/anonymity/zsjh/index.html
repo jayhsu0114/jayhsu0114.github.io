@@ -21,69 +21,59 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/@fingerprintjs/fingerprintjs@3.3.1/dist/fp.min.js"></script>
     <script src="./js/Angelia.js"></script>
+    <script src="./js/bubble.js"></script>
     <script>
-        let isSubmitted = false;
-
-        async function getUserId() {
-            try {
-                const userId = document.cookie.replace(/(?:(?:^|.*;\s*)userId\s*=\s*([^;]*).*$)|^.*$/, "$1");
-                console.log('userId:', userId);
-                return userId;
-            } catch (error) {
-                console.error('獲取使用者ID失敗:', error);
-                return 'unknown';
+        document.addEventListener('DOMContentLoaded', function() {
+            // Function to get cookie value by name
+            function getCookie(name) {
+                const cookies = document.cookie.split(';');
+                for (let cookie of cookies) {
+                    const [cookieName, cookieValue] = cookie.split('=');
+                    if (cookieName.trim() === name) {
+                        return cookieValue;
+                    }
+                }
+                return '';
             }
-        }
 
-        document.getElementById('zsjhForm').addEventListener('submit', async function(event) {
-            event.preventDefault();
-            
-            if (isSubmitted) {
-                alert('表單已經提交，請稍候再試。');
-                return;
-            }
-            
-            isSubmitted = true;
-            document.getElementById('submitButton').disabled = true;
-    
-            const userId = await getUserId();
-            document.getElementById('userId').value = userId;
-            console.log('userId (in form submit event):', userId);
-    
-            const formData = new FormData(this);
-            console.log(formData.get('anonymousContent'));
-            console.log(formData.get('userId'));
-            console.log(formData.get('formId'));
-            // 打印发送的请求体
-    
-            fetch('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/Mercury', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log('提交成功，回應資料:', data);
-                alert('提交成功！');
-                this.reset();
-                document.getElementById('submitButton').disabled = false;
-                isSubmitted = false;
-            })
-            .catch(error => {
-                console.error('提交失敗:', error);
-                alert('提交失敗，請稍候再試。');
-                document.getElementById('submitButton').disabled = false;
-                isSubmitted = false;
+            const form = document.getElementById('zsjhForm');
+            const userIdInput = document.getElementById('userId');
+
+            // Fill userId input with cookie value
+            userIdInput.value = getCookie('userId');
+
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                // Disable submit button
+                const submitButton = document.getElementById('submitButton');
+                submitButton.disabled = true;
+
+                // Fetch form data
+                const formData = new FormData(form);
+
+                // Post data to backend URL
+                fetch('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/Mercury', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => {
+                    if (response.ok) {
+                        alert('資料提交成功');
+                    } else {
+                        throw new Error('資料提交失敗');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error submitting form data:', error);
+                    alert('資料提交失敗');
+                })
+                .finally(() => {
+                    // Re-enable submit button after request completes
+                    submitButton.disabled = false;
+                });
             });
         });
-    
-        document.getElementById('anonymousContent').addEventListener('keydown', function(event) {
-            if (event.key === 'Enter') {
-                event.preventDefault();
-                this.value += '\n';
-            }
-        });
     </script>
-    
-    <script src="./js/bubble.js"></script>
 </body>
 </html>
