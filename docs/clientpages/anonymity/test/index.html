@@ -17,8 +17,8 @@
             <input type="hidden" id="userId" name="userId">
             <input type="hidden" id="formId" name="formId" value="zsjh">
             <button type="button" id="submitButton">提交</button>
+            <canvas id="contentCanvas" style="display: none; position: absolute;"></canvas>
         </form>
-        <canvas id="contentCanvas" style="display: none;"></canvas>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/@fingerprintjs/fingerprintjs@3.3.1/dist/fp.min.js"></script>
     <script src="./js/Angelia.js"></script>
@@ -30,13 +30,18 @@
             var canvas = document.getElementById('contentCanvas');
             var text = textarea.value;
 
-            // 獲取textarea的寬高
+            // 獲取textarea的寬高和位置
             var width = textarea.offsetWidth;
             var height = textarea.offsetHeight;
+            var rect = textarea.getBoundingClientRect();
 
             // 設置canvas的寬高與textarea一致
             canvas.width = width;
             canvas.height = height;
+
+            // 設置canvas的位置
+            canvas.style.left = rect.left + 'px';
+            canvas.style.top = rect.top + 'px';
 
             // 顯示canvas，隱藏textarea
             canvas.style.display = 'block';
@@ -48,10 +53,33 @@
             context.fillStyle = '#000'; // 設置文本顏色
 
             // 將文本按行拆分並逐行顯示在canvas上
+            var lineHeight = 20; // 設置行高
             var lines = text.split('\n');
-            for (var i = 0; i < lines.length; i++) {
-                context.fillText(lines[i], 10, i * 20);
-            }
+            var x = 10;
+            var y = 0;
+            var maxWidth = width - 20;
+
+            lines.forEach(function(line) {
+                var words = line.split(' ');
+                var currentLine = '';
+
+                words.forEach(function(word) {
+                    var testLine = currentLine + word + ' ';
+                    var metrics = context.measureText(testLine);
+                    var testWidth = metrics.width;
+
+                    if (testWidth > maxWidth && currentLine.length > 0) {
+                        context.fillText(currentLine, x, y);
+                        currentLine = word + ' ';
+                        y += lineHeight;
+                    } else {
+                        currentLine = testLine;
+                    }
+                });
+
+                context.fillText(currentLine, x, y);
+                y += lineHeight;
+            });
         });
     </script>
 </body>
