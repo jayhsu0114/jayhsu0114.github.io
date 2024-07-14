@@ -23,7 +23,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@fingerprintjs/fingerprintjs@3.3.1/dist/fp.min.js"></script>
     <script src="./js/Angelia.js"></script>
     <script src="./js/bubble.js"></script>
-    <!--<script src="./js/post.js"></script>-->
+    <script src="./js/post.js"></script>
     <script>
         document.getElementById('submitButton').addEventListener('click', function(event) {
             event.preventDefault(); // 防止表单提交
@@ -34,9 +34,11 @@
             whiteBox.style.width = textarea.offsetWidth + 'px';
             whiteBox.style.height = textarea.offsetHeight + 'px';
             whiteBox.style.position = 'absolute';
-            whiteBox.style.top = textarea.offsetTop + 'px';
-            whiteBox.style.left = textarea.offsetLeft + 'px';
-            whiteBox.classList.remove('hidden');
+            var rect = textarea.getBoundingClientRect();
+            whiteBox.style.top = rect.top + 'px';
+            whiteBox.style.left = rect.left + 'px';
+            whiteBox.style.backgroundColor = 'white';
+            whiteBox.style.display = 'block';
             
             // 隐藏textarea
             textarea.style.display = 'none';
