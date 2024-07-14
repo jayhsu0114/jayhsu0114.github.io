@@ -108,6 +108,10 @@
                 } else {
                     // 持续向上移动直到完全超出螢幕邊界
                     continueMoveUp(canvas);
+                    // 动画结束后恢复 textarea 的显示
+                    canvas.style.display = 'none'; // 隐藏 canvas
+                    var textarea = document.getElementById('anonymousContent');
+                    textarea.style.display = 'block'; // 显示 textarea
                 }
             }
 
@@ -131,12 +135,6 @@
 
                 if (easing < 1) {
                     requestAnimationFrame(move);
-                } else {
-                    // 动画结束后恢复 textarea 的显示
-                    canvas.style.display = 'none'; // 隐藏 canvas
-                    var textarea = document.getElementById('anonymousContent');
-                    textarea.style.display = 'block'; // 显示 textarea
-                }
             }
 
             requestAnimationFrame(move);
