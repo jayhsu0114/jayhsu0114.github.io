@@ -46,7 +46,7 @@
             document.getElementById('submitButton').disabled = true;
     
             const userID = await getUserID();
-            document.getElementById('userID').value = userID;
+            document.getElementById('userId').value = userID;
     
             const formData = new FormData(this);
             fetch('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/Mercury', {
