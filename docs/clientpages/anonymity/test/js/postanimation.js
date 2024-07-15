@@ -155,12 +155,10 @@ document.addEventListener('DOMContentLoaded', function() {
             var progress = timestamp - startTime;
 
             var easing = Math.min(progress / moveUpDuration, 1); // 线性插值
-
+            
             // 设置 fillarea 的高度
             var fillarea = document.getElementById('fillarea');
             fillarea.style.display = 'block'; // 显示 fillarea
-            var width = textarea.offsetWidth;
-            fillarea.width = width + 10 + 'px';
             var currentHeight = easing * 65; // 最终高度是65px
             fillarea.style.height = currentHeight + 'px';
 
