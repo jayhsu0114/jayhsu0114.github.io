@@ -45,10 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Submit button click handling for canvas animation
                 var textarea = document.getElementById('anonymousContent');
                 var canvas = document.getElementById('contentCanvas');
-                var text = '發送中';
-
-                // 每15個字符插入一個換行符
-                text = text.replace(/(.{15})/g, '$1\n');
+                var text = '發送中'
 
                 // 獲取textarea的寬高
                 var width = textarea.offsetWidth;
@@ -69,8 +66,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 context.fillRect(0, 0, canvas.width, canvas.height);
 
                 context.font = '16px Arial'; // 設置字體
-                context.textBaseline = 'top'; // 設置文本基線為頂部對齊
-                context.fillStyle = '#000'; // 設置文本顏色
+                context.textBaseline = 'middle'; // 設置文本基線為頂部對齊
+                context.fillStyle = '#fefdf7'; // 設置文本顏色
 
                 // 將文本按行拆分並逐行顯示在canvas上
                 var lines = text.split('\n');
