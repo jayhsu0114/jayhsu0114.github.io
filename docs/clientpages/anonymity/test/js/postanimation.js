@@ -160,7 +160,7 @@ document.addEventListener('DOMContentLoaded', function() {
             var fillarea = document.getElementById('fillarea');
             fillarea.style.display = 'block'; // 显示 fillarea
             var width = textarea.offsetWidth;
-            fillarea.width = width + 10
+            fillarea.width = width + 10 + 'px';
             var currentHeight = easing * 65; // 最终高度是65px
             fillarea.style.height = currentHeight + 'px';
 
