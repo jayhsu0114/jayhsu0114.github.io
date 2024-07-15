@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', function() {
         var initialWidth = canvas.width;
         var initialHeight = canvas.height;
         var finalDiameter = 35;
-        var animationDuration = 2000; // 动画持续时间（毫秒）
+        var animationDuration = 1000; // 动画持续时间（毫秒）
 
         function animate(timestamp) {
             if (!startTime) startTime = timestamp;
@@ -142,7 +142,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function continueMoveUp(canvas) {
         var startTime = null;
         var initialTop = canvas.offsetTop;
-        var moveUpDuration = 2000; // 移动持续时间（毫秒）
+        var moveUpDuration = 3000; // 移动持续时间（毫秒）
 
         function move(timestamp) {
             if (!startTime) startTime = timestamp;
