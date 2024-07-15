@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 var context = canvas.getContext('2d');
 
                 // 设置canvas背景色为白色
-                context.fillStyle = '#FFFFFF'; // 背景色白色
+                context.fillStyle = '#70a7dd'; // 背景色白色
                 context.fillRect(0, 0, canvas.width, canvas.height);
 
                 context.font = '16px Arial'; // 設置字體
