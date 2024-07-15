@@ -92,6 +92,9 @@ document.addEventListener('DOMContentLoaded', function() {
             // Re-enable submit button after request completes
             // This will be called after animation completes as well
             submitButton.disabled = false;
+
+            // Reload the page after all events complete
+            reloadPage();
         });
     });
 
@@ -100,7 +103,7 @@ document.addEventListener('DOMContentLoaded', function() {
         var initialWidth = canvas.width;
         var initialHeight = canvas.height;
         var finalDiameter = 35;
-        var animationDuration = 1000; // 动画持续时间（毫秒）
+        var animationDuration = 2000; // 动画持续时间（毫秒）
 
         function animate(timestamp) {
             if (!startTime) startTime = timestamp;
@@ -142,7 +145,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function continueMoveUp(canvas) {
         var startTime = null;
         var initialTop = canvas.offsetTop;
-        var moveUpDuration = 3000; // 移动持续时间（毫秒）
+        var moveUpDuration = 2000; // 移动持续时间（毫秒）
 
         function move(timestamp) {
             if (!startTime) startTime = timestamp;
@@ -160,5 +163,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         requestAnimationFrame(move);
+    }
+
+    function reloadPage() {
+        // Reload the page after all events complete
+        setTimeout(function() {
+            window.location.reload();
+        }, 6000); // 4秒後重新載入頁面，可以根據需求調整時間
     }
 });
