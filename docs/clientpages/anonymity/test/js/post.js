@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(response => {
             if (response.ok) {
-                alert('資料提交成功');
+                //alert('資料提交成功');
                 // Clear textarea after successful submission
                 document.getElementById('anonymousContent').value = '';
             } else {
