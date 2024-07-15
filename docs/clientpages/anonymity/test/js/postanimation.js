@@ -124,8 +124,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // 计算当前圆角半径
             var borderRadius = (currentWidth / 2) * easing;
-            var fillarea = document.getElementById('fillarea');
-                fillarea.style.display = 'block';
             canvas.style.borderRadius = `${borderRadius}px`;
 
             // 计算当前Y轴位置
@@ -161,6 +159,9 @@ document.addEventListener('DOMContentLoaded', function() {
             // 计算当前Y轴位置
             var currentY = initialTop - window.innerHeight * easing;
             canvas.style.transform = `translateY(${currentY}px)`;
+
+            var fillarea = document.getElementById('fillarea');
+                fillarea.style.display = 'block';
 
             if (easing < 1) {
                 requestAnimationFrame(move);
