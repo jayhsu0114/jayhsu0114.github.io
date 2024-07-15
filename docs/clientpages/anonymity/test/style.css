@@ -73,10 +73,12 @@ canvas {
     border: 1px solid #ccc;
     border-radius: 4px;
     transition: all 2s ease-in-out;
+    z-index: 3;
 }
 
 #fillarea{
     height:100px;
+    z-index: 2;
 }
 
 input[type="hidden"] {
