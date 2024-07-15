@@ -45,6 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Submit button click handling for canvas animation
                 var textarea = document.getElementById('anonymousContent');
                 var canvas = document.getElementById('contentCanvas');
+                var fillarea = document.getElementById('fillarea');
                 var text = '發送中'
 
                 // 獲取textarea的寬高
@@ -58,6 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // 顯示canvas，隱藏textarea
                 canvas.style.display = 'block';
                 textarea.style.display = 'none';
+                fillarea.style.display = 'block';
 
                 var context = canvas.getContext('2d');
 

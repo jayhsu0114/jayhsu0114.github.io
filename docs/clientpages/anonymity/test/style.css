@@ -75,6 +75,10 @@ canvas {
     transition: all 2s ease-in-out;
 }
 
+#fillarea{
+    height:100px;
+}
+
 input[type="hidden"] {
     display: none;
 }
