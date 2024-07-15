@@ -155,13 +155,16 @@ document.addEventListener('DOMContentLoaded', function() {
             var progress = timestamp - startTime;
 
             var easing = Math.min(progress / moveUpDuration, 1); // 线性插值
+            
+            // 设置 fillarea 的高度
+            var fillarea = document.getElementById('fillarea');
+            fillarea.style.display = 'block'; // 显示 fillarea
+            var currentHeight = easing * 65; // 最终高度是65px
+            fillarea.style.height = currentHeight + 'px';
 
             // 计算当前Y轴位置
             var currentY = initialTop - window.innerHeight * easing;
             canvas.style.transform = `translateY(${currentY}px)`;
-
-            var fillarea = document.getElementById('fillarea');
-                fillarea.style.display = 'block';
 
             if (easing < 1) {
                 requestAnimationFrame(move);

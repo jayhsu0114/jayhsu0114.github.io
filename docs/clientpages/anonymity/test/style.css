@@ -76,7 +76,7 @@ canvas {
 }
 
 #fillarea{
-    height:100px;
+    height:0px;
 }
 
 input[type="hidden"] {
