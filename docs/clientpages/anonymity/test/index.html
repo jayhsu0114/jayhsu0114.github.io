@@ -6,6 +6,24 @@
     <title>確定完整動畫匿名網頁</title>
     <link rel="stylesheet" href="style.css"> <!-- 引入外部的 CSS 文件路径 -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2383721687553257" crossorigin="anonymous"></script>
+    <style>
+        .container {
+            position: relative;
+        }
+
+        #contentCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 10;
+            pointer-events: none; /* 禁止 canvas 捕捉事件 */
+        }
+
+        #anonymousContent {
+            position: relative;
+            z-index: 5;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -46,13 +64,12 @@
             canvas.width = width;
             canvas.height = height;
 
-            // 顯示canvas，隱藏textarea
+            // 顯示canvas
             canvas.style.display = 'block';
-            textarea.style.display = 'none';
 
             var context = canvas.getContext('2d');
 
-            // 设置canvas背景色为白色
+            // 設置canvas背景色為白色
             context.fillStyle = '#FFFFFF'; // 背景色白色
             context.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -66,7 +83,7 @@
                 context.fillText(lines[i], 10, i * 20);
             }
 
-            // 开始动画
+            // 開始動畫
             startAnimation(canvas);
         });
 
@@ -75,38 +92,38 @@
             var initialWidth = canvas.width;
             var initialHeight = canvas.height;
             var finalDiameter = 35;
-            var animationDuration = 2000; // 动画持续时间（毫秒）
+            var animationDuration = 2000; // 動畫持續時間（毫秒）
 
             function animate(timestamp) {
                 if (!startTime) startTime = timestamp;
                 var progress = timestamp - startTime;
 
-                var easing = Math.min(progress / animationDuration, 1); // 线性插值
+                var easing = Math.min(progress / animationDuration, 1); // 線性插值
 
-                // 渐变背景和边框颜色
+                // 漸變背景和邊框顏色
                 canvas.style.backgroundColor = `rgba(112, 167, 221, ${easing})`;
                 canvas.style.borderColor = `rgba(112, 167, 221, ${easing})`;
 
-                // 计算当前宽高
+                // 計算當前寬高
                 var currentWidth = initialWidth - (initialWidth - finalDiameter) * easing;
                 var currentHeight = initialHeight - (initialHeight - finalDiameter) * easing;
 
-                // 计算当前圆角半径
+                // 計算當前圓角半徑
                 var borderRadius = (currentWidth / 2) * easing;
                 canvas.style.borderRadius = `${borderRadius}px`;
 
-                // 计算当前Y轴位置
+                // 計算當前Y軸位置
                 var currentY = canvas.offsetTop - 100 * easing;
                 canvas.style.transform = `translateY(${currentY}px)`;
 
-                // 设置当前宽高
+                // 設置當前寬高
                 canvas.style.width = `${currentWidth}px`;
                 canvas.style.height = `${currentHeight}px`;
 
                 if (easing < 1) {
                     requestAnimationFrame(animate);
                 } else {
-                    // 持续向上移动直到完全超出螢幕邊界
+                    // 持續向上移動直到完全超出螢幕邊界
                     continueMoveUp(canvas);
                 }
             }
@@ -117,15 +134,15 @@
         function continueMoveUp(canvas) {
             var startTime = null;
             var initialTop = canvas.offsetTop;
-            var moveUpDuration = 2000; // 移动持续时间（毫秒）
+            var moveUpDuration = 2000; // 移動持續時間（毫秒）
 
             function move(timestamp) {
                 if (!startTime) startTime = timestamp;
                 var progress = timestamp - startTime;
 
-                var easing = Math.min(progress / moveUpDuration, 1); // 线性插值
+                var easing = Math.min(progress / moveUpDuration, 1); // 線性插值
 
-                // 计算当前Y轴位置
+                // 計算當前Y軸位置
                 var currentY = initialTop - window.innerHeight * easing;
                 canvas.style.transform = `translateY(${currentY}px)`;
 
@@ -135,7 +152,6 @@
             }
 
             requestAnimationFrame(move);
-
         }
     </script>
 </body>
