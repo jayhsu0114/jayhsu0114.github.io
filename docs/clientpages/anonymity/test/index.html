@@ -15,8 +15,8 @@
             <textarea id="anonymousContent" name="anonymousContent" required></textarea>
             
             <!-- Canvas 生成在這里 -->
-             <center>
-            <canvas id="contentCanvas" style="display: none;"></canvas>
+            <center>
+                <canvas id="contentCanvas" style="display: none;"></canvas>
             </center>
             
             <p>提交表示您同意<a href="/clientpages/regulations">使用協議</a></p>
@@ -118,6 +118,7 @@
             var startTime = null;
             var initialTop = canvas.offsetTop;
             var moveUpDuration = 2000; // 移动持续时间（毫秒）
+            var container = document.querySelector('.container');
 
             function move(timestamp) {
                 if (!startTime) startTime = timestamp;
@@ -132,9 +133,11 @@
                 if (easing < 1) {
                     requestAnimationFrame(move);
                 } else {
-                    // 动画结束后显示 textarea
-                    canvas.style.display = 'none';
-                    textarea.style.display = 'block';
+                    // 判断 canvas 是否已经移出 container
+                    if (canvas.getBoundingClientRect().bottom < container.getBoundingClientRect().top) {
+                        // 显示 textarea
+                        textarea.style.display = 'block';
+                    }
                 }
             }
 
