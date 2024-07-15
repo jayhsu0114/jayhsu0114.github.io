@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>中山匿名網頁</title>
+    <title>確定完整動畫匿名網頁</title>
     <link rel="stylesheet" href="style.css"> <!-- 引入外部的 CSS 文件路径 -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2383721687553257" crossorigin="anonymous"></script>
 </head>
@@ -58,7 +58,7 @@
 
             context.font = '16px Arial'; // 設置字體
             context.textBaseline = 'top'; // 設置文本基線為頂部對齊
-            context.fillStyle = '#70a7dd'; // 設置文本顏色
+            context.fillStyle = '#000'; // 設置文本顏色
 
             // 將文本按行拆分並逐行顯示在canvas上
             var lines = text.split('\n');
@@ -66,75 +66,79 @@
                 context.fillText(lines[i], 10, i * 20);
             }
 
-            // 開始動畫
+            // 开始动画
             startAnimation(canvas, textarea);
         });
 
         function startAnimation(canvas, textarea) {
-            var context = canvas.getContext('2d');
-            var startTime;
-            var duration = 2000; // 設置每個階段的動畫持續時間
+            var startTime = null;
+            var initialWidth = canvas.width;
+            var initialHeight = canvas.height;
+            var finalDiameter = 35;
+            var animationDuration = 2000; // 动画持续时间（毫秒）
 
             function animate(timestamp) {
                 if (!startTime) startTime = timestamp;
-                var elapsed = timestamp - startTime;
+                var progress = timestamp - startTime;
 
-                // 計算進度（0 到 1）
-                var progress = Math.min(elapsed / duration, 1);
+                var easing = Math.min(progress / animationDuration, 1); // 线性插值
 
-                // 漸變顏色
-                var gradient = context.createLinearGradient(0, 0, canvas.width, canvas.height);
-                gradient.addColorStop(0, '#FFFFFF');
-                gradient.addColorStop(progress, '#70a7dd');
-                context.fillStyle = gradient;
-                context.fillRect(0, 0, canvas.width, canvas.height);
+                // 渐变背景和边框颜色
+                canvas.style.backgroundColor = `rgba(112, 167, 221, ${easing})`;
+                canvas.style.borderColor = `rgba(112, 167, 221, ${easing})`;
 
-                // 漸變形狀
-                var radius = (canvas.height / 2) * progress;
-                context.clearRect(0, 0, canvas.width, canvas.height);
-                context.beginPath();
-                context.arc(canvas.width / 2, canvas.height / 2, radius, 0, Math.PI * 2);
-                context.closePath();
-                context.fill();
+                // 计算当前宽高
+                var currentWidth = initialWidth - (initialWidth - finalDiameter) * easing;
+                var currentHeight = initialHeight - (initialHeight - finalDiameter) * easing;
 
-                // 向上移動和縮小
-                canvas.style.transform = `translateY(${-100 * progress}px) scale(${1 - 0.65 * progress})`;
+                // 计算当前圆角半径
+                var borderRadius = (currentWidth / 2) * easing;
+                canvas.style.borderRadius = `${borderRadius}px`;
 
-                if (progress < 1) {
+                // 计算当前Y轴位置
+                var currentY = canvas.offsetTop - 100 * easing;
+                canvas.style.transform = `translateY(${currentY}px)`;
+
+                // 设置当前宽高
+                canvas.style.width = `${currentWidth}px`;
+                canvas.style.height = `${currentHeight}px`;
+
+                if (easing < 1) {
                     requestAnimationFrame(animate);
                 } else {
-                    // 繼續向上移動直到完全超出螢幕邊界
-                    finishAnimation(canvas, textarea);
+                    // 持续向上移动直到完全超出螢幕邊界
+                    continueMoveUp(canvas, textarea);
                 }
             }
 
             requestAnimationFrame(animate);
         }
 
-        function finishAnimation(canvas, textarea) {
-            var startTime;
-            var duration = 1000; // 設置最後階段的動畫持續時間
+        function continueMoveUp(canvas, textarea) {
+            var startTime = null;
+            var initialTop = canvas.offsetTop;
+            var moveUpDuration = 2000; // 移动持续时间（毫秒）
 
-            function animate(timestamp) {
+            function move(timestamp) {
                 if (!startTime) startTime = timestamp;
-                var elapsed = timestamp - startTime;
+                var progress = timestamp - startTime;
 
-                // 計算進度（0 到 1）
-                var progress = Math.min(elapsed / duration, 1);
+                var easing = Math.min(progress / moveUpDuration, 1); // 线性插值
 
-                // 繼續向上移動直到完全超出螢幕邊界
-                canvas.style.transform = `translateY(${-100 - 200 * progress}px) scale(${0.35 - 0.35 * progress})`;
+                // 计算当前Y轴位置
+                var currentY = initialTop - window.innerHeight * easing;
+                canvas.style.transform = `translateY(${currentY}px)`;
 
-                if (progress < 1) {
-                    requestAnimationFrame(animate);
+                if (easing < 1) {
+                    requestAnimationFrame(move);
                 } else {
-                    // 隱藏canvas，顯示textarea
+                    // 动画结束后显示 textarea
                     canvas.style.display = 'none';
                     textarea.style.display = 'block';
                 }
             }
 
-            requestAnimationFrame(animate);
+            requestAnimationFrame(move);
         }
     </script>
 </body>
