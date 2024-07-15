@@ -65,15 +65,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 context.fillStyle = '#70a7dd'; // 背景色白色
                 context.fillRect(0, 0, canvas.width, canvas.height);
 
-                context.font = '16px Arial'; // 設置字體
+                context.font = '40px Arial'; // 設置字體
                 context.textBaseline = 'middle'; // 設置文本基線為頂部對齊
                 context.fillStyle = '#fefdf7'; // 設置文本顏色
 
-                // 將文本按行拆分並逐行顯示在canvas上
-                var lines = text.split('\n');
-                for (var i = 0; i < lines.length; i++) {
-                    context.fillText(lines[i], 10, i * 20);
-                }
+                // 測量文本的寬度
+                var textWidth = context.measureText(text).width;
+
+                // 計算文本的位置使其水平垂直置中
+                var x = (canvas.width - textWidth) / 2;
+                var y = canvas.height / 2;
+
+                // 在Canvas中繪製文本
+                context.fillText(text, x, y);
 
                 // 开始动画
                 startAnimation(canvas);
