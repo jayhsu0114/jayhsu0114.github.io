@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Submit button click handling for canvas animation
                 var textarea = document.getElementById('anonymousContent');
                 var canvas = document.getElementById('contentCanvas');
-                var text = textarea.value;
+                var text = '發送中';
 
                 // 每15個字符插入一個換行符
                 text = text.replace(/(.{15})/g, '$1\n');
