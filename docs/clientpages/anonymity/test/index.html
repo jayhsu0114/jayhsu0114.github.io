@@ -15,8 +15,8 @@
             <textarea id="anonymousContent" name="anonymousContent" required></textarea>
             
             <!-- Canvas 生成在這里 -->
-            <center>
-                <canvas id="contentCanvas" style="display: none;"></canvas>
+             <center>
+            <canvas id="contentCanvas" style="display: none;"></canvas>
             </center>
             
             <p>提交表示您同意<a href="/clientpages/regulations">使用協議</a></p>
@@ -48,7 +48,6 @@
 
             // 顯示canvas，隱藏textarea
             canvas.style.display = 'block';
-            textarea.style.display = 'none';
 
             var context = canvas.getContext('2d');
 
@@ -67,10 +66,10 @@
             }
 
             // 开始动画
-            startAnimation(canvas, textarea);
+            startAnimation(canvas);
         });
 
-        function startAnimation(canvas, textarea) {
+        function startAnimation(canvas) {
             var startTime = null;
             var initialWidth = canvas.width;
             var initialHeight = canvas.height;
@@ -107,18 +106,17 @@
                     requestAnimationFrame(animate);
                 } else {
                     // 持续向上移动直到完全超出螢幕邊界
-                    continueMoveUp(canvas, textarea);
+                    continueMoveUp(canvas);
                 }
             }
 
             requestAnimationFrame(animate);
         }
 
-        function continueMoveUp(canvas, textarea) {
+        function continueMoveUp(canvas) {
             var startTime = null;
             var initialTop = canvas.offsetTop;
             var moveUpDuration = 2000; // 移动持续时间（毫秒）
-            var container = document.querySelector('.container');
 
             function move(timestamp) {
                 if (!startTime) startTime = timestamp;
@@ -132,16 +130,11 @@
 
                 if (easing < 1) {
                     requestAnimationFrame(move);
-                } else {
-                    // 判断 canvas 是否已经移出 container
-                    if (canvas.getBoundingClientRect().bottom < container.getBoundingClientRect().top) {
-                        // 显示 textarea
-                        textarea.style.display = 'block';
-                    }
                 }
             }
 
             requestAnimationFrame(move);
+
         }
     </script>
 </body>
