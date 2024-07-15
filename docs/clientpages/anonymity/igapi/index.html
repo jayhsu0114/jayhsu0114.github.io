@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post to Instagram</title>
+</head>
+<body>
+    <button id="postButton">Post to Instagram</button>
+
+    <script>
+        document.getElementById('postButton').addEventListener('click', async () => {
+            try {
+                let response = await fetch('http://localhost:3000/post-to-instagram', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        imageUrl: 'https://your-image-url.com/image.jpg', // 替換為你的圖片URL
+                        caption: 'This is a caption', // 替換為你的圖片描述
+                        accessToken: 'your-instagram-access-token', // 替換為你的訪問令牌
+                        instagramBusinessAccountId: 'your-instagram-business-account-id' // 替換為你的Instagram業務帳號ID
+                    })
+                });
+                let result = await response.json();
+                console.log(result);
+            } catch (error) {
+                console.error('Error posting to Instagram:', error);
+            }
+        });
+    </script>
+</body>
+</html>
