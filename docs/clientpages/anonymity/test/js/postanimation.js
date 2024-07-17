@@ -159,7 +159,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // 设置 fillarea 的高度
             var fillarea = document.getElementById('fillarea');
             fillarea.style.display = 'block'; // 显示 fillarea
-            var currentHeight = easing * 65; // 最终高度是65px
+            var currentHeight = easing * 35; // 最终高度是65px
             fillarea.style.height = currentHeight + 'px';
 
             // 计算当前Y轴位置
