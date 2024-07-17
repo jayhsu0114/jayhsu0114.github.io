@@ -154,6 +154,8 @@
         const blob = new Blob([response.data], { type: 'image/png' });
         const url = URL.createObjectURL(blob);
 
+        console.log(url)
+
         // 下載圖片
         const a = document.createElement('a');
         a.href = url;
