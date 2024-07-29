@@ -40,12 +40,12 @@
             window.location.href = '/managementpages/authentication/signin'; // 根據實際情況調整登入頁面的路徑
         });
     }
-  </script>
+</script>
 </head>
 <body>
   <div id="management-buttons">
-    <a href="/managementpages/actions/databaseview/zsjh"><a href="https://anoncoultd.com/managementpages/actions/databaseview/zsjh"><button>回資料庫</button></a></a>
-    <a href="/managementpages/actions/anonymitypost/zsjh"><a href="https://anoncoultd.com/managementpages/actions/anonymitypost/zsjh"><button>發布頁面</button></a></a>
+    <a href="https://anoncoultd.com/managementpages/actions/databaseview/zsjh"><button>回資料庫</button></a>
+    <a href="https://anoncoultd.com/managementpages/actions/anonymitypost/zsjh"><button>發布頁面</button></a>
   </div>
   <div id="zsjh-data" class="loading">
     正在加載數據...
@@ -98,18 +98,18 @@
       let html = '<table>';
       data.forEach(function (row, rowIndex) {
         html += '<tr>';
-        const statusExists = row[3] === '通過' || row[4] === '不通過';
+        const numberExists = row[5] !== ""; // 檢查編號欄是否有內容
 
         row.forEach(function (cell, cellIndex) {
           if (rowIndex === 0) {
             html += `<th>${cell}</th>`;
           } else {
             if (cellIndex === 1) {
-              html += `<td class="content-cell"><textarea class="content-textarea" ${statusExists ? 'disabled' : ''}>${cell}</textarea></td>`;
+              html += `<td class="content-cell"><textarea class="content-textarea" ${numberExists ? 'disabled' : ''}>${cell}</textarea></td>`;
             } else if (cellIndex === 3) {
-              html += `<td class="action-cell">${statusExists ? row[3] : `<button class="action-button" onclick="handleButtonClick(${rowIndex}, '通過', this)">通過</button>`}</td>`;
+              html += `<td class="action-cell">${numberExists ? row[3] : `<button class="action-button" onclick="handleButtonClick(${rowIndex}, '通過', this)">通過</button>`}</td>`;
             } else if (cellIndex === 4) {
-              html += `<td class="action-cell">${statusExists ? row[4] : `<button class="action-button" onclick="handleButtonClick(${rowIndex}, '不通過', this)">不通過</button>`}</td>`;
+              html += `<td class="action-cell">${numberExists ? row[4] : `<button class="action-button" onclick="handleButtonClick(${rowIndex}, '不通過', this)">不通過</button>`}</td>`;
             } else if (cellIndex === 5) {
               html += `<td class="number-cell">${cell}</td>`;
             } else {
