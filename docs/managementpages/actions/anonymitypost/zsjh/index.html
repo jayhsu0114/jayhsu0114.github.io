@@ -88,6 +88,20 @@
       })
       .catch(function (error) {
         console.error('Error fetching data:', error); // 打印錯誤
+        if (error.response) {
+          // 伺服器回應了一個非 2xx 狀態碼
+          console.error('Response data:', error.response.data);
+          console.error('Response status:', error.response.status);
+          console.error('Response headers:', error.response.headers);
+        } else if (error.request) {
+          // 請求已發送但沒有收到回應
+          console.error('Request data:', error.request);
+        } else {
+          // 設置請求時發生錯誤
+          console.error('Error message:', error.message);
+        }
+        console.error('Config:', error.config);
+        
         const zsjhDataElement = document.getElementById('zsjh-data');
         zsjhDataElement.textContent = '獲取數據出錯.';
       });
@@ -189,7 +203,19 @@
         }
       } catch (error) {
         console.error('Error:', error);
-        alert('操作失敗');
+        if (error.response) {
+          // 伺服器回應了一個非 2xx 狀態碼
+          console.error('Response data:', error.response.data);
+          console.error('Response status:', error.response.status);
+          console.error('Response headers:', error.response.headers);
+        } else if (error.request) {
+          // 請求已發送但沒有收到回應
+          console.error('Request data:', error.request);
+        } else {
+          // 設置請求時發生錯誤
+          console.error('Error message:', error.message);
+        }
+        console.error('Config:', error.config);
       }
     }
   </script>
