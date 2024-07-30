@@ -40,7 +40,7 @@
             window.location.href = '/managementpages/authentication/signin'; // 根據實際情況調整登入頁面的路徑
         });
     }
-</script>
+  </script>
 </head>
 <body>
   <div id="management-buttons">
@@ -157,34 +157,21 @@
         console.log(url)
 
         // 下載圖片
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = `${inputId}.png`;
-        a.style.display = 'none';
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'zsjh_image.png';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
         URL.revokeObjectURL(url);
 
-        // 發送更新狀態請求
-        const updateResponse = await axios.post(updateStatusUrl, {
-          rowIndex: rowIndex
-        });
+        // 更新 Google Sheets 狀態
+        await axios.post(updateStatusUrl, { rowIndex: rowIndex });
 
-        console.log('Status updated successfully:', updateResponse.data);
-
-        // 更新表格上的發布狀態
-        const row = rows.find(row => row.dataset.originalIndex == rowIndex);
-        if (row) {
-          row.cells[6].innerText = '已發布';
-          const button = row.querySelector('button');
-          if (button) {
-            button.remove(); // 移除按鈕
-          }
-        }
+        alert('圖片生成並下載成功');
       } catch (error) {
-        console.error('Error:', error);
-        alert('操作失敗');
+        console.error('圖片生成或下載失敗:', error);
+        alert('生成圖片失敗');
       }
     }
   </script>
