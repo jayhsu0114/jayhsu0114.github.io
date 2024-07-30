@@ -127,7 +127,7 @@
     async function handleImageButtonClick(rowIndex, inputText, inputId, inputTimestamp) {
       const table = document.querySelector('#zsjh-data table');
       const rows = Array.from(table.rows);
-
+      console.log(rowIndex)
       // 檢查前面的行是否仍有按鈕
       for (let i = 1; i < rowIndex; i++) {
         const row = rows.find(row => row.dataset.originalIndex == i);
@@ -175,6 +175,7 @@
 
         // 更新表格上的發布狀態
         const row = rows.find(row => row.dataset.originalIndex == rowIndex);
+        console.log(row)
         if (row) {
           row.cells[6].innerText = '已發布';
           const button = row.querySelector('button');
