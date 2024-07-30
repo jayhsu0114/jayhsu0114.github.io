@@ -123,6 +123,38 @@
       console.log('隱藏的行索引:', hiddenRows); // 打印隱藏的行索引
       return html;
     }
+  </script>
+
+  <!-- 獨立的更新狀態請求 -->
+  <script>
+    async function updateStatus(rowIndex) {
+      try {
+        const apiBaseUrl = 'https://google-sheets-proxy-mk66ircp2a-uc.a.run.app';
+        const updateStatusUrl = `${apiBaseUrl}/zsjh-update-status`;
+
+        // 發送更新狀態請求
+        const response = await axios.post(updateStatusUrl, {
+          rowIndex: rowIndex
+        });
+
+        console.log('Status updated successfully:', response.data);
+
+        // 更新表格上的發布狀態
+        const table = document.querySelector('#zsjh-data table');
+        const rows = Array.from(table.rows);
+        const row = rows.find(row => row.dataset.originalIndex == rowIndex);
+        if (row) {
+          row.cells[6].innerText = '已發布';
+          const button = row.querySelector('button');
+          if (button) {
+            button.remove(); // 移除按鈕
+          }
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        alert('操作失敗');
+      }
+    }
 
     async function handleImageButtonClick(rowIndex, inputText, inputId, inputTimestamp) {
       const table = document.querySelector('#zsjh-data table');
@@ -140,7 +172,6 @@
       try {
         const apiBaseUrl = 'https://google-sheets-proxy-mk66ircp2a-uc.a.run.app';
         const imageUrl = `${apiBaseUrl}/zsjh-postmaker/get-image`;
-        const updateStatusUrl = `${apiBaseUrl}/zsjh-update-status`;
 
         // 發送圖片生成請求
         const response = await axios.post(imageUrl, {
@@ -167,24 +198,12 @@
         URL.revokeObjectURL(url);
 
         // 發送更新狀態請求
-        const updateResponse = await axios.post(updateStatusUrl, {
-          rowIndex: rowIndex
-        });
+        await updateStatus(rowIndex);
 
-        console.log('Status updated successfully:', updateResponse.data);
-
-        // 更新表格上的發布狀態
-        const row = rows.find(row => row.dataset.originalIndex == rowIndex);
-        if (row) {
-          row.cells[6].innerText = '已發布';
-          const button = row.querySelector('button');
-          if (button) {
-            button.remove(); // 移除按鈕
-          }
-        }
+        alert('圖片生成並下載成功');
       } catch (error) {
-        console.error('Error:', error);
-        alert('操作失敗');
+        console.error('圖片生成或下載失敗:', error);
+        alert('生成圖片失敗');
       }
     }
   </script>
