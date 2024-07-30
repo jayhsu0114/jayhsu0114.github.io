@@ -179,12 +179,12 @@
           row.cells[6].innerText = '已發布';
           const button = row.querySelector('button');
           if (button) {
-            button.style.display = 'none'; // 隱藏按鈕
+            button.remove(); // 移除按鈕
           }
-          row.cells[6].innerText = '已發布'; // 設置儲存格內容為已發布
         }
       } catch (error) {
         console.error('Error:', error);
+        alert('操作失敗');
       }
     }
   </script>
