@@ -85,7 +85,7 @@
             left: 0;
             z-index: 10; /* 确保在最上層 */
             background-color: rgba(112, 167, 221, 1);
-            animation: moveUp 6s linear forwards; /* Adjust the duration here */
+            animation: moveUp 15s linear forwards , ball 1s linear forwards; 
         }
 
         @keyframes moveUp {
@@ -94,6 +94,19 @@
             }
             to {
                 transform: translateY(-100vh); /* Move the canvas off the screen */
+            }
+        }
+
+        @keyframes ball {
+            from {
+                border-radius: 4px;
+                height:100px;
+                width:100%;
+            }
+            to {
+                border-radius: 100px;
+                height:35px;
+                width:35px;
             }
         }
 
