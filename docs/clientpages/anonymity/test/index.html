@@ -85,6 +85,16 @@
             left: 0;
             z-index: 10; /* 确保在最上層 */
             background-color: rgba(112, 167, 221, 1);
+            animation: moveUp 6s linear forwards; /* Adjust the duration here */
+        }
+
+        @keyframes moveUp {
+            from {
+                transform: translateY(0);
+            }
+            to {
+                transform: translateY(-100vh); /* Move the canvas off the screen */
+            }
         }
 
         #fillarea {
