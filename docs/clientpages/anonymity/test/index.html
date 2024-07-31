@@ -84,7 +84,7 @@
             top: 0;
             left: 0;
             z-index: 10; /* 确保在最上層 */
-            background-color: black;
+            background-color: rgba(112, 167, 221, 1);
         }
 
         #fillarea {
@@ -123,7 +123,7 @@
     <div class="container">
         <h1>匿名網頁</h1>
         <form id="zsjhForm">
-            <label for="anonymousContent">匿名內容</label>
+            <label for="anonymousContent">請輸入您的匿名內容</label>
             <div id="fillarea" style="display: none;"></div>
             <textarea id="anonymousContent" name="anonymousContent" required></textarea>
             <div id="fillarea" style="display: none;"></div>
@@ -189,13 +189,21 @@
 
                         // Create and insert the canvas element
                         const canvas = document.createElement('canvas');
-                        canvas.width = textarea.offsetWidth + 4;
+                        canvas.width = textarea.offsetWidth + 5;
                         canvas.height = textarea.offsetHeight;
                         canvas.style.position = 'absolute';
                         canvas.style.top = textarea.offsetTop + 'px';
                         canvas.style.left = textarea.offsetLeft + 'px';
                         canvas.style.zIndex = '10';
-                        canvas.style.backgroundColor = 'black';
+                        canvas.style.backgroundColor = 'rgba(112, 167, 221, 1)';
+
+                        const context = canvas.getContext('2d');
+                        context.fillStyle = '#fefdf7';
+                        context.font = 'bold 35px Arial';
+                        context.textAlign = 'center';
+                        context.textBaseline = 'middle';
+                        context.fillText('發送中', canvas.width / 2, canvas.height / 2);
+
                         textarea.parentNode.insertBefore(canvas, textarea);
                     } else {
                         throw new Error('資料提交失敗');
