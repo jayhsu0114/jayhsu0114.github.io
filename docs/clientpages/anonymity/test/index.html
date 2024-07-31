@@ -77,15 +77,14 @@
 
         canvas {
             height: 100px;
-            border: 1px solid #ccc;
             border-radius: 4px;
             transition: all 2s ease-in-out;
             position: absolute;
             top: 0;
             left: 0;
-            z-index: 10; /* 确保在最上層 */
+            z-index: 2; /* 确保在最上層 */
             background-color: rgba(112, 167, 221, 1);
-            animation: moveUp 15s linear forwards , ball 1s linear forwards; 
+            animation: moveUp 15s linear forwards , ball 1s linear forwards, ct 1s linear forwards; 
         }
 
         @keyframes moveUp {
@@ -107,6 +106,14 @@
                 border-radius: 100px;
                 height:35px;
                 width:35px;
+            }
+        }
+        @keyframes ct {
+            from {
+                left:0;
+            }
+            to {
+                left:44%;
             }
         }
 
@@ -217,7 +224,7 @@
                         canvas.style.position = 'absolute';
                         canvas.style.top = textarea.offsetTop + 'px';
                         canvas.style.left = textarea.offsetLeft + 'px';
-                        canvas.style.zIndex = '10';
+                        canvas.style.zIndex = '2';
                         canvas.style.backgroundColor = 'rgba(112, 167, 221, 1)';
 
                         const context = canvas.getContext('2d');
