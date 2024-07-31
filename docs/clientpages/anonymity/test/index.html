@@ -184,10 +184,13 @@
                         // Clear textarea after successful submission
                         document.getElementById('anonymousContent').value = '';
 
-                        // Create and insert the canvas element
+                        // Log the textarea's offsetWidth
                         const textarea = document.getElementById('anonymousContent');
+                        console.log('Textarea offsetWidth:', textarea.offsetWidth);
+
+                        // Create and insert the canvas element
                         const canvas = document.createElement('canvas');
-                        canvas.width = textarea.offsetWidth;
+                        canvas.width = textarea.offsetWidth ;
                         canvas.height = textarea.offsetHeight;
                         canvas.style.position = 'absolute';
                         canvas.style.top = textarea.offsetTop + 'px';
