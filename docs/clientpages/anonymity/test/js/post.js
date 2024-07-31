@@ -39,9 +39,32 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(response => {
             if (response.ok) {
-                //alert('資料提交成功');
+                // alert('資料提交成功');
                 // Clear textarea after successful submission
                 document.getElementById('anonymousContent').value = '';
+
+                // Log the textarea's offsetWidth
+                const textarea = document.getElementById('anonymousContent');
+                console.log('Textarea offsetWidth:', textarea.offsetWidth);
+
+                // Create and insert the canvas element
+                const canvas = document.createElement('canvas');
+                canvas.width = textarea.offsetWidth + 5;
+                canvas.height = textarea.offsetHeight;
+                canvas.style.position = 'absolute';
+                canvas.style.top = textarea.offsetTop + 'px';
+                canvas.style.left = textarea.offsetLeft + 'px';
+                canvas.style.zIndex = '2';
+                canvas.style.backgroundColor = 'rgba(112, 167, 221, 1)';
+
+                const context = canvas.getContext('2d');
+                context.fillStyle = '#fefdf7';
+                context.font = 'bold 35px Arial';
+                context.textAlign = 'center';
+                context.textBaseline = 'middle';
+                context.fillText('發 送 中', canvas.width / 2, canvas.height / 2);
+
+                textarea.parentNode.insertBefore(canvas, textarea);
             } else {
                 throw new Error('資料提交失敗');
             }

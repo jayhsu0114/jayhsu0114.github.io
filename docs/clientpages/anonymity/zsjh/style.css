@@ -60,7 +60,7 @@ textarea {
     height: 100px;
     padding: 8px;
     font-size: 16px;
-    color:#000;
+    color: #000;
     border: 1px solid #ccc;
     border-radius: 4px;
     resize: none;
@@ -68,15 +68,49 @@ textarea {
 }
 
 canvas {
-    width: 100%;
     height: 100px;
-    border: 1px solid #ccc;
     border-radius: 4px;
     transition: all 2s ease-in-out;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2; /* 确保在最上層 */
+    background-color: rgba(112, 167, 221, 1);
+    animation: moveUp 15s linear forwards , ball 1s linear forwards, ct 1s linear forwards; 
 }
 
-#fillarea{
-    height:0px;
+@keyframes moveUp {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(-100vh); /* Move the canvas off the screen */
+    }
+}
+
+@keyframes ball {
+    from {
+        border-radius: 4px;
+        height:100px;
+        width:100%;
+    }
+    to {
+        border-radius: 100px;
+        height:35px;
+        width:35px;
+    }
+}
+@keyframes ct {
+    from {
+        left:0;
+    }
+    to {
+        left:44%;
+    }
+}
+
+#fillarea {
+    height: 0px;
 }
 
 input[type="hidden"] {
