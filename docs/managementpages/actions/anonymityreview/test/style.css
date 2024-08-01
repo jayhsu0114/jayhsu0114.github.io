@@ -1,16 +1,17 @@
-
-body{
+body {
   background-color: #fff;
-  justify-content: center; 
-  align-items: center;  
   display: flex;
   flex-direction: column;
+  min-height: 100vh; /* 確保 body 至少佔滿整個視口 */
+  margin: 0; /* 清除預設的 margin */
+  justify-content: center; /* 垂直置中 */
 }
 
 #management-buttons {
   display: flex;
   justify-content: center;
-  gap: 20px;
+  padding: 20px;
+  margin-top: auto; /* 將按鈕推至底部 */
 }
 
 #management-buttons a {
@@ -18,112 +19,139 @@ body{
 }
 
 #management-buttons button {
-  padding: 10px 20px;
-  font-size: 15px;
-  cursor: pointer;
-  font-weight: bold;
-  background-color: #f7ddbf;
+  width: 198px;
+  height: 40px;
   border: none;
-  border-radius: 4px;
-  width: 240px;
+  margin: 4px;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: small;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  background-color: #f6ddbf;
 }
 
-
-#container{
-  height:600px;
-  width:400px;
+#container {
+  height: 500px;
+  width: 400px;
   background-color: #fefdf7;
-  margin:auto;
-  margin-top: 20px;
+  margin: auto;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  padding:20px;
-  justify-content: center; 
-  align-items: center;  
-  display: grid;
+  padding:10px;
+  display: flex;
   flex-direction: column;
+  position: relative; /* 增加這一行 */
 }
 
-input{
+input {
   background-color: #fefdf7;
-  width:300px;
+  width: 300px;
   height: 30px;
   text-align: center;
-  font-size:medium;
+  font-size: medium;
   font-weight: bold;
 }
 
-textarea{
-  width:300px;
-  height:200px;
-  resize:none ;
+textarea {
+  width: 300px;
+  height: 200px;
+  resize: none;
   border-radius: 5px;
-
 }
-form{
+
+form {
   justify-content: center; 
   align-items: center;  
   display: flex;
   flex-direction: column;
 }
 
-#data-status{
+#data-status {
   padding: 15px;
   justify-content: center; 
   align-items: center;  
   display: flex;
 }
 
-#data-status button{
+#data-status button {
   width: 148px;
-  height:30px;
+  height: 40px;
   border: none;
   margin: 4px;
   border-radius: 5px;
   font-weight: bold;
-  font-size:small;
+  font-size: small;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
 }
 
-#data-status #pass{
+#data-status #pass {
   background-color: #b7e5f8;
 }
 
-#data-status #fail{
+#data-status #pass:hover {
+  background-color: #70a7dd;
+}
+
+#data-status #fail {
   background-color: #ebafaf;
 }
 
+#data-status #fail:hover {
+  background-color: #de6768;
+}
 
-#edit-options button{
-  width: 148px;
-  height:30px;
+#edit-options {
+  display: flex;
+  justify-content: center; /* 將按鈕置中 */
+}
+
+#edit-options button {
+  width: 198px;
+  height: 40px;
   border: none;
   margin: 4px;
   border-radius: 5px;
   font-weight: bold;
-  font-size:small;
+  font-size: small;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
 }
 
-#edit-end{
-  padding: 15px;
-  
+#edit-options button:hover {
+  background-color: #333;
+  color: #fff;
 }
 
-#edit-end button{
-  width: 300px;
-  height:30px;
+#edit-end {
+  display: flex; /* 設為 flex 容器 */
+  justify-content: center; /* 將按鈕置中 */
+  margin-top: 20px; /* 添加上邊距以保持與其他元素的間距 */
+}
+
+#edit-end button {
+  width: 400px;
+  height: 40px;
   border: none;
   margin: 4px;
   border-radius: 5px;
-  background-color: #f6ddbf;
+  background-color: black;
+  color: white;
   font-weight: bold;
-  font-size:small;
+  font-size: small;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
 }
 
-#managerid{
+#manager {
+  position: absolute; /* 這會把它相對於 #container 定位 */
+  bottom: 20px; /* 距離 #container 底部 20px */
+  right: 20px; /* 距離 #container 右邊 20px */
+}
+
+#managerid {
   border: none;
-  align-self: end;
-  justify-self: end;
+  text-align: right;
+  font-size: 15px;
 }
