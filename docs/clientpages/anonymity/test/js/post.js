@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Clear local storage when the page loads
+    localStorage.clear();
+
     // Function to get cookie value by name
     function getCookie(name) {
         const cookies = document.cookie.split(';');
@@ -17,6 +20,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // Form submission handling
     document.getElementById('zsjhForm').addEventListener('submit', function(event) {
         event.preventDefault();
+
+        // Check local storage count
+        const submitCount = parseInt(localStorage.getItem('submitCount')) || 0;
+        if (submitCount >= 3) {
+            alert('請稍候再試');
+            return;
+        }
 
         // Disable submit button
         const submitButton = document.getElementById('submitButton');
@@ -65,6 +75,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 context.fillText('發 送 中', canvas.width / 2, canvas.height / 2);
 
                 textarea.parentNode.insertBefore(canvas, textarea);
+
+                // Increment local storage count
+                localStorage.setItem('submitCount', submitCount + 1);
             } else {
                 throw new Error('資料提交失敗');
             }
