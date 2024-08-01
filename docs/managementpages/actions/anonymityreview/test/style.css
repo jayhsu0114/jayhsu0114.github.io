@@ -1,0 +1,129 @@
+
+body{
+  background-color: #fff;
+  justify-content: center; 
+  align-items: center;  
+  display: flex;
+  flex-direction: column;
+}
+
+#management-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+#management-buttons a {
+  text-decoration: none;
+}
+
+#management-buttons button {
+  padding: 10px 20px;
+  font-size: 15px;
+  cursor: pointer;
+  font-weight: bold;
+  background-color: #f7ddbf;
+  border: none;
+  border-radius: 4px;
+  width: 240px;
+}
+
+
+#container{
+  height:600px;
+  width:400px;
+  background-color: #fefdf7;
+  margin:auto;
+  margin-top: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding:20px;
+  justify-content: center; 
+  align-items: center;  
+  display: grid;
+  flex-direction: column;
+}
+
+input{
+  background-color: #fefdf7;
+  width:300px;
+  height: 30px;
+  text-align: center;
+  font-size:medium;
+  font-weight: bold;
+}
+
+textarea{
+  width:300px;
+  height:200px;
+  resize:none ;
+  border-radius: 5px;
+
+}
+form{
+  justify-content: center; 
+  align-items: center;  
+  display: flex;
+  flex-direction: column;
+}
+
+#data-status{
+  padding: 15px;
+  justify-content: center; 
+  align-items: center;  
+  display: flex;
+}
+
+#data-status button{
+  width: 148px;
+  height:30px;
+  border: none;
+  margin: 4px;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size:small;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#data-status #pass{
+  background-color: #b7e5f8;
+}
+
+#data-status #fail{
+  background-color: #ebafaf;
+}
+
+
+#edit-options button{
+  width: 148px;
+  height:30px;
+  border: none;
+  margin: 4px;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size:small;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#edit-end{
+  padding: 15px;
+  
+}
+
+#edit-end button{
+  width: 300px;
+  height:30px;
+  border: none;
+  margin: 4px;
+  border-radius: 5px;
+  background-color: #f6ddbf;
+  font-weight: bold;
+  font-size:small;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#managerid{
+  border: none;
+  align-self: end;
+  justify-self: end;
+}

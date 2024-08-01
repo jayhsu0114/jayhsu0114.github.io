@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('userId').value = getCookie('userId');
 
     // Form submission handling
-    document.getElementById('zsjhForm').addEventListener('submit', function(event) {
+    document.getElementById('testForm').addEventListener('submit', function(event) {
         event.preventDefault();
 
         // Check local storage count
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const formData = {
             userId: getCookie('userId'),
             anonymousContent: document.getElementById('anonymousContent').value,
-            formId: 'zsjh'
+            formId: 'test'
         };
 
         // Post data to backend URL

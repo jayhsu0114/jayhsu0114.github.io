@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TEST審核頁面</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    sessionStorage.clear();
+  </script>
+</head>
+<body>
+<div id="editarea">
+  <div id="management-buttons">
+    <a href="https://anoncoultd.com/managementpages/actions/databaseview/test"><button type="button">回資料庫</button></a>
+    <a href="https://anoncoultd.com/managementpages/actions/anonymitypost/test"><button type="button">發布頁面</button></a>
+  </div>
+
+  <div id="container">
+    <form>
+      <div id="anonymity-data">
+        <input type="text" id="timestamp" name="timestamp" value="2024/1/30 下午 10:06:21">
+        <br><br>
+        <textarea></textarea>
+        <br><br>
+        <input type="text" id="userid" name="userid" value="user_2sukewo4x" READONLY>
+        <br><br>
+        <input type="text" id="status" name="status" value="oibghowr" readonly>
+      </div>
+
+      <div id="data-status">
+        <button type="button" id="pass">通過</button>
+        <button type="button" id="fail">不通過</button>
+      </div>
+      <div id="manager">
+        <input type="text" id="managerid" value="ZSJH000" readonly>
+      </div>
+    </form>
+  </div>
+  <div id="edit-options">
+    <button type="button" id="prev" value="prev">上一則</button>
+    <button type="button" id="next" value="next">下一則</button>
+  </div>
+  <div id="edit-end">
+    <button type="button">儲存</button>
+  </div>
+</div>
+</body>
+</html>
