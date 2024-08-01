@@ -117,7 +117,7 @@ input[type="hidden"] {
     display: none;
 }
 
-button[type="submit"], button[type="button"] {
+button[type="submit"] {
     display: block;
     width: 100%;
     padding: 10px;
@@ -129,11 +129,34 @@ button[type="submit"], button[type="button"] {
     cursor: pointer;
 }
 
-button[type="submit"]:hover, button[type="button"]:hover {
+button[type="submit"]:hover {
     background-color: #de6768;
 }
 
 button:disabled {
     background-color: #ccc;
     cursor: not-allowed;
+}
+
+button[type="button"]{
+    display: inline-block;
+    width: 30%;
+    padding: 7px;
+    margin-top: 20px;
+    margin-left: 10px;
+    background-color: #b7e5f8;
+    color: black;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+button[type="button"]:hover{
+    background-color: #70a7dd;
+
+}
+
+p{
+    font-size: 15px;
 }
