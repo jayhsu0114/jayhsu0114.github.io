@@ -19,7 +19,7 @@ body {
 }
 
 #management-buttons button {
-  width: 198px;
+  width: 173px;
   height: 40px;
   border: none;
   margin: 4px;
@@ -33,7 +33,7 @@ body {
 
 #container {
   height: 500px;
-  width: 400px;
+  width:350px;
   background-color: #fefdf7;
   margin: auto;
   border-radius: 10px;
@@ -109,7 +109,7 @@ form {
 }
 
 #edit-options button {
-  width: 198px;
+  width: 173px;
   height: 40px;
   border: none;
   margin: 4px;
@@ -132,7 +132,7 @@ form {
 }
 
 #edit-end button {
-  width: 400px;
+  width: 350px;
   height: 40px;
   border: none;
   margin: 4px;
