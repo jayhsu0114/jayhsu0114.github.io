@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="style.css">
   <script>
     sessionStorage.clear();
+    localStorage.setItem('username', 'ZSJH000');
 
     let data = []; // Array to store fetched data
     let currentIndex = 0; // Index to track current data set
@@ -35,10 +36,20 @@
       if (index >= 0 && index < data.length) {
         const dataSet = data[index];
         if (dataSet.length >= 4) {
+          const statusValue = dataSet[3];
           document.getElementById('timestamp').value = dataSet[0];
           document.querySelector('textarea').value = dataSet[1];
           document.getElementById('userid').value = dataSet[2];
-          document.getElementById('status').value = dataSet[3];
+          document.getElementById('status').value = statusValue;
+
+          // Check sessionStorage for matching keys
+          if (sessionStorage.getItem(`${statusValue}/timestamp`)) {
+            document.getElementById('timestamp').value = sessionStorage.getItem(`${statusValue}/timestamp`);
+            document.querySelector('textarea').value = sessionStorage.getItem(`${statusValue}/textarea`);
+            document.getElementById('userid').value = sessionStorage.getItem(`${statusValue}/userid`);
+            document.getElementById('status').value = sessionStorage.getItem(`${statusValue}/status`);
+            document.getElementById('manager-status').value = sessionStorage.getItem(`${statusValue}/manager-status`);
+          }
         } else {
           console.error('Insufficient data in the current set.');
         }
@@ -79,12 +90,21 @@
         if (currentIndex > 0) {
           currentIndex--;
           populateFields(currentIndex);
+          clearManagerStatusIfNotInSessionStorage();
         }
       } else if (direction === 'next') {
         if (currentIndex < data.length - 1) {
           currentIndex++;
           populateFields(currentIndex);
+          clearManagerStatusIfNotInSessionStorage();
         }
+      }
+    }
+
+    function clearManagerStatusIfNotInSessionStorage() {
+      const statusValue = document.getElementById('status').value;
+      if (!sessionStorage.getItem(`${statusValue}/timestamp`)) {
+        document.getElementById('manager-status').value = ''; // Clear manager-status if no matching data is found
       }
     }
 
@@ -130,7 +150,7 @@
       </div>
       <div id="manager">
         <input type="text" id="manager-status" readonly>
-        <input type="text" id="managerid" value="ZSJH000" readonly>
+        <input type="text" id="managerid"  readonly>
       </div>
     </form>
   </div>
