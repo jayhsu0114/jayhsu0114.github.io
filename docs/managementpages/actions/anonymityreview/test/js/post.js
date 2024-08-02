@@ -16,9 +16,9 @@ document.addEventListener('DOMContentLoaded', function() {
   
       // 將 JSON 數據轉換為字符串
       const jsonString = JSON.stringify(jsonData);
-      
-      // 在控制台打印 JSON 物件（可選）
-      console.log('JSON Data:', jsonData); 
+  
+      // 顯示載入動畫
+      document.getElementById('loading').classList.remove('hidden');
   
       // 發送 POST 請求
       fetch('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/test-anonymity-update', {
@@ -29,6 +29,9 @@ document.addEventListener('DOMContentLoaded', function() {
         body: jsonString
       })
       .then(response => {
+        // 隱藏載入動畫
+        document.getElementById('loading').classList.add('hidden');
+        
         // 僅檢查狀態碼
         if (response.ok) {
           console.log('Request was successful with status code:', response.status);
@@ -40,7 +43,11 @@ document.addEventListener('DOMContentLoaded', function() {
           console.error('Request failed with status code:', response.status);
         }
       })
-      .catch(error => console.error('Error:', error));
+      .catch(error => {
+        console.error('Error:', error);
+        // 隱藏載入動畫
+        document.getElementById('loading').classList.add('hidden');
+      });
     });
   });
   
