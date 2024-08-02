@@ -58,7 +58,15 @@ textarea {
   height: 200px;
   resize: none;
   border-radius: 5px;
+  font-size: 15px;
+  display: grid;
+  place-items: center; /* 垂直和水平置中 */
+  text-align: center; /* 水平置中文字 */
+  padding: 0; /* 去掉內邊距 */
+  box-sizing: border-box; /* 包含邊框和內邊距在內的寬高計算 */
 }
+
+
 
 form {
   justify-content: center;
@@ -84,6 +92,10 @@ form {
   font-size: small;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   cursor: pointer;
+}
+
+#status{
+  border: none;
 }
 
 #data-status #pass {
@@ -166,4 +178,8 @@ form {
   text-align: left;
   font-size: 15px;
   width: 100px;
+}
+#edit-end button.completed {
+  background-color: red;
+  color: white;
 }
