@@ -29,10 +29,11 @@ body {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   background-color: #f6ddbf;
+  color:black;
 }
 
 #container {
-  height: 600px;
+  height: 400px;
   width:350px;
   background-color: #fefdf7;
   margin: auto;
@@ -93,6 +94,7 @@ form {
   font-size: small;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   cursor: pointer;
+  color:black;
 }
 
 #status{
@@ -131,6 +133,7 @@ form {
   font-size: small;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   cursor: pointer;
+  color:black;
 }
 
 #edit-options button:hover {
@@ -156,6 +159,7 @@ form {
   font-size: small;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   cursor: pointer;
+  color:black;
 }
 
 #manager {
