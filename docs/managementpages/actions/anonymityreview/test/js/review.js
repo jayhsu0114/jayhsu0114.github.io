@@ -106,9 +106,14 @@ function handleNavigation(direction) {
     }
   } else if (direction === 'next') {
     if (currentIndex < data.length - 1) {
-      currentIndex++;
-      populateFields(currentIndex);
-      clearManagerStatusIfNotInSessionStorage();
+      const managerStatus = document.getElementById('manager-status').value;
+      if (managerStatus === '') {
+        showAlert('請先將這則匿名審核完再繼續');
+      } else {
+        currentIndex++;
+        populateFields(currentIndex);
+        clearManagerStatusIfNotInSessionStorage();
+      }
     }
   }
 }
@@ -118,6 +123,10 @@ function clearManagerStatusIfNotInSessionStorage() {
   if (!sessionStorage.getItem(`${statusValue}/timestamp`)) {
     document.getElementById('manager-status').value = ''; // Clear manager-status if no matching data is found
   }
+}
+
+function showAlert(message) {
+  alert(message); // You can replace this with a more sophisticated notification system if needed
 }
 
 window.onload = function() {
