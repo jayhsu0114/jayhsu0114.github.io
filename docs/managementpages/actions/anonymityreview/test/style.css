@@ -2,16 +2,16 @@ body {
   background-color: #fff;
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* 確保 body 至少佔滿整個視口 */
-  margin: 0; /* 清除預設的 margin */
-  justify-content: center; /* 垂直置中 */
+  min-height: 100vh;
+  margin: 0;
+  justify-content: center;
 }
 
 #management-buttons {
   display: flex;
   justify-content: center;
   padding: 20px;
-  margin-top: auto; /* 將按鈕推至底部 */
+  margin-top: auto;
 }
 
 #management-buttons a {
@@ -38,10 +38,10 @@ body {
   margin: auto;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  padding:10px;
+  padding: 10px;
   display: flex;
   flex-direction: column;
-  position: relative; /* 增加這一行 */
+  position: relative;
 }
 
 input {
@@ -61,16 +61,16 @@ textarea {
 }
 
 form {
-  justify-content: center; 
-  align-items: center;  
+  justify-content: center;
+  align-items: center;
   display: flex;
   flex-direction: column;
 }
 
 #data-status {
   padding: 15px;
-  justify-content: center; 
-  align-items: center;  
+  justify-content: center;
+  align-items: center;
   display: flex;
 }
 
@@ -104,7 +104,8 @@ form {
 
 #edit-options {
   display: flex;
-  justify-content: center; /* 將按鈕置中 */
+  justify-content: center;
+  margin-top: 10px;
 }
 
 #edit-options button {
@@ -125,9 +126,9 @@ form {
 }
 
 #edit-end {
-  display: flex; /* 設為 flex 容器 */
-  justify-content: center; /* 將按鈕置中 */
-  margin-top: 20px; /* 添加上邊距以保持與其他元素的間距 */
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
 }
 
 #edit-end button {
@@ -145,13 +146,24 @@ form {
 }
 
 #manager {
-  position: absolute; /* 這會把它相對於 #container 定位 */
-  bottom: 20px; /* 距離 #container 底部 20px */
-  right: 20px; /* 距離 #container 右邊 20px */
+  position: absolute;
+  bottom: 10px; /* 距離 #container 底部 10px */
+  left: 10px; /* 距離 #container 左邊 10px */
+  display: flex;
+  justify-content: space-between;
+  width: 95%;
 }
 
 #managerid {
   border: none;
   text-align: right;
   font-size: 15px;
+  width: 100px;
+}
+
+#manager-status {
+  border: none;
+  text-align: left;
+  font-size: 15px;
+  width: 100px;
 }
