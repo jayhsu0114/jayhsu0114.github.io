@@ -3,12 +3,19 @@ document.addEventListener('DOMContentLoaded', function() {
       const storageKeys = Object.keys(sessionStorage);
       const jsonData = {};
   
-      // 過濾掉不需要的鍵
+      // 過濾掉不需要的鍵並按順序插入
       storageKeys.forEach(key => {
         if (key.includes('/')) {
           const [prefix, subKey] = key.split('/');
           if (!jsonData[prefix]) {
-            jsonData[prefix] = {};
+            jsonData[prefix] = {
+              "status": "",
+              "timestamp": "",
+              "textarea": "",
+              "userid": "",
+              "manager-status": "",
+              "managerid": ""
+            };
           }
           jsonData[prefix][subKey] = sessionStorage.getItem(key);
         }
@@ -16,6 +23,8 @@ document.addEventListener('DOMContentLoaded', function() {
   
       // 將 JSON 數據轉換為字符串
       const jsonString = JSON.stringify(jsonData);
+
+      console.log(jsonString)
   
       // 顯示載入動畫
       document.getElementById('loading').classList.remove('hidden');
