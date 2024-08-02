@@ -48,13 +48,43 @@
     }
 
     function handleButtonClick(status) {
+      const timestamp = document.getElementById('timestamp').value;
+      const textareaValue = document.querySelector('textarea').value;
+      const userid = document.getElementById('userid').value;
+      const statusValue = document.getElementById('status').value;
+
+      // Update manager-status
       document.getElementById('manager-status').value = status;
+
+      // Save data to sessionStorage
+      sessionStorage.setItem(`${statusValue}/timestamp`, timestamp);
+      sessionStorage.setItem(`${statusValue}/textarea`, textareaValue);
+      sessionStorage.setItem(`${statusValue}/userid`, userid);
+      sessionStorage.setItem(`${statusValue}/status`, statusValue);
+      sessionStorage.setItem(`${statusValue}/manager-status`, status);
+
+      // Move to next record and clear manager-status
       currentIndex++;
       if (currentIndex < data.length) {
         populateFields(currentIndex);
+        document.getElementById('manager-status').value = ''; // Clear manager-status after moving to the next record
       } else {
         console.error('No more data available.');
         document.querySelector('#edit-end button').classList.add('completed'); // Add the class to change button style
+      }
+    }
+
+    function handleNavigation(direction) {
+      if (direction === 'prev') {
+        if (currentIndex > 0) {
+          currentIndex--;
+          populateFields(currentIndex);
+        }
+      } else if (direction === 'next') {
+        if (currentIndex < data.length - 1) {
+          currentIndex++;
+          populateFields(currentIndex);
+        }
       }
     }
 
@@ -68,6 +98,15 @@
 
       document.getElementById('fail').addEventListener('click', function() {
         handleButtonClick('不通過');
+      });
+
+      // Add event listeners for navigation buttons
+      document.getElementById('prev').addEventListener('click', function() {
+        handleNavigation('prev');
+      });
+
+      document.getElementById('next').addEventListener('click', function() {
+        handleNavigation('next');
       });
     };
   </script>
