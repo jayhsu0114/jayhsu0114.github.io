@@ -48,6 +48,7 @@
             document.querySelector('textarea').value = sessionStorage.getItem(`${statusValue}/textarea`);
             document.getElementById('userid').value = sessionStorage.getItem(`${statusValue}/userid`);
             document.getElementById('status').value = sessionStorage.getItem(`${statusValue}/status`);
+            document.getElementById('managerid').value = sessionStorage.getItem(`${statusValue}/managerid`);
             document.getElementById('manager-status').value = sessionStorage.getItem(`${statusValue}/manager-status`);
           }
         } else {
@@ -62,7 +63,9 @@
       const timestamp = document.getElementById('timestamp').value;
       const textareaValue = document.querySelector('textarea').value;
       const userid = document.getElementById('userid').value;
+      const managerid = document.getElementById('managerid').value;
       const statusValue = document.getElementById('status').value;
+      
 
       // Update manager-status
       document.getElementById('manager-status').value = status;
@@ -72,6 +75,7 @@
       sessionStorage.setItem(`${statusValue}/textarea`, textareaValue);
       sessionStorage.setItem(`${statusValue}/userid`, userid);
       sessionStorage.setItem(`${statusValue}/status`, statusValue);
+      sessionStorage.setItem(`${statusValue}/managerid`, managerid);
       sessionStorage.setItem(`${statusValue}/manager-status`, status);
 
       // Move to next record and clear manager-status
@@ -110,6 +114,10 @@
 
     window.onload = function() {
       fetchData();
+
+      // Load username from localStorage and set it to managerid
+      const username = localStorage.getItem('username');
+      document.getElementById('managerid').value = username;
 
       // Add event listeners to the buttons
       document.getElementById('pass').addEventListener('click', function() {
@@ -150,7 +158,7 @@
       </div>
       <div id="manager">
         <input type="text" id="manager-status" readonly>
-        <input type="text" id="managerid"  readonly>
+        <input type="text" id="managerid" readonly>
       </div>
     </form>
   </div>
