@@ -13,8 +13,13 @@ document.getElementById('reply').addEventListener('click', function() {
     replyButton.type = 'button';
     replyButton.innerText = '確定';
 
-    this.parentNode.insertBefore(replyInput, this);
-    this.parentNode.insertBefore(replyButton, replyInput.nextSibling);
+    // 創建一個 div 容器來包含 replyInput 和 replyButton
+    const replyContainer = document.createElement('div');
+    replyContainer.className = 'reply-container';
+    replyContainer.appendChild(replyInput);
+    replyContainer.appendChild(replyButton);
+
+    this.parentNode.insertBefore(replyContainer, this);
 
     // 按下按鈕後清空 textarea，將 input 內文字填入 textarea
     replyButton.addEventListener('click', function() {
