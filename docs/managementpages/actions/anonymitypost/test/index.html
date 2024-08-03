@@ -80,13 +80,17 @@ input {
   border: 2px solid #ccc;
   background-color: #000;
   margin: 5px auto; /* 水平置中 */
+  scroll-snap-type: x mandatory; /* 啟用滾動捕捉 */
+  scroll-behavior: smooth; /* 平滑滾動 */
 }
 
 #image-square img {
-  width: auto; /* 自動寬度 */
+  width: 300px; /* 設置圖片寬度與容器寬度相同 */
   height: 100%; /* 高度填滿容器 */
   object-fit: contain; /* 保持圖片的寬高比 */
+  scroll-snap-align: center; /* 捕捉點設置為中心 */
 }
+
 
 
 #post-options {
