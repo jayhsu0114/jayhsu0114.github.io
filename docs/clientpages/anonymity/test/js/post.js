@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Clear local storage when the page loads
-    localStorage.clear();
+    sessionStorage.clear();
 
     // Function to get cookie value by name
     function getCookie(name) {
@@ -17,16 +17,30 @@ document.addEventListener('DOMContentLoaded', function() {
     // Fill userId input with cookie value
     document.getElementById('userId').value = getCookie('userId');
 
+    // Function to generate a random alphanumeric string of length 6
+    function generateRandomString(length) {
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        let result = '';
+        for (let i = 0; i < length; i++) {
+            result += characters.charAt(Math.floor(Math.random() * characters.length));
+        }
+        return result;
+    }
+
     // Form submission handling
-    document.getElementById('testForm').addEventListener('submit', function(event) {
+    document.getElementById('zsjhForm').addEventListener('submit', function(event) {
         event.preventDefault();
 
         // Check local storage count
-        const submitCount = parseInt(localStorage.getItem('submitCount')) || 0;
+        const submitCount = parseInt(sessionStorage.getItem('submitCount')) || 0;
         if (submitCount >= 3) {
             alert('請稍候再試');
             return;
         }
+
+        // Generate random code
+        const randomCode = 'ZSJH_' + generateRandomString(6);
+        sessionStorage.setItem('regretCode', randomCode);
 
         // Disable submit button
         const submitButton = document.getElementById('submitButton');
@@ -36,7 +50,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const formData = {
             userId: getCookie('userId'),
             anonymousContent: document.getElementById('anonymousContent').value,
-            formId: 'test'
+            formId: 'zsjh',
+            randomCode: randomCode // Include the random code in the data to be sent
         };
 
         // Post data to backend URL
@@ -77,7 +92,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 textarea.parentNode.insertBefore(canvas, textarea);
 
                 // Increment local storage count
-                localStorage.setItem('submitCount', submitCount + 1);
+                sessionStorage.setItem('submitCount', submitCount + 1);
             } else {
                 throw new Error('資料提交失敗');
             }
