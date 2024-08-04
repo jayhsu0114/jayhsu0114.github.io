@@ -103,6 +103,11 @@ async function fetchData() {
         updatePostGroup();
     } catch (error) {
         console.error('Fetch error:', error);
+        // 设置输入框为“无待发布匿名”
+        const postGroupInput = document.getElementById('post-group');
+        if (postGroupInput) {
+            postGroupInput.value = '無待發布匿名';
+        }
     }
 }
 
@@ -194,6 +199,11 @@ function updatePostGroup() {
         }
     } else {
         console.warn('Post key not found in sessionStorage');
+        // 设置输入框为“无待发布匿名”
+        const postGroupInput = document.getElementById('post-group');
+        if (postGroupInput) {
+            postGroupInput.value = '無待發布匿名';
+        }
     }
 }
 
