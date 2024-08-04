@@ -92,7 +92,7 @@ function updatePostNow(amount) {
     updatePostGroup();
 }
 
-// 新增功能：更新 post-group 的 input 值
+// 新增功能：更新 post-group 的 input 值並重繪 canvas
 function updatePostGroup() {
     // 取得 post-now 的值
     const postNow = sessionStorage.getItem('post-now');
@@ -103,7 +103,6 @@ function updatePostGroup() {
     // 查詢 sessionStorage 中是否有符合的鍵
     const postCode = sessionStorage.getItem(postKey);
     if (postCode) {
-
         // 處理 postCode，去掉 "ZSJH" 的開頭，將剩下的數字 +9，再加回 "ZSJH"
         let postCodeEnd;
         if (postCode.startsWith('ZSJH')) {
@@ -120,41 +119,18 @@ function updatePostGroup() {
         } else {
             console.warn('post-group input element not found');
         }
+
+        // 重繪 canvas
+        drawCanvas(postCode);
     } else {
         console.warn('Post key not found in sessionStorage');
     }
 }
 
-// 當頁面加載完成後調用 fetchData 函數
-window.onload = fetchData;
-
-// 當頁面載入完成後，設定按鈕的點擊事件處理器
-window.addEventListener('DOMContentLoaded', (event) => {
-    // 取得按鈕元素
-    const nextButton = document.getElementById('next');
-    const prevButton = document.getElementById('prev');
-
-    // 設定按鈕的點擊事件處理器
-    if (nextButton) {
-        nextButton.addEventListener('click', () => {
-            updatePostNow(1);
-        });
-    }
-
-    if (prevButton) {
-        prevButton.addEventListener('click', () => {
-            updatePostNow(-1);
-        });
-    }
-
-    // Canvas 初始化代碼
+// 重繪 canvas 的函數
+function drawCanvas(postCode) {
     const canvas = document.getElementById('canvas1');
     const ctx = canvas.getContext('2d');
-
-    // 取得當前 post-now 對應的 postCode
-    const postNow = sessionStorage.getItem('post-now');
-    const postKey = `post-${postNow}`;
-    const postCode = sessionStorage.getItem(postKey);
 
     // 從 sessionStorage 中獲取對應的內容
     const text = sessionStorage.getItem(`${postCode}/content`) || "匿名內容";
@@ -212,4 +188,33 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
         return lines;
     }
+}
+
+// 當頁面加載完成後調用 fetchData 函數
+window.onload = fetchData;
+
+// 當頁面載入完成後，設定按鈕的點擊事件處理器
+window.addEventListener('DOMContentLoaded', (event) => {
+    // 取得按鈕元素
+    const nextButton = document.getElementById('next');
+    const prevButton = document.getElementById('prev');
+
+    // 設定按鈕的點擊事件處理器
+    if (nextButton) {
+        nextButton.addEventListener('click', () => {
+            updatePostNow(1);
+        });
+    }
+
+    if (prevButton) {
+        prevButton.addEventListener('click', () => {
+            updatePostNow(-1);
+        });
+    }
+
+    // 初始重繪 canvas
+    const postNow = sessionStorage.getItem('post-now');
+    const postKey = `post-${postNow}`;
+    const postCode = sessionStorage.getItem(postKey);
+    drawCanvas(postCode);
 });
