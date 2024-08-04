@@ -13,7 +13,6 @@ async function fetchData() {
         sessionStorage.setItem('post-now', '1');
 
         // 儲存每個 post 的資料
-        let postIndex = 1; // 用來標記 post- 的序號
         const postKeys = [];
 
         // 遍歷每個鍵值對
@@ -120,16 +119,19 @@ function updatePostGroup() {
             console.warn('post-group input element not found');
         }
 
-        // 重繪 canvas
-        drawCanvas(postCode);
+        // 重繪所有 canvas
+        for (let i = 1; i <= 10; i++) {
+            const currentPostCode = 'ZSJH' + (parseInt(postCode.substring(4), 10) + (i - 1));
+            drawCanvas(currentPostCode, `canvas${i}`);
+        }
     } else {
         console.warn('Post key not found in sessionStorage');
     }
 }
 
 // 重繪 canvas 的函數
-function drawCanvas(postCode) {
-    const canvas = document.getElementById('canvas1');
+function drawCanvas(postCode, canvasId) {
+    const canvas = document.getElementById(canvasId);
     const ctx = canvas.getContext('2d');
 
     // 從 sessionStorage 中獲取對應的內容
@@ -171,7 +173,7 @@ function drawCanvas(postCode) {
         ctx.fillStyle = '#F4A261';
         ctx.fillText(timestamp, canvas.width / 2, 955);
 
-        console.log('Image generated successfully');
+        console.log(`Image generated successfully for ${canvasId}`);
     };
 
     function wrapText(text, maxCharactersPerLine) {
@@ -212,9 +214,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
         });
     }
 
-    // 初始重繪 canvas
+    // 初始重繪所有 canvas
     const postNow = sessionStorage.getItem('post-now');
     const postKey = `post-${postNow}`;
     const postCode = sessionStorage.getItem(postKey);
-    drawCanvas(postCode);
+    for (let i = 1; i <= 10; i++) {
+        const currentPostCode = 'ZSJH' + (parseInt(postCode.substring(4), 10) + (i - 1));
+        drawCanvas(currentPostCode, `canvas${i}`);
+    }
 });
