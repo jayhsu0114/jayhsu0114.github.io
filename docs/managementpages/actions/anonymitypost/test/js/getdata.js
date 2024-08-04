@@ -19,6 +19,38 @@ document.getElementById('download').addEventListener('click', function() {
     // Generate the zip file and trigger the download
     zip.generateAsync({type: 'blob'}).then(function(content) {
         saveAs(content, 'canvases.zip');
+
+        // 發送 POST 請求
+        const postNow = sessionStorage.getItem('post-now');
+        const postKey = `post-${postNow}`;
+        const postCode = sessionStorage.getItem(postKey);
+        
+        if (postCode) {
+            fetch('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/test-postmaker', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    postCode: postCode,
+                    status: '已發布'
+                })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('POST request successful:', data);
+            })
+            .catch(error => {
+                console.error('POST request error:', error);
+            });
+        } else {
+            console.warn('Post code not found in sessionStorage');
+        }
     });
 });
 
@@ -263,6 +295,30 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                 // 在 session storage 中以 ${postCode}/status 為鍵，已發布為值
                 sessionStorage.setItem(`${postCode}/status`, '已發布');
+                
+                // 發送 POST 請求
+                fetch('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/test-postmaker', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        postCode: postCode,
+                        status: '已發布'
+                    })
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('POST request successful:', data);
+                })
+                .catch(error => {
+                    console.error('POST request error:', error);
+                });
             } else {
                 console.warn('Post code not found in sessionStorage');
             }
