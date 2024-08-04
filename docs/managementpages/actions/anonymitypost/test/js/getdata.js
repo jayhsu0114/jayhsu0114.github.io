@@ -151,9 +151,15 @@ window.addEventListener('DOMContentLoaded', (event) => {
     const canvas = document.getElementById('canvas1');
     const ctx = canvas.getContext('2d');
 
-    const text = "示例文本內容，用於在canvas上顯示的文本，可以換行。";
-    const id = "123456";
-    const timestamp = "2024-08-04 12:34:56";
+    // 取得當前 post-now 對應的 postCode
+    const postNow = sessionStorage.getItem('post-now');
+    const postKey = `post-${postNow}`;
+    const postCode = sessionStorage.getItem(postKey);
+
+    // 從 sessionStorage 中獲取對應的內容
+    const text = sessionStorage.getItem(`${postCode}/content`) || "匿名內容";
+    const id = sessionStorage.getItem(`${postCode}/postCode`) || "ZSJH00000";
+    const timestamp = sessionStorage.getItem(`${postCode}/timestamp`) || "2000-01-01 12:00:00";
 
     const templateImage = new Image();
     templateImage.src = 'template.png';
