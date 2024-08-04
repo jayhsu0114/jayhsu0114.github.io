@@ -5,7 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TEST發文頁面</title>
   <link rel="stylesheet" href="style.css">
-  <script src="./js/getdata.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+  
+  
 </head>
 <body>
   <div id="container">
@@ -23,7 +26,7 @@
         <canvas id="canvas9" width="1133" height="1133"></canvas>
         <canvas id="canvas10" width="1133" height="1133"></canvas>
       </div>
-      <input id="post-status" value="已下載" readonly>
+      <input id="post-status"  readonly>
     </div>
 
     <div id="post-options">
@@ -32,7 +35,9 @@
     </div>
     
     <div id="post-download">
-      <button type="button">下載圖片</button>
+      <button id="download" type="button">下載圖片</button>
+      <!--<script src="./js/download.js"></script>-->
+      <script src="./js/getdata.js"></script>
     </div>
   </div>
 

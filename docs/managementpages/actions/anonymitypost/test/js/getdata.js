@@ -1,3 +1,28 @@
+// 下載按鈕事件處理器
+document.getElementById('download').addEventListener('click', function() {
+    var zip = new JSZip();
+
+    for (let i = 1; i <= 10; i++) {
+        let canvas = document.getElementById(`canvas${i}`);
+        if (canvas) {
+            // Convert canvas to data URL
+            let dataURL = canvas.toDataURL('image/png');
+
+            // Remove the prefix from the data URL
+            let data = dataURL.replace(/^data:image\/(png|jpg);base64,/, '');
+
+            // Add file to zip
+            zip.file(`canvas${i}.png`, data, {base64: true});
+        }
+    }
+
+    // Generate the zip file and trigger the download
+    zip.generateAsync({type: 'blob'}).then(function(content) {
+        saveAs(content, 'canvases.zip');
+    });
+});
+
+// 獲取數據並更新 sessionStorage
 async function fetchData() {
     try {
         const response = await fetch('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/test-update-status');
@@ -145,12 +170,9 @@ function drawCanvas(postCode, canvasId) {
     templateImage.onload = function() {
         ctx.drawImage(templateImage, 0, 0, canvas.width, canvas.height);
 
-        // Log the size of template.png
-        console.log('Template image size:', templateImage.width, 'x', templateImage.height);
-
         const inputFlow = '系統負載率：100%';
 
-        ctx.font = '30px Noto Serif TC';
+        ctx.font = 'bold 30px Noto Serif TC';
         ctx.fillStyle = '#000';
         ctx.textAlign = 'center';
 
@@ -163,7 +185,7 @@ function drawCanvas(postCode, canvasId) {
         const startY = (canvas.height - textHeight) / 2;
 
         lines.forEach((line, index) => {
-            ctx.fillText(line, textX, 30 + startY + (index * lineHeight));
+            ctx.fillText(line, textX, 40 + startY + (index * lineHeight));
         });
 
         ctx.fillStyle = '#EBAFAF';
@@ -200,6 +222,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     // 取得按鈕元素
     const nextButton = document.getElementById('next');
     const prevButton = document.getElementById('prev');
+    const downloadButton = document.getElementById('download');
 
     // 設定按鈕的點擊事件處理器
     if (nextButton) {
@@ -211,6 +234,27 @@ window.addEventListener('DOMContentLoaded', (event) => {
     if (prevButton) {
         prevButton.addEventListener('click', () => {
             updatePostNow(-1);
+        });
+    }
+
+    if (downloadButton) {
+        downloadButton.addEventListener('click', () => {
+            const postNow = sessionStorage.getItem('post-now');
+            const postKey = `post-${postNow}`;
+            const postCode = sessionStorage.getItem(postKey);
+            
+            if (postCode) {
+                // 將「已下載」放入 id="post-status" 的 input 中
+                const postStatusInput = document.getElementById('post-status');
+                if (postStatusInput) {
+                    postStatusInput.value = '已下載';
+                }
+
+                // 在 session storage 中以 ${postCode}/status 為鍵，已發布為值
+                sessionStorage.setItem(`${postCode}/status`, '已發布');
+            } else {
+                console.warn('Post code not found in sessionStorage');
+            }
         });
     }
 
