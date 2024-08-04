@@ -149,6 +149,17 @@ function updatePostGroup() {
             const currentPostCode = 'ZSJH' + (parseInt(postCode.substring(4), 10) + (i - 1));
             drawCanvas(currentPostCode, `canvas${i}`);
         }
+
+        // 查詢 postCode 的狀態並更新 id="post-status" 的 input
+        const postStatus = sessionStorage.getItem(`${postCode}/status`);
+        const postStatusInput = document.getElementById('post-status');
+        if (postStatusInput) {
+            if (postStatus) {
+                postStatusInput.value = postStatus;
+            } else {
+                postStatusInput.value = '';
+            }
+        }
     } else {
         console.warn('Post key not found in sessionStorage');
     }
