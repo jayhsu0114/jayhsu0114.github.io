@@ -4,173 +4,41 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TEST發文頁面</title>
-  <!--<link rel="stylesheet" href="style.css">-->
-  <style>
-    body {
-  background-color: #fff;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  margin: 0;
-  justify-content: center;
-}
-
-#management-buttons {
-  display: flex;
-  justify-content: center;
-  padding: 20px;
-  margin-top: auto;
-}
-
-#management-buttons a {
-  text-decoration: none;
-}
-
-#management-buttons button {
-  width: 173px;
-  height: 40px;
-  border: none;
-  margin: 4px;
-  border-radius: 5px;
-  font-weight: bold;
-  font-size: small;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
-  background-color: #f6ddbf;
-  color: black;
-}
-
-#container {
-  height: 600px;
-  width: 350px;
-  background-color: #fefdf7;
-  margin: auto;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-#post-preview {
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* 水平置中 */
-}
-
-input {
-  background-color: #fefdf7;
-  width: 300px;
-  height: 30px;
-  text-align: center;
-  font-size: medium;
-  font-weight: bold;
-  border: 1px solid #333;
-  border-radius: 4px;
-  margin: 5px;
-}
-
-#image-square {
-  width: 300px; /* 設置固定寬度 */
-  height: 300px; /* 設置固定高度 */
-  display: flex; /* 使圖片排列在一行 */
-  overflow-x: auto; /* 當圖片超出容器寬度時顯示水平滾動條 */
-  overflow-y: hidden; /* 隱藏垂直滾動條 */
-  border: 2px solid #ccc;
-  background-color: #000;
-  margin: 5px auto; /* 水平置中 */
-  scroll-snap-type: x mandatory; /* 啟用滾動捕捉 */
-  scroll-behavior: smooth; /* 平滑滾動 */
-}
-
-#image-square img {
-  width: 300px; /* 設置圖片寬度與容器寬度相同 */
-  height: 100%; /* 高度填滿容器 */
-  object-fit: contain; /* 保持圖片的寬高比 */
-  scroll-snap-align: center; /* 捕捉點設置為中心 */
-}
-
-
-
-#post-options {
-  display: flex;
-  justify-content: center;
-  margin-top: 10px;
-}
-
-#post-options button {
-  width: 148px;
-  height: 40px;
-  border: none;
-  margin: 4px;
-  border-radius: 5px;
-  font-weight: bold;
-  font-size: small;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
-  color: black;
-}
-
-#post-options button:hover {
-  background-color: #333;
-  color: #fff;
-}
-
-#post-download {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-}
-
-#post-download button {
-  width: 300px;
-  height: 40px;
-  border: none;
-  margin: 4px;
-  border-radius: 5px;
-  background-color: black;
-  color: white;
-  font-weight: bold;
-  font-size: small;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
-}
-
-  </style>
-  <script src="./js/soter.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <script src="./js/getdata.js"></script>
 </head>
 <body>
   <div id="container">
     <div id="post-preview">
-      <input id="post-group" value="ZSJH11111 ~ ZSJH11120" readonly>
+      <input id="post-group" value="載入中" readonly>
       <div id="image-square">
-        <img src="./template.png">
-        <img src="./template.png">
-        <img src="./template.png">
-        <img src="./template.png">
+        <canvas id="canvas1" width="1133" height="1133"></canvas>
+        <canvas id="canvas2" width="1133" height="1133"></canvas>
+        <canvas id="canvas3" width="1133" height="1133"></canvas>
+        <canvas id="canvas4" width="1133" height="1133"></canvas>
+        <canvas id="canvas5" width="1133" height="1133"></canvas>
+        <canvas id="canvas6" width="1133" height="1133"></canvas>
+        <canvas id="canvas7" width="1133" height="1133"></canvas>
+        <canvas id="canvas8" width="1133" height="1133"></canvas>
+        <canvas id="canvas9" width="1133" height="1133"></canvas>
+        <canvas id="canvas10" width="1133" height="1133"></canvas>
       </div>
-      <input id="post-code" value="ZSJH11111" readonly>
       <input id="post-status" value="已下載" readonly>
     </div>
 
     <div id="post-options">
-      <button type="button" id="prev" value="prev">上十則</button>
-      <button type="button" id="next" value="next">下十則</button>
+      <button type="button" id="prev">上十則</button>
+      <button type="button" id="next">下十則</button>
     </div>
     
     <div id="post-download">
       <button type="button">下載圖片</button>
     </div>
-
   </div>
 
-
-  
-
   <div id="management-buttons">
-    <a href="https://anoncoultd.com/managementpages/actions/databaseview/test"><button type="button">回資料庫</button></a>
-    <a href="https://anoncoultd.com/managementpages/actions/anonymitypost/test"><button type="button">發布頁面</button></a>
+    <a href="/managementpages/actions/databaseview/test"><button type="button">回資料庫</button></a>
+    <a href="ㄥmanagementpages/actions/anonymitypost/test"><button type="button">發布頁面</button></a>
   </div>
 </body>
 </html>
