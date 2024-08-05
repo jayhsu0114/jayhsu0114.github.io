@@ -235,7 +235,7 @@ function drawCanvas(postCode, canvasId) {
         ctx.textAlign = 'center';
 
         const textX = canvas.width / 2;
-        const lineHeight = 60;
+        const lineHeight = 40;
         const maxCharactersPerLine = 20;
 
         const lines = wrapText(text, maxCharactersPerLine);
