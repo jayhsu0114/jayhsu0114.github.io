@@ -1,92 +1,127 @@
-/* style.css */
+body {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  justify-content: center;
+}
 
-/* 按钮样式 */
-.action-button {
-    padding: 5px 10px;
-    cursor: pointer;
-    background-color: #ebafaf;
-    color: #fefdf7;
-    border: none;
-    border-radius: 4px;
-    font-size: 14px;
-  }
-  
-  .action-button:hover {
-    background-color: #0056b3;
-  }
-  
-  /* 表格样式 */
-  table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  th, td {
-    padding: 8px;
-    text-align: left;
-    border: 1px solid #ddd;
-  }
-  
-  th {
-    background-color: #f2f2f2;
-  }
-  
-  /* 文本域样式 */
-  .content-textarea {
-    width: 100%;
-    height: auto;
-    min-height: 36px; /* 设置最小高度以确保视觉上的一致性 */
-    resize: none;
-    box-sizing: border-box;
-    overflow: auto;
-    border: none;
-    background-color: inherit;
-    font-family: inherit;
-    font-size: inherit;
-  }
-  
-  /* 加载动画样式 */
-  .loader {
-    border: 4px solid #f3f3f3;
-    border-radius: 50%;
-    border-top: 4px solid #3498db;
-    width: 30px;
-    height: 30px;
-    animation: spin 1s linear infinite;
-    margin: 0 auto;
-  }
-  
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
-  
-  /* 脉冲加载效果 */
-  .pulse-loader {
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    background-color: #3498db;
-    animation: pulse 1s ease-out infinite;
-  }
-  
-  @keyframes pulse {
-    0% { transform: scale(0.8); }
-    50% { transform: scale(1.2); }
-    100% { transform: scale(0.8); }
-  }
-  .image-button {
-    display: inline-block;
-    padding: 5px 10px;
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    cursor: pointer;
-    text-decoration: none;
-    text-align: center;
-    border-radius: 4px;
-  }
-  #imageContainer {
-    display: none;
-  }
+#management-buttons {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  margin-top: auto;
+}
+
+#management-buttons a {
+  text-decoration: none;
+}
+
+#management-buttons button {
+  width: 173px;
+  height: 40px;
+  border: none;
+  margin: 4px;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: small;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  background-color: #f6ddbf;
+  color: black;
+}
+
+#container {
+  height: 600px;
+  width: 350px;
+  background-color: #fefdf7;
+  margin: auto;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#post-preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+input {
+  background-color: #fefdf7;
+  width: 300px;
+  height: 30px;
+  text-align: center;
+  font-size: medium;
+  font-weight: bold;
+  border: 1px solid #333;
+  border-radius: 4px;
+  margin: 5px;
+}
+
+#image-square {
+  width: 300px;
+  height: 300px;
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  border: 2px solid #ccc;
+  background-color: #000;
+  margin: 5px auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+}
+
+#image-square canvas {
+  width: 300px;
+  height: 300px;
+  scroll-snap-align: center;
+}
+
+#post-options {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+#post-options button {
+  width: 148px;
+  height: 40px;
+  border: none;
+  margin: 4px;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: small;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  color: black;
+}
+
+#post-options button:hover {
+  background-color: #333;
+  color: #fff;
+}
+
+#post-download {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+#post-download button {
+  width: 300px;
+  height: 40px;
+  border: none;
+  margin: 4px;
+  border-radius: 5px;
+  background-color: black;
+  color: white;
+  font-weight: bold;
+  font-size: small;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}

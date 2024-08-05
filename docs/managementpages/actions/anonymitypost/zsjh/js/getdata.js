@@ -26,7 +26,7 @@ document.getElementById('download').addEventListener('click', function() {
         const postCode = sessionStorage.getItem(postKey);
         
         if (postCode) {
-            fetch('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/test-postmaker', {
+            fetch('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/zsjh-postmaker', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -57,7 +57,7 @@ document.getElementById('download').addEventListener('click', function() {
 // 獲取數據並更新 sessionStorage
 async function fetchData() {
     try {
-        const response = await fetch('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/test-update-status');
+        const response = await fetch('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/zsjh-update-status');
         if (!response.ok) {
             throw new Error('Network response was not ok ' + response.statusText);
         }
@@ -307,7 +307,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 sessionStorage.setItem(`${postCode}/status`, '已發布');
                 
                 // 發送 POST 請求
-                fetch('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/test-postmaker', {
+                fetch('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/zsjh-postmaker', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
