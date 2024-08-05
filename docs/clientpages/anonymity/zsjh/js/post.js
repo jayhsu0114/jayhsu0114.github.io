@@ -74,6 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const regretCodeButton = document.createElement('button');
                 regretCodeButton.type = "button";
                 regretCodeButton.id = "regretCodeButton";
+                regretCodeButton.style.color = "black";
 
                 // 創建顯示按鈕
                 const showButton = document.createElement('button');
@@ -88,6 +89,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 showButton.style.zIndex = "2";
                 showButton.style.borderRadius = "4px";
                 showButton.style.marginLeft = '5px';
+                showButton.style.color = 'black';
 
                 // 創建一個隱藏的 input 元素
                 const hiddenInput = document.createElement('input');
