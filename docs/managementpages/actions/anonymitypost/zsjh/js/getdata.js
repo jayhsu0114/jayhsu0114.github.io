@@ -12,13 +12,17 @@ document.getElementById('download').addEventListener('click', function() {
             let data = dataURL.replace(/^data:image\/(png|jpg);base64,/, '');
 
             // Add file to zip
-            zip.file(`canvas${i}.png`, data, {base64: true});
+            zip.file(`Post${i}.png`, data, {base64: true});
         }
     }
 
     // Generate the zip file and trigger the download
     zip.generateAsync({type: 'blob'}).then(function(content) {
-        saveAs(content, 'canvases.zip');
+        // Get the value from the input field with id="post-group"
+        const postGroupValue = document.getElementById('post-group').value || 'canvases';
+
+        // Use the value as the filename
+        saveAs(content, `${postGroupValue}.zip`);
 
         // 發送 POST 請求
         const postNow = sessionStorage.getItem('post-now');
@@ -53,6 +57,7 @@ document.getElementById('download').addEventListener('click', function() {
         }
     });
 });
+
 
 // 獲取數據並更新 sessionStorage
 async function fetchData() {
