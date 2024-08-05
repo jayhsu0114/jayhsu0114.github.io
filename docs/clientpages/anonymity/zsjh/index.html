@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>中山匿名網頁</title>
     <link rel="stylesheet" href="style.css">
-    <script src="./js/instagramchecker.js"></script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2383721687553257" crossorigin="anonymous"></script>
 </head>
 <body>
-    <div class="container">
+    <div class="container" id="container">
         <h1>中山匿名</h1>
         <form id="zsjhForm">
-            <label for="anonymousContent">請輸入您的匿名內容</label>
+            <button type="button" id="reply">我要回覆 ZSJH _ _ _ _ _</button>
+            <label for="anonymousContent">請輸入匿名內容或後悔代碼</label>
             <div id="fillarea" style="display: none;"></div>
             <textarea id="anonymousContent" name="anonymousContent" required></textarea>
             <div id="fillarea" style="display: none;"></div>
@@ -22,9 +22,11 @@
             <button type="submit" id="submitButton">提交</button>
         </form>
     </div>
+
     <script src="https://cdn.jsdelivr.net/npm/@fingerprintjs/fingerprintjs@3.3.1/dist/fp.min.js"></script>
     <script src="./js/Angelia.js"></script>
     <script src="./js/bubble.js"></script>
     <script src="./js/post.js"></script>
+    <script src="./js/reply.js"></script>
 </body>
 </html>

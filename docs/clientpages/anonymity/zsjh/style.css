@@ -17,6 +17,7 @@ body {
     text-align: center; /* 水平居中内容 */
     position: relative;
     overflow: hidden;
+    flex-direction: column;
 }
 
 /* Circle styles */
@@ -138,7 +139,7 @@ button:disabled {
     cursor: not-allowed;
 }
 
-button[type="button"]{
+#userregulation{
     display: inline-block;
     width: 30%;
     padding: 7px;
@@ -152,11 +153,81 @@ button[type="button"]{
     font-size: 12px;
 }
 
-button[type="button"]:hover{
+#userregulation:hover{
     background-color: #70a7dd;
 
 }
 
 p{
     font-size: 15px;
+}
+
+#reply{
+    width: 100%;
+    margin-bottom: 10px;
+    height: 30px;
+    border-radius: 4px;
+    color: black;
+    border: none;
+    background-color: #b7e5f8;
+}
+
+#reply:hover{
+    background-color: #70a7dd;
+}
+
+.reply-container {
+    display: flex;
+    align-items: center; /* 垂直居中 */
+    justify-content: center;
+    gap: 5px; /* 添加間距 */
+    margin:0px ;
+}
+
+#reply_input{
+    width: 70%;
+    margin-bottom: 9px;
+    height: 28px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    padding: 5px;
+}
+
+#reply_button{
+    width: 20%;
+    margin-bottom: 10px;
+    margin-left: 5px;
+    height: 30px;
+    border-radius: 4px;
+    background-color: #b7e5f8;
+    color: black;
+    border: none;
+    
+}
+
+#regretCodeButton{
+    position: relative; /* 确保在球之上 */
+    z-index: 1; /* 确保在球之上 */
+    width: 0px;
+    height: 30px;
+    border-radius: 4px;
+    border: none;
+    animation: length 1s linear forwards;
+}
+
+#regretCodeButton:hover{
+    background-color: #333;
+    color: #fff;
+}
+
+@keyframes length{
+    from{
+        width: 0px;
+    }
+
+    to{
+        width: 110px;
+    }
+
 }
