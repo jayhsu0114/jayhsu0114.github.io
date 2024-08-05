@@ -64,45 +64,45 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(response => response.text()) // Change to response.text() to get raw response
         .then(text => {
-            if (text === 'Data added successfully') 
-            
-            { // Check for the specific response text
-                // alert('資料提交成功');
+            let canvasColor, canvasText;
+
+            if (text === 'Data added successfully') {
+                canvasColor = 'rgba(112, 167, 221, 1)';
+                canvasText = '發 送 中';
                 // Clear textarea after successful submission
                 document.getElementById('anonymousContent').value = '';
-
-                // Log the textarea's offsetWidth
-                const textarea = document.getElementById('anonymousContent');
-                console.log('Textarea offsetWidth:', textarea.offsetWidth);
-
-                // Create and insert the canvas element
-                const canvas = document.createElement('canvas');
-                canvas.width = textarea.offsetWidth + 5;
-                canvas.height = textarea.offsetHeight;
-                canvas.style.position = 'absolute';
-                canvas.style.top = textarea.offsetTop + 'px';
-                canvas.style.left = textarea.offsetLeft + 'px';
-                canvas.style.zIndex = '2';
-                canvas.style.backgroundColor = 'rgba(112, 167, 221, 1)';
-
-                const context = canvas.getContext('2d');
-                context.fillStyle = '#fefdf7';
-                context.font = 'bold 35px Arial';
-                context.textAlign = 'center';
-                context.textBaseline = 'middle';
-                context.fillText('發 送 中', canvas.width / 2, canvas.height / 2);
-
-                textarea.parentNode.insertBefore(canvas, textarea);
-
-                // Increment local storage count
-                sessionStorage.setItem('submitCount', submitCount + 1);
-            } 
-            
-            else 
-            
-            {
+            } else if (text === 'Data deleted successfully') {
+                canvasColor = '#de6768';
+                canvasText = '刪 除 中';
+            } else {
                 throw new Error('資料提交失敗');
             }
+
+            // Log the textarea's offsetWidth
+            const textarea = document.getElementById('anonymousContent');
+            console.log('Textarea offsetWidth:', textarea.offsetWidth);
+
+            // Create and insert the canvas element
+            const canvas = document.createElement('canvas');
+            canvas.width = textarea.offsetWidth + 5;
+            canvas.height = textarea.offsetHeight;
+            canvas.style.position = 'absolute';
+            canvas.style.top = textarea.offsetTop + 'px';
+            canvas.style.left = textarea.offsetLeft + 'px';
+            canvas.style.zIndex = '2';
+            canvas.style.backgroundColor = canvasColor;
+
+            const context = canvas.getContext('2d');
+            context.fillStyle = '#fefdf7';
+            context.font = 'bold 35px Arial';
+            context.textAlign = 'center';
+            context.textBaseline = 'middle';
+            context.fillText(canvasText, canvas.width / 2, canvas.height / 2);
+
+            textarea.parentNode.insertBefore(canvas, textarea);
+
+            // Increment local storage count
+            sessionStorage.setItem('submitCount', submitCount + 1);
         })
         .catch(error => {
             console.error('Error submitting form data:', error);
