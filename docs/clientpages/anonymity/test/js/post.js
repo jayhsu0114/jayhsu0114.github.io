@@ -50,20 +50,23 @@ document.addEventListener('DOMContentLoaded', function() {
         const formData = {
             userId: getCookie('userId'),
             anonymousContent: document.getElementById('anonymousContent').value,
-            formId: 'zsjh',
+            formId: 'test',
             randomCode: randomCode // Include the random code in the data to be sent
         };
 
         // Post data to backend URL
-        fetch('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/Mercury', {
+        fetch('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app//gettestanonymity', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(formData)
         })
-        .then(response => {
-            if (response.ok) {
+        .then(response => response.text()) // Change to response.text() to get raw response
+        .then(text => {
+            if (text === 'Data added successfully') 
+            
+            { // Check for the specific response text
                 // alert('資料提交成功');
                 // Clear textarea after successful submission
                 document.getElementById('anonymousContent').value = '';
@@ -93,7 +96,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 // Increment local storage count
                 sessionStorage.setItem('submitCount', submitCount + 1);
-            } else {
+            } 
+            
+            else 
+            
+            {
                 throw new Error('資料提交失敗');
             }
         })
