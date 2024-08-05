@@ -21,7 +21,7 @@ function fillNoData() {
 // Function to fetch data and populate the fields
 async function fetchData() {
   try {
-    const response = await fetch('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/test-sheet-data');
+    const response = await fetch('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/zsjh-sheet-data');
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
