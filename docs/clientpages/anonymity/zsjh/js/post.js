@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             if (text === 'Data added successfully') {
                 canvasColor = 'rgba(112, 167, 221, 1)';
-                canvasText = '發 送 中';
+                canvasText = '傳 送 中';
 
                 // 創建新的按鈕元素
                 const regretCodeButton = document.createElement('button');
