@@ -1,7 +1,7 @@
 // 下載按鈕事件處理器
 document.getElementById('download').addEventListener('click', function() {
     var zip = new JSZip();
-
+    
     for (let i = 1; i <= 10; i++) {
         let canvas = document.getElementById(`canvas${i}`);
         if (canvas) {
@@ -18,13 +18,15 @@ document.getElementById('download').addEventListener('click', function() {
 
     // Generate the zip file and trigger the download
     zip.generateAsync({type: 'blob'}).then(function(content) {
-        saveAs(content, `${postGroupValue}.zip`);
-
-        // 發送 POST 請求
+        // Retrieve postGroupValue from sessionStorage or set a default value
         const postNow = sessionStorage.getItem('post-now');
         const postKey = `post-${postNow}`;
         const postCode = sessionStorage.getItem(postKey);
-        
+        const postGroupValue = postCode || 'default-group-value'; // Provide a default value if postCode is not available
+
+        saveAs(content, `${postGroupValue}.zip`);
+
+        // 發送 POST 請求
         if (postCode) {
             fetch('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/test-postmaker', {
                 method: 'POST',
@@ -153,8 +155,19 @@ function updatePostNow(amount) {
     updatePostGroup();
 }
 
+// 鎖定按鈕
+function setDownloadButtonState(enabled) {
+    const downloadButton = document.getElementById('download');
+    if (downloadButton) {
+        downloadButton.disabled = !enabled;
+    }
+}
+
 // 新增功能：更新 post-group 的 input 值並重繪 canvas
 function updatePostGroup() {
+    // 鎖定下載按鈕
+    setDownloadButtonState(false);
+
     // 取得 post-now 的值
     const postNow = sessionStorage.getItem('post-now');
 
@@ -182,9 +195,17 @@ function updatePostGroup() {
         }
 
         // 重繪所有 canvas
+        let canvasesDrawn = 0; // 計數器，用於追踪已繪製的 canvas 數量
         for (let i = 1; i <= 10; i++) {
             const currentPostCode = 'ZSJH' + (parseInt(postCode.substring(4), 10) + (i - 1));
-            drawCanvas(currentPostCode, `canvas${i}`);
+            drawCanvas(currentPostCode, `canvas${i}`, () => {
+                canvasesDrawn++;
+                if (canvasesDrawn === 10) {
+                    //alert('All canvases have been drawn!');
+                    // 解鎖下載按鈕
+                    setDownloadButtonState(true);
+                }
+            });
         }
 
         // 查詢 postCode 的狀態並更新 id="post-status" 的 input
@@ -208,7 +229,7 @@ function updatePostGroup() {
 }
 
 // 重繪 canvas 的函數
-function drawCanvas(postCode, canvasId) {
+function drawCanvas(postCode, canvasId, callback) { // 新增 callback 參數
     const canvas = document.getElementById(canvasId);
     const ctx = canvas.getContext('2d');
 
@@ -249,6 +270,9 @@ function drawCanvas(postCode, canvasId) {
         ctx.fillText(timestamp, canvas.width / 2, 955);
 
         console.log(`Image generated successfully for ${canvasId}`);
+
+        // 调用回调函数
+        if (callback) callback();
     };
 
     function wrapText(text, maxCharactersPerLine) {
