@@ -118,10 +118,14 @@ input {
   border: none;
   margin: 4px;
   border-radius: 5px;
-  background-color: black;
+  background-color: red;
   color: white;
   font-weight: bold;
   font-size: small;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   cursor: pointer;
+}
+
+#download:disabled{
+  background-color: black;
 }
