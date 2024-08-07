@@ -1,5 +1,4 @@
 sessionStorage.clear();
-localStorage.setItem('username', 'ZSJH000');
 
 let data = []; // Array to store fetched data
 let currentIndex = 0; // Index to track current data set
