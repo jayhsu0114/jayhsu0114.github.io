@@ -3,10 +3,12 @@ sessionStorage.clear();
 let data = []; // Array to store fetched data
 let currentIndex = 0; // Index to track current data set
 
-// Function to disable all buttons
+// Function to disable all buttons except the one with ID 'href'
 function disableButtons() {
   document.querySelectorAll('button').forEach(button => {
-    button.disabled = true;
+    if (button.id !== 'href') { // Skip the button with ID 'href'
+      button.disabled = true;
+    }
   });
 }
 
