@@ -96,7 +96,7 @@ async function fetchData() {
                     });
                 }
             }
-        }
+        }      
 
         // 將 post- 開頭的鍵值存儲到 sessionStorage
         postKeys.sort().forEach((key, index) => {
