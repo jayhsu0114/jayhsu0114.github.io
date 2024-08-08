@@ -1,5 +1,5 @@
 function createRandomCircles() {
-    const colors = ['#70a7dd', '#de6768'];
+    const colors = ['#45b6d9', '#5cc17b'];
     const container = document.querySelector('body');
     const circles = [];
     const circleSize = 40; // 圆球的直径

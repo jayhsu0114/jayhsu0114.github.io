@@ -102,19 +102,19 @@ form {
 }
 
 #data-status #pass {
-  background-color: #b7e5f8;
+  background-color: #8fd3e8;
 }
 
 #data-status #pass:hover {
-  background-color: #70a7dd;
+  background-color: #45b6d9;
 }
 
 #data-status #fail {
-  background-color: #ebafaf;
+  background-color: #9ddaaf;
 }
 
 #data-status #fail:hover {
-  background-color: #de6768;
+  background-color: #5cc17b;
 }
 
 #edit-options {

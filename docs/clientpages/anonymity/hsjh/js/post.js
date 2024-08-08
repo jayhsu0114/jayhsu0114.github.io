@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
             let canvasColor, canvasText;
 
             if (text === 'Data added successfully') {
-                canvasColor = 'rgba(112, 167, 221, 1)';
+                canvasColor = '#45b6d9';
                 canvasText = '傳 送 中';
 
                 // 創建新的按鈕元素
@@ -151,7 +151,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         });
                 });
             } else if (text === 'Data deleted successfully') {
-                canvasColor = '#de6768';
+                canvasColor = '#5cc17b';
                 canvasText = '刪 除 中';
             } else {
                 throw new Error('資料提交失敗');
