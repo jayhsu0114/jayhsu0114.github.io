@@ -1,79 +1,232 @@
-/* style.css */
+body {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  justify-content: center;
+}
 
-/* 按钮样式 */
-.action-button {
-    padding: 5px 10px;
-    cursor: pointer;
-    background-color: #ebafaf;
-    color: #fefdf7;
-    border: none;
-    border-radius: 4px;
-    font-size: 14px;
+#management-buttons {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  margin-top: auto;
+}
+
+#management-buttons a {
+  text-decoration: none;
+}
+
+#management-buttons button {
+  width: 173px;
+  height: 40px;
+  border: none;
+  margin: 4px;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: small;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  background-color: #f6ddbf;
+  color:black;
+}
+
+#container {
+  height: 400px;
+  width:350px;
+  background-color: #fefdf7;
+  margin: auto;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+input {
+  background-color: #fefdf7;
+  width: 300px;
+  height: 30px;
+  text-align: center;
+  font-size: medium;
+  font-weight: bold;
+}
+
+textarea {
+  width: 100%;
+  height: 100px;
+  resize: none;
+  border-radius: 5px;
+  font-size: 15px;
+  display: grid;
+  place-items: center; /* 垂直和水平置中 */
+  text-align: center; /* 水平置中文字 */
+  padding: 0; /* 去掉內邊距 */
+  box-sizing: border-box; /* 包含邊框和內邊距在內的寬高計算 */
+  white-space: pre-wrap; /* 保留换行符并自动换行 */
+}
+
+
+
+form {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+#data-status {
+  padding: 5px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+#data-status button {
+  width: 148px;
+  height: 40px;
+  border: none;
+  margin: 4px;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: small;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  color:black;
+}
+
+#status{
+  border: none;
+}
+
+#data-status #pass {
+  background-color: #b7e5f8;
+}
+
+#data-status #pass:hover {
+  background-color: #70a7dd;
+}
+
+#data-status #fail {
+  background-color: #ebafaf;
+}
+
+#data-status #fail:hover {
+  background-color: #de6768;
+}
+
+#edit-options {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+#edit-options button {
+  width: 173px;
+  height: 40px;
+  border: none;
+  margin: 4px;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: small;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  color:black;
+}
+
+#edit-options button:hover {
+  background-color: #333;
+  color: #fff;
+}
+
+#edit-end {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+#edit-end button {
+  width: 350px;
+  height: 40px;
+  border: none;
+  margin: 4px;
+  border-radius: 5px;
+  background-color: black;
+  color: white;
+  font-weight: bold;
+  font-size: small;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+#manager {
+  position: absolute;
+  bottom: 10px; /* 距離 #container 底部 10px */
+  left: 10px; /* 距離 #container 左邊 10px */
+  display: flex;
+  justify-content: space-between;
+  width: 95%;
+}
+
+#manager button{
+  background-color: #333;
+}
+
+#managerid {
+  border: none;
+  text-align: right;
+  font-size: 15px;
+  width: 100px;
+  background-color: transparent;
+}
+
+#manager-status {
+  border: none;
+  text-align: left;
+  font-size: 15px;
+  width: 100px;
+  background-color: transparent;
+}
+#edit-end button.completed {
+  background-color: red;
+  color: white;
+}
+
+/* 載入動畫樣式 */
+#loading {
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* 載入動畫的圓圈 */
+#loading::before {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left-color: #333;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* 旋轉動畫 */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
   }
-  
-  .action-button:hover {
-    background-color: #0056b3;
-  }
-  
-  /* 表格样式 */
-  table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  th, td {
-    padding: 8px;
-    text-align: left;
-    border: 1px solid #ddd;
-  }
-  
-  th {
-    background-color: #f2f2f2;
-  }
-  
-  /* 文本域样式 */
-  .content-textarea {
-    width: 100%;
-    height: auto;
-    min-height: 36px; /* 设置最小高度以确保视觉上的一致性 */
-    resize: none;
-    box-sizing: border-box;
-    overflow: auto;
-    border: none;
-    background-color: inherit;
-    font-family: inherit;
-    font-size: inherit;
-  }
-  
-  /* 加载动画样式 */
-  .loader {
-    border: 4px solid #f3f3f3;
-    border-radius: 50%;
-    border-top: 4px solid #3498db;
-    width: 30px;
-    height: 30px;
-    animation: spin 1s linear infinite;
-    margin: 0 auto;
-  }
-  
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
-  
-  /* 脉冲加载效果 */
-  .pulse-loader {
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    background-color: #3498db;
-    animation: pulse 1s ease-out infinite;
-  }
-  
-  @keyframes pulse {
-    0% { transform: scale(0.8); }
-    50% { transform: scale(1.2); }
-    100% { transform: scale(0.8); }
-  }
-  
+}
+
+/* 隱藏動畫 */
+.hidden {
+  display: none;
+}

@@ -4,195 +4,50 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>HSJH審核頁面</title>
-  <link rel="stylesheet" href="style.css"> <!-- 引入外部 CSS 文件 -->
-  <script>
-    // 檢查 localStorage 中是否有 token
-    const token = localStorage.getItem('token');
-    
-    if (!token) {
-        // 如果沒有 token，重定向到登入頁面
-        console.log('No token found. Redirecting to login page...');
-        window.location.href = '/managementpages/authentication/signin'; // 根據實際情況調整登入頁面的路徑
-    } else {
-        // 如果有 token，將 token 放入 Authorization header 中
-        console.log('Token found. Verifying token...');
-        fetch('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/soter', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-            }
-        })
-        .then(response => {
-            if (response.ok) {
-                // 如果 token 驗證成功，可以繼續訪問此頁面的數據
-                console.log('Token validated successfully');
-            } else {
-                // 如果 token 驗證失敗，重定向到登入頁面
-                console.log('Token validation failed. Redirecting to login page...');
-                window.location.href = '/managementpages/authentication/signin'; // 根據實際情況調整登入頁面的路徑
-            }
-        })
-        .catch(error => {
-            console.error('Error validating token:', error);
-            // 如果驗證過程中出現錯誤，重定向到登入頁面
-            console.log('Error during token validation. Redirecting to login page...');
-            window.location.href = '/managementpages/authentication/signin'; // 根據實際情況調整登入頁面的路徑
-        });
-    }
-</script>
+  <link rel="stylesheet" href="style.css">
+  <script src="./js/soter.js"></script>
 </head>
 <body>
+  <div id="container">
+    <form>
+      <div id="anonymity-data">
+        <input type="text" id="timestamp" name="timestamp">
+        <br><br>
+        <textarea></textarea>
+        <br><br>
+        <input type="text" id="userid" name="userid" READONLY>
+        <br><br>
+        <input type="text" id="status" name="status" readonly>
+      </div>
+
+      <div id="data-status">
+        <button type="button" id="pass">通過</button>
+        <button type="button" id="fail">不通過</button>
+      </div>
+      <div id="manager">
+        <input type="text" id="manager-status" readonly>
+        <input type="text" id="managerid" readonly>
+      </div>
+    </form>
+  </div>
+
+  <div id="edit-options">
+    <button type="button" id="prev" value="prev">上一則</button>
+    <button type="button" id="next" value="next">下一則</button>
+  </div>
+  
+  <div id="edit-end">
+    <button type="button">完成審核</button>
+    <div id="loading" class="hidden">載入中...</div>
+  </div>
+  
+
   <div id="management-buttons">
-    <button>回資料庫</button>
-    <button>發布頁面</button>
+    <a href="https://anoncoultd.com/managementpages/actions/databaseview/hsjh"><button type="button" id="href">回資料庫</button></a>
+    <a href="https://anoncoultd.com//managementpages/actions/anonymitypost/hsjh"><button type="button" id="href">發布頁面</button></a>
   </div>
 
-  <div id="hsjh-data" class="loading">
-    正在加載數據...
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script>
-    axios.get('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/hsjh-sheet-data')
-      .then(function (response) {
-        const data = response.data;
-        const hsjhDataElement = document.getElementById('hsjh-data');
-
-        if (data && data.length > 0) {
-          data.forEach(function (row) {
-            while (row.length < 7) {
-              row.push("");
-            }
-          });
-
-          const tableHtml = generateTableHtml(data);
-          hsjhDataElement.innerHTML = tableHtml;
-
-          // 找到第六欄中最後一個數字是1的儲存格在哪一列
-          let targetRowIndex = -1;
-          for (let i = 0; i < data.length; i++) {
-          const cellValue = data[i][5]; // 第六欄
-          if (typeof cellValue === 'string' && cellValue.trim().endsWith('1')) {
-          targetRowIndex = i;
-          }
-          }
-
-          // 隱藏符合條件的行之前的所有行，但顯示第一行
-          if (targetRowIndex !== -1) {
-          const table = hsjhDataElement.querySelector('table');
-          const rowsToHide = Array.from(table.querySelectorAll('tr')).slice(1, targetRowIndex); // 從第二行開始
-          rowsToHide.forEach(row => row.style.display = 'none');
-          }
-
-        } else {
-          hsjhDataElement.textContent = '找不到數據.';
-        }
-      })
-      .catch(function (error) {
-        console.error('Error fetching data:', error);
-        const hsjhDataElement = document.getElementById('hsjh-data');
-        hsjhDataElement.textContent = '獲取數據出錯.';
-      });
-
-    function generateTableHtml(data) {
-      let html = '<table>';
-      data.forEach(function (row, rowIndex) {
-        html += '<tr>';
-        const statusExists = row[3] === '通過' || row[4] === '不通過';
-
-        row.forEach(function (cell, cellIndex) {
-          if (rowIndex === 0) {
-            html += `<th>${cell}</th>`;
-          } else {
-            if (cellIndex === 1) {
-              html += `<td class="content-cell"><textarea class="content-textarea" ${statusExists ? 'disabled' : ''}>${cell}</textarea></td>`;
-            } else if (cellIndex === 3) {
-              html += `<td class="action-cell">${statusExists ? cell : `<button class="action-button" onclick="handleButtonClick(${rowIndex}, '通過', this)">通過</button>`}</td>`;
-            } else if (cellIndex === 4) {
-              html += `<td class="action-cell">${statusExists ? cell : `<button class="action-button" onclick="handleButtonClick(${rowIndex}, '不通過', this)">不通過</button>`}</td>`;
-            } else if (cellIndex === 5) {
-              html += `<td class="number-cell">${cell}</td>`;
-            } else {
-              html += `<td>${cell}</td>`;
-            }
-          }
-        });
-        html += '</tr>';
-      });
-      html += '</table>';
-      return html;
-    }
-
-    function handleButtonClick(rowIndex, status, button) {
-      // 檢查上一行是否存在未處理的按鈕
-      if (rowIndex > 1) {
-        const prevRow = document.querySelector(`#hsjh-data table tr:nth-child(${rowIndex})`);
-        const prevRowButtons = prevRow.querySelectorAll('.action-button');
-        const prevRowHasButtons = Array.from(prevRowButtons).some(btn => btn.style.display !== 'none');
-
-        if (prevRowHasButtons) {
-          alert('上一行尚未處理，請先處理上一行。');
-          return;
-        }
-      }
-
-      const row = document.querySelector(`#hsjh-data table tr:nth-child(${rowIndex + 1})`);
-      const buttons = row.querySelectorAll('.action-button');
-      const textarea = row.querySelector('.content-textarea');
-
-      // 隱藏所有按鈕
-      buttons.forEach(btn => btn.style.display = 'none');
-
-      // 設置 textarea 為不可編輯
-      if (textarea) {
-        textarea.disabled = true;
-      }
-
-      // 在同一格顯示狀態
-      const statusCell = row.cells[status === '通過' ? 3 : 4];
-      statusCell.textContent = status;
-
-      let newNumber = '';
-      if (status === '通過') {
-        const numberCell = row.cells[5];
-        const prevRowNumber = findPreviousRowNumber(rowIndex);
-        newNumber = `HSJH${prevRowNumber + 1}`;
-        numberCell.textContent = newNumber;
-      }
-
-      // 獲取 textarea 中的內容
-      const content = textarea ? textarea.value : '';
-
-      // 發送 POST 請求更新狀態、textarea 內容和編號到代理
-      axios.post('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/hsjh-anonymity-update', {
-        rowIndex: rowIndex,
-        status: status,
-        content: content,
-        number: newNumber // 添加編號到請求數據中
-      })
-      .then(function (response) {
-        console.log('Status, content and number updated successfully');
-      })
-      .catch(function (error) {
-        console.error('Error updating status, content and number:', error);
-      });
-    }
-
-    function findPreviousRowNumber(rowIndex) {
-      // 從 rowIndex 開始向上查找前一行有編號的行
-      for (let i = rowIndex - 1; i >= 0; i--) {
-        const row = document.querySelector(`#hsjh-data table tr:nth-child(${i + 1})`);
-        const numberCell = row.cells[5];
-        if (numberCell.textContent.startsWith('HSJH')) {
-          const number = parseInt(numberCell.textContent.replace('HSJH', ''));
-          if (!isNaN(number)) {
-            return number;
-          }
-        }
-      }
-      return 0; // 如果找不到前一行有編號的行，返回 0
-    }
-  </script>
+  <script src="./js/review.js"></script>
+  <script src="./js/post.js"></script>
 </body>
 </html>
