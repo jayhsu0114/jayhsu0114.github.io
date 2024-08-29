@@ -26,16 +26,20 @@ document.getElementById('download').addEventListener('click', function() {
 
         saveAs(content, `${postGroupValue}.zip`);
 
+        // Retrieve username from localStorage
+        const username = localStorage.getItem('username') || 'anonymous'; // Default to 'anonymous' if not found
+
         // 發送 POST 請求
         if (postCode) {
-            fetch('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/test-postmaker', {
+            fetch('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/zsjh-postmaker', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
                     postCode: postCode,
-                    status: '已發布'
+                    status: '已發布',
+                    managerid: username // Include username in the body
                 })
             })
             .then(response => {
@@ -59,7 +63,7 @@ document.getElementById('download').addEventListener('click', function() {
 // 獲取數據並更新 sessionStorage
 async function fetchData() {
     try {
-        const response = await fetch('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/test-update-status');
+        const response = await fetch('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/zsjh-update-status');
         if (!response.ok) {
             throw new Error('Network response was not ok ' + response.statusText);
         }
@@ -177,13 +181,13 @@ function updatePostGroup() {
     // 查詢 sessionStorage 中是否有符合的鍵
     const postCode = sessionStorage.getItem(postKey);
     if (postCode) {
-        // 處理 postCode，去掉 "TEST" 的開頭，將剩下的數字 +9，再加回 "TEST"
+        // 處理 postCode，去掉 "ZSJH" 的開頭，將剩下的數字 +9，再加回 "ZSJH"
         let postCodeEnd;
-        if (postCode.startsWith('TEST')) {
+        if (postCode.startsWith('ZSJH')) {
             const numericPart = parseInt(postCode.substring(4), 10);
-            postCodeEnd = 'TEST' + (numericPart + 9);
+            postCodeEnd = 'ZSJH' + (numericPart + 9);
         } else {
-            postCodeEnd = postCode; // 如果沒有 "TEST" 開頭，保持不變
+            postCodeEnd = postCode; // 如果沒有 "ZSJH" 開頭，保持不變
         }
 
         // 將 postCode 和 postCodeEnd 的值放入 id=post-group 的 input 中
@@ -197,7 +201,7 @@ function updatePostGroup() {
         // 重繪所有 canvas
         let canvasesDrawn = 0; // 計數器，用於追踪已繪製的 canvas 數量
         for (let i = 1; i <= 10; i++) {
-            const currentPostCode = 'TEST' + (parseInt(postCode.substring(4), 10) + (i - 1));
+            const currentPostCode = 'ZSJH' + (parseInt(postCode.substring(4), 10) + (i - 1));
             drawCanvas(currentPostCode, `canvas${i}`, () => {
                 canvasesDrawn++;
                 if (canvasesDrawn === 10) {
@@ -235,7 +239,7 @@ function drawCanvas(postCode, canvasId, callback) { // 新增 callback 參數
 
     // 從 sessionStorage 中獲取對應的內容
     const text = sessionStorage.getItem(`${postCode}/content`) || "匿名內容";
-    const id = sessionStorage.getItem(`${postCode}/postCode`) || "TEST00000";
+    const id = sessionStorage.getItem(`${postCode}/postCode`) || "ZSJH00000";
     const timestamp = sessionStorage.getItem(`${postCode}/timestamp`) || "2000-01-01 12:00:00";
 
     const templateImage = new Image();
@@ -330,15 +334,19 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 // 在 session storage 中以 ${postCode}/status 為鍵，已發布為值
                 sessionStorage.setItem(`${postCode}/status`, '已發布');
                 
+                // Retrieve username from localStorage
+                const username = localStorage.getItem('username') || 'anonymous'; // Default to 'anonymous' if not found
+                
                 // 發送 POST 請求
-                fetch('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/test-postmaker', {
+                fetch('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/zsjh-postmaker', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
                         postCode: postCode,
-                        status: '已發布'
+                        status: '已發布',
+                        managerid: username // Include username in the body
                     })
                 })
                 .then(response => {
@@ -364,7 +372,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     const postKey = `post-${postNow}`;
     const postCode = sessionStorage.getItem(postKey);
     for (let i = 1; i <= 10; i++) {
-        const currentPostCode = 'TEST' + (parseInt(postCode.substring(4), 10) + (i - 1));
+        const currentPostCode = 'ZSJH' + (parseInt(postCode.substring(4), 10) + (i - 1));
         drawCanvas(currentPostCode, `canvas${i}`);
     }
 });
