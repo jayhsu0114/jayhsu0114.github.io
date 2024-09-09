@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 canvasColor = '#de6768';
                 canvasText = '刪 除 中';
             } else {
-                throw new Error('資料提交失敗');
+                throw new Error('請確定後悔代碼是否存在');
             }
 
             // 清空 textarea
