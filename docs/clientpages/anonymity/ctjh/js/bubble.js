@@ -2,7 +2,7 @@ function createRandomCircles() {
     const colors = ['#434343', '#fb6d00'];
     const container = document.querySelector('body');
     const circles = [];
-    const circleSize = 40; // 圆球的直径
+    const circleSize = 40; // m06
     const numCircles = Math.floor(window.innerWidth * window.innerHeight / (circleSize * circleSize * 2)); // 根据屏幕尺寸计算球的数量
     const speedFactor = 0.3; // 调整移动速度
 
