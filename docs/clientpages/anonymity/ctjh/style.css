@@ -76,7 +76,7 @@ canvas {
     top: 0;
     left: 0;
     z-index: 2; /* 确保在最上層 */
-    background-color: rgba(112, 167, 221, 1);
+    background-color: #434343;
     animation: moveUp 15s linear forwards , ball 1s linear forwards, ct 1s linear forwards; 
 }
 
@@ -123,7 +123,7 @@ button[type="submit"] {
     width: 100%;
     padding: 10px;
     margin-top: 20px;
-    background-color: #ebafaf;
+    background-color: #fc9900;
     color: black;
     border: none;
     border-radius: 4px;
@@ -131,7 +131,7 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-    background-color: #de6768;
+    background-color: #fb6d00;
 }
 
 button:disabled {
@@ -145,7 +145,7 @@ button:disabled {
     padding: 7px;
     margin-top: 20px;
     margin-left: 10px;
-    background-color: #b7e5f8;
+    background-color: #666666;
     color: black;
     border: none;
     border-radius: 4px;
@@ -154,7 +154,7 @@ button:disabled {
 }
 
 #userregulation:hover{
-    background-color: #70a7dd;
+    background-color: #434343;
 
 }
 
@@ -169,11 +169,11 @@ p{
     border-radius: 4px;
     color: black;
     border: none;
-    background-color: #b7e5f8;
+    background-color: #666666;
 }
 
 #reply:hover{
-    background-color: #70a7dd;
+    background-color: #434343;
 }
 
 .reply-container {
@@ -200,7 +200,7 @@ p{
     margin-left: 5px;
     height: 30px;
     border-radius: 4px;
-    background-color: #b7e5f8;
+    background-color: #666666;
     color: black;
     border: none;
     
