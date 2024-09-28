@@ -28,7 +28,7 @@ function createRandomCircles() {
                 top: Math.random() * (window.innerHeight - circleSize)
             };
             attempts++;
-        } while (isOverlapping(newCircle) && attempts < 100); // 限制尝试次数，避免死循环
+        } while (isOverlapping(newCircle) && attempts < 100); // 限制嘗試次数，避免死循环
 
         if (attempts < 100) {
             const circle = document.createElement('div');
