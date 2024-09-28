@@ -2,7 +2,7 @@ function createRandomCircles() {
     const colors = ['#434343', '#fb6d00'];
     const container = document.querySelector('body');
     const circles = [];
-    const circleSize = 40; // m06
+    const circleSize = 40; // 圆球的直径
     const numCircles = Math.floor(window.innerWidth * window.innerHeight / (circleSize * circleSize * 2)); // 根据屏幕尺寸计算球的数量
     const speedFactor = 0.3; // 调整移动速度
 
@@ -28,7 +28,7 @@ function createRandomCircles() {
                 top: Math.random() * (window.innerHeight - circleSize)
             };
             attempts++;
-        } while (isOverlapping(newCircle) && attempts < 100); // 限制嘗試次数，避免死循环
+        } while (isOverlapping(newCircle) && attempts < 100); // 限制尝试次数，避免死循环
 
         if (attempts < 100) {
             const circle = document.createElement('div');
