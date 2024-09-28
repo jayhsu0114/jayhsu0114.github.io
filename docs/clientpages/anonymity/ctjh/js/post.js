@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
             let canvasColor, canvasText;
 
             if (text === 'Data added successfully') {
-                canvasColor = '#45b6d9';
+                canvasColor = '#434343';
                 canvasText = '傳 送 中';
 
                 // 創建新的按鈕元素
@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 canvasColor = '#fb6d00';
                 canvasText = '刪 除 中';
             } else {
-                throw new Error('資料提交失敗');
+                throw new Error('請確定後悔代碼是否存在');
             }
 
             // 清空 textarea
