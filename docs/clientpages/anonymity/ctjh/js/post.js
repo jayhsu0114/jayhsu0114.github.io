@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
         };
 
         // 發送數據到後端
-        fetch('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app//getctjhanonymity', {
+        fetch('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/getctjhanonymity', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
