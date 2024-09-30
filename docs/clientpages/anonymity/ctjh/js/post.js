@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
         };
 
         // 發送數據到後端
-        fetch('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app//getctjhanonymity', {
+        fetch('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/getctjhanonymity', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
             let canvasColor, canvasText;
 
             if (text === 'Data added successfully') {
-                canvasColor = 'rgba(112, 167, 221, 1)';
+                canvasColor = '#434343';
                 canvasText = '傳 送 中';
 
                 // 創建新的按鈕元素
@@ -151,10 +151,10 @@ document.addEventListener('DOMContentLoaded', function() {
                         });
                 });
             } else if (text === 'Data deleted successfully') {
-                canvasColor = '#de6768';
+                canvasColor = '#fb6d00';
                 canvasText = '刪 除 中';
             } else {
-                throw new Error('資料提交失敗');
+                throw new Error('請確定後悔代碼是否存在');
             }
 
             // 清空 textarea
