@@ -231,3 +231,14 @@ p{
     }
 
 }
+#ads
+{
+    margin-bottom: 10px;
+    margin-top: 10px;
+    background-color: #999;
+    height: 50px;
+    width: 250px;
+    z-index: 2;
+    border-radius: 5px;
+
+}
