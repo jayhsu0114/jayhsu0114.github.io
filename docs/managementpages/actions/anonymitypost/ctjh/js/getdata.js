@@ -26,6 +26,9 @@ document.getElementById('download').addEventListener('click', function() {
 
         saveAs(content, `${postGroupValue}.zip`);
 
+        // Retrieve username from localStorage
+        const username = localStorage.getItem('username') || 'anonymous'; // Default to 'anonymous' if not found
+
         // 發送 POST 請求
         if (postCode) {
             fetch('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/ctjh-postmaker', {
@@ -35,7 +38,8 @@ document.getElementById('download').addEventListener('click', function() {
                 },
                 body: JSON.stringify({
                     postCode: postCode,
-                    status: '已發布'
+                    status: '已發布',
+                    managerid: username // Include username in the body
                 })
             })
             .then(response => {
@@ -235,7 +239,7 @@ function drawCanvas(postCode, canvasId, callback) { // 新增 callback 參數
 
     // 從 sessionStorage 中獲取對應的內容
     const text = sessionStorage.getItem(`${postCode}/content`) || "匿名內容";
-    const id = sessionStorage.getItem(`${postCode}/postCode`) || "ZSJH00000";
+    const id = sessionStorage.getItem(`${postCode}/postCode`) || "CTJH00000";
     const timestamp = sessionStorage.getItem(`${postCode}/timestamp`) || "2000-01-01 12:00:00";
 
     const templateImage = new Image();
@@ -330,6 +334,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 // 在 session storage 中以 ${postCode}/status 為鍵，已發布為值
                 sessionStorage.setItem(`${postCode}/status`, '已發布');
                 
+                // Retrieve username from localStorage
+                const username = localStorage.getItem('username') || 'anonymous'; // Default to 'anonymous' if not found
+                
                 // 發送 POST 請求
                 fetch('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/ctjh-postmaker', {
                     method: 'POST',
@@ -338,7 +345,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     },
                     body: JSON.stringify({
                         postCode: postCode,
-                        status: '已發布'
+                        status: '已發布',
+                        managerid: username // Include username in the body
                     })
                 })
                 .then(response => {
