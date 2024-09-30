@@ -94,7 +94,7 @@ form {
   font-size: small;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   cursor: pointer;
-  color:black;
+  color:white;
 }
 
 #status{
@@ -102,19 +102,19 @@ form {
 }
 
 #data-status #pass {
-  background-color: #b7e5f8;
+  background-color: #666666;
 }
 
 #data-status #pass:hover {
-  background-color: #70a7dd;
+  background-color: #434343;
 }
 
 #data-status #fail {
-  background-color: #ebafaf;
+  background-color: #fc9900;
 }
 
 #data-status #fail:hover {
-  background-color: #de6768;
+  background-color: #fb6d00;
 }
 
 #edit-options {
