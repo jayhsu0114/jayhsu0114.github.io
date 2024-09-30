@@ -129,3 +129,18 @@ input {
 #download:disabled{
   background-color: black;
 }
+
+#postmanagerhint {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  gap: 10px; /* 增加兩個 input 之間的間距 */
+  margin: 5px 0;
+}
+
+#postmanagerhint input {
+  flex: 1; /* 確保 input 元素會均勻分佈 */
+  margin: 0;
+  width: 45%; /* 讓 width 自動調整 */
+}
