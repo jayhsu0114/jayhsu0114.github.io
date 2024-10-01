@@ -1,0 +1,170 @@
+/* 全局樣式 */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+/* 頁首樣式 */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    position: relative; /* 确保元素在 header 内部定位 */
+}
+
+/* 確保使用者姓名與 ANON 一起排列在左側 */
+#anon-text {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#user-name {
+    margin-left: 10px;
+    font-size: 16px;
+}
+
+/* 確保選單按鈕始終在最右邊 */
+.menu-icon {
+    font-size: 24px;
+    cursor: pointer;
+    margin-left: auto;  /* 確保選單按鈕始終在最右側 */
+}
+
+/* 側邊選單樣式 */
+.side-menu {
+    position: fixed;
+    height: 100%;
+    width: 250px;
+    top: 0;
+    right: -250px;  /* 從右側隱藏 */
+    background-color: #333;
+    color: white;
+    transition: 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;  /* 登出按鈕與內容分開 */
+    z-index: 10;
+}
+
+/* 讓選單內容可以滾動 */
+.side-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-grow: 1;
+    overflow-y: auto;  /* 允許側邊選單滾動 */
+}
+
+.side-menu ul li {
+    padding: 15px 20px;
+    border-bottom: 1px solid #555;
+}
+
+.side-menu ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+/* 登出按鈕固定在最底部 */
+.side-menu .logout {
+    padding: 15px 20px;
+    border-top: 1px solid #555;
+    background-color: #444;
+}
+
+.side-menu .logout a {
+    color: white;
+    text-decoration: none;
+}
+
+/* 背景遮罩層 */
+.menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease, visibility 0s 0.3s;
+    z-index: 5;
+}
+
+.menu-overlay.active {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+
+/* 卡片樣式 */
+main {
+    padding: 20px;
+}
+
+.card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-number {
+    font-weight: bold;
+}
+
+.regret-btn {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.regret-btn:hover {
+    background-color: #c0392b;
+}
+
+.card-content {
+    margin: 10px 0;
+}
+
+.card-status {
+    color: #7f8c8d;
+    font-size: 14px;
+}
+
+/* 頁尾樣式 */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #333;
+    color: white;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+/* 行動裝置適應 */
+@media screen and (max-width: 600px) {
+    header {
+        flex-wrap: nowrap;  /* 禁止換行 */
+    }
+
+    .card {
+        padding: 15px;
+    }
+}

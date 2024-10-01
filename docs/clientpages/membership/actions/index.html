@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANON 個人首頁</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="./js/sidebar.js"></script>
+    <script src="./js/modal.js"></script>
+</head>
+<body>
+
+    <!-- Header  -->
+    <header>
+        <div class="logo">
+            <span id="anon-text">ANON</span>
+            <span id="user-name">徐鉉捷</span>
+        </div>
+        <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+    </header>
+
+    <!-- Side Menu -->
+    <nav id="side-menu" class="side-menu">
+        <ul>
+            <li><a href="#">個人首頁</a></li>
+            <li><a href="#">發布匿名</a></li>
+            <li><a href="#">歷史紀錄</a></li>
+            <li><a href="#">設定</a></li>
+            <li class="logout"><a href="#">登出</a></li>
+        </ul>
+    </nav>
+
+    <!-- 背景遮罩層 -->
+    <div id="menu-overlay" class="menu-overlay" onclick="closeMenu()"></div>
+
+    <!-- Main Content -->
+    <main>
+        <div class="card">
+            <div class="card-header">
+                <span class="card-number">#001</span>
+                <button class="regret-btn">後悔</button>
+            </div>
+            <div class="card-content">
+                這是一條匿名內容的範例。
+            </div>
+            <div class="card-status">
+                已發布
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 ANON. All rights reserved.</p>
+    </footer>
+</body>
+</html>
