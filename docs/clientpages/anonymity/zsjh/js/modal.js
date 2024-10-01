@@ -17,7 +17,7 @@ window.onload = function() {
     modalContent.style.margin = "15% auto";
     modalContent.style.padding = "20px";
     modalContent.style.border = "1px solid #888";
-    modalContent.style.width = "80%"; // 設置直的長方形比例
+    modalContent.style.width = "70%"; // 設置直的長方形比例
     modalContent.style.maxWidth = "400px";
     modalContent.style.borderRadius = "10px"; // 設定圓角
     modalContent.style.textAlign = "center";
@@ -25,7 +25,7 @@ window.onload = function() {
     modalContent.style.transition = "transform 0.5s ease"; // 添加縮放過渡效果
 
     var message = document.createElement("p");
-    message.textContent = "請同意使用條款以繼續瀏覽。";
+    message.textContent = "請同意使用條協議以繼續瀏覽";
 
     // 創建「使用協議」按鈕
     var termsBtn = document.createElement("button");
