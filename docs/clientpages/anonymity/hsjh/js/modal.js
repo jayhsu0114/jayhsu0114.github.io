@@ -26,7 +26,7 @@ window.onload = function() {
 
     var message = document.createElement("p");
     message.textContent = "請同意使用協議以繼續瀏覽。";
-    message.style.marginBottom5 = "5px";
+    message.style.marginBottom = "5px";
 
 
     // 創建「使用協議」按鈕

@@ -25,8 +25,8 @@ window.onload = function() {
     modalContent.style.transition = "transform 0.5s ease"; // 添加縮放過渡效果
 
     var message = document.createElement("p");
-    message.textContent = "請同意使用條協議以繼續瀏覽";
-    message.style.marginBottom5 = "5px";
+    message.textContent = "請同意使用協議以繼續瀏覽";
+    message.style.marginBottom = "5px";
 
 
     // 創建「使用協議」按鈕
