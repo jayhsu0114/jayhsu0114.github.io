@@ -124,6 +124,7 @@
             document.getElementById('registration-form').addEventListener('submit', handleSubmit);
         });
     </script>-->
+
 </head>
 <body>
     <div class="login-container">
@@ -147,7 +148,7 @@
                     <input type="text" id="account-suffix" name="account-suffix" required>
                 </div>
             </div>
-            
+
             <div class="input-group">
                 <label for="email">電子郵件</label>
                 <input type="email" id="email" name="email" required>
@@ -176,8 +177,11 @@
                 <input type="password" id="passwordconfirm" name="passwordconfirm" required>
             </div>
 
-            <button type="submit">註冊</button>
+            <button type="button" id="agreement">檢視使用協議</button>
+
+            <button type="submit" id="signup">註冊</button>
         </form>
     </div>
+    <script src="./js/modal.js"></script>
 </body>
 </html>
