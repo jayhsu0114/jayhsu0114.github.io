@@ -16,7 +16,7 @@ document.getElementById("agreement").addEventListener("click", function() {
     modal.style.zIndex = "1000";
     modal.style.left = "0";
     modal.style.top = "0";
-    modal.style.width = "100%";
+    modal.style.width = "90%";
     modal.style.height = "100%";
     modal.style.backgroundColor = "rgba(0, 0, 0, 0.5)"; // 半透明背景
     modal.style.justifyContent = "center";
