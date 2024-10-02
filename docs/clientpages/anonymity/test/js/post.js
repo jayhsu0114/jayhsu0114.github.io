@@ -50,12 +50,12 @@ document.addEventListener('DOMContentLoaded', function() {
         const formData = {
             userId: getCookie('userId'),
             anonymousContent: document.getElementById('anonymousContent').value,
-            formId: 'test',
+            formId: 'zsjh',
             randomCode: randomCode
         };
 
         // 發送數據到後端
-        fetch('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app//gettestanonymity', {
+        fetch('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app//getzsjhanonymity', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -68,12 +68,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
             if (text === 'Data added successfully') {
                 canvasColor = 'rgba(112, 167, 221, 1)';
-                canvasText = '發 送 中';
+                canvasText = '傳 送 中';
 
                 // 創建新的按鈕元素
                 const regretCodeButton = document.createElement('button');
                 regretCodeButton.type = "button";
                 regretCodeButton.id = "regretCodeButton";
+                regretCodeButton.style.color = "black";
 
                 // 創建顯示按鈕
                 const showButton = document.createElement('button');
@@ -88,6 +89,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 showButton.style.zIndex = "2";
                 showButton.style.borderRadius = "4px";
                 showButton.style.marginLeft = '5px';
+                showButton.style.color = 'black';
 
                 // 創建一個隱藏的 input 元素
                 const hiddenInput = document.createElement('input');
@@ -152,7 +154,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 canvasColor = '#de6768';
                 canvasText = '刪 除 中';
             } else {
-                throw new Error('資料提交失敗');
+                throw new Error('請確定後悔代碼是否存在');
             }
 
             // 清空 textarea
