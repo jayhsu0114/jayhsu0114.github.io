@@ -1,4 +1,10 @@
 window.onload = function() {
+    // 檢查 localStorage 中是否已經存在 agreement
+    if (localStorage.getItem("agreement") === "agree") {
+        // 如果已經同意，則不顯示彈窗
+        return;
+    }
+
     // 創建彈窗的 HTML 結構
     var modal = document.createElement("div");
     modal.id = "myModal";
@@ -25,9 +31,8 @@ window.onload = function() {
     modalContent.style.transition = "transform 0.5s ease"; // 添加縮放過渡效果
 
     var message = document.createElement("p");
-    message.textContent = "請同意使用協議以繼續瀏覽。";
+    message.textContent = "請同意使用協議以繼續瀏覽";
     message.style.marginBottom = "5px";
-
 
     // 創建「使用協議」按鈕
     var termsBtn = document.createElement("button");
@@ -59,7 +64,7 @@ window.onload = function() {
     modal.appendChild(modalContent);
     document.body.appendChild(modal);
 
-    // 點擊同意按鈕後，逐漸縮小視窗
+    // 點擊同意按鈕後，逐漸縮小視窗並將 agreement 存入 localStorage
     acceptBtn.onclick = function() {
         modalContent.style.transform = "scale(0)"; // 視窗縮小至 0
         modal.style.opacity = "0"; // 背景淡出
@@ -67,6 +72,8 @@ window.onload = function() {
         // 設置 0.5 秒後隱藏彈窗，與 transition 時間一致
         setTimeout(function() {
             modal.style.display = "none";
+            // 在 localStorage 中設置 agreement 值為 "agree"
+            localStorage.setItem("agreement", "agree");
         }, 500);
     };
 

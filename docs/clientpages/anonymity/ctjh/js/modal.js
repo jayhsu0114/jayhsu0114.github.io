@@ -1,4 +1,10 @@
 window.onload = function() {
+    // 檢查 localStorage 中是否已經存在 agreement
+    if (localStorage.getItem("agreement") === "agree") {
+        // 如果已經同意，則不顯示彈窗
+        return;
+    }
+
     // 創建彈窗的 HTML 結構
     var modal = document.createElement("div");
     modal.id = "myModal";
@@ -66,6 +72,8 @@ window.onload = function() {
         // 設置 0.5 秒後隱藏彈窗，與 transition 時間一致
         setTimeout(function() {
             modal.style.display = "none";
+            // 在 localStorage 中設置 agreement 值為 "agree"
+            localStorage.setItem("agreement", "agree");
         }, 500);
     };
 
