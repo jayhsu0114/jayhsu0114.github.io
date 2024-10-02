@@ -5,126 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ANON系統註冊</title>
     <link rel="stylesheet" href="style.css">
-    <!--<script>
-        // 檢查 localStorage 中是否有 token
-        const token = localStorage.getItem('token');
-        
-        if (!token) {
-            // 如果沒有 token，重定向到登入頁面
-            console.log('No token found. Redirecting to login page...');
-            window.location.href = '/managementpages/authentication/signin'; // 根據實際情況調整登入頁面的路徑
-        } else {
-            // 如果有 token，將 token 放入 Authorization header 中
-            console.log('Token found. Verifying token...');
-            fetch('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/soter', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
-                }
-            })
-            .then(response => {
-                if (response.ok) {
-                    // 如果 token 驗證成功，可以繼續訪問此頁面的數據
-                    console.log('Token validated successfully');
-                } else {
-                    // 如果 token 驗證失敗，重定向到登入頁面
-                    console.log('Token validation failed. Redirecting to login page...');
-                    window.location.href = '/managementpages/authentication/signin'; // 根據實際情況調整登入頁面的路徑
-                }
-            })
-            .catch(error => {
-                console.error('Error validating token:', error);
-                // 如果驗證過程中出現錯誤，重定向到登入頁面
-                console.log('Error during token validation. Redirecting to login page...');
-                window.location.href = '/managementpages/authentication/signin'; // 根據實際情況調整登入頁面的路徑
-            });
-        }
-    </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // 加載時從 localStorage 中獲取 username
-            const savedUsername = localStorage.getItem('username');
-            if (savedUsername) {
-                document.getElementById('username').value = savedUsername; // 將值填入表單中的 username 欄位
-            }
-
-            // 提交表單時的處理函數
-            function handleSubmit(event) {
-                event.preventDefault(); // 防止表單提交預設行為
-
-                const username = document.getElementById('username').value;
-                const password = document.getElementById('password').value;
-                const passwordConfirm = document.getElementById('passwordconfirm').value;
-                const email = document.getElementById('email').value;
-                const name = document.getElementById('name').value;
-                const school = document.getElementById('school').value;
-
-                // 檢查密碼和確認密碼是否一致
-                if (password !== passwordConfirm) {
-                    alert('確認密碼與密碼不一致');
-                    return;
-                }
-                // 檢查密碼是否與用戶名相同
-                if (password === username) {
-                    alert('密碼不能與用戶名相同');
-                    return;
-                }
-
-
-                // 建立表單資料對象
-                const formData = {
-                    username,
-                    password,
-                    email,
-                    name,
-                    school
-                };
-
-                // 發送POST請求到後端
-                fetch('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/AgnostosTheos', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(formData),
-                })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.text(); // 返回純文字回應
-                })
-                .then(data => {
-                    console.log('Success:', data);
-                    // 在這裡處理後端返回的成功訊息，例如顯示在界面上或跳轉到其他頁面
-                    alert(data); // 這裡示範使用alert顯示訊息，您可以根據需要進行更進一步的處理
-                    window.location.href = '/managementpages/authentication/signin'; // 跳轉到管理者登入頁面
-                })
-                .catch((error) => {
-                    console.error('Error:', error);
-                    // 可以在此處添加失敗後的處理邏輯，如顯示錯誤訊息給使用者
-                    alert('註冊失敗，請重試'); // 這裡示範使用alert顯示錯誤訊息，您可以根據需要進行更進一步的處理
-                });
-            }
-
-            // 監聽密碼確認欄位的輸入事件，以便及時檢查密碼是否一致
-            document.getElementById('passwordconfirm').addEventListener('input', function() {
-                const password = document.getElementById('password').value;
-                const passwordConfirm = this.value;
-
-                if (password !== passwordConfirm) {
-                    this.setCustomValidity('確認密碼與密碼不一致');
-                } else {
-                    this.setCustomValidity('');
-                }
-            });
-
-            // 監聽表單的提交事件
-            document.getElementById('registration-form').addEventListener('submit', handleSubmit);
-        });
-    </script>-->
-
 </head>
 <body>
     <div class="login-container">
@@ -132,8 +12,10 @@
         <form id="registration-form">
 
             <div class="input-group">
-                <label for="schoolcode">學號</label>
+                <label for="schoolcode">學號（將作為帳號使用不得更改）</label>
+                <input type="hidden" id="schoolcode-prefix" name="schoolcode-prefix" required readonly>
                 <input type="text" id="schoolcode" name="schoolcode" required>
+                <input type="hidden" id="schoolcode-suffix" name="schoolcode-suffix" required readonly>
             </div>
 
             <div class="input-group-school">
@@ -143,17 +25,11 @@
                     <label for="school-information-number">座號</label>
                 </div>
                 <div class="input-row">
-                    <input type="text" id="account-prefix" name="account-prefix" required>
-                    <input type="text" id="account" name="account" required>
-                    <input type="text" id="account-suffix" name="account-suffix" required>
+                    <input type="text" id="school-information-grade" name="school-information-grade" required>
+                    <input type="text" id="school-information-class" name="school-information-class" required>
+                    <input type="text" id="school-information-number" name="school-information-number" required>
                 </div>
             </div>
-
-            <div class="input-group">
-                <label for="email">電子郵件</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-
 
             <div class="input-group">
                 <label for="name">姓名</label>
@@ -161,10 +37,13 @@
             </div>            
 
             <div class="input-group">
-                <label for="account">帳號</label>
-                <input type="hidden" id="account-prefix" name="account-prefix" required readonly>
-                <input type="text" id="account" name="account" required>
-                <input type="hidden" id="account-suffix" name="account-suffix" required readonly>
+                <label for="email">電子郵件</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="input-group">
+                <label for="instagram">Instagram帳號</label>
+                <input type="text" id="instagram" name="instagram" required>
             </div>
 
             <div class="input-group">
@@ -175,6 +54,7 @@
             <div class="input-group">
                 <label for="passwordconfirm">確認密碼</label>
                 <input type="password" id="passwordconfirm" name="passwordconfirm" required>
+                <div class="error" id="password-error">密碼不一致！</div>
             </div>
 
             <button type="button" id="agreement">檢視使用協議</button>
@@ -183,5 +63,6 @@
         </form>
     </div>
     <script src="./js/modal.js"></script>
+    <script src="./js/passwordcomfirm.js"></script>
 </body>
 </html>

@@ -90,3 +90,9 @@ button:hover {
     border-radius: 4px;
     margin: 1px;
 }
+.error {
+    color: red;
+    font-size: 0.9em;
+    display: none;
+    margin-top: 15px;
+}
