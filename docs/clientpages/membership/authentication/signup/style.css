@@ -55,3 +55,33 @@ button {
 button:hover {
     background-color: #0056b3;
 }
+
+.input-group-school {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.label-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.label-row label {
+    width: 32%; /* 确保每个label占32%的宽度 */
+    text-align: left;
+    color: #666;
+}
+
+.input-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.input-row input {
+    width: 31%; /* 确保每个input占32%的宽度 */
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin: 1px;
+}

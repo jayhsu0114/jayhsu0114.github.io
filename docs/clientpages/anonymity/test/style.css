@@ -243,7 +243,8 @@ header {
     position: fixed; /* 使頁首固定在頁面頂部 */
     top: 0; /* 頁面頂端對齊 */
     left: 0;
-    z-index: 1000; /* 確保頁首位於最上層 */
+    z-index: 9; /* 確保頁首位於最上層 */
+    box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.1);
 }
 
 /* 確保使用者姓名與 ANON 一起排列在左側 */
@@ -344,7 +345,8 @@ footer {
     position: fixed;
     width: 100%;
     bottom: 0;
-    z-index: 1000;
+    z-index: 9;
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
 }
 
 /* 行動裝置適應 */

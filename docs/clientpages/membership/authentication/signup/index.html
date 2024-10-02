@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ANON系統註冊</title>
     <link rel="stylesheet" href="style.css">
-    <script>
+    <!--<script>
         // 檢查 localStorage 中是否有 token
         const token = localStorage.getItem('token');
         
@@ -123,35 +123,59 @@
             // 監聽表單的提交事件
             document.getElementById('registration-form').addEventListener('submit', handleSubmit);
         });
-    </script>
+    </script>-->
 </head>
 <body>
     <div class="login-container">
-        <h1>管理者註冊</h1>
+        <h1>使用者註冊</h1>
         <form id="registration-form">
+
             <div class="input-group">
-                <input type="hidden" id="username" name="username" required>
+                <label for="schoolcode">學號</label>
+                <input type="text" id="schoolcode" name="schoolcode" required>
             </div>
-            <div class="input-group">
-                <label for="password">更新密碼</label>
-                <input type="password" id="password" name="password" required>
+
+            <div class="input-group-school">
+                <div class="label-row">
+                    <label for="school-information-grade">年級</label>
+                    <label for="school-information-class">班級</label>
+                    <label for="school-information-number">座號</label>
+                </div>
+                <div class="input-row">
+                    <input type="text" id="account-prefix" name="account-prefix" required>
+                    <input type="text" id="account" name="account" required>
+                    <input type="text" id="account-suffix" name="account-suffix" required>
+                </div>
             </div>
-            <div class="input-group">
-                <label for="passwordconfirm">確認密碼</label>
-                <input type="password" id="passwordconfirm" name="passwordconfirm" required>
-            </div>
+            
             <div class="input-group">
                 <label for="email">電子郵件</label>
                 <input type="email" id="email" name="email" required>
             </div>
+
+
             <div class="input-group">
-                <label for="name">真實姓名</label>
+                <label for="name">姓名</label>
                 <input type="text" id="name" name="name" required>
-            </div>
+            </div>            
+
             <div class="input-group">
-                <label for="school">所屬學校</label>
-                <input type="text" id="school" name="school" required>
+                <label for="account">帳號</label>
+                <input type="hidden" id="account-prefix" name="account-prefix" required readonly>
+                <input type="text" id="account" name="account" required>
+                <input type="hidden" id="account-suffix" name="account-suffix" required readonly>
             </div>
+
+            <div class="input-group">
+                <label for="password">設定密碼</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+
+            <div class="input-group">
+                <label for="passwordconfirm">確認密碼</label>
+                <input type="password" id="passwordconfirm" name="passwordconfirm" required>
+            </div>
+
             <button type="submit">註冊</button>
         </form>
     </div>
