@@ -5,51 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ANON系統登入</title>
     <link rel="stylesheet" href="style.css">
-    <script>
-        function handleSubmit(event) {
-            event.preventDefault(); // 防止表單提交預設行為
-
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-
-            // 將 username 存入 localStorage
-            localStorage.setItem('username', username);
-
-            fetch('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/authentication', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ username, password }),
-            })
-            .then(response => {
-                if (response.ok) {
-                    return response.json(); // 如果回應是成功的，返回 JSON 格式的數據
-                } else {
-                    throw new Error('Network response was not ok.');
-                }
-            })
-            .then(data => {
-                // 獲取後端返回的 JWT token
-                const token = data.token;
-
-                // 將 token 存入 localStorage
-                localStorage.setItem('token', token);
-
-                // 根據後端返回的重定向路徑進行跳轉
-                window.location.href = data.redirectUrl;
-            })
-            .catch(error => {
-                console.error('Error during login:', error);
-                alert('登入失敗：無效的帳號或密碼。');
-            });
-        }
-    </script>
+    <script src="./js/sidebar.js"></script>
 </head>
 <body>
+    <header>
+        <div class="logo">
+            <span id="anon-text">ANON</span>
+            <span id="user-name">尚未登入</span>
+        </div>
+        <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+    </header>
+        <!-- Side Menu -->
+        <nav id="side-menu" class="side-menu">
+            <ul>
+                <li><a href="https://anoncoultd.com/clientpages/membership/homepages">個人首頁</a></li>
+                <li><a href="">發布匿名</a></li>
+                <li><a href="https://anoncoultd.com/clientpages/membership/actions">歷史紀錄</a></li>
+                <li><a href="#">設定</a></li>
+                <li class="logout"><a href="https://anoncoultd.com/clientpages/membership/authentication/signin">登入</a></li>
+            </ul>
+        </nav>
+    
+        <!-- 背景遮罩層 -->
+        <div id="menu-overlay" class="menu-overlay" onclick="closeMenu()"></div>
+
     <div class="login-container">
         <h1>使用者登入</h1>
-        <form onsubmit="handleSubmit(event)">
+        <form">
             <div class="input-group">
                 <label for="username">帳號</label>
                 <input type="text" id="username" name="username" required>
@@ -58,8 +40,10 @@
                 <label for="password">密碼</label>
                 <input type="password" id="password" name="password" required>
             </div>
-            <button type="submit">登入</button>
+            <button type="submit" id="signin">登入</button>
         </form>
+        <button type="button" id="forgetpassword">忘記密碼</button>
+        <button type="button" id="signup">註冊</button>
     </div>
 </body>
 </html>

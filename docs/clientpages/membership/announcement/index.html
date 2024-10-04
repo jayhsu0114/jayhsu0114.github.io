@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>會員功能即將推出</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #fefdf7;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        .content {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        p {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .features {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        .features li {
+            margin-bottom: 10px;
+        }
+
+        .coming-soon {
+            margin-top: 20px;
+            font-weight: bold;
+            color: RED;
+        }
+
+        .back-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: BLACK;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .back-button:hover {
+            background-color: #434343;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <h1>會員功能即將推出</h1>
+            <p>會員系統開發中</p>
+            <P>未來會員將可享有以下功能</p>
+            <ul class="features">
+                <li>追蹤匿名審核進度</li>
+                <li>預先得知匿名編號</li>
+                <li>查看匿名歷史紀錄</li>
+                <li>一鍵刪除後悔匿名</li>
+                <li>查看選舉即時票數</li>
+                <li>匿名被回覆時通知</li>
+            </ul>
+            <p class="coming-soon">敬請期待</p>
+            <button class="back-button" onclick="goBack()">回上一頁</button>
+        </div>
+    </div>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>
