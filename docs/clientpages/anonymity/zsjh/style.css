@@ -231,7 +231,9 @@ p{
     }
 
 }
-/* 頁首樣式 */
+
+
+/*以下為會員部分 頁首樣式 */
 header {
     display: flex;
     justify-content: space-between;
