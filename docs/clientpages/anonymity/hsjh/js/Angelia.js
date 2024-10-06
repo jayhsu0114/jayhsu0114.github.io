@@ -1,52 +1,23 @@
-function setCookie(name, value, days) {
-    const d = new Date();
-    d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
-    const expires = "expires=" + d.toUTCString();
-    document.cookie = name + "=" + value + ";" + expires + ";path=/";
+// 設定 Local Storage 中的 userId
+function setUserId(value) {
+    localStorage.setItem('userId', value);
 }
 
-function getCookie(name) {
-    const nameEQ = name + "=";
-    const ca = document.cookie.split(';');
-    for (let i = 0; i < ca.length; i++) {
-        let c = ca[i].trim();
-        if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length);
-    }
-    return null;
+// 從 Local Storage 中取得 userId
+function getUserId() {
+    return localStorage.getItem('userId');
 }
 
+// displayUserInfo 函數
 async function displayUserInfo() {
     try {
         // 生成或获取用户 ID
-        let userId = getCookie('userId');
+        let userId = getUserId();
         if (!userId) {
-            const fpPromise = FingerprintJS.load();
-            const fp = await fpPromise;
-            const result = await fp.get();
-
-            console.log('浏览器指纹:', result.visitorId);
-
-            // POST fingerprint 到后端获取用户 ID
-            const response = await fetch('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/Epiphron', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ browserFingerprint: result.visitorId }),
-            });
-
-            console.log('POST 请求体给 Epiphron:', JSON.stringify({ fingerprint: result.visitorId }));
-
-            if (response.ok) {
-                const data = await response.json();
-                userId = data.userId;
-            } else {
-                // 如果请求失败，生成新的 userId
-                userId = 'user_' + Math.random().toString(36).substr(2, 9);
-            }
-
-            // 设置 userID cookie
-            setCookie('userId', userId, 365);
+            // 直接生成新的 userId
+            userId = 'user_' + Math.random().toString(36).substr(2, 9);
+            // 将 userId 存入 Local Storage
+            setUserId(userId);
         }
 
         // 加载 FingerprintJS 库并获取浏览器指纹

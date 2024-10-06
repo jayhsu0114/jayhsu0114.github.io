@@ -1,0 +1,363 @@
+/* Reset default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styles */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #fefdf7;
+    font-family: Arial, sans-serif;
+    text-align: center; /* 水平居中内容 */
+    position: relative;
+    overflow: hidden;
+    flex-direction: column;
+}
+
+/* Circle styles */
+.circle {
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    opacity: 0.9;
+    pointer-events: none; /* 禁止鼠标事件，以免影响表单操作 */
+}
+
+/* Page container */
+.container {
+    max-width: 400px;
+    padding: 20px;
+    background-color: #fefdf7;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative; /* 确保在球之上 */
+    z-index: 1; /* 确保在球之上 */
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+form {
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+textarea {
+    width: 100%;
+    height: 100px;
+    padding: 8px;
+    font-size: 16px;
+    color: #000;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: none;
+    white-space: pre-wrap; /* 保留换行符并自动换行 */
+}
+
+canvas {
+    height: 100px;
+    border-radius: 4px;
+    transition: all 2s ease-in-out;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2; /* 确保在最上層 */
+    background-color: rgba(112, 167, 221, 1);
+    animation: moveUp 15s linear forwards , ball 1s linear forwards, ct 1s linear forwards; 
+}
+
+@keyframes moveUp {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(-100vh); /* Move the canvas off the screen */
+    }
+}
+
+@keyframes ball {
+    from {
+        border-radius: 4px;
+        height:100px;
+        width:100%;
+    }
+    to {
+        border-radius: 100px;
+        height:35px;
+        width:35px;
+    }
+}
+@keyframes ct {
+    from {
+        left:0;
+    }
+    to {
+        left:44%;
+    }
+}
+
+#fillarea {
+    height: 0px;
+}
+
+input[type="hidden"] {
+    display: none;
+}
+
+button[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    background-color: #ebafaf;
+    color: black;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #de6768;
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+#userregulation{
+    display: inline-block;
+    width: 30%;
+    padding: 7px;
+    margin-top: 20px;
+    margin-left: 10px;
+    background-color: #b7e5f8;
+    color: black;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+#userregulation:hover{
+    background-color: #70a7dd;
+
+}
+
+p{
+    font-size: 15px;
+}
+
+#reply{
+    width: 100%;
+    margin-bottom: 10px;
+    height: 30px;
+    border-radius: 4px;
+    color: black;
+    border: none;
+    background-color: #b7e5f8;
+}
+
+#reply:hover{
+    background-color: #70a7dd;
+}
+
+.reply-container {
+    display: flex;
+    align-items: center; /* 垂直居中 */
+    justify-content: center;
+    gap: 5px; /* 添加間距 */
+    margin:0px ;
+}
+
+#reply_input{
+    width: 70%;
+    margin-bottom: 9px;
+    height: 28px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    padding: 5px;
+}
+
+#reply_button{
+    width: 20%;
+    margin-bottom: 10px;
+    margin-left: 5px;
+    height: 30px;
+    border-radius: 4px;
+    background-color: #b7e5f8;
+    color: black;
+    border: none;
+    
+}
+
+#regretCodeButton{
+    position: relative; /* 确保在球之上 */
+    z-index: 1; /* 确保在球之上 */
+    width: 0px;
+    height: 30px;
+    border-radius: 4px;
+    border: none;
+    animation: length 1s linear forwards;
+}
+
+#regretCodeButton:hover{
+    background-color: #333;
+    color: #fff;
+}
+
+@keyframes length{
+    from{
+        width: 0px;
+    }
+
+    to{
+        width: 110px;
+    }
+
+}
+
+
+/*以下為會員部分 頁首樣式 */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    width: 100%; /* 確保頁首寬度為100% */
+    position: fixed; /* 使頁首固定在頁面頂部 */
+    top: 0; /* 頁面頂端對齊 */
+    left: 0;
+    z-index: 9; /* 確保頁首位於最上層 */
+    box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 確保使用者姓名與 ANON 一起排列在左側 */
+#anon-text {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#user-name {
+    margin-left: 10px;
+    font-size: 16px;
+}
+
+/* 其他内容部分 */
+.container {
+    margin-top: 80px; /* 增加 margin 以防止頁首遮擋内容 */
+}
+/* 確保選單按鈕始終在最右邊 */
+.menu-icon {
+    font-size: 24px;
+    cursor: pointer;
+    margin-left: auto;  /* 確保選單按鈕始終在最右側 */
+}
+
+/* 側邊選單樣式 */
+.side-menu {
+    position: fixed;
+    height: 100%;
+    width: 250px;
+    top: 0;
+    right: -250px;  /* 從右側隱藏 */
+    background-color: #333;
+    color: white;
+    transition: 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;  /* 登出按鈕與內容分開 */
+    z-index: 10;
+}
+
+/* 讓選單內容可以滾動 */
+.side-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-grow: 1;
+    overflow-y: auto;  /* 允許側邊選單滾動 */
+}
+
+.side-menu ul li {
+    padding: 13px 20px;
+    border-bottom: 1px solid #555;
+}
+
+.side-menu ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+/* 登出按鈕固定在最底部 */
+.side-menu .logout {
+    padding: 10px 20px;
+    border-top: 1px solid #555;
+    background-color: #444;
+}
+
+.side-menu .logout a {
+    color: white;
+    text-decoration: none;
+}
+
+/* 背景遮罩層 */
+.menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease, visibility 0s 0.3s;
+    z-index: 5;
+}
+
+.menu-overlay.active {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+/* 頁尾樣式 */
+footer {
+    text-align: center;
+    padding: 15px;
+    background-color: #333;
+    color: white;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    z-index: 9;
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+/* 行動裝置適應 */
+@media screen and (max-width: 600px) {
+    header {
+        flex-wrap: nowrap;  /* 禁止換行 */
+    }
+
+    .card {
+        padding: 15px;
+    }
+}
