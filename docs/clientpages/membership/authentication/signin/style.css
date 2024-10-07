@@ -219,15 +219,18 @@ footer {
     }
 }
 
+label {
+    display: flex;            /* 使用 flex 布局 */
+    justify-content: flex-start; /* 讓文字與勾選框靠左 */
+    align-items: center;
+    cursor: pointer;
+    margin-left: 0;
+}
+
 #autoLogin:checked + label {
     color: green; /* 當勾選時，文字變為綠色 */
 }
 
-label {
-    cursor: pointer;
-    margin-left: 10px;
-}
-
 input[type="checkbox"] {
-    margin-right: 5px;
+    margin-right: 5px; /* 勾選框與文字間距 */
 }
