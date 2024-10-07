@@ -245,7 +245,7 @@ header {
     position: fixed; /* 使頁首固定在頁面頂部 */
     top: 0; /* 頁面頂端對齊 */
     left: 0;
-    z-index: 9; /* 確保頁首位於最上層 */
+    z-index: 8; /* 確保頁首位於最上層 */
     box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -330,7 +330,7 @@ header {
     visibility: hidden;
     opacity: 0;
     transition: opacity 0.3s ease, visibility 0s 0.3s;
-    z-index: 5;
+    z-index: 9;
 }
 
 .menu-overlay.active {
@@ -347,7 +347,7 @@ footer {
     position: fixed;
     width: 100%;
     bottom: 0;
-    z-index: 9;
+    z-index: 8;
     box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
 }
 
