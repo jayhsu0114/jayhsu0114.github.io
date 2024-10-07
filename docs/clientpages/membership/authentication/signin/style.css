@@ -225,6 +225,8 @@ label {
     align-items: center;
     cursor: pointer;
     margin-left: 0;
+    margin-bottom: 5px;
+    font-size: 16px;
 }
 
 #autoLogin:checked + label {
@@ -233,4 +235,7 @@ label {
 
 input[type="checkbox"] {
     margin-right: 5px; /* 勾選框與文字間距 */
+    width: 15px;
+    height: 15px;
+    
 }
