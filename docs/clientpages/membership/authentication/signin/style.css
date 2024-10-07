@@ -218,3 +218,16 @@ footer {
         padding: 15px;
     }
 }
+
+#autoLogin:checked + label {
+    color: green; /* 當勾選時，文字變為綠色 */
+}
+
+label {
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+input[type="checkbox"] {
+    margin-right: 5px;
+}
