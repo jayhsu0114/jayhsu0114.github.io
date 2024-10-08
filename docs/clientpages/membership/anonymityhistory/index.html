@@ -6,7 +6,6 @@
     <title>ANON 個人首頁</title>
     <link rel="stylesheet" href="style.css">
     <script src="./js/sidebar.js"></script>
-    <script src="./js/modal.js"></script>
 </head>
 <body>
 
@@ -37,15 +36,19 @@
     <main>
         <div class="card">
             <div class="card-header">
-                <span class="card-number">#001</span>
-                <button class="regret-btn">後悔</button>
+                <span class="card-number">編號</span>
+                <div class="button-group">
+                    <button class="preview-btn">預覽</button>
+                    <button class="edit-btn">編輯</button>
+                </div>
             </div>
             <div class="card-content">
-                這是一條匿名內容的範例。
+                匿名內容
             </div>
             <div class="card-status">
-                已發布
+                發文狀態
             </div>
+            <button class="regret-btn">後悔</button> <!-- 獨立出來的「後悔」按鈕 -->            
         </div>
     </main>
 

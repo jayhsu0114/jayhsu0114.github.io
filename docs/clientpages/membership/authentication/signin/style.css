@@ -220,22 +220,37 @@ footer {
 }
 
 label {
-    display: flex;            /* 使用 flex 布局 */
-    justify-content: flex-start; /* 讓文字與勾選框靠左 */
-    align-items: center;
-    cursor: pointer;
+    display: flex;                 /* 使用 flex 布局 */
+    align-items: center;           /* 垂直居中 */
+    cursor: pointer;               /* 鼠標變為手形 */
     margin-left: 0;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     font-size: 20px;
 }
 
 #autoLogin:checked + label {
-    color: green; /* 當勾選時，文字變為綠色 */
+    color: green;                  /* 當勾選時，文字變為綠色 */
 }
 
+/* 隱藏原始的 checkbox */
 input[type="checkbox"] {
-    margin-right: 5px; /* 勾選框與文字間距 */
-    width: 20px;
-    height: 20px;
+    appearance: none;             /* 隱藏預設的 checkbox */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 20px;                  /* 自訂大小 */
+    height: 20px;                 /* 自訂大小 */
+    border: 2px solid #ccc;       /* 邊框顏色 */
+    border-radius: 3px;           /* 邊框圓角 */
+    display: inline-block;
+    vertical-align: middle;       /* 垂直居中 */
+    margin-right: 10px;           /* 和文字的間距 */
+    cursor: pointer;
+    position: relative;
+    background-color: white;      /* 背景顏色 */
+}
 
+/* 當 checkbox 被選中時的樣式 */
+input[type="checkbox"]:checked {
+    background-color: #434343;      /* 勾選後的背景色 */
+    border-color: #434343;          /* 勾選後的邊框色 */
 }

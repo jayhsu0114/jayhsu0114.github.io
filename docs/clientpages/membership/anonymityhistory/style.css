@@ -108,7 +108,9 @@ main {
     padding: 20px;
 }
 
+/* 卡片樣式 */
 .card {
+    position: relative; /* 讓卡片內的元素能夠相對定位 */
     background-color: white;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -116,26 +118,43 @@ main {
     margin-bottom: 20px;
 }
 
+/* 卡片標頭樣式 */
 .card-header {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* 左右兩側對齊 */
+    align-items: center;
 }
 
-.card-number {
-    font-weight: bold;
+/* 按鈕組容器樣式 */
+.button-group {
+    display: flex;
+    gap: 5px; /* 控制按鈕之間的距離 */
+    padding: 5px;
 }
 
+/* 後悔按鈕定位 */
 .regret-btn {
-    background-color: #e74c3c;
+    position: absolute;
+    bottom: 15px; /* 讓按鈕在卡片的底部 */
+    right: 20px;  /* 讓按鈕靠右側 */
+    background-color: red;
     color: white;
     border: none;
     padding: 5px 10px;
     border-radius: 5px;
     cursor: pointer;
+
 }
 
-.regret-btn:hover {
-    background-color: #c0392b;
+/* 其他按鈕樣式 */
+button {
+    background-color: #434343;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    right: 15px;
 }
 
 .card-content {
