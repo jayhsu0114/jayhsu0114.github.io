@@ -2,20 +2,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // 清除 sessionStorage
     sessionStorage.clear();
 
-    // 取得 Cookie 值
-    function getCookie(name) {
-        const cookies = document.cookie.split(';');
-        for (let cookie of cookies) {
-            const [cookieName, cookieValue] = cookie.split('=');
-            if (cookieName.trim() === name) {
-                return cookieValue;
-            }
-        }
-        return '';
+    // 取得 Local Storage 值
+    function getLocalStorage(userId) {
+        return localStorage.getItem(userId) || '';
     }
-
-    // 用 Cookie 值填充 userId 輸入框
-    document.getElementById('userId').value = getCookie('userId');
+        // 用 LocalStorage 值填充 userId 輸入框
+        document.getElementById('userId').value = getLocalStorage('userId');
 
     // 生成隨機字串
     function generateRandomString(length) {
@@ -48,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // 準備要發送的數據
         const formData = {
-            userId: getCookie('userId'),
+            userId: getLocalStorage('userId'),
             anonymousContent: document.getElementById('anonymousContent').value,
             formId: 'zsjh',
             randomCode: randomCode
