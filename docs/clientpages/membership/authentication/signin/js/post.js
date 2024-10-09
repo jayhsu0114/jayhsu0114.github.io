@@ -3,13 +3,14 @@ function handleSubmit(event) {
 
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
+    const autologin = document.getElementById('autoLogin').checked;
 
-    fetch('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app//membership-humansignin', {
+    fetch('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/membership-humansignin', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify({ username, password, autoLogin: autologin }), // 确保属性名称一致
     })
     .then(response => {
         if (response.ok) {
@@ -25,8 +26,13 @@ function handleSubmit(event) {
         // 將 token 存入 localStorage
         localStorage.setItem('token', token);
 
-        // 根據後端返回的重定向路徑進行跳轉
-        window.location.href = data.redirectUrl;
+        // 在控制台輸出所有返回的數據
+        console.log(data);
+
+        // 根據後端返回的重定向路徑進行跳轉（如果存在 redirectUrl）
+        if (data.redirectUrl) {
+            window.location.href = data.redirectUrl;
+        }
     })
     .catch(error => {
         console.error('Error during login:', error);
