@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // 清除 sessionStorage
-    sessionStorage.clear();
+    // 將 submitCount 設定為 0
+    sessionStorage.setItem('submitCount', 0);
 
     // 取得 Local Storage 值
     function getLocalStorage(userId) {

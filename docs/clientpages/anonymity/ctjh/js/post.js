@@ -1,13 +1,13 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // 清除 sessionStorage
-    sessionStorage.clear();
+    // 將 submitCount 設定為 0
+    sessionStorage.setItem('submitCount', 0);
 
     // 取得 Local Storage 值
     function getLocalStorage(userId) {
         return localStorage.getItem(userId) || '';
     }
-        // 用 LocalStorage 值填充 userId 輸入框
-        document.getElementById('userId').value = getLocalStorage('userId');
+    // 用 LocalStorage 值填充 userId 輸入框
+    document.getElementById('userId').value = getLocalStorage('userId');
 
     // 生成隨機字串
     function generateRandomString(length) {
