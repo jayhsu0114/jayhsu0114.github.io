@@ -5,7 +5,7 @@ body {
     background-color: #fefdf7;
 }
 
-/* 頁首樣式 */
+/*以下為會員部分 頁首樣式 */
 header {
     display: flex;
     justify-content: space-between;
@@ -13,7 +13,12 @@ header {
     padding: 10px 20px;
     background-color: #333;
     color: white;
-    position: relative; /* 确保元素在 header 内部定位 */
+    width: 100%; /* 確保頁首寬度為100% */
+    position: fixed; /* 使頁首固定在頁面頂部 */
+    top: 0; /* 頁面頂端對齊 */
+    left: 0;
+    z-index: 9; /* 確保頁首位於最上層 */
+    box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.1);
 }
 
 /* 確保使用者姓名與 ANON 一起排列在左側 */
@@ -27,6 +32,10 @@ header {
     font-size: 16px;
 }
 
+/* 其他内容部分 */
+.container {
+    margin-top: 80px; /* 增加 margin 以防止頁首遮擋内容 */
+}
 /* 確保選單按鈕始終在最右邊 */
 .menu-icon {
     font-size: 24px;
@@ -60,7 +69,7 @@ header {
 }
 
 .side-menu ul li {
-    padding: 15px 20px;
+    padding: 13px 20px;
     border-bottom: 1px solid #555;
 }
 
@@ -72,7 +81,7 @@ header {
 
 /* 登出按鈕固定在最底部 */
 .side-menu .logout {
-    padding: 15px 20px;
+    padding: 10px 20px;
     border-top: 1px solid #555;
     background-color: #444;
 }
@@ -101,6 +110,44 @@ header {
     opacity: 1;
     transition: opacity 0.3s ease;
 }
+/* 頁尾樣式 */
+footer {
+    text-align: center;
+    padding: 15px;
+    background-color: #333;
+    color: white;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    z-index: 9;
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+/* 行動裝置適應 */
+@media screen and (max-width: 600px) {
+    header {
+        flex-wrap: nowrap;  /* 禁止換行 */
+    }
+
+    .card {
+        padding: 15px;
+    }
+}
+.logocircle {
+    width: 100px; /* 圓形的寬度 */
+    height: 100px; /* 圓形的高度 */
+    background-color: white; /* 圓形的顏色 */
+    border-radius: 50%; /* 使元素變為圓形 */
+    position: relative; /* 使用相對定位 */
+    margin: 20px auto; /* 上方留出距離，並水平居中 */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* 加入陰影以增加立體感 */
+    z-index: 10; /* 確保圓形在其他元素之上 */
+}
+
+
+
+
+
 
 
 /* 卡片樣式 */
@@ -164,26 +211,4 @@ button {
 .card-status {
     color: #7f8c8d;
     font-size: 14px;
-}
-
-/* 頁尾樣式 */
-footer {
-    text-align: center;
-    padding: 20px;
-    background-color: #333;
-    color: white;
-    position: fixed;
-    width: 100%;
-    bottom: 0;
-}
-
-/* 行動裝置適應 */
-@media screen and (max-width: 600px) {
-    header {
-        flex-wrap: nowrap;  /* 禁止換行 */
-    }
-
-    .card {
-        padding: 15px;
-    }
 }

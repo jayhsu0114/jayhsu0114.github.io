@@ -6,7 +6,14 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
+    overflow-y: scroll; /* 使页面垂直滚动 */
+    scrollbar-width: none; /* 隐藏 Firefox 的滚动条 */
 }
+
+body::-webkit-scrollbar {
+    display: none; /* 隐藏 Chrome 和 Safari 的滚动条 */
+}
+
 
 .login-container {
     background-color: white;
