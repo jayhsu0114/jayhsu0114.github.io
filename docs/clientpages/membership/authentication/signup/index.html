@@ -7,33 +7,8 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <span id="anon-text">ANON</span>
-            <span id="user-name">尚未登入</span>
-        </div>
-        <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
-    </header>
-        <!-- Side Menu -->
-        
-        <nav id="side-menu" class="side-menu">
-            
-            <ul>
-                <div class="logocircle"></div>
-                <li><a>藍毛猩猩</a></li>
-                <li><a href="/clientpages/membership/homepages">個人首頁</a></li>
-                <li><a href=`/clientpages/anonymity/${school}`>發布匿名</a></li>
-                <li><a href="/clientpages/membership/anonymityhistory">歷史紀錄</a></li>
-                <li><a href="/clientpages/membership/setup">設定</a></li>
-                <li><a href="/clientpages/membership/discount">專屬折扣</a></li>
-                <li class="logout"><a href="/clientpages/membership/authentication/signin">登入</a></li>
-            </ul>
-        </nav>
-    
-        <!-- 背景遮罩層 -->
-        <div id="menu-overlay" class="menu-overlay" onclick="closeMenu()"></div>
 
-        
+
     <div class="login-container">
         <h1>使用者註冊</h1>
         <form id="registration-form">
@@ -89,11 +64,6 @@
             <button type="submit" id="signup">註冊</button>
         </form>
     </div>
-
-        <!-- Footer -->
-        <footer>
-            <p>&copy; 2024 ANON. All rights reserved.</p>
-        </footer>
     <script src="./js/modal.js"></script>
     <script src="./js/passwordcomfirm.js"></script>
     <script src="./js/post.js"></script>
