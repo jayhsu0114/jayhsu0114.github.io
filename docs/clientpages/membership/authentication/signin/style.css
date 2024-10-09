@@ -90,7 +90,7 @@ body {
 }
 
 
-/* 頁首樣式 */
+/*以下為會員部分 頁首樣式 */
 header {
     display: flex;
     justify-content: space-between;
@@ -154,7 +154,7 @@ header {
 }
 
 .side-menu ul li {
-    padding: 15px 20px;
+    padding: 13px 20px;
     border-bottom: 1px solid #555;
 }
 
@@ -166,7 +166,7 @@ header {
 
 /* 登出按鈕固定在最底部 */
 .side-menu .logout {
-    padding: 15px 20px;
+    padding: 10px 20px;
     border-top: 1px solid #555;
     background-color: #444;
 }
@@ -198,7 +198,7 @@ header {
 /* 頁尾樣式 */
 footer {
     text-align: center;
-    padding: 20px;
+    padding: 15px;
     background-color: #333;
     color: white;
     position: fixed;
@@ -217,6 +217,16 @@ footer {
     .card {
         padding: 15px;
     }
+}
+.logocircle {
+    width: 100px; /* 圓形的寬度 */
+    height: 100px; /* 圓形的高度 */
+    background-color: white; /* 圓形的顏色 */
+    border-radius: 50%; /* 使元素變為圓形 */
+    position: relative; /* 使用相對定位 */
+    margin: 20px auto; /* 上方留出距離，並水平居中 */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* 加入陰影以增加立體感 */
+    z-index: 10; /* 確保圓形在其他元素之上 */
 }
 
 label {
