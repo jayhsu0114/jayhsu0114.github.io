@@ -6,8 +6,8 @@ document.addEventListener('DOMContentLoaded', function() {
     function getLocalStorage(userId) {
         return localStorage.getItem(userId) || '';
     }
-        // 用 LocalStorage 值填充 userId 輸入框
-        document.getElementById('userId').value = getLocalStorage('userId');
+    // 用 LocalStorage 值填充 userId 輸入框
+    document.getElementById('userId').value = getLocalStorage('userId');
 
     // 生成隨機字串
     function generateRandomString(length) {
