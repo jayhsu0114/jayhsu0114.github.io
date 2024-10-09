@@ -28,6 +28,7 @@ function handleSubmit(event) {
 
         // 在控制台輸出所有返回的數據
         console.log(data);
+        alert('登入成功')
 
         // 根據後端返回的重定向路徑進行跳轉（如果存在 redirectUrl）
         if (data.redirectUrl) {
