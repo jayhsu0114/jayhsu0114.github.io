@@ -72,6 +72,10 @@ button:hover {
     margin-bottom: 15px;
     text-align: left;
 }
+.input-group-birthday {
+    margin-bottom: 15px;
+    text-align: left;
+}
 
 .label-row {
     display: flex;

@@ -14,7 +14,7 @@
         <form id="registration-form">
 
             <div class="input-group">
-                <label for="schoolcode">學號（將作為帳號使用不得更改）</label>
+                <label for="schoolcode">學生證悠遊卡號（將作為帳號使用不得更改）</label>
                 <input type="hidden" id="schoolcode-prefix" name="schoolcode-prefix" required readonly>
                 <input type="text" id="schoolcode" name="schoolcode" required>
                 <input type="hidden" id="schoolcode-suffix" name="schoolcode-suffix" required readonly>
@@ -36,7 +36,20 @@
             <div class="input-group">
                 <label for="name">姓名</label>
                 <input type="text" id="name" name="name" required>
-            </div>            
+            </div>
+            
+            <div class="input-group-birthday">
+                <div class="label-row">
+                    <label for="birthday-information-year">出生年</label>
+                    <label for="birthday-information-month">出生月</label>
+                    <label for="birthday-information-date">出生日</label>
+                </div>
+                <div class="input-row">
+                    <input type="text" id="school-information-grade" name="school-information-grade" required>
+                    <input type="text" id="school-information-class" name="school-information-class" required>
+                    <input type="text" id="school-information-number" name="school-information-number" required>
+                </div>
+            </div>
 
             <div class="input-group">
                 <label for="email">電子郵件</label>
