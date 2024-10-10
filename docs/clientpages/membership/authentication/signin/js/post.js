@@ -5,12 +5,18 @@ function handleSubmit(event) {
     const password = document.getElementById('password').value;
     const autologin = document.getElementById('autoLogin').checked;
 
+    // 準備要發送的資料
+    const payload = { username, password, autologin: autologin };
+
+    // 輸出傳送的 JSON 內容
+    console.log('Submitting JSON:', JSON.stringify(payload));
+
     fetch('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/membership-humansignin', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ username, password, autoLogin: autologin }), // 确保属性名称一致
+        body: JSON.stringify(payload), // 確保屬性名稱一致
     })
     .then(response => {
         if (response.ok) {
@@ -23,12 +29,20 @@ function handleSubmit(event) {
         // 獲取後端返回的 JWT token
         const token = data.token;
 
-        // 將 token 存入 localStorage
-        localStorage.setItem('token', token);
+        // 將 token 存入 sessionStorage
+        sessionStorage.setItem('token', token);
+
+        // 檢查是否存在 secretusername 和 secretpassword，並存入 localStorage
+        if (data.secretusername) {
+            localStorage.setItem('secretusername', data.secretusername);
+        }
+        if (data.secretpassword) {
+            localStorage.setItem('secretpassword', data.secretpassword);
+        }
 
         // 在控制台輸出所有返回的數據
-        console.log(data);
-        alert('登入成功')
+        console.log('Received data:', data);
+        alert('登入成功');
 
         // 根據後端返回的重定向路徑進行跳轉（如果存在 redirectUrl）
         if (data.redirectUrl) {
