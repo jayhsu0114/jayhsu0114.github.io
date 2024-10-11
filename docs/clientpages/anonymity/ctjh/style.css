@@ -360,3 +360,14 @@ footer {
         padding: 15px;
     }
 }
+
+.logocircle {
+    width: 100px; /* 圓形的寬度 */
+    height: 100px; /* 圓形的高度 */
+    background-color: white; /* 圓形的顏色 */
+    border-radius: 50%; /* 使元素變為圓形 */
+    position: relative; /* 使用相對定位 */
+    margin: 20px auto; /* 上方留出距離，並水平居中 */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* 加入陰影以增加立體感 */
+    z-index: 10; /* 確保圓形在其他元素之上 */
+}
