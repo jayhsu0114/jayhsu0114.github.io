@@ -40,14 +40,18 @@ function handleSubmit(event) {
             localStorage.setItem('secretpassword', data.secretpassword);
         }
 
+        // 獲取並處理 school 資訊（轉成全小寫）
+        const school = data.school ? data.school.toLowerCase() : '';
+
         // 在控制台輸出所有返回的數據
         console.log('Received data:', data);
         alert('登入成功');
 
-        // 根據後端返回的重定向路徑進行跳轉（如果存在 redirectUrl）
-        if (data.redirectUrl) {
-            window.location.href = data.redirectUrl;
+        // 跳轉到新的 URL，根據 school 參數
+        if (school) {
+            window.location.href = `https://anoncoultd.com/clientpages/anonymity/${school}`;
         }
+
     })
     .catch(error => {
         console.error('Error during login:', error);
