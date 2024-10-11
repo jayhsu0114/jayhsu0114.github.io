@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="./js/modal.js"></script>
     <script src="./js/sidebar.js"></script>
-    <!--<script src="./js/instagramchecker.js"></script>-->
+    <script src="./js/autosignin.js"></script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2383721687553257" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -29,12 +29,16 @@
     </header>
         <!-- Side Menu -->
         <nav id="side-menu" class="side-menu">
+            
             <ul>
-                <li><a href="https://anoncoultd.com/clientpages/membership/announcement">個人首頁</a></li>
-                <li><a href="">發布匿名</a></li>
-                <li><a href="https://anoncoultd.com/clientpages/membership/announcement">歷史紀錄</a></li>
-                <li><a href="https://anoncoultd.com/clientpages/membership/announcement">設定</a></li>
-                <li class="logout"><a href="https://anoncoultd.com/clientpages/membership/announcement">登入</a></li>
+                <div class="logocircle"></div>
+                <li><a id="userId">使用者代碼</a></li>
+                <li><a href="/clientpages/membership/homepages">個人首頁</a></li>
+                <li><a id="anonymousLink">發布匿名</a></li>
+                <li><a href="/clientpages/membership/anonymityhistory">歷史紀錄</a></li>
+                <li><a href="/clientpages/membership/setup">設定</a></li>
+                <li><a href="/clientpages/membership/discount">專屬折扣</a></li>
+                <li class="logout"><a href="/clientpages/membership/authentication/signin">登入</a></li>
             </ul>
         </nav>
     
@@ -67,5 +71,6 @@
     <script src="./js/post.js"></script>
     <script src="./js/reply.js"></script>
     <script src="./js/setSchoolSession.js"></script>
+    <script src="./js/anonymityhref.js"></script>
 </body>
 </html>
