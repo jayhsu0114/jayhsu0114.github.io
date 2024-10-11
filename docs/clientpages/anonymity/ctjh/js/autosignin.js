@@ -95,8 +95,8 @@ function attemptAutoSignin(secretUsername, secretPassword, userNameSpan, logoutL
 
             // 修改 <li class="logout"><a href="/clientpages/membership/authentication/signin">登入</a></li> 內容為登出
             if (logoutLi) {
-                logoutLi.textContent = '登出';
-                logoutLi.href = '/clientpages/membership/authentication/logout';
+                logoutLi.textContent = '已登入';
+                logoutLi.href = '';
             }
 
             // 將 <li><a id="userId">使用者代碼</a></li> 改為 localStorage 中的 userId
