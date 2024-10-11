@@ -28,9 +28,11 @@ function handleSubmit(event) {
     .then(data => {
         // 獲取後端返回的 JWT token
         const token = data.token;
+        const userId = data.userId;
 
         // 將 token 存入 sessionStorage
         sessionStorage.setItem('token', token);
+        localStorage.setItem('userId',userId)
 
         // 檢查是否存在 secretusername 和 secretpassword，並存入 localStorage
         if (data.secretusername) {
