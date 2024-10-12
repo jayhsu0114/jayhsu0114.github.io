@@ -1,6 +1,6 @@
 // logout.js
 function handleLogout(event) {
-    //event.preventDefault(); // 阻止預設的連結行為
+    event.preventDefault(); // 阻止預設的連結行為
 
     // 刪除 sessionStorage 裡的 token
     sessionStorage.removeItem('token');
@@ -22,8 +22,17 @@ function handleLogout(event) {
     if (logoutLi) {
         logoutLi.textContent = '登入'; // 修改按鈕文字為 "登入"
         logoutLi.href = '/clientpages/membership/authentication/signin'; // 設置連結到登入頁面
+
+        // 移除事件監聽器，讓用戶在登出後能正常點擊登入按鈕
+        logoutLi.removeEventListener('click', handleLogout);
     }
 
     // 自動跳轉到登入頁面
     // window.location.href = '/clientpages/membership/authentication/signin';
+}
+
+// 將登出按鈕添加事件監聽器
+const logoutLi = document.querySelector('li.logout a');
+if (logoutLi) {
+    logoutLi.addEventListener('click', handleLogout);
 }
