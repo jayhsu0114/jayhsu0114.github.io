@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
         };
 
         // 發送數據到後端
-        fetch('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app//gethsjhanonymity', {
+        fetch('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/gethsjhanonymity', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
