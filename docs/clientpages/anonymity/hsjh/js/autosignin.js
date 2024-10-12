@@ -27,8 +27,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
                 // 修改 <li class="logout"><a href="/clientpages/membership/authentication/signin">登入</a></li> 內容為登出
                 if (logoutLi) {
-                    logoutLi.textContent = '登出';
-                    logoutLi.href = '/clientpages/membership/authentication/logout'; // 可更改为登出功能的实际路径
+                    logoutLi.href = '#'; // 改為 #
+                    logoutLi.addEventListener('click', handleLogout); // 绑定登出事件
                 }
 
                 // 將 <li><a id="userId">使用者代碼</a></li> 改為 localStorage 中的 userId
@@ -95,8 +95,9 @@ function attemptAutoSignin(secretUsername, secretPassword, userNameSpan, logoutL
 
             // 修改 <li class="logout"><a href="/clientpages/membership/authentication/signin">登入</a></li> 內容為登出
             if (logoutLi) {
-                logoutLi.textContent = '已登入';
-                logoutLi.href = '';
+                logoutLi.textContent = '登出';
+                logoutLi.href = '#'; // 改為 #
+                logoutLi.addEventListener('click', handleLogout); // 绑定登出事件
             }
 
             // 將 <li><a id="userId">使用者代碼</a></li> 改為 localStorage 中的 userId
