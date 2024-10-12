@@ -25,9 +25,8 @@ window.addEventListener('DOMContentLoaded', () => {
                     userNameSpan.textContent = '已登入';
                 }
 
-                // 修改 <li class="logout"><a href="#">登入</a></li> 內容為登出，並綁定登出事件
+                // 修改 <li class="logout"><a href="/clientpages/membership/authentication/signin">登入</a></li> 內容為登出
                 if (logoutLi) {
-                    logoutLi.textContent = '登出';
                     logoutLi.href = '#'; // 改為 #
                     logoutLi.addEventListener('click', handleLogout); // 绑定登出事件
                 }
@@ -54,3 +53,60 @@ window.addEventListener('DOMContentLoaded', () => {
         attemptAutoSignin(secretUsername, secretPassword, userNameSpan, logoutLi, userIdElement);
     }
 });
+
+// 嘗試自動登入函數
+function attemptAutoSignin(secretUsername, secretPassword, userNameSpan, logoutLi, userIdElement) {
+    // 檢查 localStorage 是否同時存在 secretusername 和 secretpassword
+    if (secretUsername && secretPassword) {
+        const payload = {
+            secretusername: secretUsername,
+            secretpassword: secretPassword
+        };
+
+        console.log('Sending autosignin JSON:', JSON.stringify(payload));
+
+        fetch('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/membership-autosignin', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(payload),
+        })
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error('Network response was not ok.');
+            }
+        })
+        .then(data => {
+            const userId = data.userId;
+            const token = data.token;
+
+            localStorage.setItem('userId', userId);
+            sessionStorage.setItem('token', token);
+
+            console.log('Received data:', data);
+
+            // 修改 <span id="user-name"> 尚未登入 </span> 內容為已登入
+            if (userNameSpan) {
+                userNameSpan.textContent = '已登入';
+            }
+
+            // 修改 <li class="logout"><a href="/clientpages/membership/authentication/signin">登入</a></li> 內容為登出
+            if (logoutLi) {
+                logoutLi.textContent = '登出';
+                logoutLi.href = '#'; // 改為 #
+                logoutLi.addEventListener('click', handleLogout); // 绑定登出事件
+            }
+
+            // 將 <li><a id="userId">使用者代碼</a></li> 改為 localStorage 中的 userId
+            if (userIdElement) {
+                userIdElement.textContent = userId;
+            }
+        })
+        .catch(error => {
+            console.error('Error during autosignin:', error);
+        });
+    }
+}
