@@ -16,4 +16,14 @@ function handleLogout(event) {
     if (userIdElement) {
         userIdElement.textContent = '使用者代碼';
     }
+
+    // 修改登出按鈕為登入，並設置連結到登入頁面
+    const logoutLi = document.querySelector('li.logout a');
+    if (logoutLi) {
+        logoutLi.textContent = '登入'; // 修改按鈕文字為 "登入"
+        logoutLi.href = '/clientpages/membership/authentication/signin'; // 設置連結到登入頁面
+    }
+
+    // 可選：也可以自動跳轉到登入頁面
+    // window.location.href = '/clientpages/membership/authentication/signin';
 }
