@@ -1,6 +1,6 @@
 // logout.js
 function handleLogout(event) {
-    event.preventDefault(); // 阻止預設的連結行為
+    //event.preventDefault(); // 阻止預設的連結行為
 
     // 刪除 sessionStorage 裡的 token
     sessionStorage.removeItem('token');
@@ -24,6 +24,6 @@ function handleLogout(event) {
         logoutLi.href = '/clientpages/membership/authentication/signin'; // 設置連結到登入頁面
     }
 
-    // 可選：也可以自動跳轉到登入頁面
+    // 自動跳轉到登入頁面
     // window.location.href = '/clientpages/membership/authentication/signin';
 }
