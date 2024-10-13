@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>忘記密碼</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="./js/userId.js"></script>
+</head>
+<body>
+
+    <div class="login-container">
+        <h1>忘記密碼</h1>
+        <form onsubmit="handleSubmit(event)">
+            <div class="input-group">
+                <label for="username">帳號</label>
+                <input type="text" id="username" name="username" required placeholder="即學生證悠遊卡號">
+                <input type="hidden" id="userId" name="userId" required>
+            </div>
+            <div class="input-group-birthday">
+                <div class="label-row">
+                    <label for="birthday-information-year">出生年</label>
+                    <label for="birthday-information-month">出生月</label>
+                    <label for="birthday-information-date">出生日</label>
+                </div>
+                <div class="input-row">
+                    <input type="text" id="birthday-information-year" name="birthday-information-year" placeholder="西元年" required>
+                    <div class="error" id="birthday-information-year-error">請輸入西元年</div>
+                    <input type="text" id="birthday-information-month" name="birthday-information-month" required>
+                    <input type="text" id="birthday-information-date" name="birthday-information-date" required>
+                </div>
+            </div>
+            <button type="submit" id="signin">身份認證</button>
+        </form>
+    </div>
+    <script src="./js/post.js"></script>
+</body>
+</html>

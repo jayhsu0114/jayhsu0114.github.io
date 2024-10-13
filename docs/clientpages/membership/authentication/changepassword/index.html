@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>更改密碼</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="./js/userId.js"></script>
+</head>
+<body>
+
+    <div class="login-container">
+        <h1>更改密碼</h1>
+        <form onsubmit="handleSubmit(event)">
+            
+            <div class="input-group">
+                <label for="password">新設密碼</label>
+                <input type="password" id="password" name="password" required>
+                <input type="hidden" id="userId" name="userId" required>
+            </div>
+
+            <div class="input-group">
+                <label for="passwordconfirm">確認密碼</label>
+                <input type="password" id="passwordconfirm" name="passwordconfirm" required>
+                <div class="error" id="password-error">密碼不一致</div>
+            </div>
+
+            <button type="submit" id="signin">更改密碼</button>
+        </form>
+    </div>
+    <script src="./js/post.js"></script>
+</body>
+</html>
