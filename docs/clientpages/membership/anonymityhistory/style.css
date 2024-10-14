@@ -145,70 +145,82 @@ footer {
 }
 
 
-
-
-
-
-
-/* 卡片樣式 */
-main {
+  
+  .card {
+    background-color: #F6F7F9;
+    border-radius: 15px;
     padding: 20px;
-}
-
-/* 卡片樣式 */
-.card {
-    position: relative; /* 讓卡片內的元素能夠相對定位 */
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    margin-bottom: 20px;
-}
-
-/* 卡片標頭樣式 */
-.card-header {
+    max-width: 400px;
+    margin: 50px auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .card-header {
     display: flex;
-    justify-content: space-between; /* 左右兩側對齊 */
-    align-items: center;
-}
-
-/* 按鈕組容器樣式 */
-.button-group {
-    display: flex;
-    gap: 5px; /* 控制按鈕之間的距離 */
-    padding: 5px;
-}
-
-/* 後悔按鈕定位 */
-.regret-btn {
-    position: absolute;
-    bottom: 15px; /* 讓按鈕在卡片的底部 */
-    right: 20px;  /* 讓按鈕靠右側 */
-    background-color: red;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-
-}
-
-/* 其他按鈕樣式 */
-button {
-    background-color: #434343;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    right: 15px;
-}
-
-.card-content {
-    margin: 10px 0;
-}
-
-.card-status {
-    color: #7f8c8d;
+    justify-content: flex-start;
+  }
+  
+  .card-date {
+    color: #607D8B;
     font-size: 14px;
-}
+  }
+  
+  .card-content {
+    margin-top: 10px;
+  }
+  
+  .card-content p {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    line-height: 1.6;
+  }
+  
+  .card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .card-info {
+    background-color: #E0E0E0;
+    padding: 8px 12px;
+    border-radius: 25px;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .card-status {
+    background-color: #E0E0E0;
+    padding: 8px 12px;
+    border-radius: 25px;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .edit-btn, .delete-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  
+  .edit-btn {
+    background-color: #6BADE4;
+    color: white;
+  }
+  
+  .delete-btn {
+    background-color: #F28B82;
+    color: white;
+  }
+  
+  .edit-btn:hover {
+    background-color: #5A9DD0;
+  }
+  
+  .delete-btn:hover {
+    background-color: #E57373;
+  }
