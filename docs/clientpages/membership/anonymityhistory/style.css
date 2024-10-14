@@ -146,13 +146,19 @@ footer {
 
 
   
+ /* 根據一般設計慣例，1rem = 16px，可根據需求調整根元素字體大小 */
+html {
+    font-size: 16px; /* 1rem = 16px */
+  }
+  
   .card {
     background-color: #F6F7F9;
-    border-radius: 15px;
-    padding: 20px;
-    max-width: 400px;
-    margin: 50px auto;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 0.9375rem; /* 15px */
+    padding: 1.25rem; /* 20px */
+    max-width: 25rem; /* 400px */
+    margin: 3.125rem auto; /* 50px auto */
+    width: 80%;
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2); /* 0 4px 8px */
   }
   
   .card-header {
@@ -162,15 +168,15 @@ footer {
   
   .card-date {
     color: #607D8B;
-    font-size: 14px;
+    font-size: 0.875rem; /* 14px */
   }
   
   .card-content {
-    margin-top: 10px;
+    margin-top: 0.625rem; /* 10px */
   }
   
   .card-content p {
-    font-size: 16px;
+    font-size: 1rem; /* 16px */
     font-weight: bold;
     color: #333;
     line-height: 1.6;
@@ -180,30 +186,32 @@ footer {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: 20px;
+    margin-top: 1.25rem; /* 20px */
   }
   
-  .card-info {
+  .card-info, .card-status {
     background-color: #E0E0E0;
-    padding: 8px 12px;
-    border-radius: 25px;
-    font-size: 14px;
+    padding: 0.5rem 0.75rem; /* 8px 12px */
+    border-radius: 1.5625rem; /* 25px */
+    font-size: 0.875rem; /* 14px */
     color: #333;
   }
   
-  .card-status {
-    background-color: #E0E0E0;
-    padding: 8px 12px;
-    border-radius: 25px;
-    font-size: 14px;
-    color: #333;
+  /* 取消按鈕預設樣式 */
+  button {
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+    outline: none;
   }
   
   .edit-btn, .delete-btn {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 25px;
-    font-size: 14px;
+    padding: 0.625rem 1.25rem; /* 10px 20px */
+    border-radius: 1.5625rem; /* 25px */
+    font-size: 0.875rem; /* 14px */
     cursor: pointer;
   }
   
