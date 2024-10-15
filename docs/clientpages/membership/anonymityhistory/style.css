@@ -273,13 +273,15 @@ button {
 }
 
 .button-edit {
-  background-color: #4299e1;
+  background-color: #70a7dd;
 }
 
 .button-delete {
-  background-color: #e53e3e;
+  background-color: #de6768;
 }
-
+.button-preview {
+  background-color: #45b6d9;
+}
 /* 响应式设计 */
 @media screen and (max-width: 600px) {
   .card {
