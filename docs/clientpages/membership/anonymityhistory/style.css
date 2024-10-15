@@ -169,20 +169,26 @@ footer {
   height: calc(100vh - 120px); /* 減去頁首和頁尾的高度 */
 }
 
+/* 卡片样式 */
 .card {
-  background-color: white;
+  background-color: var(--card-background);
   border-radius: 10px;
   padding: 20px;
-  width: 80%;
+  width: 100%;
   max-width: 500px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin: 0 auto 20px; /* 上下間距和水平居中 */
+  margin: 0 auto 20px;
+}
+
+.card-header {
+  margin-bottom: 10px;
+  text-align: left; /* 确保header内容左对齐 */
 }
 
 .date {
-  color: #4a5568;
+  color: var(--tag-color);
   font-size: 18px;
-  margin-bottom: 10px;
+  text-align: left; /* 明确指定日期左对齐 */
 }
 
 .card-content {
