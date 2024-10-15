@@ -160,7 +160,7 @@ footer {
 }
 
 #header-gap{
-  height: 40px;
+  height: 5px;
 }
 
 /* 以下為卡片部分 */
@@ -195,6 +195,7 @@ footer {
   text-align: left;
   margin-bottom: 10px ;
   padding: 5px;
+  font-weight: bolder;
 }
 
 .card-content {
@@ -225,15 +226,16 @@ footer {
 
 .tag {
   color: #333;
-  padding: 2px 6px; /* 减少内边距 */
-  border-radius: 12px;
+  padding:15px; /* 减少内边距 */
+  border-radius: 20px;
   font-size: 10px; /* 减小字体大小 */
   white-space: nowrap; /* 防止文字换行 */
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 20px; /* 减小高度 */
+  height: 30px; /* 减小高度 */
   flex-shrink: 0; /* 防止标签被压缩 */
+  font-weight: bold;
 }
 
 #postprecode{
@@ -271,14 +273,15 @@ background-color:#f0f0f0;
 }
 
 button {
-  padding: 0 8px; /* 减少水平内边距 */
-  border-radius: 12px;
+  padding: 15px; /* 减少水平内边距 */
+  border-radius: 20px;
   border: none;
   color: white;
   cursor: pointer;
-  font-size: 10px; /* 减小字体大小 */
+  font-size: 12px; /* 减小字体大小 */
   font-weight: bold;
-  height: 20px; /* 减小高度，与标签一致 */
+  height: 30px; /* 减小高度，与标签一致 */
+  width: auto;
   display: flex;
   align-items: center;
   justify-content: center;
