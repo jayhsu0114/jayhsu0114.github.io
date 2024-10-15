@@ -159,7 +159,7 @@ footer {
   z-index: 10; /* 確保圓形在其他元素之上 */
 }
 
-/* 添加到現有的 CSS 文件末尾 */
+/* 以下為卡片部分 */
 
 .content {
   margin-top: 60px; /* 為頁首留出空間 */
@@ -206,9 +206,9 @@ footer {
 .tag {
   background-color: #e2e8f0;
   color: #4a5568;
-  padding: 8px 16px;
-  border-radius: 5px;
-  font-size: 14px;
+  padding: 4px 8px;
+  border-radius: 10px;
+  font-size: 12px;
   display: flex;
   align-items: center;
 }
