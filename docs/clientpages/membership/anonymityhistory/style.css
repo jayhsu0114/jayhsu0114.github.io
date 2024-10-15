@@ -321,9 +321,6 @@ button {
     justify-content: space-between; /* 在小屏幕上保持两端对齐 */
   }
   
-  .tags {
-    max-width: 50%; /* 在小屏幕上减少标签区域的最大宽度 */
-  }
   
   .tag, .button {
     font-size: 12px; /* 在小屏幕上进一步减小字体 */
