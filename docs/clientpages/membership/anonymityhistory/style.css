@@ -171,7 +171,7 @@ footer {
 
 /* 卡片样式 */
 .card {
-  background-color: var(--card-background);
+  background-color: white;
   border-radius: 10px;
   padding: 20px;
   width: 100%;
@@ -182,13 +182,13 @@ footer {
 
 .card-header {
   margin-bottom: 10px;
-  text-align: left; /* 确保header内容左对齐 */
+  text-align: left;
 }
 
 .date {
-  color: var(--tag-color);
+  color: #999; /* 更浅的颜色 */
   font-size: 18px;
-  text-align: left; /* 明确指定日期左对齐 */
+  text-align: left;
 }
 
 .card-content {
@@ -218,7 +218,6 @@ footer {
   display: flex;
   align-items: center;
 }
-
 .buttons {
   display: flex;
   gap: 10px;
@@ -233,11 +232,11 @@ footer {
   font-size: 14px;
 }
 
-.botton-edit {
+.button-edit {
   background-color: #4299e1;
 }
 
-.botton-delete {
+.button-delete {
   background-color: #e53e3e;
 }
 
