@@ -202,6 +202,7 @@ footer {
   margin-bottom: 10px;
   text-align: left;
   font-weight: bold; /* 保持内容的粗体 */
+  padding: 5px;
 }
 
 .footer {
@@ -250,6 +251,11 @@ background-color:#f0f0f0;
   color: #FFF;
 }
 
+#status-fail{
+  background-color: #45b6d9;
+  color: #FFF;
+}
+
 
 .buttons {
   display: flex;
@@ -279,9 +285,15 @@ button {
 .button-delete {
   background-color: #de6768;
 }
+
 .button-preview {
   background-color: #45b6d9;
 }
+
+.button-regulation {
+  background-color: #5CC17B;
+}
+
 /* 响应式设计 */
 @media screen and (max-width: 600px) {
   .card {
