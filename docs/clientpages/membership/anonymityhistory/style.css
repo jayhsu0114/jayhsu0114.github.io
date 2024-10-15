@@ -203,49 +203,53 @@ footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: nowrap; /* 确保不换行 */
 }
 
 .tags {
   display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
+  flex-wrap: nowrap; /* 标签不换行 */
+  gap: 4px; /* 减少间距 */
+  overflow-x: auto; /* 允许水平滚动 */
+  -webkit-overflow-scrolling: touch; /* 在iOS上提供平滑滚动 */
+  max-width: 60%; /* 限制标签区域宽度 */
 }
 
 .tag {
   background-color: #f0f0f0;
   color: #333;
-  padding: 4px 8px;
+  padding: 2px 6px; /* 减少内边距 */
   border-radius: 12px;
-  font-size: 12px;
+  font-size: 10px; /* 减小字体大小 */
+  white-space: nowrap; /* 防止文字换行 */
   display: flex;
   align-items: center;
-  justify-content: center; /* 文字垂直水平居中 */
-  height: 24px; /* 固定高度，与按钮一致 */
+  justify-content: center;
+  height: 20px; /* 减小高度 */
+  flex-shrink: 0; /* 防止标签被压缩 */
 }
 
-/* 重置按钮样式 */
+.buttons {
+  display: flex;
+  gap: 4px; /* 减少间距 */
+}
+
 .button {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  background-color: transparent; /* 移除默认背景 */
-  padding: 0 12px;
+  padding: 0 8px; /* 减少水平内边距 */
   border-radius: 12px;
   border: none;
   color: white;
   cursor: pointer;
-  font-size: 12px;
+  font-size: 10px; /* 减小字体大小 */
   font-weight: bold;
-  height: 24px;
+  height: 20px; /* 减小高度，与标签一致 */
   display: flex;
   align-items: center;
   justify-content: center;
   white-space: nowrap;
-  text-align: center;
-  line-height: 1; /* 确保文本垂直居中 */
+  flex-shrink: 0; /* 防止按钮被压缩 */
 }
 
-/* 确保背景色应用 */
 .button-edit {
   background-color: #4299e1;
 }
@@ -254,36 +258,27 @@ footer {
   background-color: #e53e3e;
 }
 
-/* 禁用Safari的默认按钮样式 */
-.button::-moz-focus-inner {
-  border: 0;
-}
-
-/* 针对iOS的额外修复 */
-@media screen and (-webkit-min-device-pixel-ratio:0) {
-  .button {
-    border: none;
-    outline: none;
-  }
-}
-
-/* 确保触摸时不会有默认高亮 */
-.button {
-  -webkit-tap-highlight-color: transparent;
-}
-
-/* 确保卡片在小屏幕上也能正确显示 */
+/* 响应式设计 */
 @media screen and (max-width: 600px) {
   .card {
     width: 95%;
+    padding: 10px; /* 减少卡片内边距 */
   }
   
   .footer {
-    flex-wrap: wrap; /* 允许在小屏幕上换行 */
-    gap: 10px; /* 添加一些间距 */
+    justify-content: space-between; /* 在小屏幕上保持两端对齐 */
   }
   
-  .tags, .buttons {
-    flex: 1 0 100%; /* 在小屏幕上占满宽度 */
+  .tags {
+    max-width: 50%; /* 在小屏幕上减少标签区域的最大宽度 */
+  }
+  
+  .tag, .button {
+    font-size: 9px; /* 在小屏幕上进一步减小字体 */
+    height: 18px; /* 减小高度 */
+  }
+  
+  .button {
+    padding: 0 6px; /* 进一步减少按钮的水平内边距 */
   }
 }
