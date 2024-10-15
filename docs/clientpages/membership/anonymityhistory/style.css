@@ -173,10 +173,10 @@ footer {
 .card {
   background-color: white;
   border-radius: 10px;
-  padding: 20px;
+  padding: 15px;
   width: 100%;
   max-width: 500px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin: 0 auto 20px;
 }
 
@@ -186,16 +186,17 @@ footer {
 }
 
 .date {
-  color: #999; /* 更浅的颜色 */
-  font-size: 18px;
+  color: #666; /* 稍微深一点的颜色，确保可读性 */
+  font-size: 16px;
   text-align: left;
 }
 
 .card-content {
-  font-size: 16px;
-  line-height: 1.5;
-  margin-bottom: 20px;
-  text-align: left; /* 文本左對齊 */
+  font-size: 14px;
+  line-height: 1.4;
+  margin-bottom: 15px; /* 减少内容和标签之间的距离 */
+  text-align: left;
+  font-weight: bold;
 }
 
 .footer {
@@ -206,30 +207,31 @@ footer {
 
 .tags {
   display: flex;
-  gap: 10px;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
 .tag {
-  background-color: #e2e8f0;
-  color: #4a5568;
+  background-color: #f0f0f0;
+  color: #333;
   padding: 4px 8px;
-  border-radius: 10px;
+  border-radius: 12px;
   font-size: 12px;
-  display: flex;
-  align-items: center;
 }
+
 .buttons {
   display: flex;
-  gap: 10px;
+  gap: 8px;
 }
 
 .button {
-  padding: 8px 16px;
-  border-radius: 5px;
+  padding: 6px 12px;
+  border-radius: 12px;
   border: none;
   color: white;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 12px;
+  font-weight: bold;
 }
 
 .button-edit {
@@ -240,18 +242,18 @@ footer {
   background-color: #e53e3e;
 }
 
-/* 確保卡片在小屏幕上也能正確顯示 */
+/* 确保卡片在小屏幕上也能正确显示 */
 @media screen and (max-width: 600px) {
   .card {
-      width: 95%;
+    width: 95%;
   }
   
-  .card .footer {
-      flex-direction: column;
-      align-items: flex-start;
+  .footer {
+    flex-direction: column;
+    align-items: flex-start;
   }
   
-  .card .tags, .card .buttons {
-      margin-top: 10px;
+  .tags, .buttons {
+    margin-top: 10px;
   }
 }
