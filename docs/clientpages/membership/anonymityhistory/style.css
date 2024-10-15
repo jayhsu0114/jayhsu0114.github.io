@@ -217,7 +217,6 @@ footer {
 }
 
 .tag {
-  background-color: #f0f0f0;
   color: #333;
   padding: 2px 6px; /* 减少内边距 */
   border-radius: 12px;
@@ -228,6 +227,14 @@ footer {
   justify-content: center;
   height: 20px; /* 减小高度 */
   flex-shrink: 0; /* 防止标签被压缩 */
+}
+
+#postprecode{
+background-color:#f0f0f0;
+}
+
+#status-checking{
+  background-color: #f0f0f0;
 }
 
 .buttons {
@@ -275,7 +282,7 @@ button {
   }
   
   .tag, .button {
-    font-size: 9px; /* 在小屏幕上进一步减小字体 */
+    font-size: 12px; /* 在小屏幕上进一步减小字体 */
     height: 18px; /* 减小高度 */
   }
   
