@@ -181,20 +181,20 @@ footer {
 }
 
 .card-header {
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   text-align: left;
 }
 
 .date {
   color: #666;
-  font-size: 16px;
+  font-size: 14px;
   text-align: left;
 }
 
 .card-content {
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.4;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   text-align: left;
   font-weight: bold; /* 保持内容的粗体 */
 }
