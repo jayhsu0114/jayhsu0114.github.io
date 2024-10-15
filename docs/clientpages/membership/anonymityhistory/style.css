@@ -158,3 +158,95 @@ footer {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* 加入陰影以增加立體感 */
   z-index: 10; /* 確保圓形在其他元素之上 */
 }
+
+/* 添加到現有的 CSS 文件末尾 */
+
+.content {
+  margin-top: 60px; /* 為頁首留出空間 */
+  margin-bottom: 60px; /* 為頁尾留出空間 */
+  padding: 20px;
+  overflow-y: auto; /* 允許內容滾動 */
+  height: calc(100vh - 120px); /* 減去頁首和頁尾的高度 */
+}
+
+.card {
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  width: 80%;
+  max-width: 500px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 0 auto 20px; /* 上下間距和水平居中 */
+}
+
+.card .date {
+  color: #4a5568;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.card .card-content {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  text-align: left; /* 文本左對齊 */
+}
+
+.card .footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card .tags {
+  display: flex;
+  gap: 10px;
+}
+
+.card .tag {
+  background-color: #e2e8f0;
+  color: #4a5568;
+  padding: 8px 16px;
+  border-radius: 5px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+}
+
+.card .buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.card .button {
+  padding: 8px 16px;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.card .edit {
+  background-color: #4299e1;
+}
+
+.card .delete {
+  background-color: #e53e3e;
+}
+
+/* 確保卡片在小屏幕上也能正確顯示 */
+@media screen and (max-width: 600px) {
+  .card {
+      width: 95%;
+  }
+  
+  .card .footer {
+      flex-direction: column;
+      align-items: flex-start;
+  }
+  
+  .card .tags, .card .buttons {
+      margin-top: 10px;
+  }
+}
