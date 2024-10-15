@@ -1,9 +1,18 @@
 /* 全局樣式 */
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #fefdf7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #fefdf7;
+  font-family: Arial, sans-serif;
+  text-align: center; /* 水平居中内容 */
+  position: relative;
+  overflow: hidden;
+  flex-direction: column;
 }
+
 
 /*以下為會員部分 頁首樣式 */
 header {
