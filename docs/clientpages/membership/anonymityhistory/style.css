@@ -159,11 +159,15 @@ footer {
   z-index: 10; /* 確保圓形在其他元素之上 */
 }
 
+#header-gap{
+  height: 60px;
+}
+
 /* 以下為卡片部分 */
 
 .content {
-  margin-top: 60px; /* 為頁首留出空間 */
-  margin-bottom: 60px; /* 為頁尾留出空間 */
+  margin-top: 10px; /* 為頁首留出空間 */
+  margin-bottom: 10px; /* 為頁尾留出空間 */
   padding: 20px;
   overflow-y: auto; /* 允許內容滾動 */
   height: calc(100vh - 120px); /* 減去頁首和頁尾的高度 */
