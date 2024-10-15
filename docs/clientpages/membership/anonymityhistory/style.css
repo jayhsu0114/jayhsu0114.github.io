@@ -194,6 +194,7 @@ footer {
   font-size: 14px;
   text-align: left;
   margin-bottom: 10px ;
+  padding: 5px;
 }
 
 .card-content {
@@ -219,6 +220,7 @@ footer {
   overflow-x: auto; /* 允许水平滚动 */
   -webkit-overflow-scrolling: touch; /* 在iOS上提供平滑滚动 */
   max-width: 60%; /* 限制标签区域宽度 */
+  padding: 5px;
 }
 
 .tag {
