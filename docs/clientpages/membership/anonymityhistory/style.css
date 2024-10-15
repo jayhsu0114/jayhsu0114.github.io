@@ -258,6 +258,11 @@ background-color:#f0f0f0;
   color: #FFF;
 }
 
+#status-post{
+  background-color: #fb6d00;
+  color: #fff;
+}
+
 
 .buttons {
   display: flex;
@@ -295,6 +300,11 @@ button {
 .button-regulation {
   background-color: #5CC17B;
 }
+
+.button-manager {
+  background-color: #434343;
+}
+
 
 /* 响应式设计 */
 @media screen and (max-width: 600px) {
