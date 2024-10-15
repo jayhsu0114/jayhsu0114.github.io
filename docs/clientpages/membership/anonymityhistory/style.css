@@ -179,31 +179,31 @@ footer {
   margin: 0 auto 20px; /* 上下間距和水平居中 */
 }
 
-.card .date {
+.date {
   color: #4a5568;
   font-size: 18px;
   margin-bottom: 10px;
 }
 
-.card .card-content {
+.card-content {
   font-size: 16px;
   line-height: 1.5;
   margin-bottom: 20px;
   text-align: left; /* 文本左對齊 */
 }
 
-.card .footer {
+.footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.card .tags {
+.tags {
   display: flex;
   gap: 10px;
 }
 
-.card .tag {
+.tag {
   background-color: #e2e8f0;
   color: #4a5568;
   padding: 8px 16px;
@@ -213,12 +213,12 @@ footer {
   align-items: center;
 }
 
-.card .buttons {
+.buttons {
   display: flex;
   gap: 10px;
 }
 
-.card .button {
+.button {
   padding: 8px 16px;
   border-radius: 5px;
   border: none;
@@ -227,11 +227,11 @@ footer {
   font-size: 14px;
 }
 
-.card .edit {
+.botton-edit {
   background-color: #4299e1;
 }
 
-.card .delete {
+.botton-delete {
   background-color: #e53e3e;
 }
 
