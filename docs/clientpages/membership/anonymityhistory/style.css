@@ -233,9 +233,18 @@ footer {
 background-color:#f0f0f0;
 }
 
+#postcode{
+  background-color: #f0f0f0;
+}
+
 #status-checking{
   background-color: #f0f0f0;
 }
+
+#status-pass{
+  background-color: #5CC17B;
+}
+
 
 .buttons {
   display: flex;
