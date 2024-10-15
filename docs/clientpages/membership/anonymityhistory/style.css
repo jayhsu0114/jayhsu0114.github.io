@@ -223,32 +223,53 @@ footer {
   height: 24px; /* 固定高度，与按钮一致 */
 }
 
-.buttons {
-  display: flex;
-  gap: 8px;
-}
-
+/* 重置按钮样式 */
 .button {
-  padding: 0 12px; /* 水平内边距 */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: transparent; /* 移除默认背景 */
+  padding: 0 12px;
   border-radius: 12px;
   border: none;
   color: white;
   cursor: pointer;
   font-size: 12px;
   font-weight: bold;
-  height: 24px; /* 固定高度，与标签一致 */
+  height: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
-  white-space: nowrap; /* 防止文字换行 */
+  white-space: nowrap;
+  text-align: center;
+  line-height: 1; /* 确保文本垂直居中 */
 }
 
+/* 确保背景色应用 */
 .button-edit {
   background-color: #4299e1;
 }
 
 .button-delete {
   background-color: #e53e3e;
+}
+
+/* 禁用Safari的默认按钮样式 */
+.button::-moz-focus-inner {
+  border: 0;
+}
+
+/* 针对iOS的额外修复 */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  .button {
+    border: none;
+    outline: none;
+  }
+}
+
+/* 确保触摸时不会有默认高亮 */
+.button {
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* 确保卡片在小屏幕上也能正确显示 */
