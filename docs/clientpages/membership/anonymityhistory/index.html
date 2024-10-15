@@ -12,7 +12,7 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>中山匿名網頁</title>
+    <title>ANON 匿名歷史紀錄</title>
     <link rel="stylesheet" href="style.css">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2383721687553257" crossorigin="anonymous"></script>
 </head>
@@ -24,25 +24,91 @@
         </div>
         <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
     </header>
-
-    <!-- Side Menu -->
+    <div id="header-gap"></div>
+    
     <nav id="side-menu" class="side-menu">
         <ul>
             <div class="logocircle"></div>
-            <li><a id="userId">使用者代碼</a></li>
+            <li><a>藍毛猩猩</a></li>
             <li><a href="/clientpages/membership/homepages">個人首頁</a></li>
-            <li><a id="anonymousLink">發布匿名</a></li>
+            <li><a href=`/clientpages/anonymity/${school}`>發布匿名</a></li>
             <li><a href="/clientpages/membership/anonymityhistory">歷史紀錄</a></li>
             <li><a href="/clientpages/membership/setup">設定</a></li>
             <li><a href="/clientpages/membership/discount">專屬折扣</a></li>
             <li class="logout"><a href="/clientpages/membership/authentication/signin">登入</a></li>
         </ul>
     </nav>
-
-    <!-- 背景遮罩層 -->
+    
     <div id="menu-overlay" class="menu-overlay" onclick="closeMenu()"></div>
 
+    <main class="content">
+        <div class="card">
+            <div class="date">2019/04/02</div>
+            <div class="card-content">
+                這是一個匿名內容，測試測試測試，測試測試測試，測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試。
+            </div>
+            <div class="footer">
+                <div class="tags">
+                    <span class="tag" id="postprecode">ZSJH_A2C4E6</span>
+                    <span class="tag" id="status-checking">審核中</span>
+                </div>
+                <div class="buttons">
+                    <button class="button-edit">編輯</button>
+                    <button class="button-delete">刪除</button>
+                </div>
+            </div>
+        </div>
 
+        <div class="card">
+            <div class="date">2019/04/02</div>
+            <div class="card-content">
+                這是二個匿名內容，測試測試測試，測試測試測試，測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試。
+            </div>
+            <div class="footer">
+                <div class="tags">
+                    <span class="tag" id="postcode">ZSJH12345</span>
+                    <span class="tag" id="status-pass">已通過</span>
+                </div>
+                <div class="buttons">
+                    <button class="button-preview">預覽</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="date">2019/04/02</div>
+            <div class="card-content">
+                這是三個匿名內容，測試測試測試，測試測試測試，測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試。
+            </div>
+            <div class="footer">
+                <div class="tags">
+                    <span class="tag" id="postprecode">ZSJH_A2C4E6</span>
+                    <span class="tag" id="status-fail">未通過</span>
+                </div>
+                <div class="buttons">
+                    <button class="button-regulation">查看相關規範</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="date">2019/04/02</div>
+            <div class="card-content">
+                這是四個匿名內容，測試測試測試，測試測試測試，測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試。
+            </div>
+            <div class="footer">
+                <div class="tags">
+                    <span class="tag" id="postcode">ZSJH23984</span>
+                    <span class="tag" id="status-post">已發布</span>
+                </div>
+                <div class="buttons">
+                    <button class="button-manager">ZSJH000</button>
+                </div>
+            </div>
+        </div>
+
+
+    </main>
 
     <footer>
         <p>&copy; 2024 ANON. All rights reserved.</p>

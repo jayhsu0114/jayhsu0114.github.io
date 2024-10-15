@@ -1,160 +1,333 @@
 /* Reset default styles */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 /* Body styles */
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    background-color: #fefdf7;
-    font-family: Arial, sans-serif;
-    text-align: center; /* 水平居中内容 */
-    position: relative;
-    overflow: hidden;
-    flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #fefdf7;
+  font-family: Arial, sans-serif;
+  text-align: center; /* 水平居中内容 */
+  position: relative;
+  overflow: hidden;
+  flex-direction: column;
 }
 
 /*以下為會員部分 頁首樣式 */
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #333;
-    color: white;
-    width: 100%; /* 確保頁首寬度為100% */
-    position: fixed; /* 使頁首固定在頁面頂部 */
-    top: 0; /* 頁面頂端對齊 */
-    left: 0;
-    z-index: 8; /* 確保頁首位於最上層 */
-    box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #333;
+  color: white;
+  width: 100%; /* 確保頁首寬度為100% */
+  position: fixed; /* 使頁首固定在頁面頂部 */
+  top: 0; /* 頁面頂端對齊 */
+  left: 0;
+  z-index: 8; /* 確保頁首位於最上層 */
+  box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.1);
 }
 
 /* 確保使用者姓名與 ANON 一起排列在左側 */
 #anon-text {
-    font-size: 24px;
-    font-weight: bold;
+  font-size: 24px;
+  font-weight: bold;
 }
 
 #user-name {
-    margin-left: 10px;
-    font-size: 16px;
+  margin-left: 10px;
+  font-size: 16px;
 }
 
 /* 其他内容部分 */
 .container {
-    margin-top: 80px; /* 增加 margin 以防止頁首遮擋内容 */
+  margin-top: 80px; /* 增加 margin 以防止頁首遮擋内容 */
 }
 /* 確保選單按鈕始終在最右邊 */
 .menu-icon {
-    font-size: 24px;
-    cursor: pointer;
-    margin-left: auto;  /* 確保選單按鈕始終在最右側 */
+  font-size: 24px;
+  cursor: pointer;
+  margin-left: auto;  /* 確保選單按鈕始終在最右側 */
 }
 
 /* 側邊選單樣式 */
 .side-menu {
-    position: fixed;
-    height: 100%;
-    width: 250px;
-    top: 0;
-    right: -250px;  /* 從右側隱藏 */
-    background-color: #333;
-    color: white;
-    transition: 0.3s;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;  /* 登出按鈕與內容分開 */
-    z-index: 10;
+  position: fixed;
+  height: 100%;
+  width: 250px;
+  top: 0;
+  right: -250px;  /* 從右側隱藏 */
+  background-color: #333;
+  color: white;
+  transition: 0.3s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;  /* 登出按鈕與內容分開 */
+  z-index: 10;
 }
 
 /* 讓選單內容可以滾動 */
 .side-menu ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    flex-grow: 1;
-    overflow-y: auto;  /* 允許側邊選單滾動 */
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-grow: 1;
+  overflow-y: auto;  /* 允許側邊選單滾動 */
 }
 
 .side-menu ul li {
-    padding: 13px 20px;
-    border-bottom: 1px solid #555;
+  padding: 13px 20px;
+  border-bottom: 1px solid #555;
 }
 
 .side-menu ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 18px;
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
 }
 
 /* 登出按鈕固定在最底部 */
 .side-menu .logout {
-    padding: 10px 20px;
-    border-top: 1px solid #555;
-    background-color: #444;
+  padding: 10px 20px;
+  border-top: 1px solid #555;
+  background-color: #444;
 }
 
 .side-menu .logout a {
-    color: white;
-    text-decoration: none;
+  color: white;
+  text-decoration: none;
 }
 
 /* 背景遮罩層 */
 .menu-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    visibility: hidden;
-    opacity: 0;
-    transition: opacity 0.3s ease, visibility 0s 0.3s;
-    z-index: 9;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease, visibility 0s 0.3s;
+  z-index: 9;
 }
 
 .menu-overlay.active {
-    visibility: visible;
-    opacity: 1;
-    transition: opacity 0.3s ease;
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.3s ease;
 }
 /* 頁尾樣式 */
 footer {
-    text-align: center;
-    padding: 15px;
-    background-color: #333;
-    color: white;
-    position: fixed;
-    width: 100%;
-    bottom: 0;
-    z-index: 8;
-    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  padding: 15px;
+  background-color: #333;
+  color: white;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  z-index: 8;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
 }
 
 /* 行動裝置適應 */
 @media screen and (max-width: 600px) {
-    header {
-        flex-wrap: nowrap;  /* 禁止換行 */
-    }
+  header {
+      flex-wrap: nowrap;  /* 禁止換行 */
+  }
 
-    .card {
-        padding: 15px;
-    }
+  .card {
+      padding: 15px;
+  }
 }
 .logocircle {
-    width: 100px; /* 圓形的寬度 */
-    height: 100px; /* 圓形的高度 */
-    background-color: white; /* 圓形的顏色 */
-    border-radius: 50%; /* 使元素變為圓形 */
-    position: relative; /* 使用相對定位 */
-    margin: 20px auto; /* 上方留出距離，並水平居中 */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* 加入陰影以增加立體感 */
-    z-index: 10; /* 確保圓形在其他元素之上 */
+  width: 100px; /* 圓形的寬度 */
+  height: 100px; /* 圓形的高度 */
+  background-color: white; /* 圓形的顏色 */
+  border-radius: 50%; /* 使元素變為圓形 */
+  position: relative; /* 使用相對定位 */
+  margin: 20px auto; /* 上方留出距離，並水平居中 */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* 加入陰影以增加立體感 */
+  z-index: 10; /* 確保圓形在其他元素之上 */
+}
+
+#header-gap{
+  height: 40px;
+}
+
+/* 以下為卡片部分 */
+
+.content {
+  margin-top: 10px; /* 為頁首留出空間 */
+  margin-bottom: 10px; /* 為頁尾留出空間 */
+  padding: 20px;
+  overflow-y: auto; /* 允許內容滾動 */
+  height: calc(100vh - 120px); /* 減去頁首和頁尾的高度 */
+}
+
+/* 卡片样式 */
+.card {
+  background-color: white;
+  border-radius: 10px;
+  padding: 15px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 0 auto 20px;
+}
+
+.card-header {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.date {
+  color: #666;
+  font-size: 14px;
+  text-align: left;
+  margin-bottom: 10px ;
+  padding: 5px;
+}
+
+.card-content {
+  font-size: 16px;
+  line-height: 1.4;
+  margin-bottom: 10px;
+  text-align: left;
+  font-weight: bold; /* 保持内容的粗体 */
+  padding: 5px;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap; /* 确保不换行 */
+}
+
+.tags {
+  display: flex;
+  flex-wrap: nowrap; /* 标签不换行 */
+  gap: 4px; /* 减少间距 */
+  overflow-x: auto; /* 允许水平滚动 */
+  -webkit-overflow-scrolling: touch; /* 在iOS上提供平滑滚动 */
+  max-width: 60%; /* 限制标签区域宽度 */
+  padding: 5px;
+}
+
+.tag {
+  color: #333;
+  padding: 2px 6px; /* 减少内边距 */
+  border-radius: 12px;
+  font-size: 10px; /* 减小字体大小 */
+  white-space: nowrap; /* 防止文字换行 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 20px; /* 减小高度 */
+  flex-shrink: 0; /* 防止标签被压缩 */
+}
+
+#postprecode{
+background-color:#f0f0f0;
+}
+
+#postcode{
+  background-color: #f0f0f0;
+}
+
+#status-checking{
+  background-color: #f0f0f0;
+}
+
+#status-pass{
+  background-color: #5CC17B;
+  color: #FFF;
+}
+
+#status-fail{
+  background-color: #45b6d9;
+  color: #FFF;
+}
+
+#status-post{
+  background-color: #fb6d00;
+  color: #fff;
+}
+
+
+.buttons {
+  display: flex;
+  gap: 4px; /* 减少间距 */
+  margin: 5px;
+}
+
+button {
+  padding: 0 8px; /* 减少水平内边距 */
+  border-radius: 12px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 10px; /* 减小字体大小 */
+  font-weight: bold;
+  height: 20px; /* 减小高度，与标签一致 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  flex-shrink: 0; /* 防止按钮被压缩 */
+}
+
+.button-edit {
+  background-color: #70a7dd;
+}
+
+.button-delete {
+  background-color: #de6768;
+}
+
+.button-preview {
+  background-color: #45b6d9;
+}
+
+.button-regulation {
+  background-color: #5CC17B;
+}
+
+.button-manager {
+  background-color: #434343;
+}
+
+
+/* 响应式设计 */
+@media screen and (max-width: 600px) {
+  .card {
+    width: 95%;
+    padding: 10px; /* 减少卡片内边距 */
+  }
+  
+  .footer {
+    justify-content: space-between; /* 在小屏幕上保持两端对齐 */
+  }
+  
+  .tags {
+    max-width: 50%; /* 在小屏幕上减少标签区域的最大宽度 */
+  }
+  
+  .tag, .button {
+    font-size: 12px; /* 在小屏幕上进一步减小字体 */
+    height: 18px; /* 减小高度 */
+  }
+  
+  .button {
+    padding: 0 6px; /* 进一步减少按钮的水平内边距 */
+  }
 }
