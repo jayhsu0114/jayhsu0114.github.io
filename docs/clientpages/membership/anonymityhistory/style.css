@@ -234,7 +234,7 @@ footer {
   gap: 4px; /* 减少间距 */
 }
 
-.button {
+button {
   padding: 0 8px; /* 减少水平内边距 */
   border-radius: 12px;
   border: none;
