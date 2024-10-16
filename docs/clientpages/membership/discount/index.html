@@ -12,7 +12,7 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ANON 匿名歷史紀錄</title>
+    <title>ANON 折扣優惠</title>
     <link rel="stylesheet" href="style.css">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2383721687553257" crossorigin="anonymous"></script>
 </head>
@@ -49,10 +49,23 @@
         <button class="action-button">組合價</button>
         <button class="action-button">滿額贈</button>
     </div>
+
+        <!-- Modal -->
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <div class="fake-image"></div>
+                <p class="modal-text">選擇後將不能更改</p>
+                <div class="modal-buttons">
+                    <button class="modal-button" onclick="confirmSelection()">確認選擇</button>
+                    <button class="modal-button" onclick="closeModal()">回上一步</button>
+                </div>
+            </div>
+        </div>
     
     <footer>
     <p>&copy; 2024 ANON. All rights reserved.</p>
 </footer>
 <script src="./js/sidebar.js"></script>
+<script src="./js/modal.js"></script>
 </body>
 </html>
