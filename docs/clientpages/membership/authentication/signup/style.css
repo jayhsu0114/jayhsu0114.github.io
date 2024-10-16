@@ -4,22 +4,21 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     margin: 0;
-    overflow-y: scroll; /* 使页面垂直滚动 */
-    scrollbar-width: none; /* 隐藏 Firefox 的滚动条 */
+    overflow-y: auto;
+    scrollbar-width: none;
 }
 
 body::-webkit-scrollbar {
-    display: none; /* 隐藏 Chrome 和 Safari 的滚动条 */
+    display: none;
 }
-
 
 .login-container {
     background-color: white;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 300px;
     text-align: center;
 }
@@ -41,7 +40,7 @@ body::-webkit-scrollbar {
 }
 
 .input-group input {
-    width: calc(100% - 22px);
+    width: calc(100% - 20px);
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
@@ -60,18 +59,11 @@ button {
     margin-bottom: 10px;
 }
 
-#agreement{
-    background-color: black;
-}
-
 button:hover {
-    background-color: #000000;
+    background-color: #000;
 }
 
-.input-group-school {
-    margin-bottom: 15px;
-    text-align: left;
-}
+.input-group-school,
 .input-group-birthday {
     margin-bottom: 15px;
     text-align: left;
@@ -84,7 +76,7 @@ button:hover {
 }
 
 .label-row label {
-    width: 32%; /* 确保每个label占32%的宽度 */
+    width: 32%;
     text-align: left;
     color: #666;
 }
@@ -95,20 +87,20 @@ button:hover {
 }
 
 .input-row input {
-    width: 31%; /* 确保每个input占32%的宽度 */
+    width: 31%;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
-    margin: 1px;
+    margin: 2.5px;
 }
+
 .error {
     color: red;
     font-size: 0.9em;
     display: none;
-    margin-top: 15px;
+    margin-top: 5px;
 }
 
-/*以下為會員部分 頁首樣式 */
 header {
     display: flex;
     justify-content: space-between;
@@ -116,15 +108,14 @@ header {
     padding: 10px 20px;
     background-color: #333;
     color: white;
-    width: 100%; /* 確保頁首寬度為100% */
-    position: fixed; /* 使頁首固定在頁面頂部 */
-    top: 0; /* 頁面頂端對齊 */
+    width: 100%;
+    position: fixed;
+    top: 0;
     left: 0;
-    z-index: 9; /* 確保頁首位於最上層 */
-    box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.1);
+    z-index: 9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* 確保使用者姓名與 ANON 一起排列在左側 */
 #anon-text {
     font-size: 24px;
     font-weight: bold;
@@ -135,40 +126,37 @@ header {
     font-size: 16px;
 }
 
-/* 其他内容部分 */
 .container {
-    margin-top: 80px; /* 增加 margin 以防止頁首遮擋内容 */
+    margin-top: 70px;
 }
-/* 確保選單按鈕始終在最右邊 */
+
 .menu-icon {
     font-size: 24px;
     cursor: pointer;
-    margin-left: auto;  /* 確保選單按鈕始終在最右側 */
+    margin-left: auto;
 }
 
-/* 側邊選單樣式 */
 .side-menu {
     position: fixed;
     height: 100%;
     width: 250px;
     top: 0;
-    right: -250px;  /* 從右側隱藏 */
+    right: -250px;
     background-color: #333;
     color: white;
-    transition: 0.3s;
+    transition: transform 0.3s ease;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;  /* 登出按鈕與內容分開 */
+    justify-content: space-between;
     z-index: 10;
 }
 
-/* 讓選單內容可以滾動 */
 .side-menu ul {
     list-style: none;
     padding: 0;
     margin: 0;
     flex-grow: 1;
-    overflow-y: auto;  /* 允許側邊選單滾動 */
+    overflow-y: auto;
 }
 
 .side-menu ul li {
@@ -182,7 +170,6 @@ header {
     font-size: 18px;
 }
 
-/* 登出按鈕固定在最底部 */
 .side-menu .logout {
     padding: 10px 20px;
     border-top: 1px solid #555;
@@ -194,7 +181,6 @@ header {
     text-decoration: none;
 }
 
-/* 背景遮罩層 */
 .menu-overlay {
     position: fixed;
     top: 0;
@@ -204,16 +190,15 @@ header {
     background: rgba(0, 0, 0, 0.5);
     visibility: hidden;
     opacity: 0;
-    transition: opacity 0.3s ease, visibility 0s 0.3s;
+    transition: opacity 0.3s ease;
     z-index: 5;
 }
 
 .menu-overlay.active {
     visibility: visible;
     opacity: 1;
-    transition: opacity 0.3s ease;
 }
-/* 頁尾樣式 */
+
 footer {
     text-align: center;
     padding: 15px;
@@ -223,26 +208,25 @@ footer {
     width: 100%;
     bottom: 0;
     z-index: 9;
-    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* 行動裝置適應 */
 @media screen and (max-width: 600px) {
     header {
-        flex-wrap: nowrap;  /* 禁止換行 */
+        flex-wrap: nowrap;
     }
 
     .card {
         padding: 15px;
     }
 }
+
 .logocircle {
-    width: 100px; /* 圓形的寬度 */
-    height: 100px; /* 圓形的高度 */
-    background-color: white; /* 圓形的顏色 */
-    border-radius: 50%; /* 使元素變為圓形 */
-    position: relative; /* 使用相對定位 */
-    margin: 20px auto; /* 上方留出距離，並水平居中 */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* 加入陰影以增加立體感 */
-    z-index: 10; /* 確保圓形在其他元素之上 */
+    width: 100px;
+    height: 100px;
+    background-color: white;
+    border-radius: 50%;
+    margin: 20px auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    z-index: 10;
 }
