@@ -12,9 +12,10 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ANON 匿名歷史紀錄</title>
+    <title>ANON 掃描優惠</title>
     <link rel="stylesheet" href="style.css">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2383721687553257" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
 </head>
 <body>
     <header>
@@ -26,10 +27,51 @@
     </header>
     <div id="header-gap"></div>
     
+    <nav id="side-menu" class="side-menu">
+        <ul>
+            <div class="logocircle"></div>
+            <li><a>藍毛猩猩</a></li>
+            <li><a href="/clientpages/membership/homepages">個人首頁</a></li>
+            <li><a href=/clientpages/anonymity/${school}>發布匿名</a></li>
+            <li><a href="/clientpages/membership/anonymityhistory">歷史紀錄</a></li>
+            <li><a href="/clientpages/membership/setup">設定</a></li>
+            <li><a href="/clientpages/membership/discount">專屬折扣</a></li>
+            <li class="logout"><a href="/clientpages/membership/authentication/signin">登入</a></li>
+        </ul>
+    </nav>
+    
+    <div id="menu-overlay" class="menu-overlay" onclick="closeMenu()"></div>
+
+    <!-- QR Code Container -->
+    <div class="button-container">
+        <canvas id="qrcode"></canvas>
+        <p>請將此條碼提供給店家掃描</p>
+    </div>
 
     <footer>
         <p>&copy; 2024 ANON. All rights reserved.</p>
     </footer>
     <script src="./js/sidebar.js"></script>
+    <script src="./js/modal.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // 获取 sessionStorage 中的值
+            var schoolcode = sessionStorage.getItem('schoolcode') || 'unknown';
+            var username = sessionStorage.getItem('username') || 'unknown';
+            var route = sessionStorage.getItem('route') || 'unknown';
+            var strategy = sessionStorage.getItem('strategy') || 'unknown';
+            var discount = sessionStorage.getItem('discount') || 'unknown';
+
+            // 生成 QR code 的内容
+            var qrContent = `schoolcode=${schoolcode}&username=${username}&route=${route}&strategy=${strategy}&discount=${discount}`;
+            
+            // 使用 QRious 生成 QR code
+            var qr = new QRious({
+                element: document.getElementById('qrcode'),
+                value: qrContent,
+                size: 200,  // QR code 的大小
+            });
+        });
+    </script>
 </body>
 </html>
