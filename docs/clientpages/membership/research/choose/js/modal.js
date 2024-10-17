@@ -1,4 +1,7 @@
-function openModal() {
+let selectedAction = ''; // 用于记录用户的选择
+
+function openModal(action) {
+    selectedAction = action; // 根据按钮的点击设置选择
     document.getElementById("modal").style.display = "flex";
 }
 
@@ -7,6 +10,19 @@ function closeModal() {
 }
 
 function confirmSelection() {
-    alert("選擇已確認");
     closeModal();
+    switch (selectedAction) {
+        case 'drawing':
+            window.location.href = '/clientpages/membership/research/strategy/drawing';
+            break;
+        case 'discount':
+            window.location.href = '/clientpages/membership/research/strategy/discount';
+            break;
+        case 'bundledeal':
+            window.location.href = '/clientpages/membership/research/strategy/bundledeal';
+            break;
+        case 'gift':
+            window.location.href = '/clientpages/membership/research/strategy/gift';
+            break;
+    }
 }

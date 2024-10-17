@@ -44,11 +44,12 @@
     <!-- 四顆按鈕 -->
     <div class="button-container">
         <p class="button-header">歡迎使用優惠，請選擇以下選項</p>
-        <button class="action-button" onclick="openModal()">抽抽樂</button>
-        <button class="action-button" onclick="openModal()">折扣</button>
-        <button class="action-button" onclick="openModal()">組合價</button>
-        <button class="action-button" onclick="openModal()">滿額贈</button>
+        <button class="action-button" onclick="openModal('drawing')">抽抽樂</button>
+        <button class="action-button" onclick="openModal('discount')">折扣</button>
+        <button class="action-button" onclick="openModal('bundledeal')">組合價</button>
+        <button class="action-button" onclick="openModal('gift')">滿額贈</button>
     </div>
+    
 
         <!-- Modal -->
         <div id="modal" class="modal">
