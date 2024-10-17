@@ -13,5 +13,8 @@
     sessionStorage.setItem('route', routeValue);
   }
 
+  // 设置 nextpage 的 session storage 值为 "strategychoose"
+  sessionStorage.setItem('nextpage', 'strategychoose');
+
   // 跳转到目标页面
   window.location.href = '/clientpages/membership/authentication/signin';
