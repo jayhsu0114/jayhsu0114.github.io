@@ -13,16 +13,16 @@ function confirmSelection() {
     closeModal();
     switch (selectedAction) {
         case 'drawing':
-            window.location.href = '/clientpages/membership/research/strategy/drawing';
+            window.location.href = '/clientpages/membership/research/Strategy/drawing';
             break;
         case 'discount':
-            window.location.href = '/clientpages/membership/research/strategy/discount';
+            window.location.href = '/clientpages/membership/research/Strategy/discount';
             break;
         case 'bundledeal':
-            window.location.href = '/clientpages/membership/research/strategy/bundledeal';
+            window.location.href = '/clientpages/membership/research/Strategy/bundledeal';
             break;
         case 'gift':
-            window.location.href = '/clientpages/membership/research/strategy/gift';
+            window.location.href = '/clientpages/membership/research/Strategy/gift';
             break;
     }
 }
