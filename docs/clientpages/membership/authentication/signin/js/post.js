@@ -32,7 +32,7 @@ function handleSubmit(event) {
 
         // 將 token 存入 sessionStorage
         sessionStorage.setItem('token', token);
-        localStorage.setItem('userId',userId)
+        localStorage.setItem('userId', userId);
 
         // 檢查是否存在 secretusername 和 secretpassword，並存入 localStorage
         if (data.secretusername) {
@@ -49,8 +49,15 @@ function handleSubmit(event) {
         console.log('Received data:', data);
         alert('登入成功');
 
-        // 跳轉到新的 URL，根據 school 參數
-        if (school) {
+        // 檢查 sessionStorage 中是否有 nextpage，且值為 strategychoose
+        const nextpage = sessionStorage.getItem('nextpage');
+        if (nextpage === 'strategychoose') {
+            // 刪除 nextpage
+            sessionStorage.removeItem('nextpage');
+            // 跳轉到 /clientpages/membership/research/choose
+            window.location.href = '/clientpages/membership/research/choose';
+        } else if (school) {
+            // 否則，跳轉到與 school 相關的 URL
             window.location.href = `https://anoncoultd.com/clientpages/anonymity/${school}`;
         }
 
