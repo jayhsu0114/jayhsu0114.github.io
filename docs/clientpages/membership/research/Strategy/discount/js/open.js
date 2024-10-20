@@ -33,7 +33,7 @@ function drawCoupon() {
 
             // Play animation
             setTimeout(() => {
-                alert('恭喜！您抽中了一張優惠卷！');
+                alert(data.message);
                 stick.style.transform = 'translateY(50%)';
                 button.disabled = false;
             }, 2000); // 動畫持續2秒後顯示結果並復位

@@ -35,7 +35,7 @@ function spinWheel() {
             wheel.style.transform = `rotate(${randomRotation}deg)`;
 
             setTimeout(() => {
-                alert('恭喜！您抽中了一張優惠卷！');
+                alert(data.message);
                 spinButton.disabled = false;
             }, 3000); // 動畫持續3秒後顯示結果
         })
