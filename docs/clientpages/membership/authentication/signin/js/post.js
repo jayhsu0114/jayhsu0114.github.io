@@ -1,6 +1,10 @@
 function handleSubmit(event) {
     event.preventDefault(); // 防止表單提交預設行為
 
+    // Disable all buttons immediately
+    const buttons = document.querySelectorAll('button');
+    buttons.forEach(button => button.disabled = true);
+
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
     const autologin = document.getElementById('autoLogin').checked;
@@ -65,5 +69,7 @@ function handleSubmit(event) {
     .catch(error => {
         console.error('Error during login:', error);
         alert('登入失敗：無效的帳號或密碼。');
+        // Re-enable all buttons on error
+        buttons.forEach(button => button.disabled = false);
     });
 }
