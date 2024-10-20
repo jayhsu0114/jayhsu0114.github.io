@@ -37,10 +37,13 @@ function spinWheel() {
             setTimeout(() => {
                 alert(data.message);
                 spinButton.disabled = false;
+                // Redirect to membership research exchange page
+                window.location.href = '/clientpages/membership/research/exchange';
             }, 3000); // 動畫持續3秒後顯示結果
         })
         .catch(error => {
             console.error('Error:', error);
             spinButton.disabled = false;
+            
         });
 }

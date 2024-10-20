@@ -36,6 +36,8 @@ function drawCoupon() {
                 alert(data.message);
                 stick.style.transform = 'translateY(50%)';
                 button.disabled = false;
+                // Redirect to membership research exchange page
+                window.location.href = '/clientpages/membership/research/exchange';
             }, 2000); // 動畫持續2秒後顯示結果並復位
         })
         .catch(error => {
