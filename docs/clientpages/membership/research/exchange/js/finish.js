@@ -17,12 +17,12 @@ document.addEventListener("DOMContentLoaded", function() {
                 discount: discount
             })
         })
-        .then(response => response.text())
+        .then(response => response.json())
         .then(data => {
             // 根據伺服器回應進行跳轉
-            if (data === '已使用') {
+            if (data.code === '已完成') {
                 window.location.href = '/clientpages/membership/research/finish/correct';
-            } else if (data === '錯誤') {
+            } else if (data.code === '錯誤') {
                 window.location.href = '/clientpages/membership/research/finish/incorrect';
             }
         })
