@@ -52,25 +52,9 @@
         <p>&copy; 2024 ANON. All rights reserved.</p>
     </footer>
     <script src="./js/sidebar.js"></script>
-    <script src="./js/modal.js"></script>
+    <script src="./js/qrcode.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // 获取 sessionStorage 中的值
-            var userId = localStorage.getItem('userId') || 'unknown';
-            var route = sessionStorage.getItem('route') || 'unknown';
-            var strategy = sessionStorage.getItem('strategy') || 'unknown';
-            var discount = sessionStorage.getItem('discount') || 'unknown';
 
-            // 生成 QR code 的内容
-            var qrContent = `userId=${userId}&route=${route}&strategy=${strategy}&discount=${discount}`;
-            
-            // 使用 QRious 生成 QR code
-            var qr = new QRious({
-                element: document.getElementById('qrcode'),
-                value: qrContent,
-                size: 200,  // QR code 的大小
-            });
-        });
     </script>
 </body>
 </html>
