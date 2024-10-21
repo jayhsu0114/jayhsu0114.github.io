@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function() {
             var encryptedCode = data.code;
 
             // 生成 QR code 的内容
-            var qrContent = `https://anoncoultd.com/clientpages/membership/research/confirm?userId=${userId}&route=${route}&discount=${discount}&key=${encryptedCode}`;
+            var qrContent = `userId=${userId}&route=${route}&discount=${discount}&key=${encryptedCode}`;
             
             // 使用 QRious 生成 QR code
             var qr = new QRious({
