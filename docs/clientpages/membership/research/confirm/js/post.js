@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function() {
   const urlParams = new URLSearchParams(queryString);
   const userId = urlParams.get('userId') || 'unknown';
   const route = urlParams.get('route') || 'unknown';
-  const discount = urlParams.get('discount') || 'unknown';
+  const strategy = urlParams.get('strategy') || 'unknown';
   const encryptedCode = urlParams.get('key') || 'unknown';
 
   // 從 local storage 中讀取 shopcode
@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function() {
       body: JSON.stringify({
           userId: userId,
           route: route,
-          discount: discount,
+          strategy: strategy,
           encryptedCode: encryptedCode,
           shopcode: shopcode
       })

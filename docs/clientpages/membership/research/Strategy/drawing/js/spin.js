@@ -28,7 +28,7 @@ function spinWheel() {
         .then(response => response.json())
         .then(data => {
             // Store discount message in sessionStorage
-            sessionStorage.setItem('discount', data.message);
+            sessionStorage.setItem('strategy', data.message);
 
             // Play wheel animation
             const randomRotation = Math.floor(Math.random() * 3600) + 360; // 讓轉盤隨機旋轉 10-30 圈
