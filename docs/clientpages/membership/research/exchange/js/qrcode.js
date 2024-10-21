@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function() {
         var discount = sessionStorage.getItem('discount') || 'unknown';
 
         // 發送 POST 請求到伺服器
-        fetch('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/membership-exchange', {
+        fetch('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/membership-exchange/getqrcode', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
