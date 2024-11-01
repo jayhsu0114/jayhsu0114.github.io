@@ -1,4 +1,11 @@
 function spinWheel() {
+    // Check if strategy already exists in session storage
+    if (sessionStorage.getItem('strategy')) {
+        // Redirect to membership research exchange page
+        window.location.href = '/clientpages/membership/research/exchange';
+        return;
+    }
+
     const wheel = document.getElementById('wheel');
     const spinButton = document.getElementById('spin-button');
     spinButton.disabled = true;
@@ -44,6 +51,5 @@ function spinWheel() {
         .catch(error => {
             console.error('Error:', error);
             spinButton.disabled = false;
-            
         });
 }

@@ -1,4 +1,12 @@
 function drawCoupon() {
+
+        // Check if strategy already exists in session storage
+        if (sessionStorage.getItem('strategy')) {
+            // Redirect to membership research exchange page
+            window.location.href = '/clientpages/membership/research/exchange';
+            return;
+        }
+    
     const stick = document.getElementById('draw-stick');
     const button = document.getElementById('draw-button');
     button.disabled = true;
