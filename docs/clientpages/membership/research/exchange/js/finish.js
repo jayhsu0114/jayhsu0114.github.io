@@ -35,5 +35,5 @@ document.addEventListener("DOMContentLoaded", function() {
     executeCode();
 
     // 每10秒執行一次
-    setInterval(executeCode, 10000);
+    setInterval(executeCode, 5000);
 });
