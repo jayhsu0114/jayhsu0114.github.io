@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function() {
             if (data === '已完成') {
                 // 如果收到「已完成」，跳转到指定页面
                 window.location.href = '/clientpages/membership/research/finish/correct';
-            } else if (data === 'no data') {
+            } else if (data === 'No data') {
                 // 如果收到 "no data"，继续接下来的动作
                 executeCode();
                 // 每两分钟执行一次
