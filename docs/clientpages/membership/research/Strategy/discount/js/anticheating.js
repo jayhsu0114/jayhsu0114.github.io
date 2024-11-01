@@ -3,7 +3,7 @@ if (sessionStorage.getItem('strategy')) {
   } else {
     const userId = localStorage.getItem('userId');
     if (userId) {
-      fetch('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/membership-anticheating', {
+      fetch('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/membership-anticheating/strategy', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
