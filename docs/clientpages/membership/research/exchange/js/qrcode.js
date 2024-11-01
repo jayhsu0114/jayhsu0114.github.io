@@ -16,11 +16,11 @@ document.addEventListener("DOMContentLoaded", function() {
             if (data === '已完成') {
                 // 如果收到「已完成」，跳转到指定页面
                 window.location.href = '/clientpages/membership/research/finish/correct';
-            } else if (data === 'No data') {
-                // 如果收到 "no data"，继续接下来的动作
+            } else {
+                // 如果不是「已完成」，继续接下来的动作
                 executeCode();
-                // 每两分钟执行一次
-                setInterval(executeCode, 120000);
+                // 每1分钟执行一次
+                setInterval(executeCode, 60000);
             }
         })
         .catch(error => {
