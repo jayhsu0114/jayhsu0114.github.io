@@ -35,8 +35,8 @@ if (!token) {
 
         data.forEach(item => {
             let cardHTML = '';
-            if (item.D === '審核中') {
-                // 第一種：審核中
+            if (item.D !== '通過' && item.D !== '不通過' && item.D !== '已發布') {
+                // 第一種：審核中（未審核，D欄位為亂碼）
                 cardHTML = `
                 <div class="card">
                     <div class="date">${item.A}</div>
@@ -55,7 +55,7 @@ if (!token) {
                     </div>
                 </div>`;
             } else if (item.D === '不通過') {
-                // 第二種：未通過
+                // 第二種：未通過（有ABCDE五項，且D為不通過）
                 cardHTML = `
                 <div class="card">
                     <div class="date">${item.A}</div>
@@ -73,7 +73,7 @@ if (!token) {
                     </div>
                 </div>`;
             } else if (item.D === '通過') {
-                // 第三種：已通過
+                // 第三種：已通過（有ABCDEF六項，且D為通過）
                 cardHTML = `
                 <div class="card">
                     <div class="date">${item.A}</div>
@@ -91,7 +91,7 @@ if (!token) {
                     </div>
                 </div>`;
             } else if (item.D === '已發布') {
-                // 第四種：已發布
+                // 第四種：已發布（有ABCDEF六項，且D為已發布）
                 cardHTML = `
                 <div class="card">
                     <div class="date">${item.A}</div>
