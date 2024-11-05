@@ -20,6 +20,10 @@ if (!token) {
         if (response.ok) {
             // 如果 token 驗證成功，繼續訪問頁面
             console.log('Token validated successfully');
+            const userNameSpan = document.getElementById('user-name');
+            const logoutLi = document.querySelector('.logout a');
+            const userIdElement = document.getElementById('userId');
+
             // 修改 <span id="user-name"> 尚未登入 </span> 內容為已登入
             if (userNameSpan) {
                 userNameSpan.textContent = '已登入';
@@ -27,6 +31,7 @@ if (!token) {
 
             // 修改 <li class="logout"><a href="/clientpages/membership/authentication/signin">登入</a></li> 內容為登出
             if (logoutLi) {
+                logoutLi.textContent = '登出';
                 logoutLi.href = '#'; // 改為 #
                 logoutLi.addEventListener('click', handleLogout); // 绑定登出事件
             }
@@ -42,7 +47,7 @@ if (!token) {
             // 如果 token 驗證失敗，重定向到登入頁面
             console.log('Token validation failed. Redirecting to login page...');
             sessionStorage.setItem('nextpage', 'anonymityhistory');
-    window.location.href = '/clientpages/membership/authentication/signin';
+            window.location.href = '/clientpages/membership/authentication/signin';
         }
     })
     .catch(error => {
@@ -50,6 +55,15 @@ if (!token) {
         // 如果驗證過程中出現錯誤，重定向到登入頁面
         console.log('Error during token validation. Redirecting to login page...');
         sessionStorage.setItem('nextpage', 'anonymityhistory');
-            window.location.href = '/clientpages/membership/authentication/signin';
+        window.location.href = '/clientpages/membership/authentication/signin';
     });
+}
+
+function handleLogout() {
+    // 清除 token 和 userId
+    sessionStorage.removeItem('token');
+    localStorage.removeItem('userId');
+    sessionStorage.removeItem('nextpage');
+    // 重定向到登入頁面
+    window.location.href = '/clientpages/membership/authentication/signin';
 }
