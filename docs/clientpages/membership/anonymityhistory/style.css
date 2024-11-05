@@ -310,24 +310,3 @@ button {
 }
 
 
-/* 响应式设计 */
-@media screen and (max-width: 600px) {
-  .card {
-    width: 95%;
-    padding: 10px; /* 减少卡片内边距 */
-  }
-  
-  .footer {
-    justify-content: space-between; /* 在小屏幕上保持两端对齐 */
-  }
-  
-  
-  .tag, .button {
-    font-size: 12px; /* 在小屏幕上进一步减小字体 */
-    height: 18px; /* 减小高度 */
-  }
-  
-  .button {
-    padding: 0 6px; /* 进一步减少按钮的水平内边距 */
-  }
-}

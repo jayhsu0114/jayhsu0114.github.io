@@ -35,13 +35,14 @@ if (!token) {
 
         data.forEach(item => {
             let cardHTML = '';
+            const contentWithLineBreaks = item.B.replace(/\n/g, '<br>');
             if (item.D !== '通過' && item.D !== '不通過' && item.D !== '已發布') {
                 // 第一種：審核中（未審核，D欄位為亂碼）
                 cardHTML = `
                 <div class="card">
                     <div class="date">${item.A}</div>
                     <div class="card-content">
-                        ${item.B}
+                        ${contentWithLineBreaks}
                     </div>
                     <div class="footer">
                         <div class="tags">
@@ -60,7 +61,7 @@ if (!token) {
                 <div class="card">
                     <div class="date">${item.A}</div>
                     <div class="card-content">
-                        ${item.B}
+                        ${contentWithLineBreaks}
                     </div>
                     <div class="footer">
                         <div class="tags">
@@ -78,7 +79,7 @@ if (!token) {
                 <div class="card">
                     <div class="date">${item.A}</div>
                     <div class="card-content">
-                        ${item.B}
+                        ${contentWithLineBreaks}
                     </div>
                     <div class="footer">
                         <div class="tags">
@@ -96,7 +97,7 @@ if (!token) {
                 <div class="card">
                     <div class="date">${item.A}</div>
                     <div class="card-content">
-                        ${item.B}
+                        ${contentWithLineBreaks}
                     </div>
                     <div class="footer">
                         <div class="tags">
