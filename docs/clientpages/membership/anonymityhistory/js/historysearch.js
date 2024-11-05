@@ -82,11 +82,11 @@ if (!token) {
                     </div>
                     <div class="footer">
                         <div class="tags">
-                            <span class="tag" id="postcode">${item.F}</span>
+                            <span class="tag" id="postcode">${item.E}</span>
                             <span class="tag" id="status-pass">已通過</span>
                         </div>
                         <div class="buttons">
-                            <button class="button-preview">預覽</button>
+                            <button class="button-preview">${item.F}</button>
                         </div>
                     </div>
                 </div>`;
@@ -100,7 +100,7 @@ if (!token) {
                     </div>
                     <div class="footer">
                         <div class="tags">
-                            <span class="tag" id="postcode">${item.F}</span>
+                            <span class="tag" id="postcode">${item.E}</span>
                             <span class="tag" id="status-post">已發布</span>
                         </div>
                         <div class="buttons">
