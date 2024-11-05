@@ -53,13 +53,18 @@ function handleSubmit(event) {
         console.log('Received data:', data);
         alert('登入成功');
 
-        // 檢查 sessionStorage 中是否有 nextpage，且值為 strategychoose
+        // 檢查 sessionStorage 中是否有 nextpage，且值為 strategychoose 或 anonymityhistory
         const nextpage = sessionStorage.getItem('nextpage');
         if (nextpage === 'strategychoose') {
             // 刪除 nextpage
             sessionStorage.removeItem('nextpage');
             // 跳轉到 /clientpages/membership/research/choose
             window.location.href = '/clientpages/membership/research/choose';
+        } else if (nextpage === 'anonymityhistory') {
+            // 刪除 nextpage
+            sessionStorage.removeItem('nextpage');
+            // 跳轉到 /clientpages/membership/anonymityhistory
+            window.location.href = '/clientpages/membership/anonymityhistory';
         } else if (school) {
             // 否則，跳轉到與 school 相關的 URL
             window.location.href = `https://anoncoultd.com/clientpages/anonymity/${school}`;
