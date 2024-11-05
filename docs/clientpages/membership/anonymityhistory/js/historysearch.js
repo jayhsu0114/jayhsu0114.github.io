@@ -9,7 +9,8 @@ const userId = localStorage.getItem('userId');
 
 // 如果沒有 token，顯示提示訊息
 if (!token) {
-    console.log('No token found. ');
+    console.log('No token found. Redirecting to login page...');
+    alert('請聯絡服務人員');
 } else {
     // 如果有 token，將 token 放入 Authorization header 中進行驗證
     console.log('Token found. Verifying token...');
@@ -30,18 +31,90 @@ if (!token) {
     })
     .then(data => {
         console.log('Response data:', data);
-        if (data.ok) {
-            // 如果 token 驗證成功，繼續訪問頁面
-            console.log('Token validated successfully');
-        } else {
-            // 如果 token 驗證失敗，顯示提示訊息
-            console.log('Token validation failed. Alerting user to contact support...');
-            alert('錯誤');
-        }
+        const contentElement = document.querySelector('.content');
+
+        data.forEach(item => {
+            let cardHTML = '';
+            if (item.D === '審核中') {
+                // 第一種：審核中
+                cardHTML = `
+                <div class="card">
+                    <div class="date">${item.A}</div>
+                    <div class="card-content">
+                        ${item.B}
+                    </div>
+                    <div class="footer">
+                        <div class="tags">
+                            <span class="tag" id="postprecode">${item.D}</span>
+                            <span class="tag" id="status-checking">審核中</span>
+                        </div>
+                        <div class="buttons">
+                            <button class="button-edit">編輯</button>
+                            <button class="button-delete">刪除</button>
+                        </div>
+                    </div>
+                </div>`;
+            } else if (item.D === '不通過') {
+                // 第二種：未通過
+                cardHTML = `
+                <div class="card">
+                    <div class="date">${item.A}</div>
+                    <div class="card-content">
+                        ${item.B}
+                    </div>
+                    <div class="footer">
+                        <div class="tags">
+                            <span class="tag" id="postprecode">${item.E}</span>
+                            <span class="tag" id="status-fail">未通過</span>
+                        </div>
+                        <div class="buttons">
+                            <button class="button-regulation">查看相關規範</button>
+                        </div>
+                    </div>
+                </div>`;
+            } else if (item.D === '通過') {
+                // 第三種：已通過
+                cardHTML = `
+                <div class="card">
+                    <div class="date">${item.A}</div>
+                    <div class="card-content">
+                        ${item.B}
+                    </div>
+                    <div class="footer">
+                        <div class="tags">
+                            <span class="tag" id="postcode">${item.F}</span>
+                            <span class="tag" id="status-pass">已通過</span>
+                        </div>
+                        <div class="buttons">
+                            <button class="button-preview">預覽</button>
+                        </div>
+                    </div>
+                </div>`;
+            } else if (item.D === '已發布') {
+                // 第四種：已發布
+                cardHTML = `
+                <div class="card">
+                    <div class="date">${item.A}</div>
+                    <div class="card-content">
+                        ${item.B}
+                    </div>
+                    <div class="footer">
+                        <div class="tags">
+                            <span class="tag" id="postcode">${item.F}</span>
+                            <span class="tag" id="status-post">已發布</span>
+                        </div>
+                        <div class="buttons">
+                            <button class="button-manager">${item.F}</button>
+                        </div>
+                    </div>
+                </div>`;
+            }
+            contentElement.insertAdjacentHTML('beforeend', cardHTML);
+        });
     })
     .catch(error => {
         console.error('Error validating token:', error);
         // 如果驗證過程中出現錯誤，顯示提示訊息
-        alert('錯誤');
+        alert('請聯絡服務人員');
     });
 }
