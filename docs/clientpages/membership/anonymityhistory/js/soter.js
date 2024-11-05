@@ -20,6 +20,24 @@ if (!token) {
         if (response.ok) {
             // 如果 token 驗證成功，繼續訪問頁面
             console.log('Token validated successfully');
+            // 修改 <span id="user-name"> 尚未登入 </span> 內容為已登入
+            if (userNameSpan) {
+                userNameSpan.textContent = '已登入';
+            }
+
+            // 修改 <li class="logout"><a href="/clientpages/membership/authentication/signin">登入</a></li> 內容為登出
+            if (logoutLi) {
+                logoutLi.href = '#'; // 改為 #
+                logoutLi.addEventListener('click', handleLogout); // 绑定登出事件
+            }
+
+            // 將 <li><a id="userId">使用者代碼</a></li> 改為 localStorage 中的 userId
+            if (userIdElement) {
+                const userId = localStorage.getItem('userId');
+                if (userId) {
+                    userIdElement.textContent = userId;
+                }
+            }
         } else {
             // 如果 token 驗證失敗，重定向到登入頁面
             console.log('Token validation failed. Redirecting to login page...');
