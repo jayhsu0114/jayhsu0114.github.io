@@ -62,7 +62,6 @@ if (!token) {
 function handleLogout() {
     // 清除 token 和 userId
     sessionStorage.removeItem('token');
-    localStorage.removeItem('userId');
     sessionStorage.removeItem('nextpage');
     // 重定向到登入頁面
     window.location.href = '/clientpages/membership/authentication/signin';

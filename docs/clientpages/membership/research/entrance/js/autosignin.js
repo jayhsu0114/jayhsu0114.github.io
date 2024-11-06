@@ -39,6 +39,9 @@ window.addEventListener('DOMContentLoaded', () => {
                     }
                 }
 
+                // 成功驗證後轉址
+                window.location.href = '/clientpages/membership/research/choose';
+
             } else {
                 throw new Error('Token validation failed.');
             }
@@ -104,6 +107,9 @@ function attemptAutoSignin(secretUsername, secretPassword, userNameSpan, logoutL
             if (userIdElement) {
                 userIdElement.textContent = userId;
             }
+
+            // 成功驗證後轉址
+            window.location.href = '/clientpages/membership/research/choose';
         })
         .catch(error => {
             console.error('Error during autosignin:', error);
