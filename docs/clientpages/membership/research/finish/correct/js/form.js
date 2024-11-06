@@ -27,12 +27,15 @@ document.addEventListener("DOMContentLoaded", function () {
   
       formData.forEach((value, key) => {
         if (!surveyData[key]) {
-          surveyData[key] = [];
+          surveyData[key] = value;
+        } else {
+          // 將相同鍵的多個值以逗號分隔的字符串形式存儲，確保複選框的多個選項結合成一格
+          surveyData[key] = `${surveyData[key]}, ${value}`;
         }
-        surveyData[key].push(value);
       });
   
       // Send data to the server
+      console.log("POST Body:", JSON.stringify(surveyData, null, 2));
       fetch("https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/membership-form", {
         method: "POST",
         headers: {
@@ -42,8 +45,8 @@ document.addEventListener("DOMContentLoaded", function () {
       })
         .then((response) => {
           if (response.ok) {
-            // Remove the form if submission is successful
-            form.remove();
+            // Hide the form if submission is successful but keep the space occupied to prevent footer from moving up
+            form.style.display = "none";
             alert("問卷已提交，感謝您的參與！");
           } else {
             throw new Error("表單提交失敗，請稍後再試。");
@@ -56,4 +59,3 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
   });
-  
