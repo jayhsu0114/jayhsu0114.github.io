@@ -28,10 +28,10 @@ document.addEventListener("DOMContentLoaded", function() {
   .then(response => response.text())
   .then(data => {
       // 移除後端回應中的 {}" 符號
-      const cleanedData = data.replace(/[{}\"]/g, '');
+      const cleanedData = data.replace(/[{}"]/g, '');
 
       // 檢查後端回應並進行相應的 alert
-      const [type, amount] = cleanedData.split(":");
+      const [strategyType, type, amount] = cleanedData.split(":");
       switch (type) {
           case 'bundledeal':
               alert('學生使用之優惠為組合餐');
