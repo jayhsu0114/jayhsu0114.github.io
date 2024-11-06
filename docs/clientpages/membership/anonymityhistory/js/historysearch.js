@@ -30,7 +30,6 @@ if (!token) {
         return response.json();
     })
     .then(data => {
-        console.log('Response data:', data);
         const contentElement = document.querySelector('.content');
 
         data.forEach(item => {
