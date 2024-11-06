@@ -34,8 +34,23 @@ document.addEventListener("DOMContentLoaded", function() {
         var route = sessionStorage.getItem('route') || 'unknown';
         var strategy = sessionStorage.getItem('strategy') || 'unknown';
 
-        // 顯示 session storage 的值在 QR CODE 上方
-        document.getElementById('session-info').innerText = `${strategy}`;
+        // 根據 strategy 顯示不同的中文內容
+        var displayText = '';
+        if (strategy.startsWith('gift')) {
+            displayText = '神秘禮物兌換券';
+        } else if (strategy.startsWith('bundledeal')) {
+            displayText = '聯名組合餐優惠';
+        } else if (strategy === 'discount') {
+            displayText = '30元折扣券';
+        } else if (strategy.startsWith('drawing')) {
+            var amount = strategy.split(':')[1];
+            displayText = `${amount}元折扣券`;
+        } else {
+            displayText = '未知活動';
+        }
+
+        // 顯示中文內容在 QR CODE 上方
+        document.getElementById('session-info').innerText = displayText;
 
         // 發送 POST 訊消到伺服器
         fetch('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/membership-exchange/getqrcode', {
