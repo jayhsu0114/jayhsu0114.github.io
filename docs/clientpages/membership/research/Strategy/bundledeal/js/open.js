@@ -1,11 +1,11 @@
 function drawCoupon() {
-        // Check if strategy already exists in session storage
-        if (sessionStorage.getItem('strategy')) {
-            // Redirect to membership research exchange page
-            window.location.href = '/clientpages/membership/research/exchange';
-            return;
-        }
-    
+    // Check if strategy already exists in session storage
+    if (sessionStorage.getItem('strategy')) {
+        // Redirect to membership research exchange page
+        window.location.href = '/clientpages/membership/research/exchange';
+        return;
+    }
+
     const stick = document.getElementById('draw-stick');
     const button = document.getElementById('draw-button');
     button.disabled = true;
@@ -40,11 +40,11 @@ function drawCoupon() {
 
             // Play animation
             setTimeout(() => {
-                alert(data.message);
+                alert('您已獲得聯名組合餐優惠');
                 stick.style.transform = 'translateY(50%)';
                 button.disabled = false;
-                                // Redirect to membership research exchange page
-                                window.location.href = '/clientpages/membership/research/exchange';
+                // Redirect to membership research exchange page
+                window.location.href = '/clientpages/membership/research/exchange';
             }, 2000); // 動畫持續2秒後顯示結果並復位
         })
         .catch(error => {

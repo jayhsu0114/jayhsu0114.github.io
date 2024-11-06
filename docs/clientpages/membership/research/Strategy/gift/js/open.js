@@ -41,7 +41,7 @@ function drawCoupon() {
 
             // Play animation
             setTimeout(() => {
-                alert(data.message);
+                alert('您已獲得神秘禮物兌換券');
                 stick.style.transform = 'translateY(50%)';
                 button.disabled = false;
                 // Redirect to membership research exchange page

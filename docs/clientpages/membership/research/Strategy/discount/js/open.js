@@ -40,7 +40,7 @@ function drawCoupon() {
 
             // Play animation
             setTimeout(() => {
-                alert(data.message);
+                alert('您已獲得30元折扣券');
                 stick.style.transform = 'translateY(50%)';
                 button.disabled = false;
                                 // Redirect to membership research exchange page
