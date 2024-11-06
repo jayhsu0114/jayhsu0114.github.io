@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function() {
               alert(`學生使用之優惠為折扣 ${amount} 元`);
               break;
           default:
-              alert('未知的優惠類型');
+              alert(data);
               break;
       }
   })
