@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
-  // 在網頁載入後往 local storage 存入 shopcode，值為 12345
-  localStorage.setItem('shopcode', '12345');
+
 
   // 從當前 URL 中讀取參數
   const queryString = window.location.search;
