@@ -46,7 +46,7 @@ if (!token) {
         } else {
             // 如果 token 驗證失敗，重定向到登入頁面
             console.log('Token validation failed. Redirecting to login page...');
-            sessionStorage.setItem('nextpage', 'anonymityhistory');
+            
             window.location.href = '/clientpages/membership/authentication/signin';
         }
     })
@@ -54,7 +54,7 @@ if (!token) {
         console.error('Error validating token:', error);
         // 如果驗證過程中出現錯誤，重定向到登入頁面
         console.log('Error during token validation. Redirecting to login page...');
-        sessionStorage.setItem('nextpage', 'anonymityhistory');
+        
         window.location.href = '/clientpages/membership/authentication/signin';
     });
 }
