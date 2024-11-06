@@ -19,6 +19,25 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
       }
   
+      // Check if all questions are answered
+      const requiredFields = [
+        "commute",
+        "allowance",
+        "cafe_spending",
+        "payment_method",
+        "study_place",
+        "social_media"
+      ];
+      for (const field of requiredFields) {
+        const elements = form.querySelectorAll(`[name="${field}"]`);
+        const isChecked = Array.from(elements).some(element => element.checked);
+        if (!isChecked) {
+          alert("請回答所有問題後再提交。");
+          submitButton.disabled = false;
+          return;
+        }
+      }
+  
       // Collect form data
       const formData = new FormData(form);
       const surveyData = {
@@ -46,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function () {
         .then((response) => {
           if (response.ok) {
             // Hide the form if submission is successful but keep the space occupied to prevent footer from moving up
-            form.style.display = "none";
+
             alert("問卷已提交，感謝您的參與！");
           } else {
             throw new Error("表單提交失敗，請稍後再試。");
