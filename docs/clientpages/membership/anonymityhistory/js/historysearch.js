@@ -33,6 +33,30 @@ if (!token) {
         console.log('Response data:', data);
         const contentElement = document.querySelector('.content');
 
+        // 將數據按日期排序（由近到遠）
+        data.sort((a, b) => {
+            const parseDate = (dateStr) => {
+                // 处理日期字符串，例如 "2024/10/27 下午8:09:36"
+                let [datePart, timePart] = dateStr.split(' ');
+                let [year, month, day] = datePart.split('/').map(Number);
+                let [time, period] = timePart.split(/(上午|下午)/);
+                let [hour, minute, second] = time.split(':').map(Number);
+
+                // 如果是下午，且小时数小于 12，则需要转换为 24 小时制
+                if (period === '下午' && hour < 12) {
+                    hour += 12;
+                }
+                // 如果是上午 12 点，需要转换为 0 点
+                if (period === '上午' && hour === 12) {
+                    hour = 0;
+                }
+
+                return new Date(year, month - 1, day, hour, minute, second);
+            };
+
+            return parseDate(b.A) - parseDate(a.A);
+        });
+
         data.forEach(item => {
             let cardHTML = '';
             const contentWithLineBreaks = item.B.replace(/\n/g, '<br>');
