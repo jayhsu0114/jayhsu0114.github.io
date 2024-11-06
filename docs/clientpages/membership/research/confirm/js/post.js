@@ -27,8 +27,11 @@ document.addEventListener("DOMContentLoaded", function() {
   })
   .then(response => response.text())
   .then(data => {
+      // 移除後端回應中的 {}" 符號
+      const cleanedData = data.replace(/[{}\"]/g, '');
+
       // 檢查後端回應並進行相應的 alert
-      const [type, amount] = data.split(":");
+      const [type, amount] = cleanedData.split(":");
       switch (type) {
           case 'bundledeal':
               alert('學生使用之優惠為組合餐');
@@ -43,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function() {
               alert(`學生使用之優惠為折扣 ${amount} 元`);
               break;
           default:
-              alert(data);
+              alert(cleanedData);
               break;
       }
   })
