@@ -62,7 +62,7 @@ function confirmSelection() {
             break;
     }
 }
-
+//d
 function toggleMenu() {
     const sideMenu = document.getElementById("side-menu");
     const menuOverlay = document.getElementById("menu-overlay");
