@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function() {
             displayText = '神秘禮物兌換券';
         } else if (strategy.startsWith('bundledeal')) {
             displayText = '聯名組合餐優惠';
-        } else if (strategy === 'discount') {
+        } else if (strategy.startsWith('discount')) {
             displayText = '30元折扣券';
         } else if (strategy.startsWith('drawing')) {
             var amount = strategy.split(':')[1];
