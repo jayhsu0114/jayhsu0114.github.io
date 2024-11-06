@@ -10,7 +10,7 @@ const userId = localStorage.getItem('userId');
 // 如果沒有 token，顯示提示訊息
 if (!token) {
     console.log('No token found. Redirecting to login page...');
-    alert('請登入後繼續');
+    alert('請聯絡服務人員');
 } else {
     // 如果有 token，將 token 放入 Authorization header 中進行驗證
     console.log('Token found. Verifying token...');
@@ -30,8 +30,34 @@ if (!token) {
         return response.json();
     })
     .then(data => {
+        console.log('Response data:', data);
         const contentElement = document.querySelector('.content');
 
+        // 將數據按日期排序（由近到遠）
+        data.sort((a, b) => {
+            const parseDate = (dateStr) => {
+                // 處理日期字符串，例如 "2024/2/1 下午3:45:12"
+                let [datePart, timePart] = dateStr.split(' ');
+                let [year, month, day] = datePart.split('/').map(Number);
+                let [time, period] = timePart.split(/(上午|下午)/);
+                let [hour, minute, second] = time.split(':').map(Number);
+
+                // 如果是下午，且小时数小于 12，则需要转换为 24 小时制
+                if (period === '下午' && hour < 12) {
+                    hour += 12;
+                }
+                // 如果是上午 12 点，需要转换为 0 点
+                if (period === '上午' && hour === 12) {
+                    hour = 0;
+                }
+
+                return new Date(year, month - 1, day, hour, minute, second);
+            };
+
+            return parseDate(b.A) - parseDate(a.A);
+        });
+
+        // 渲染排序後的卡片
         data.forEach(item => {
             let cardHTML = '';
             const contentWithLineBreaks = item.B.replace(/\n/g, '<br>');
@@ -115,6 +141,6 @@ if (!token) {
     .catch(error => {
         console.error('Error validating token:', error);
         // 如果驗證過程中出現錯誤，顯示提示訊息
-        alert('錯誤（historysearch:500）');
+        alert('請聯絡服務人員');
     });
 }
