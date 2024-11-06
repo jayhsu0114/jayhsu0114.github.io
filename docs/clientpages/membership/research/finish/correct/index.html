@@ -46,6 +46,62 @@
         <div class="checkmark">✔</div>
         <h1>已完成兌換</h1>
     </div>
+    <form id="survey-form">
+        <fieldset>
+            <legend>1. 通勤方式（地緣關係）</legend>
+            <label><input type="radio" name="commute" value="metro"> A. 捷運</label><br>
+            <label><input type="radio" name="commute" value="bicycle"> B. 腳踏車</label><br>
+            <label><input type="radio" name="commute" value="bus"> C. 公車</label><br>
+            <label><input type="radio" name="commute" value="parent"> D. 家長接送</label><br>
+            <label><input type="radio" name="commute" value="walk"> E. 走路</label><br>
+            <label><input type="radio" name="commute" value="other"> F. 其他</label><br>
+        </fieldset>
+
+        <fieldset>
+            <legend>2. 每個月的零用錢金額？</legend>
+            <label><input type="checkbox" name="allowance" value="below5000"> A. 5000元以下</label><br>
+            <label><input type="checkbox" name="allowance" value="5000-10000"> B. 5000元-10000元</label><br>
+            <label><input type="checkbox" name="allowance" value="10000-15000"> C. 10000元-15000元</label><br>
+            <label><input type="checkbox" name="allowance" value="above15000"> D. 15000元以上</label><br>
+        </fieldset>
+
+        <fieldset>
+            <legend>3. 在咖啡廳最常用的消費模式？</legend>
+            <label><input type="checkbox" name="cafe_spending" value="drink_only"> A. 只點飲料</label><br>
+            <label><input type="checkbox" name="cafe_spending" value="food_only"> B. 只點食物</label><br>
+            <label><input type="checkbox" name="cafe_spending" value="combo"> C. 購買組合</label><br>
+        </fieldset>
+
+        <fieldset>
+            <legend>4. 習慣使用的消費方式？</legend>
+            <label><input type="checkbox" name="payment_method" value="cash"> A. 現金</label><br>
+            <label><input type="checkbox" name="payment_method" value="easycard"> B. 悠遊卡</label><br>
+            <label><input type="checkbox" name="payment_method" value="credit_card"> C. 信用卡/金融卡</label><br>
+            <label><input type="checkbox" name="payment_method" value="line_pay"> D. Line Pay</label><br>
+            <label><input type="checkbox" name="payment_method" value="jk_pay"> E. 街口支付</label><br>
+            <label><input type="checkbox" name="payment_method" value="apple_pay"> F. Apple Pay</label><br>
+        </fieldset>
+
+        <fieldset>
+            <legend>5. 平常習慣在哪裡讀書？</legend>
+            <label><input type="radio" name="study_place" value="home"> A. 家</label><br>
+            <label><input type="radio" name="study_place" value="library"> B. 圖書館</label><br>
+            <label><input type="radio" name="study_place" value="cram_school"> C. 補習班</label><br>
+            <label><input type="radio" name="study_place" value="cafe"> D. 咖啡廳</label><br>
+            <label><input type="radio" name="study_place" value="other"> E. 其他</label><br>
+        </fieldset>
+
+        <fieldset>
+            <legend>6. 最常使用的社群媒體？</legend>
+            <label><input type="radio" name="social_media" value="instagram"> A. Instagram（IG）</label><br>
+            <label><input type="radio" name="social_media" value="threads"> B. Threads（脆）</label><br>
+            <label><input type="radio" name="social_media" value="tiktok"> C. 抖音（TikTok）</label><br>
+            <label><input type="radio" name="social_media" value="xiaohongshu"> D. 小紅書</label><br>
+            <label><input type="radio" name="social_media" value="facebook"> E. 臉書（Meta）</label><br>
+        </fieldset>
+
+        <button type="submit">提交問卷</button>
+    </form>
 
     <footer>
         <p>&copy; 2024 ANON. All rights reserved.</p>
