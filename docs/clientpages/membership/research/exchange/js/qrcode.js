@@ -1,9 +1,9 @@
 document.addEventListener("DOMContentLoaded", function() {
     function postUserIdAndProceed() {
-        // 从 local storage 获取 userId
+        // 從 local storage 獲取 userId
         var userId = localStorage.getItem('userId') || 'unknown';
 
-        // 发起请求到指定的 URL
+        // 發起訊消到指定的 URL
         fetch('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/membership-anticheating/key', {
             method: 'POST',
             headers: {
@@ -11,15 +11,15 @@ document.addEventListener("DOMContentLoaded", function() {
             },
             body: JSON.stringify({ userId: userId })
         })
-        .then(response => response.text())  // 获取响应的文本内容
+        .then(response => response.text())  // 獲取回應的文本內容
         .then(data => {
             if (data === '已完成') {
-                // 如果收到「已完成」，跳转到指定页面
+                // 如果收到「已完成」，跳轉到指定頁面
                 window.location.href = '/clientpages/membership/research/finish/correct';
             } else {
-                // 如果不是「已完成」，继续接下来的动作
+                // 如果不是「已完成」，繼續採取下一步動作
                 executeCode();
-                // 每1分钟执行一次
+                // 每1分鐘執行一次
                 setInterval(executeCode, 60000);
             }
         })
@@ -29,12 +29,15 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function executeCode() {
-        // 获取 sessionStorage 中的值
+        // 獲取 sessionStorage 中的值
         var userId = localStorage.getItem('userId') || 'unknown';
         var route = sessionStorage.getItem('route') || 'unknown';
         var strategy = sessionStorage.getItem('strategy') || 'unknown';
 
-        // 發送 POST 請求到伺服器
+        // 顯示 session storage 的值在 QR CODE 上方
+        document.getElementById('session-info').innerText = `${strategy}`;
+
+        // 發送 POST 訊消到伺服器
         fetch('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/membership-exchange/getqrcode', {
             method: 'POST',
             headers: {
@@ -48,13 +51,13 @@ document.addEventListener("DOMContentLoaded", function() {
         })
         .then(response => response.json())
         .then(data => {
-            // 从伺服器回應中获取加密隨機代碼
+            // 從伺服器回應中獲取加密隨機代碼
             var encryptedCode = data.code;
 
-            // 生成 QR code 的内容
+            // 產生 QR code 的內容
             var qrContent = `https://anoncoultd.com/clientpages/membership/research/confirm?userId=${userId}&route=${route}&strategy=${strategy}&key=${encryptedCode}`;
             
-            // 使用 QRious 生成 QR code
+            // 使用 QRious 產生 QR code
             var qr = new QRious({
                 element: document.getElementById('qrcode'),
                 value: qrContent,
@@ -66,6 +69,6 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // 初次发起 userId 验证请求
+    // 初次發起 userId 驗證訊消
     postUserIdAndProceed();
 });
