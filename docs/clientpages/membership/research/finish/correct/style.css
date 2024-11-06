@@ -130,8 +130,9 @@ footer {
 
 /* Form styles */
 form#survey-form {
-  margin-top: 120px;
-  padding: 20px;
+  margin-bottom: 50px;
+  margin-top: 20px;
+  padding: 30px;
   width: 90%;
   max-width: 600px;
   background-color: #ffffff;
@@ -149,6 +150,7 @@ legend {
   font-size: 1.2em;
   font-weight: bold;
   margin-bottom: 10px;
+  text-align: left;
 }
 
 label {
@@ -189,6 +191,29 @@ button[type="submit"]:hover {
 .completion-message .checkmark {
   font-size: 5em;
   color: #4CAF50;
+}
+
+/* Custom checkbox and radio button styles */
+input[type="checkbox"], input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ccc;
+  border-radius: 3px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;
+  cursor: pointer;
+  position: relative;
+  background-color: white;
+}
+
+/* Checked state for custom checkbox and radio button */
+input[type="checkbox"]:checked, input[type="radio"]:checked {
+  background-color: #45a049;
+  border-color: #45a049;
 }
 
 /* Responsive styles */
