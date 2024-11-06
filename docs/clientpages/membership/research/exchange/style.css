@@ -133,8 +133,9 @@ header {
 /* QR code section */
 .button-container {
   margin-top: 120px;
+  margin-bottom: 20px;
   padding: 20px;
-  max-width: 600px;
+  max-width: 90％;
   text-align: center;
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -156,18 +157,19 @@ header {
   padding-top: 10px;
 }
 
+
 /* Footer styles */
 footer {
   text-align: center;
   padding: 15px;
   background-color: #333;
   color: white;
-  position: fixed;
+  position: relative; /* 改為 relative 以便頁尾隨內容移動 */
   width: 100%;
   bottom: 0;
-  z-index: 8;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
 
 /* Map iframe styling */
 iframe {
@@ -185,4 +187,26 @@ iframe {
   .button-container {
       padding: 15px;
   }
+}
+/* 社交按鈕區塊 */
+.social-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.social-buttons button {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: white;
+  background-color: #333;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.social-buttons button:hover {
+  background-color: #555;
 }
