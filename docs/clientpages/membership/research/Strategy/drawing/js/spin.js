@@ -1,4 +1,4 @@
-function drawCoupon() {
+function spinWheel() {
     // Check if strategy already exists in session storage
     if (sessionStorage.getItem('strategy')) {
         // Redirect to membership research exchange page
@@ -6,10 +6,9 @@ function drawCoupon() {
         return;
     }
 
-    const stick = document.getElementById('draw-stick');
-    const button = document.getElementById('draw-button');
-    button.disabled = true;
-    stick.style.transform = 'translateY(-120%)';
+    const wheel = document.getElementById('wheel');
+    const spinButton = document.getElementById('spin-button');
+    spinButton.disabled = true;
 
     // Get token, route, and userId from storage
     const token = sessionStorage.getItem('token');
@@ -28,7 +27,7 @@ function drawCoupon() {
     headers.append('Content-Type', 'application/json');
 
     // Send request to the server
-    fetch('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/membership-strategy/bundledeal', {
+    fetch('https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/membership-strategy/drawing', {
         method: 'POST',
         headers: headers,
         body: JSON.stringify(payload),
@@ -38,19 +37,20 @@ function drawCoupon() {
             // Store discount message in sessionStorage
             sessionStorage.setItem('strategy', data.message);
 
-            // Play animation
+            // Play wheel animation
+            const randomRotation = Math.floor(Math.random() * 3600) + 360; // 讓轉盤隨機旋轉 10-30 圈
+            wheel.style.transform = `rotate(${randomRotation}deg)`;
+
             setTimeout(() => {
-                // Extract only the number from data.message and alert it
                 const discountAmount = data.message.match(/\d+/)[0];
                 alert(`您已獲得${discountAmount}元折扣券`);
-                stick.style.transform = 'translateY(50%)';
-                button.disabled = false;
+                spinButton.disabled = false;
                 // Redirect to membership research exchange page
                 window.location.href = '/clientpages/membership/research/exchange';
-            }, 2000); // 動畫持續2秒後顯示結果並復位
+            }, 3000); // 動畫持續3秒後顯示結果
         })
         .catch(error => {
             console.error('Error:', error);
-            button.disabled = false;
+            spinButton.disabled = false;
         });
 }
