@@ -30,8 +30,13 @@ if (!token) {
         return response.json();
     })
     .then(data => {
+        console.log('Response data:', data);
         const contentElement = document.querySelector('.content');
 
+        // 將數據順序反轉
+        data.reverse();
+
+        // 渲染反轉後的卡片
         data.forEach(item => {
             let cardHTML = '';
             const contentWithLineBreaks = item.B.replace(/\n/g, '<br>');
@@ -115,6 +120,6 @@ if (!token) {
     .catch(error => {
         console.error('Error validating token:', error);
         // 如果驗證過程中出現錯誤，顯示提示訊息
-        alert('錯誤（historysearch:500）');
+        alert('錯誤');
     });
 }
