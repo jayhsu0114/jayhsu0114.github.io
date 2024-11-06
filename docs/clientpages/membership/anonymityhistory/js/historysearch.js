@@ -10,7 +10,7 @@ const userId = localStorage.getItem('userId');
 // 如果沒有 token，顯示提示訊息
 if (!token) {
     console.log('No token found. Redirecting to login page...');
-    alert('請聯絡服務人員');
+    alert('請登入後繼續');
 } else {
     // 如果有 token，將 token 放入 Authorization header 中進行驗證
     console.log('Token found. Verifying token...');
@@ -116,6 +116,6 @@ if (!token) {
     .catch(error => {
         console.error('Error validating token:', error);
         // 如果驗證過程中出現錯誤，顯示提示訊息
-        alert('請聯絡服務人員');
+        alert('錯誤（historysearch:500）');
     });
 }
