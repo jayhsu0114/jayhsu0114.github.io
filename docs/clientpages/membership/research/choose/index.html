@@ -28,14 +28,15 @@
     <div id="header-gap"></div>
     
     <nav id="side-menu" class="side-menu">
+            
         <ul>
             <div class="logocircle"></div>
-            <li><a>使用者代碼</a></li>
-            <li><a href="/clientpages/membership/homepages">個人首頁</a></li>
-            <li><a href=`/clientpages/anonymity/${school}`>發布匿名</a></li>
-            <li><a href="/clientpages/membership/anonymityhistory">歷史紀錄</a></li>
-            <li><a href="/clientpages/membership/setup">設定</a></li>
-            <li><a href="/clientpages/membership/discount">專屬折扣</a></li>
+            <li><a id="userId">使用者代碼</a></li>
+            <li><a href="/clientpages/membership/announcement">個人首頁</a></li>
+            <li><a id="anonymousLink">發布匿名</a></li>
+            <li><a href="/clientpages/membership/anonymityhistory/">歷史紀錄</a></li>
+            <li><a href="/clientpages/membership/announcement">設定</a></li>
+            <li><a href="https://anoncoultd.com/clientpages/membership/research/entrance?route=webpage">專屬折扣</a></li>
             <li class="logout"><a href="/clientpages/membership/authentication/signin">登入</a></li>
         </ul>
     </nav>
@@ -72,6 +73,7 @@
 </footer>
 <script type="module" src="./js/soter.js"></script>
 <script src="./js/sidebar.js"></script>
+<script type="module" src="./js/anonymityhref.js"></script>
 <script src="./js/modal.js"></script>
 <script src="./js/anticheating.js"></script>
 </body>
