@@ -248,3 +248,11 @@
 .modal-button:hover {
     background-color: #555;
 }
+
+.responsive-image {
+  max-width: 80%; /* 控制图片最大宽度 */
+  max-height: 300px; /* 控制图片最大高度 */
+  object-fit: contain; /* 确保图片保持纵横比 */
+  margin: 0 auto; /* 图片居中 */
+  display: block; /* 使图片居中显示 */
+}

@@ -44,7 +44,10 @@
     
     <!-- 四顆按鈕 -->
     <div class="button-container">
-        <p class="button-header">歡迎使用優惠，請選擇以下選項</p>
+        <p class="button-header">歡迎參與本次活動</p>
+        <p class="button-header">本次活動由本版與「貓欸Camulet」合作</p>
+        <p class="button-header">僅限中山國中學生參與</p>
+        <p class="button-header">請選擇想使用的優惠</p>
         <button class="action-button" onclick="openModal('drawing')">抽抽樂</button>
         <button class="action-button" onclick="openModal('discount')">折扣</button>
         <button class="action-button" onclick="openModal('bundledeal')">組合價</button>
@@ -55,21 +58,21 @@
         <!-- Modal -->
         <div id="modal" class="modal">
             <div class="modal-content">
-                <div class="fake-image"></div>
+                <img id="fake-image" src="" alt="Selected Action Image" class="responsive-image" />
                 <p class="modal-text">選擇後將不能更改</p>
                 <div class="modal-buttons">
                     <button class="modal-button" onclick="closeModal()">回上一步</button>
                     <button class="modal-button" onclick="confirmSelection()">確認選擇</button>
                 </div>
             </div>
-        </div>
+        </div>        
     
     <footer>
     <p>&copy; 2024 ANON. All rights reserved.</p>
 </footer>
-<script type="module" src="./js/soter.js"></script>
+<!--<script type="module" src="./js/soter.js"></script>-->
 <script src="./js/sidebar.js"></script>
 <script src="./js/modal.js"></script>
-<script src="./js/anticheating.js"></script>
+<!--<script src="./js/anticheating.js"></script>-->
 </body>
 </html>
