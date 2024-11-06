@@ -1,180 +1,223 @@
 /* Reset default styles */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  /* Body styles */
-  body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    background-color: #fefdf7;
-    font-family: Arial, sans-serif;
-    text-align: center; /* 水平居中内容 */
-    position: relative;
-    overflow: hidden;
-    flex-direction: column;
-  }
-  
-  /*以下為會員部分 頁首樣式 */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body styles */
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #fefdf7;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  overflow: auto;
+}
+
+/* Header styles */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #333;
+  color: white;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 8;
+  box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.1);
+}
+
+#anon-text {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+#user-name {
+  margin-left: 10px;
+  font-size: 16px;
+}
+
+.menu-icon {
+  font-size: 24px;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+/* Side menu styles */
+.side-menu {
+  position: fixed;
+  height: 100%;
+  width: 250px;
+  top: 0;
+  right: -250px;
+  background-color: #333;
+  color: white;
+  transition: 0.3s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 10;
+  overflow-y: auto;
+}
+
+.side-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-grow: 1;
+}
+
+.side-menu ul li {
+  padding: 13px 20px;
+  border-bottom: 1px solid #555;
+}
+
+.side-menu ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.side-menu .logout {
+  padding: 10px 20px;
+  border-top: 1px solid #555;
+  background-color: #444;
+}
+
+.side-menu .logout a {
+  color: white;
+  text-decoration: none;
+}
+
+/* Menu overlay */
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease, visibility 0s 0.3s;
+  z-index: 9;
+}
+
+.menu-overlay.active {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+/* Footer styles */
+footer {
+  text-align: center;
+  padding: 15px;
+  background-color: #333;
+  color: white;
+  width: 100%;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+/* Form styles */
+form#survey-form {
+  margin-top: 120px;
+  padding: 20px;
+  width: 90%;
+  max-width: 600px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+fieldset {
+  margin-bottom: 20px;
+  border: none;
+  padding: 0;
+}
+
+legend {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+label {
+  display: block;
+  margin: 5px 0;
+  font-size: 1em;
+  text-align: left;
+}
+
+button[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1.2em;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+/* Completion message */
+.completion-message {
+  position: relative;
+  margin-top: 80px;
+  text-align: center;
+  z-index: 5;
+}
+
+.completion-message h1 {
+  font-size: 2.5em;
+  color: #4CAF50;
+}
+
+.completion-message .checkmark {
+  font-size: 5em;
+  color: #4CAF50;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 600px) {
   header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #333;
-    color: white;
-    width: 100%; /* 確保頁首寬度為100% */
-    position: fixed; /* 使頁首固定在頁面頂部 */
-    top: 0; /* 頁面頂端對齊 */
-    left: 0;
-    z-index: 8; /* 確保頁首位於最上層 */
-    box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* 確保使用者姓名與 ANON 一起排列在左側 */
-  #anon-text {
-    font-size: 24px;
-    font-weight: bold;
-  }
-  
-  #user-name {
-    margin-left: 10px;
-    font-size: 16px;
-  }
-  
-  /* 其他内容部分 */
-  .container {
-    margin-top: 80px; /* 增加 margin 以防止頁首遮擋内容 */
-  }
-  /* 確保選單按鈕始終在最右邊 */
-  .menu-icon {
-    font-size: 24px;
-    cursor: pointer;
-    margin-left: auto;  /* 確保選單按鈕始終在最右側 */
-  }
-  
-  /* 側邊選單樣式 */
-  .side-menu {
-    position: fixed;
-    height: 100%;
-    width: 250px;
-    top: 0;
-    right: -250px;  /* 從右側隱藏 */
-    background-color: #333;
-    color: white;
-    transition: 0.3s;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;  /* 登出按鈕與內容分開 */
-    z-index: 10;
-  }
-  
-  /* 讓選單內容可以滾動 */
-  .side-menu ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    flex-grow: 1;
-    overflow-y: auto;  /* 允許側邊選單滾動 */
-  }
-  
-  .side-menu ul li {
-    padding: 13px 20px;
-    border-bottom: 1px solid #555;
-  }
-  
-  .side-menu ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 18px;
-  }
-  
-  /* 登出按鈕固定在最底部 */
-  .side-menu .logout {
-    padding: 10px 20px;
-    border-top: 1px solid #555;
-    background-color: #444;
-  }
-  
-  .side-menu .logout a {
-    color: white;
-    text-decoration: none;
-  }
-  
-  /* 背景遮罩層 */
-  .menu-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    visibility: hidden;
-    opacity: 0;
-    transition: opacity 0.3s ease, visibility 0s 0.3s;
-    z-index: 9;
-  }
-  
-  .menu-overlay.active {
-    visibility: visible;
-    opacity: 1;
-    transition: opacity 0.3s ease;
-  }
-  /* 頁尾樣式 */
-  footer {
-    text-align: center;
-    padding: 15px;
-    background-color: #333;
-    color: white;
-    position: fixed;
-    width: 100%;
-    bottom: 0;
-    z-index: 8;
-    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* 行動裝置適應 */
-  @media screen and (max-width: 600px) {
-    header {
-        flex-wrap: nowrap;  /* 禁止換行 */
-    }
-  
-    .card {
-        padding: 15px;
-    }
-  }
-  .logocircle {
-    width: 100px; /* 圓形的寬度 */
-    height: 100px; /* 圓形的高度 */
-    background-color: white; /* 圓形的顏色 */
-    border-radius: 50%; /* 使元素變為圓形 */
-    position: relative; /* 使用相對定位 */
-    margin: 20px auto; /* 上方留出距離，並水平居中 */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* 加入陰影以增加立體感 */
-    z-index: 10; /* 確保圓形在其他元素之上 */
-  }
-  
-  #header-gap{
-    height: 5px;
+      flex-wrap: nowrap;
   }
 
-  .completion-message {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
+  form#survey-form {
+      width: 95%;
+      padding: 10px;
+  }
+
+  button[type="submit"] {
+      width: 100%;
+  }
 }
-.completion-message h1 {
-    font-size: 2.5em;
-    color: #4CAF50;
+
+.logocircle {
+  width: 100px;
+  height: 100px;
+  background-color: white;
+  border-radius: 50%;
+  position: relative;
+  margin: 20px auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  z-index: 10;
 }
-.completion-message .checkmark {
-    font-size: 5em;
-    color: #4CAF50;
+
+#header-gap {
+  height: 5px;
 }
