@@ -5,7 +5,7 @@ function openModal(action) {
     document.getElementById("modal").style.display = "flex";
 
     // 根据选择的动作来设置图像路径
-    let imagePath = `./${selectedAction}.webp`;
+    let imagePath = `./${selectedAction}.JPG`;
     document.getElementById("fake-image").src = imagePath;
 
     // 根据选择的动作动态添加提示文本
