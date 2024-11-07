@@ -1,7 +1,8 @@
 window.onload = function() {
     // 檢查 localStorage 中是否已經存在 agreement
     if (localStorage.getItem("agreement") === "agree") {
-        // 如果已經同意，則不顯示彈窗
+        // 如果已經同意，則顯示廣告圖片
+        showAdImageIfAfterDate();
         return;
     }
 
@@ -74,6 +75,8 @@ window.onload = function() {
             modal.style.display = "none";
             // 在 localStorage 中設置 agreement 值為 "agree"
             localStorage.setItem("agreement", "agree");
+            // 顯示廣告圖片
+            showAdImageIfAfterDate();
         }, 500);
     };
 
@@ -81,4 +84,66 @@ window.onload = function() {
     termsBtn.onclick = function() {
         window.location.href = "/clientpages/regulations";
     };
+
+    // 點擊彈窗外其他地方關閉彈窗
+    modal.onclick = function(event) {
+        if (event.target === modal) {
+            modal.style.opacity = "0";
+            setTimeout(function() {
+                modal.style.display = "none";
+            }, 500);
+        }
+    };
+
+    // 顯示廣告圖片的函數
+    function showAdImageIfAfterDate() {
+        var targetDate = new Date("2024-11-07T21:00:00");
+        var currentDate = new Date();
+        if (currentDate >= targetDate) {
+            var adModal = document.createElement("div");
+            adModal.id = "adModal";
+            adModal.style.display = "block";
+            adModal.style.position = "fixed";
+            adModal.style.zIndex = "1";
+            adModal.style.left = "0";
+            adModal.style.top = "0";
+            adModal.style.width = "100%";
+            adModal.style.height = "100%";
+            adModal.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+            adModal.style.transition = "opacity 0.5s ease";
+
+            var adContent = document.createElement("div");
+            adContent.style.position = "relative";
+            adContent.style.margin = "15% auto";
+            adContent.style.padding = "20px";
+            adContent.style.width = "fit-content";
+            adContent.style.borderRadius = "10px";
+            adContent.style.transition = "transform 0.5s ease";
+
+            var adImage = document.createElement("img");
+            adImage.src = "./ad.jpg";
+            adImage.style.cursor = "pointer";
+            adImage.style.width = "80%"; // 設置圖片大小
+            adImage.style.transition = "transform 0.5s ease";
+
+            // 點擊圖片跳轉到指定頁面
+            adImage.onclick = function() {
+                window.location.href = "https://anoncoultd.com/clientpages/membership/research/entrance?route=webpage";
+            };
+
+            adContent.appendChild(adImage);
+            adModal.appendChild(adContent);
+            document.body.appendChild(adModal);
+
+            // 點擊廣告圖片外其他地方關閉彈窗
+            adModal.onclick = function(event) {
+                if (event.target === adModal) {
+                    adModal.style.opacity = "0";
+                    setTimeout(function() {
+                        adModal.style.display = "none";
+                    }, 200);
+                }
+            };
+        }
+    }
 };
