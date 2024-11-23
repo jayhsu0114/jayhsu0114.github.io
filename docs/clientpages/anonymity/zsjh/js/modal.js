@@ -1,7 +1,13 @@
 window.onload = async function () {
+    // 從 localStorage 中取得 userId
+    const userId = localStorage.getItem("userId");
+
     // 檢查 localStorage 中是否已經存在 agreement
     if (localStorage.getItem("agreement") === "agree") {
-        const userId = "localUserId"; // 替換為實際的 local userId
+        if (!userId) {
+            console.error("Error: userId not found in localStorage");
+            return;
+        }
         try {
             // 發送 POST 請求到 /out API
             const response = await fetch("https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/membership-form/out", {
@@ -135,40 +141,4 @@ function showHumanVerificationModal(userId) {
         label.style.marginBottom = "5px";
 
         const input = document.createElement("input");
-        input.type = "radio";
-        input.name = "humanCheck";
-        input.value = option;
-        input.style.marginRight = "10px";
-
-        input.onclick = async function () {
-            try {
-                // 發送 POST 請求到 /in API
-                const response = await fetch("https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/membership-form/in", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({ userId: userId, label: input.value }),
-                });
-
-                const result = await response.json();
-                console.log("Response from /membership-form/in:", result);
-
-                modal.style.opacity = "0";
-                setTimeout(function () {
-                    modal.style.display = "none";
-                }, 500);
-            } catch (error) {
-                console.error("Error during POST request to /membership-form/in:", error);
-            }
-        };
-
-        label.appendChild(input);
-        label.appendChild(document.createTextNode(option));
-        modalContent.appendChild(label);
-    });
-
-    modalContent.appendChild(message);
-    modal.appendChild(modalContent);
-    document.body.appendChild(modal);
-}
+        input
