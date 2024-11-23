@@ -5,7 +5,7 @@ window.onload = async function () {
     // 檢查 localStorage 中是否已經存在 agreement
     if (localStorage.getItem("agreement") === "agree") {
         if (!userId) {
-            console.error("Error: userId not found in localStorage");
+            console.error("錯誤：未在 localStorage 中找到 userId");
             return;
         }
         try {
@@ -19,14 +19,19 @@ window.onload = async function () {
             });
 
             const result = await response.json();
-            console.log("Response from /membership-form/out:", result);
+            console.log("來自 /membership-form/out 的回應：", result);
 
-            // 如果返回的值中 label 為空白，顯示人類驗證 modal
-            if (!result.label) {
+            // 檢查返回的 data 是否符合條件
+            if (
+                result.data &&
+                result.data.coffee === "" &&
+                result.data.label === "" &&
+                result.data.pet === ""
+            ) {
                 showHumanVerificationModal(userId);
             }
         } catch (error) {
-            console.error("Error during POST request to /membership-form/out:", error);
+            console.error("發送到 /membership-form/out 的 POST 請求時發生錯誤：", error);
         }
         return;
     }
@@ -134,11 +139,14 @@ function showHumanVerificationModal(userId) {
     message.textContent = "最近網站受到攻擊，請回答以下問題以確認您是真人：你會傾向買哪種產品？";
     message.style.marginBottom = "10px";
 
+    modalContent.appendChild(message);
+
     const options = ["有品牌的", "有折扣的", "有需要的", "有想要的"];
     options.forEach(option => {
         const label = document.createElement("label");
         label.style.display = "block";
         label.style.marginBottom = "5px";
+        label.style.textAlign = "left";
 
         const input = document.createElement("input");
         input.type = "radio";
@@ -158,14 +166,14 @@ function showHumanVerificationModal(userId) {
                 });
 
                 const result = await response.json();
-                console.log("Response from /membership-form/in:", result);
+                console.log("來自 /membership-form/in 的回應：", result);
 
                 modal.style.opacity = "0";
                 setTimeout(function () {
                     modal.style.display = "none";
                 }, 500);
             } catch (error) {
-                console.error("Error during POST request to /membership-form/in:", error);
+                console.error("發送到 /membership-form/in 的 POST 請求時發生錯誤：", error);
             }
         };
 
@@ -174,7 +182,6 @@ function showHumanVerificationModal(userId) {
         modalContent.appendChild(label);
     });
 
-    modalContent.appendChild(message);
     modal.appendChild(modalContent);
     document.body.appendChild(modal);
 }
