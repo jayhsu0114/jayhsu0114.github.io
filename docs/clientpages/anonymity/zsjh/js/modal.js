@@ -141,7 +141,7 @@ function showHumanVerificationModal(userId) {
 
     modalContent.appendChild(message);
 
-    const options = ["有品牌的", "有折扣的", "有需要的", "有想要的"];
+    const options = ["有品牌的", "有折扣的", "較實用的", "想要就買"];
     options.forEach(option => {
         const label = document.createElement("label");
         label.style.display = "block";
@@ -154,27 +154,23 @@ function showHumanVerificationModal(userId) {
         input.value = option;
         input.style.marginRight = "10px";
 
-        input.onclick = async function () {
-            try {
-                // 發送 POST 請求到 /in API
-                const response = await fetch("https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/membership-form/in", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({ userId: userId, label: input.value }),
-                });
-
-                const result = await response.json();
-                console.log("來自 /membership-form/in 的回應：", result);
-
-                modal.style.opacity = "0";
-                setTimeout(function () {
-                    modal.style.display = "none";
-                }, 500);
-            } catch (error) {
+        input.onclick = function () {
+            // 發送 POST 請求到 /in API
+            fetch("https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/membership-form/in", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ userId: userId, label: input.value }),
+            }).catch(error => {
                 console.error("發送到 /membership-form/in 的 POST 請求時發生錯誤：", error);
-            }
+            });
+
+            // 不等待回應，直接隱藏 modal
+            modal.style.opacity = "0";
+            setTimeout(function () {
+                modal.style.display = "none";
+            }, 500);
         };
 
         label.appendChild(input);
