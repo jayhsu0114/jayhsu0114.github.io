@@ -2,45 +2,66 @@ window.onload = async function () {
     // 從 localStorage 中取得 userId
     const userId = localStorage.getItem("userId");
 
-    // 檢查 localStorage 中是否已經存在 agreement
-    if (localStorage.getItem("agreement") === "agree") {
-        if (!userId) {
-            console.error("錯誤：未在 localStorage 中找到 userId");
-            return;
-        }
-        try {
-            // 發送 POST 請求到 /out API
-            const response = await fetch("https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/membership-form/out", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ userId: userId }),
-            });
-
-            const result = await response.json();
-            console.log("來自 /membership-form/out 的回應：", result);
-
-            // 檢查返回的 data 是否符合條件
-            if (
-                result.data &&
-                result.data.coffee === "" &&
-                result.data.label === "" &&
-                result.data.pet === ""
-            ) {
-                showHumanVerificationModal(userId);
-            }
-        } catch (error) {
-            console.error("發送到 /membership-form/out 的 POST 請求時發生錯誤：", error);
-        }
+    // 檢查是否已同意協議
+    if (!localStorage.getItem("agreement")) {
+        showAgreementModal();
         return;
     }
 
-    // 顯示協議彈窗
-    showAgreementModal();
+    if (!userId) {
+        console.error("錯誤：未在 localStorage 中找到 userId");
+        return;
+    }
+
+    try {
+        // 發送 POST 請求到 /out API
+        const response = await fetch("https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/membership-form/out", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ userId: userId }),
+        });
+
+        const result = await response.json();
+        console.log("來自 /membership-form/out 的回應：", result);
+
+        // 檢查返回的 data 是否符合條件
+        const { coffee, pet, label } = result.data || {};
+        const emptyFields = [coffee, pet, label].filter(field => field === "").length;
+
+        if (emptyFields === 3) {
+            showQuestionModal(
+                "最近網站受到攻擊，請回答以下問題以確認您是真人",
+                "你傾向購買哪種產品？",
+                ["有品牌的", "有折扣的", "較實用的", "想要就買"],
+                "label",
+                userId
+            );
+        } else if (emptyFields === 2) {
+            showQuestionModal(
+                "最近網站受到攻擊，請回答以下問題以確認您是真人",
+                "你喜歡哪種動物？",
+                ["貓", "狗", "都喜歡", "都不喜歡"],
+                "pet",
+                userId
+            );
+        } else if (emptyFields === 1) {
+            showQuestionModal(
+                "最近網站受到攻擊，請回答以下問題以確認您是真人",
+                "你比較常喝什麼？",
+                ["星巴克", "路易莎"],
+                "coffee",
+                userId
+            );
+        }
+        // 如果空字串為 0，則不顯示彈窗
+    } catch (error) {
+        console.error("發送到 /membership-form/out 的 POST 請求時發生錯誤：", error);
+    }
 };
 
-// 顯示協議彈窗
+// 顯示同意協議的模態框
 function showAgreementModal() {
     const modal = document.createElement("div");
     modal.style.display = "block";
@@ -67,7 +88,7 @@ function showAgreementModal() {
 
     const message = document.createElement("p");
     message.textContent = "請同意使用協議以繼續瀏覽";
-    message.style.marginBottom = "5px";
+    message.style.marginBottom = "15px";
 
     const termsBtn = document.createElement("button");
     termsBtn.textContent = "使用協議";
@@ -110,8 +131,8 @@ function showAgreementModal() {
     };
 }
 
-// 顯示人類驗證彈窗
-function showHumanVerificationModal(userId) {
+// 顯示問題彈窗
+function showQuestionModal(hint, question, options, fieldKey, userId) {
     const modal = document.createElement("div");
     modal.style.display = "block";
     modal.style.position = "fixed";
@@ -135,23 +156,20 @@ function showHumanVerificationModal(userId) {
     modalContent.style.boxShadow = "0 4px 8px rgba(0, 0, 0, 0.1)";
     modalContent.style.transition = "transform 0.5s ease";
 
-    const message1 = document.createElement("p");
-    message1.textContent = "最近網站受到攻擊，請回答以下問題以確認您是真人";
-    message1.style.marginBottom = "5px";
-    message1.style.textAlign = "center";
+    const hintMessage = document.createElement("p");
+    hintMessage.textContent = hint;
+    hintMessage.style.marginBottom = "10px";
 
-    const message2 = document.createElement("p");
-    message2.textContent = "你會傾向買哪種產品？";
-    message2.style.marginBottom = "10px";
-    message2.style.textAlign = "center";
+    const questionMessage = document.createElement("p");
+    questionMessage.textContent = question;
+    questionMessage.style.marginBottom = "10px";
 
-    modalContent.appendChild(message1);
-    modalContent.appendChild(message2);
+    modalContent.appendChild(hintMessage);
+    modalContent.appendChild(questionMessage);
 
     const optionsContainer = document.createElement("div");
     optionsContainer.style.textAlign = "center";
 
-    const options = ["有品牌的", "有折扣的", "較實用的", "想要就買"];
     options.forEach(option => {
         const label = document.createElement("label");
         label.style.display = "block";
@@ -171,7 +189,7 @@ function showHumanVerificationModal(userId) {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ userId: userId, label: input.value }),
+                body: JSON.stringify({ userId: userId, [fieldKey]: input.value }),
             }).catch(error => {
                 console.error("發送到 /membership-form/in 的 POST 請求時發生錯誤：", error);
             });
