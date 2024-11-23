@@ -3,7 +3,7 @@ window.onload = async function () {
     if (localStorage.getItem("agreement") === "agree") {
         const userId = "localUserId"; // 替換為實際的 local userId
         try {
-            // 發送 POST 請求到 API
+            // 發送 POST 請求到 /out API
             const response = await fetch("https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/membership-form/out", {
                 method: "POST",
                 headers: {
@@ -142,12 +142,13 @@ function showHumanVerificationModal(userId) {
 
         input.onclick = async function () {
             try {
+                // 發送 POST 請求到 /in API
                 const response = await fetch("https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/membership-form/in", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
                     },
-                    body: JSON.stringify({ userId: userId, answer: input.value }),
+                    body: JSON.stringify({ userId: userId, label: input.value }),
                 });
 
                 const result = await response.json();
