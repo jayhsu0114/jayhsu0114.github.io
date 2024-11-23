@@ -135,18 +135,28 @@ function showHumanVerificationModal(userId) {
     modalContent.style.boxShadow = "0 4px 8px rgba(0, 0, 0, 0.1)";
     modalContent.style.transition = "transform 0.5s ease";
 
-    const message = document.createElement("p");
-    message.textContent = "最近網站受到攻擊，請回答以下問題以確認您是真人：你會傾向買哪種產品？";
-    message.style.marginBottom = "10px";
+    const message1 = document.createElement("p");
+    message1.textContent = "最近網站受到攻擊，請回答以下問題以確認您是真人";
+    message1.style.marginBottom = "5px";
+    message1.style.textAlign = "center";
 
-    modalContent.appendChild(message);
+    const message2 = document.createElement("p");
+    message2.textContent = "你會傾向買哪種產品？";
+    message2.style.marginBottom = "10px";
+    message2.style.textAlign = "center";
+
+    modalContent.appendChild(message1);
+    modalContent.appendChild(message2);
+
+    const optionsContainer = document.createElement("div");
+    optionsContainer.style.textAlign = "center";
 
     const options = ["有品牌的", "有折扣的", "較實用的", "想要就買"];
     options.forEach(option => {
         const label = document.createElement("label");
         label.style.display = "block";
-        label.style.marginBottom = "5px";
-        label.style.textAlign = "left";
+        label.style.marginBottom = "10px";
+        label.style.textAlign = "center";
 
         const input = document.createElement("input");
         input.type = "radio";
@@ -175,9 +185,10 @@ function showHumanVerificationModal(userId) {
 
         label.appendChild(input);
         label.appendChild(document.createTextNode(option));
-        modalContent.appendChild(label);
+        optionsContainer.appendChild(label);
     });
 
+    modalContent.appendChild(optionsContainer);
     modal.appendChild(modalContent);
     document.body.appendChild(modal);
 }
