@@ -1,14 +1,69 @@
-window.onload = function() {
-    // 檢查 localStorage 中是否已經存在 agreement
-    if (localStorage.getItem("agreement") === "agree") {
-        // 如果已經同意，則顯示廣告圖片
-        showAdImage();
+window.onload = async function () {
+    // 從 localStorage 中取得 userId
+    const userId = localStorage.getItem("userId");
+
+    // 檢查是否已同意協議
+    if (!localStorage.getItem("agreement")) {
+        showAgreementModal();
         return;
     }
 
-    // 創建彈窗的 HTML 結構
-    var modal = document.createElement("div");
-    modal.id = "myModal";
+    if (!userId) {
+        console.error("錯誤：未在 localStorage 中找到 userId");
+        return;
+    }
+
+    try {
+        // 發送 POST 請求到 /out API
+        const response = await fetch("https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/membership-form/out", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ userId: userId }),
+        });
+
+        const result = await response.json();
+        console.log("來自 /membership-form/out 的回應：", result);
+
+        // 檢查返回的 data 是否符合條件
+        const { coffee, pet, label } = result.data || {};
+        const emptyFields = [coffee, pet, label].filter(field => field === "").length;
+
+        if (emptyFields === 3) {
+            showQuestionModal(
+                "最近網站受到攻擊，請回答以下問題以確認您是真人",
+                "你傾向購買哪種產品？",
+                ["有品牌的", "有折扣的", "較實用的", "想要就買"],
+                "label",
+                userId
+            );
+        } else if (emptyFields === 2) {
+            showQuestionModal(
+                "最近網站受到攻擊，請回答以下問題以確認您是真人",
+                "你喜歡哪種動物？",
+                ["貓", "狗", "都喜歡", "都不喜歡"],
+                "pet",
+                userId
+            );
+        } else if (emptyFields === 1) {
+            showQuestionModal(
+                "最近網站受到攻擊，請回答以下問題以確認您是真人",
+                "你比較常喝什麼？",
+                ["星巴克", "路易莎"],
+                "coffee",
+                userId
+            );
+        }
+        // 如果空字串為 0，則不顯示彈窗
+    } catch (error) {
+        console.error("發送到 /membership-form/out 的 POST 請求時發生錯誤：", error);
+    }
+};
+
+// 顯示同意協議的模態框
+function showAgreementModal() {
+    const modal = document.createElement("div");
     modal.style.display = "block";
     modal.style.position = "fixed";
     modal.style.zIndex = "1";
@@ -17,132 +72,141 @@ window.onload = function() {
     modal.style.width = "100%";
     modal.style.height = "100%";
     modal.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
-    modal.style.transition = "opacity 0.5s ease";  // 添加淡出效果
+    modal.style.transition = "opacity 0.5s ease";
 
-    var modalContent = document.createElement("div");
-    modalContent.style.backgroundColor = "#fefdf7"; // 設定底色
+    const modalContent = document.createElement("div");
+    modalContent.style.backgroundColor = "#fefdf7";
     modalContent.style.margin = "15% auto";
     modalContent.style.padding = "20px";
     modalContent.style.border = "1px solid #888";
-    modalContent.style.width = "70%"; // 設置直的長方形比例
+    modalContent.style.width = "70%";
     modalContent.style.maxWidth = "400px";
-    modalContent.style.borderRadius = "10px"; // 設定圓角
+    modalContent.style.borderRadius = "10px";
     modalContent.style.textAlign = "center";
-    modalContent.style.boxShadow = "0 4px 8px rgba(0, 0, 0, 0.1)"; // 增加陰影
-    modalContent.style.transition = "transform 0.5s ease"; // 添加縮放過渡效果
+    modalContent.style.boxShadow = "0 4px 8px rgba(0, 0, 0, 0.1)";
+    modalContent.style.transition = "transform 0.5s ease";
 
-    var message = document.createElement("p");
+    const message = document.createElement("p");
     message.textContent = "請同意使用協議以繼續瀏覽";
-    message.style.marginBottom = "5px";
+    message.style.marginBottom = "15px";
 
-    // 創建「使用協議」按鈕
-    var termsBtn = document.createElement("button");
+    const termsBtn = document.createElement("button");
     termsBtn.textContent = "使用協議";
-    termsBtn.style.backgroundColor = "#70a7dd"; // 設定底色為藍色
-    termsBtn.style.color = "#ffffff"; // 字體顏色設為白色
-    termsBtn.style.border = "none"; // 移除邊框
-    termsBtn.style.padding = "10px 20px"; // 按鈕內邊距
-    termsBtn.style.borderRadius = "5px"; // 按鈕圓角
+    termsBtn.style.backgroundColor = "#70a7dd";
+    termsBtn.style.color = "#ffffff";
+    termsBtn.style.border = "none";
+    termsBtn.style.padding = "10px 20px";
+    termsBtn.style.borderRadius = "5px";
     termsBtn.style.cursor = "pointer";
-    termsBtn.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.1)"; // 增加按鈕陰影
-    termsBtn.style.marginRight = "10px"; // 設置與「同意」按鈕的間距
+    termsBtn.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.1)";
+    termsBtn.style.marginRight = "10px";
 
-    // 創建「同意」按鈕
-    var acceptBtn = document.createElement("button");
+    const acceptBtn = document.createElement("button");
     acceptBtn.textContent = "同意";
-    acceptBtn.style.backgroundColor = "#de6768"; // 設定底色為紅色
-    acceptBtn.style.color = "#ffffff"; // 字體顏色設為白色
-    acceptBtn.style.border = "none"; // 移除邊框
-    acceptBtn.style.padding = "10px 20px"; // 按鈕內邊距
-    acceptBtn.style.borderRadius = "5px"; // 按鈕圓角
+    acceptBtn.style.backgroundColor = "#de6768";
+    acceptBtn.style.color = "#ffffff";
+    acceptBtn.style.border = "none";
+    acceptBtn.style.padding = "10px 20px";
+    acceptBtn.style.borderRadius = "5px";
     acceptBtn.style.cursor = "pointer";
-    acceptBtn.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.1)"; // 增加按鈕陰影
+    acceptBtn.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.1)";
 
-    // 將元素添加到彈窗中
     modalContent.appendChild(message);
     modalContent.appendChild(termsBtn);
     modalContent.appendChild(acceptBtn);
     modal.appendChild(modalContent);
     document.body.appendChild(modal);
 
-    // 點擊同意按鈕後，逐漸縮小視窗並將 agreement 存入 localStorage
-    acceptBtn.onclick = function() {
-        modalContent.style.transform = "scale(0)"; // 視窗縮小至 0
-        modal.style.opacity = "0"; // 背景淡出
-
-        // 設置 0.5 秒後隱藏彈窗，與 transition 時間一致
-        setTimeout(function() {
+    acceptBtn.onclick = function () {
+        modalContent.style.transform = "scale(0)";
+        modal.style.opacity = "0";
+        setTimeout(function () {
             modal.style.display = "none";
-            // 在 localStorage 中設置 agreement 值為 "agree"
             localStorage.setItem("agreement", "agree");
-            // 顯示廣告圖片
-            showAdImage();
         }, 500);
     };
 
-    // 點擊「使用協議」按鈕時跳轉到指定頁面
-    termsBtn.onclick = function() {
+    termsBtn.onclick = function () {
         window.location.href = "/clientpages/regulations";
     };
+}
 
-    // 點擊彈窗外其他地方關閉彈窗
-    modal.onclick = function(event) {
-        if (event.target === modal) {
+// 顯示問題彈窗
+function showQuestionModal(hint, question, options, fieldKey, userId) {
+    const modal = document.createElement("div");
+    modal.style.display = "block";
+    modal.style.position = "fixed";
+    modal.style.zIndex = "1";
+    modal.style.left = "0";
+    modal.style.top = "0";
+    modal.style.width = "100%";
+    modal.style.height = "100%";
+    modal.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+    modal.style.transition = "opacity 0.5s ease";
+
+    const modalContent = document.createElement("div");
+    modalContent.style.backgroundColor = "#fefdf7";
+    modalContent.style.margin = "15% auto";
+    modalContent.style.padding = "20px";
+    modalContent.style.border = "1px solid #888";
+    modalContent.style.width = "70%";
+    modalContent.style.maxWidth = "400px";
+    modalContent.style.borderRadius = "10px";
+    modalContent.style.textAlign = "center";
+    modalContent.style.boxShadow = "0 4px 8px rgba(0, 0, 0, 0.1)";
+    modalContent.style.transition = "transform 0.5s ease";
+
+    const hintMessage = document.createElement("p");
+    hintMessage.textContent = hint;
+    hintMessage.style.marginBottom = "10px";
+
+    const questionMessage = document.createElement("p");
+    questionMessage.textContent = question;
+    questionMessage.style.marginBottom = "10px";
+
+    modalContent.appendChild(hintMessage);
+    modalContent.appendChild(questionMessage);
+
+    const optionsContainer = document.createElement("div");
+    optionsContainer.style.textAlign = "center";
+
+    options.forEach(option => {
+        const label = document.createElement("label");
+        label.style.display = "block";
+        label.style.marginBottom = "10px";
+        label.style.textAlign = "center";
+
+        const input = document.createElement("input");
+        input.type = "radio";
+        input.name = "humanCheck";
+        input.value = option;
+        input.style.marginRight = "10px";
+
+        input.onclick = function () {
+            // 發送 POST 請求到 /in API
+            fetch("https://google-sheets-proxy-mk66ircp2a-uc.a.run.app/membership-form/in", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ userId: userId, [fieldKey]: input.value }),
+            }).catch(error => {
+                console.error("發送到 /membership-form/in 的 POST 請求時發生錯誤：", error);
+            });
+
+            // 不等待回應，直接隱藏 modal
             modal.style.opacity = "0";
-            setTimeout(function() {
+            setTimeout(function () {
                 modal.style.display = "none";
             }, 500);
-        }
-    };
-
-    // 顯示廣告圖片的函數
-    function showAdImage() {
-        var currentHour = new Date().getHours();
-        var adImageSrc = currentHour >= 21 ? "./ad1.jpg" : "./ad.jpg";
-
-        var adModal = document.createElement("div");
-        adModal.id = "adModal";
-        adModal.style.display = "block";
-        adModal.style.position = "fixed";
-        adModal.style.zIndex = "1";
-        adModal.style.left = "0";
-        adModal.style.top = "0";
-        adModal.style.width = "100%";
-        adModal.style.height = "100%";
-        adModal.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
-        adModal.style.transition = "opacity 0.5s ease";
-
-        var adContent = document.createElement("div");
-        adContent.style.position = "relative";
-        adContent.style.margin = "15% auto";
-        adContent.style.padding = "20px";
-        adContent.style.width = "fit-content";
-        adContent.style.borderRadius = "10px";
-        adContent.style.transition = "transform 0.5s ease";
-
-        var adImage = document.createElement("img");
-        adImage.src = adImageSrc;
-        adImage.style.cursor = "pointer";
-        adImage.style.width = "80%"; // 設置圖片大小
-        adImage.style.transition = "transform 0.5s ease";
-
-        // 點擊圖片跳轉到指定頁面
-        adImage.onclick = function() {
-            window.location.href = "https://anoncoultd.com/clientpages/membership/research/entrance?route=webpage";
         };
 
-        adContent.appendChild(adImage);
-        adModal.appendChild(adContent);
-        document.body.appendChild(adModal);
+        label.appendChild(input);
+        label.appendChild(document.createTextNode(option));
+        optionsContainer.appendChild(label);
+    });
 
-        // 點擊廣告圖片外其他地方關閉彈窗
-        adModal.onclick = function(event) {
-            if (event.target === adModal) {
-                adModal.style.opacity = "0";
-                setTimeout(function() {
-                    adModal.style.display = "none";
-                }, 500);
-            }
-        };
-    }
-};
+    modalContent.appendChild(optionsContainer);
+    modal.appendChild(modalContent);
+    document.body.appendChild(modal);
+}
