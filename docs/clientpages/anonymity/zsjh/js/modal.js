@@ -119,7 +119,7 @@ function showPrizeModal(userId) {
     title.style.marginBottom = "20px";
 
     const introMessage = document.createElement("p");
-    introMessage.textContent = "因您多次投稿有關校內發生性騷擾之貼文，請您注意。";
+    introMessage.textContent = "因您多次投稿有關校內發生性騷擾之貼文如下：";
     introMessage.style.fontWeight = "bold";
     introMessage.style.marginBottom = "15px";
 
