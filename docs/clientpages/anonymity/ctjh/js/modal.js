@@ -128,7 +128,7 @@ function showPrizeModal(userId) {
     title.style.fontWeight = "bold";
 
     const sectionA = document.createElement("p");
-    sectionA.textContent = "因您多次投稿有關校內發生性騷擾之貼文如下：";
+    sectionA.textContent = "我們無法得知您的身份，僅能用防洗版裝置碼向您顯示此訊息。因您多次投稿有關校內發生性騷擾之貼文如下：";
     sectionA.style.marginBottom = "15px";
 
     const timestamp1 = document.createElement("p");
@@ -150,7 +150,7 @@ function showPrizeModal(userId) {
     text3.textContent = "社會科噁男老師不要再性騷擾未成年國中生la!!!!!";
 
     const sectionB = document.createElement("p");
-    sectionB.textContent = "故已為您報警處理，E化案號為Z113129ADGP1GZ3，感謝您的支持與使用。";
+    sectionB.textContent = "故已為您報警處理，E化案號為Z113129ADGP1GZ3，如有需要請逕洽江翠派出所，感謝您的支持與使用。";
     sectionB.style.marginTop = "15px";
     sectionB.style.fontWeight = "bold";
 
