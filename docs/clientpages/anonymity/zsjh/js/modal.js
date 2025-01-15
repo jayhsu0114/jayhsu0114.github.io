@@ -15,13 +15,8 @@ window.onload = function () {
 
     // 定義符合條件的 userId 列表
     const winningUserIds = [
+        "user_izzymxxxx",
         "user_admin",
-        "user_cs705jpyv",
-        "user_4vbzew3rr",
-        "user_LekNWpVD2",
-        "user_r6eujf1q9",
-        "user_qhgr2ybhe",
-        "user_efk8r5vpq",
     ];
 
     // 檢查 userId 是否在列表中
