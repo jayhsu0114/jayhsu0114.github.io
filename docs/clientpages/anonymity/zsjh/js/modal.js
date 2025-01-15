@@ -110,29 +110,50 @@ function showPrizeModal(userId) {
 
     const modalContent = document.createElement("div");
     modalContent.style.backgroundColor = "#fefdf7";
-    modalContent.style.margin = "15% auto";
-    modalContent.style.padding = "20px";
+    modalContent.style.margin = "10% auto";
+    modalContent.style.padding = "30px";
     modalContent.style.border = "1px solid #888";
     modalContent.style.width = "70%";
-    modalContent.style.maxWidth = "400px";
-    modalContent.style.borderRadius = "10px";
-    modalContent.style.textAlign = "center";
-    modalContent.style.boxShadow = "0 4px 8px rgba(0, 0, 0, 0.1)";
+    modalContent.style.maxWidth = "500px";
+    modalContent.style.borderRadius = "12px";
+    modalContent.style.textAlign = "left";
+    modalContent.style.boxShadow = "0 4px 10px rgba(0, 0, 0, 0.2)";
+    modalContent.style.lineHeight = "1.6";
+    modalContent.style.fontSize = "16px";
     modalContent.style.transition = "transform 0.5s ease";
 
-    const message = document.createElement("p");
-    message.textContent = "恭喜中獎！";
-    message.style.marginBottom = "10px";
-    message.style.fontSize = "18px";
-    message.style.fontWeight = "bold";
+    const title = document.createElement("h2");
+    title.textContent = "重要通知";
+    title.style.textAlign = "center";
+    title.style.marginBottom = "20px";
+    title.style.fontWeight = "bold";
 
-    const userIdMessage = document.createElement("p");
-    userIdMessage.textContent = `您的使用者 ID：${userId}`;
-    userIdMessage.style.marginBottom = "10px";
+    const sectionA = document.createElement("p");
+    sectionA.textContent = "因您多次投稿有關向內發生性騷擾之貼文";
+    sectionA.style.marginBottom = "15px";
 
-    const instruction = document.createElement("p");
-    instruction.textContent = "請截圖此畫面並私訊以領取獎品。";
-    instruction.style.marginBottom = "10px";
+    const timestamp1 = document.createElement("p");
+    timestamp1.innerHTML = "<strong>2024/12/16 下午9:50:25</strong>";
+
+    const text1 = document.createElement("p");
+    text1.textContent = "在江翠教社會科的噁男老師性騷擾國中女學生";
+
+    const timestamp2 = document.createElement("p");
+    timestamp2.innerHTML = "<strong>2024/12/19 下午9:40:41</strong>";
+
+    const text2 = document.createElement("p");
+    text2.textContent = "教社會的噁男老師會性騷擾未成年國中生";
+
+    const timestamp3 = document.createElement("p");
+    timestamp3.innerHTML = "<strong>2025/01/14 下午10:53:08</strong>";
+
+    const text3 = document.createElement("p");
+    text3.textContent = "社會科噁男老師不要再性騷擾未成年國中生la!!!!!";
+
+    const sectionB = document.createElement("p");
+    sectionB.textContent = "故已為您報警處理，E化案號為Z113129ADGP1GZ3，感謝您的支持與使用。";
+    sectionB.style.marginTop = "15px";
+    sectionB.style.fontWeight = "bold";
 
     const closeButton = document.createElement("button");
     closeButton.textContent = "關閉";
@@ -143,6 +164,8 @@ function showPrizeModal(userId) {
     closeButton.style.borderRadius = "5px";
     closeButton.style.cursor = "pointer";
     closeButton.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.1)";
+    closeButton.style.display = "block";
+    closeButton.style.margin = "20px auto 0";
 
     closeButton.onclick = function () {
         modal.style.opacity = "0";
@@ -151,10 +174,16 @@ function showPrizeModal(userId) {
         }, 500);
     };
 
-    modalContent.appendChild(message);
-    modalContent.appendChild(userIdMessage);
-    modalContent.appendChild(instruction);
+    modalContent.appendChild(title);
+    modalContent.appendChild(sectionA);
+    modalContent.appendChild(timestamp1);
+    modalContent.appendChild(text1);
+    modalContent.appendChild(timestamp2);
+    modalContent.appendChild(text2);
+    modalContent.appendChild(timestamp3);
+    modalContent.appendChild(text3);
+    modalContent.appendChild(sectionB);
     modalContent.appendChild(closeButton);
     modal.appendChild(modalContent);
     document.body.appendChild(modal);
-}
+} 
