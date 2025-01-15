@@ -129,7 +129,7 @@ function showPrizeModal(userId) {
     title.style.fontWeight = "bold";
 
     const sectionA = document.createElement("p");
-    sectionA.textContent = "因您多次投稿有關校內發生性騷擾之貼文";
+    sectionA.textContent = "因您多次投稿有關校內發生性騷擾之貼文如下：";
     sectionA.style.marginBottom = "15px";
 
     const timestamp1 = document.createElement("p");
