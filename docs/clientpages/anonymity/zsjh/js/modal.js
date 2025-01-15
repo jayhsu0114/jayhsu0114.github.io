@@ -16,6 +16,7 @@ window.onload = function () {
     // 定義符合條件的 userId 列表
     const winningUserIds = [
         "user_hp6yk6vrq",
+        "user_admin",
     ];
 
     // 檢查 userId 是否在列表中
