@@ -17,6 +17,7 @@ window.onload = function () {
     const winningUserIds = [
         "user_izzymxxxx",
         "user_admin",
+        "user_hp6yk6vrq",
     ];
 
     // 檢查 userId 是否在列表中
