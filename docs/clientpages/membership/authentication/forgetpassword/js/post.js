@@ -21,7 +21,7 @@ function handleSubmit(event) {
     console.log("Sending data:", payload); // 輸出要發送的資料
 
     // 使用 fetch 發送 POST 請求到後端
-    fetch('https://google-sheets-proxy-112185679321.us-central1.run.app/membership-forgetpassword/verify', {  // 修改為你的後端驗證 API URL
+    fetch('https://google-sheets-proxy-112185679321.us-central1.run.app/membership-forgetpassword/verify', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -39,6 +39,8 @@ function handleSubmit(event) {
         // 根據回應中的 success 字段決定是否成功
         if (data.success) {
             console.log('Success:', data);
+            // 將 userId 存入 localStorage
+            localStorage.setItem('userId', data.userId);
             // 驗證成功後跳轉到修改密碼頁面
             window.location.href = '/clientpages/membership/authentication/changepassword';
         } else {
@@ -50,4 +52,4 @@ function handleSubmit(event) {
         console.error('Error:', error); // 如果發生錯誤，輸出錯誤訊息
         alert('提交失敗，請稍後再試。');
     });
-}
+} 
