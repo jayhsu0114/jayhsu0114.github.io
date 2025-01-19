@@ -3,20 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>個人主頁</title>
+    <title>ANON系統主頁</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 
     <div class="login-container">
-        <h1>個人資料</h1>
+        <h1>使用者主頁</h1>
         <form id="registration-form">
 
             <div class="input-group">
                 <label for="schoolcode">學生證悠遊卡號</label>
                 <input type="hidden" id="schoolcode-prefix" name="schoolcode-prefix" required readonly>
-                <input type="text" id="schoolcode" name="schoolcode" placeholder="將作為帳號使用無法自行更改" required readonly>
+                <input type="text" id="schoolcode" name="schoolcode" placeholder="作為身份驗證使用請正確填寫" required readonly>
+                <div class="error" id="schoolcode-error">請輸入正確學生證悠遊卡號</div>
                 <input type="hidden" id="schoolcode-suffix" name="schoolcode-suffix" required readonly>
             </div>
 
@@ -27,9 +28,9 @@
                     <label for="school-information-number" >座號</label>
                 </div>
                 <div class="input-row">
-                    <input type="text" id="school-information-grade" name="school-information-grade" placeholder="入學年" required>
-                    <input type="text" id="school-information-class" name="school-information-class" required>
-                    <input type="text" id="school-information-number" name="school-information-number" required>
+                    <input type="text" id="school-information-grade" name="school-information-grade" placeholder="入學年" required readonly>
+                    <input type="text" id="school-information-class" name="school-information-class" required readonly>
+                    <input type="text" id="school-information-number" name="school-information-number" required readonly>
                 </div>
             </div>
 
@@ -45,16 +46,16 @@
                     <label for="birthday-information-date">出生日</label>
                 </div>
                 <div class="input-row">
-                    <input type="text" id="birthday-information-year" name="birthday-information-year" placeholder="西元年" required>
+                    <input type="text" id="birthday-information-year" name="birthday-information-year" placeholder="西元年" required readonly>
                     <div class="error" id="birthday-information-year-error">請輸入西元年</div>
-                    <input type="text" id="birthday-information-month" name="birthday-information-month" required>
-                    <input type="text" id="birthday-information-date" name="birthday-information-date" required>
+                    <input type="text" id="birthday-information-month" name="birthday-information-month" required readonly>
+                    <input type="text" id="birthday-information-date" name="birthday-information-date" required readonly>
                 </div>
             </div>
 
             <div class="input-group">
                 <label for="email">電子郵件</label>
-                <input type="email" id="email" name="email" required>
+                <input type="email" id="email" name="email" placeholder="將作為帳號登入使用" required>
             </div>
 
             <div class="input-group">
@@ -74,13 +75,14 @@
                 <div class="error" id="password-error">密碼不一致</div>
             </div>
 
-            <button type="button" id="agreement">檢視使用協議</button>
+            <button type="button" id="agreement">刪除帳號</button>
 
-            <button type="submit" id="signup">註冊</button>
+            <button type="submit" id="signup">更改</button>
         </form>
     </div>
     <script src="./js/modal.js"></script>
     <script src="./js/passwordcomfirm.js"></script>
+    <script src="./js/schoolcodecomfirm.js"></script>
     <script src="./js/instagramcomfirm.js"></script>
     <script src="./js/post.js"></script>
     <script src="./js/school.js"></script>
