@@ -15,6 +15,6 @@ schoolCodeInput.addEventListener('input', function() {
     } else {
         schoolCodeerrorMessage.style.display = 'none'; // 隱藏錯誤訊息
         agreementButton.disabled = false; // 解鎖按鈕
-        signupButton.disabled = true; // 鎖定按鈕
+        signupButton.disabled = false; // 鎖定按鈕
     }
 });
